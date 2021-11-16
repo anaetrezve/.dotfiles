@@ -1,9 +1,13 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/opt/ruby/bin:$(ruby -e 'puts Gem.bindir'):$HOME/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/anaet/.oh-my-zsh"
 export DOTFILES="$HOME/.dotfiles"
+
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=${PATH}:$GOBIN
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -78,10 +82,12 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-
+# source $(dirname $(gem which colorls))/tab_complete.sh
 # User configuration
-
+ 
 # export MANPATH="/usr/local/man:$MANPATH"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -104,3 +110,36 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias la="ls -al"
+alias ll="ls -l"
+alias tf="cd ~/Office/tixio/tixio-app-frontend"
+alias tb="cd ~/Office/tixio/tixio-app-backend"
+alias vi="nvim"
+alias vim="nvim"
+alias localMongo="docker run -p 27017:27017 --name localMongo mongo:5.0-focal"
+alias localMongoBG="docker run -d -p 27017:27017 --name localMongo mongo:5.0-focal"
+alias stopLocalMongo="docker container stop localMongo"
+
+
+
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
