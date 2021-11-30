@@ -118,7 +118,8 @@ alias vi="nvim"
 alias vim="nvim"
 alias localMongo="docker run -p 27017:27017 --name localMongo mongo:5.0-focal"
 alias localMongoBG="docker run -d -p 27017:27017 --name localMongo mongo:5.0-focal"
-alias stopLocalMongo="docker container stop localMongo"
+alias localMongoStart="docker container start localMongo"
+alias localMongoStop="docker container stop localMongo"
 
 
 
