@@ -3,7 +3,7 @@ eval "$(zoxide init zsh)"
 export PATH=$HOME/bin:/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/opt/ruby/bin:$(ruby -e 'puts Gem.bindir'):$HOME/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/anaet/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/.dotfiles"
 
 # export GOPATH=$HOME/go
