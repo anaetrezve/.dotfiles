@@ -1,3 +1,4 @@
+eval "$(zoxide init zsh)"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/opt/ruby/bin:$(ruby -e 'puts Gem.bindir'):$HOME/go/bin:$PATH
 
@@ -5,9 +6,9 @@ export PATH=$HOME/bin:/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/opt/ruby/bi
 export ZSH="/Users/anaet/.oh-my-zsh"
 export DOTFILES="$HOME/.dotfiles"
 
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=${PATH}:$GOBIN
+# export GOPATH=$HOME/go
+# export GOBIN=$GOPATH/bin
+# export PATH=${PATH}:$GOBIN
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -79,7 +80,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 # Above line not working on my macbook
 # It's working after repeating this below line
-plugins=(zsh-autosuggestions)
+# plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 # source $(dirname $(gem which colorls))/tab_complete.sh
@@ -110,18 +111,19 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias la="ls -al"
+
+alias cd="z"
+alias ls="exa --icons"
+alias la="ls -al --all"
 alias ll="ls -l"
-alias tf="cd ~/Office/tixio/tixio-app-frontend"
-alias tb="cd ~/Office/tixio/tixio-app-backend"
+alias tree="exa -T --icons"
 alias vi="nvim"
 alias vim="nvim"
-alias localMongo="docker run -p 27017:27017 --name localMongo mongo:5.0-focal"
-alias localMongoBG="docker run -d -p 27017:27017 --name localMongo mongo:5.0-focal"
+alias localMongo="docker run -p 27017:27017 --name localMongo mongo:6.0.2-focal"
+alias localMongoBG="docker run -d -p 27017:27017 --name localMongo mongo:6.0.2-focal"
 alias localMongoStart="docker container start localMongo"
 alias localMongoStop="docker container stop localMongo"
-
-
+alias leetcodeGo="cd /Users/anaet/Experiments/DSA/leetcode/golang"
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
