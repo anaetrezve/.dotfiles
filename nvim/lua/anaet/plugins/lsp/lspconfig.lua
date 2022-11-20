@@ -91,6 +91,8 @@ lspconfig["emmet_ls"].setup({
 
 -- configure go formatter
 lspconfig["gopls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 	settings = {
 		gopls = {
 			gofumpt = true,
@@ -102,6 +104,11 @@ lspconfig["gopls"].setup({
 lspconfig["sumneko_lua"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	init_options = {
+		onlyAnalyzeProjectsWithOpenFiles = true,
+		suggestFromUnimportedLibraries = false,
+		closingLabels = true,
+	},
 	settings = { -- custom settings for lua
 		Lua = {
 			-- make the language server recognize "vim" global
