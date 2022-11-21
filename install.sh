@@ -11,6 +11,10 @@ function link_tmux_config() {
   ln -s ~/.dotfiles/tmux/.tmux.conf $TMUX_CONFIG_FILE_PATH
 }
 
+function clone_tmux_plugin_manager() {
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
 # Checking if Neovim config already exists
 if [ -d $NVIM_CONFIG_FILE_DIR ]; then
 	printf "Neovim config setup started...\n";
@@ -29,6 +33,7 @@ if [ -f $TMUX_CONFIG_FILE_PATH ]; then
 else
   printf "Setting up Tmux config\n";
   link_tmux_config;
+  clone_tmux_plugin_manager;
   printf "Setting up Tmux config done\n\n";
 fi
 
