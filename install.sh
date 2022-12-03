@@ -2,6 +2,7 @@
 
 NVIM_CONFIG_FILE_DIR=~/.config
 TMUX_CONFIG_FILE_PATH=~/.tmux.conf
+ALACRITTY_CONFIG_FILE_PATH=~/.config/alacritty/alacritty.yml
 
 function link_nvim_config() {
 	ln -s ~/.dotfiles/nvim ~/.config
@@ -9,6 +10,10 @@ function link_nvim_config() {
 
 function link_tmux_config() {
   ln -s ~/.dotfiles/tmux/.tmux.conf $TMUX_CONFIG_FILE_PATH
+}
+
+function link_alacritty_config() {
+	ln -s ~/.dotfiles/alacritty ~/.config
 }
 
 function clone_tmux_plugin_manager() {
@@ -35,5 +40,14 @@ else
   link_tmux_config;
   clone_tmux_plugin_manager;
   printf "Setting up Tmux config done\n\n";
+fi
+
+# Checking if alacritty config already exists
+if [ -f $ALACRITTY_CONFIG_FILE_PATH ]; then
+  printf "Alacritty config file already exists\n\n";
+else
+  printf "Setting up Alacritty config\n";
+  link_alacritty_config;
+  printf "Setting up Alacritty config done\n\n";
 fi
 
