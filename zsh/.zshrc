@@ -93,6 +93,15 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 # source $(dirname $(gem which colorls))/tab_complete.sh
 # User configuration
+
+# local config for specific local machine 
+if [ -d "$HOME/.zsh" ]; then
+  if [ -f "$HOME/.zsh/local.zsh" ]; then 
+    source "~/.zsh/local.zsh"
+  fi
+else 
+  mkdir "$HOME/.zsh"
+fi
  
 # export MANPATH="/usr/local/man:$MANPATH"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
