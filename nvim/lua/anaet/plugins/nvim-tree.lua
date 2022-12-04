@@ -13,6 +13,14 @@ vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
 -- configure nvim-tree
 nvimtree.setup({
+	view = {
+		mappings = {
+			custom_only = false,
+			list = {
+				{ key = "nt", action = "tabnew" },
+			},
+		},
+	},
 	-- change folder arrow icons
 	renderer = {
 		highlight_git = false,
