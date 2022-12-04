@@ -97,7 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # local config for specific local machine 
 if [ -d "$HOME/.zsh" ]; then
   if [ -f "$HOME/.zsh/local.zsh" ]; then 
-    source "~/.zsh/local.zsh"
+    source "$HOME/.zsh/local.zsh"
   fi
 else 
   mkdir "$HOME/.zsh"

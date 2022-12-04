@@ -8,131 +8,108 @@
 #
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
-#import:
-#  - /path/to/alacritty.yml
+import:
+  - ~/.dotfiles/alacritty/fonts.yml
+  - ~/.dotfiles/alacritty/colors.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
-# TERM variable
-#
-# This value is used to set the `$TERM` environment variable for
-# each instance of Alacritty. If it is not present, alacritty will
-# check the local terminfo database and use `alacritty` if it is
-# available, otherwise `xterm-256color` is used.
-#TERM: alacritty
+env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: alacritty
+  WINIT_X11_SCALE_FACTOR: "1.0"
 
-#window:
-# Window dimensions (changes require restart)
-#
-# Number of lines/columns (not pixels) in the terminal. Both lines and columns
-# must be non-zero for this to take effect. The number of columns must be at
-# least `2`, while using a value of `0` for columns and lines will fall back
-# to the window manager's recommended size
-#dimensions:
-#  columns: 0
-#  lines: 0
+window:
+  # Window dimensions (changes require restart)
+  #
+  # Number of lines/columns (not pixels) in the terminal. Both lines and columns
+  # must be non-zero for this to take effect. The number of columns must be at
+  # least `2`, while using a value of `0` for columns and lines will fall back
+  # to the window manager's recommended size
+  dimensions:
+    columns: 82
+    lines: 25
 
-# Window position (changes require restart)
-#
-# Specified in number of pixels.
-# If the position is not set, the window manager will handle the placement.
-#position:
-#  x: 0
-#  y: 0
+  # Window position (changes require restart)
+  #
+  # Specified in number of pixels.
+  # If the position is not set, the window manager will handle the placement.
+  #position:
+  #  x: 0
+  #  y: 0
 
-# Window padding (changes require restart)
-#
-# Blank space added around the window in pixels. This padding is scaled
-# by DPI and the specified value is always added at both opposing sides.
-#padding:
-#  x: 0
-#  y: 0
+  # Window padding (changes require restart)
+  #
+  # Blank space added around the window in pixels. This padding is scaled
+  # by DPI and the specified value is always added at both opposing sides.
+  # padding:
+  #   x: 10
+  #   y: 10
 
-# Spread additional padding evenly around the terminal content.
-#dynamic_padding: false
+  # Spread additional padding evenly around the terminal content.
+  #dynamic_padding: false
 
-# Window decorations
-#
-# Values for `decorations`:
-#     - full: Borders and title bar
-#     - none: Neither borders nor title bar
-#
-# Values for `decorations` (macOS only):
-#     - transparent: Title bar, transparent background and title bar buttons
-#     - buttonless: Title bar, transparent background and no title bar buttons
-#decorations: full
+  # Window decorations
+  #
+  # Values for `decorations`:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  #
+  # Values for `decorations` (macOS only):
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background and no title bar buttons
+  decorations: full
 
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-#opacity: 1.0
+  # Background opacity
+  #
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+  opacity: 0.8
 
-# Startup Mode (changes require restart)
-#
-# Values for `startup_mode`:
-#   - Windowed
-#   - Maximized
-#   - Fullscreen
-#
-# Values for `startup_mode` (macOS only):
-#   - SimpleFullscreen
-#startup_mode: Windowed
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  startup_mode: Maximized
 
-# Window title
-#title: Alacritty
+  # Window title
+  #title: Alacritty
 
-# Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
 
-# Window class (Linux/BSD only):
-#class:
-# Application instance name
-#instance: Alacritty
-# General application class
-#general: Alacritty
+  # Window class (Linux/BSD only):
+  #class:
+  # Application instance name
+  #instance: Alacritty
+  # General application class
+  #general: Alacritty
 
-# Decorations theme variant (Linux/BSD only)
-#
-# Override the variant of the GTK theme/Wayland client side decorations.
-# Commonly supported values are `dark` and `light`. Set this to `None` to use
-# the default theme variant.
-#decorations_theme_variant: None
+  # Decorations theme variant (Linux/BSD only)
+  #
+  # Override the variant of the GTK theme/Wayland client side decorations.
+  # Commonly supported values are `dark` and `light`. Set this to `None` to use
+  # the default theme variant.
+  #decorations_theme_variant: None
 
-#scrolling:
-# Maximum number of lines in the scrollback buffer.
-# Specifying '0' will disable scrolling.
-#history: 10000
+  #scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 10000
 
-# Scrolling distance multiplier.
-#multiplier: 3
-
-# Font configuration
-font:
-  # Normal (roman) font face
-  normal:
-    family: JetBrainsMono Nerd Font
-    style: Regular
-
-  # Bold font face
-  bold:
-    family: JetBrainsMono Nerd Font
-    style: Bold
-
-  # Italic font face
-  italic:
-    family: JetBrainsMono Nerd Font
-    style: MediumItalic
-
-  # Bold italic font face
-  bold_italic:
-    family: JetBrainsMono Nerd Font
-    style: BoldItalic
-
-  # Point size
-  size: 15
+  # Scrolling distance multiplier.
+  multiplier: 3
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -154,9 +131,9 @@ font:
   # characters (Unicode points 2500 - 259f).
   #
   #builtin_box_drawing: true
-
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+# draw_bold_text_with_bright_colors: true
+
 #font:
 # Normal (roman) font face
 #normal:
@@ -231,34 +208,6 @@ draw_bold_text_with_bright_colors: true
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Material Theme)
-colors:
-  # Default colors
-  primary:
-    background: "0x1e282d"
-    foreground: "0xc4c7d1"
-
-  # Normal colors
-  normal:
-    black: "0x666666"
-    red: "0xeb606b"
-    green: "0xc3e88d"
-    yellow: "0xf7eb95"
-    blue: "0x80cbc4"
-    magenta: "0xff2f90"
-    cyan: "0xaeddff"
-    white: "0xffffff"
-
-  # Bright colors
-  bright:
-    black: "0xff262b"
-    red: "0xeb606b"
-    green: "0xc3e88d"
-    yellow: "0xf7eb95"
-    blue: "0x7dc6bf"
-    magenta: "0x6c71c4"
-    cyan: "0x35434d"
-    white: "0xffffff"
 # Colors (Tomorrow Night)
 #colors:
 # Default colors
