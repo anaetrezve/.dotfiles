@@ -1,28 +1,64 @@
 # Colors (Material Theme)
+# colors:
+#   # Default colors
+#   primary:
+#     background: "0x1e282d"
+#     foreground: "0xc4c7d1"
+#
+#   # Normal colors
+#   normal:
+#     black: "0x666666"
+#     red: "0xeb606b"
+#     green: "0xc3e88d"
+#     yellow: "0xf7eb95"
+#     blue: "0x80cbc4"
+#     magenta: "0xff2f90"
+#     cyan: "0xaeddff"
+#     white: "0xffffff"
+#
+#   # Bright colors
+#   bright:
+#     black: "0xff262b"
+#     red: "0xeb606b"
+#     green: "0xc3e88d"
+#     yellow: "0xf7eb95"
+#     blue: "0x7dc6bf"
+#     magenta: "0x6c71c4"
+#     cyan: "0x35434d"
+#     white: "0xffffff"
+
+# Colors (Night Owl)
 colors:
   # Default colors
   primary:
-    background: "0x1e282d"
-    foreground: "0xc4c7d1"
+    background: "#011627"
+    foreground: "#d6deeb"
 
-  # Normal colors
+  cursor:
+    text: "#011627"
+    cursor: "#d6deeb"
+
+  selection:
+    background: "#1b90dd"
+
+    # Normal colors
   normal:
-    black: "0x666666"
-    red: "0xeb606b"
-    green: "0xc3e88d"
-    yellow: "0xf7eb95"
-    blue: "0x80cbc4"
-    magenta: "0xff2f90"
-    cyan: "0xaeddff"
-    white: "0xffffff"
+    black: "#011627"
+    red: "#ef5350"
+    green: "#22da6e"
+    yellow: "#c5e478"
+    blue: "#82aaff"
+    magenta: "#c792ea"
+    cyan: "#21c7a8"
+    white: "#ffffff"
 
-  # Bright colors
+    # Bright colors
   bright:
-    black: "0xff262b"
-    red: "0xeb606b"
-    green: "0xc3e88d"
-    yellow: "0xf7eb95"
-    blue: "0x7dc6bf"
-    magenta: "0x6c71c4"
-    cyan: "0x35434d"
-    white: "0xffffff"
+    black: "#575656"
+    red: "#ef5350"
+    green: "#22da6e"
+    yellow: "#ffeb95"
+    blue: "#82aaff"
+    magenta: "#c792ea"
+    cyan: "#7fdbca"
+    white: "#ffffff"
