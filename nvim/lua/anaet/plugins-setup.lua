@@ -63,6 +63,7 @@ return packer.startup(function(use)
 
 	-- tabs
 	use("nanozuki/tabby.nvim")
+	-- use({ "romgrk/barbar.nvim", wants = "nvim-web-devicons" })
 
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
