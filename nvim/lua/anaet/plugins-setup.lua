@@ -34,8 +34,8 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
 	-- use("haishanh/night-owl.vim") -- colorscheme
-	-- use("EdenEast/nightfox.nvim") -- colorscheme
-	use("bluz71/vim-nightfly-colors") -- preferred colorscheme
+	use("EdenEast/nightfox.nvim") -- colorscheme
+	-- use("bluz71/vim-nightfly-colors") -- preferred colorscheme
 	-- use("bluz71/vim-nightfly-guicolors") -- colorscheme
 	-- use("folke/tokyonight.nvim") -- colorscheme
 	-- use("olimorris/onedarkpro.nvim") -- colorscheme
