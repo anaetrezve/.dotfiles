@@ -4,6 +4,14 @@ NVIM_CONFIG_FILE_DIR=~/.config
 TMUX_CONFIG_FILE_PATH=~/.tmux.conf
 ALACRITTY_CONFIG_FILE_PATH=~/.config/alacritty/alacritty.yml
 
+# Checking if brew installed then installing ripgrep
+if [ -x "$(command -v brew)" ]; then
+  brew install ripgrep;
+  wait;
+else
+  echo "brew is not installed. Skip installing ripgrep..."
+fi
+
 function link_nvim_config() {
 	ln -s ~/.dotfiles/nvim ~/.config
 }

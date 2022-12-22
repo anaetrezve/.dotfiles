@@ -38,6 +38,10 @@ keymap.set("v", ">", ">gv", opts)
 keymap.set("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap.set("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap.set("v", "p", '"_dP', opts)
+keymap.set("n", "J", "mzJ`z")
+keymap.set("n", "n", "nzzzv")
+keymap.set("n", "N", "Nzzzv")
+keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Move text up and down
 keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
