@@ -66,3 +66,6 @@ opt.hlsearch = true -- highlight all matches on previous search pattern
 opt.scrolloff = 2 -- is one of my fav
 
 opt.sidescrolloff = 2
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })

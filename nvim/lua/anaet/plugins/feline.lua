@@ -92,7 +92,7 @@ local c = {
 		provider = {
 			name = "file_info",
 			opts = {
-				type = "relative-short",
+				type = "relative",
 			},
 		},
 		hl = {
@@ -122,22 +122,22 @@ local c = {
 	diagnostic_info = {
 		provider = "diagnostic_info",
 	},
-	lsp_client_names = {
-		provider = "lsp_client_names",
-		hl = {
-			fg = "purple",
-			bg = "darkblue",
-			style = "bold",
-		},
-		left_sep = "left_filled",
-		right_sep = "block",
-	},
+	-- lsp_client_names = {
+	-- 	provider = "lsp_client_names",
+	-- 	hl = {
+	-- 		fg = "purple",
+	-- 		bg = "darkblue",
+	-- 		style = "bold",
+	-- 	},
+	-- 	left_sep = "left_filled",
+	-- 	right_sep = "block",
+	-- },
 	file_type = {
 		provider = {
 			name = "file_type",
 			opts = {
 				filetype_icon = true,
-				case = "titlecase",
+				case = "lowercase",
 			},
 		},
 		hl = {
@@ -205,7 +205,7 @@ local middle = {
 }
 
 local right = {
-	c.lsp_client_names,
+	-- c.lsp_client_names,
 	c.file_type,
 	c.file_encoding,
 	c.position,
