@@ -4,6 +4,19 @@ NVIM_CONFIG_FILE_DIR=~/.config
 TMUX_CONFIG_FILE_PATH=~/.tmux.conf
 ALACRITTY_CONFIG_FILE_PATH=~/.config/alacritty/alacritty.yml
 ZSH_CONFIG_FILE_PATH=~/.zshrc
+TERMINFO_DIR=~/.terminfo
+
+function fix_tmux_alacritty_zsh_color_and_text_duplicate_issue() {
+  curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
+  wait
+  $(which tic) -xe tmux-256color,xterm-256color terminfo.src
+  wait 
+  rm terminfo.src
+  wait
+}
+
+fix_tmux_alacritty_zsh_color_and_text_duplicate_issue
+
 
 # Checking if brew installed then installing ripgrep
 if [ -x "$(command -v brew)" ]; then
