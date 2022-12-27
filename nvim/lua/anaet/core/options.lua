@@ -63,9 +63,9 @@ opt.writebackup = false -- if a file is being edited by another program (or was 
 
 opt.hlsearch = true -- highlight all matches on previous search pattern
 
-opt.scrolloff = 2 -- is one of my fav
+opt.scrolloff = 4 -- is one of my fav
 
-opt.sidescrolloff = 2
+opt.sidescrolloff = 4
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
