@@ -11,14 +11,16 @@ vim.g.loaded_netrwPlugin = 1
 -- change color for arrows in tree to light blue
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
+local list = {
+	{ key = "nt", action = "tabnew" },
+}
+
 -- configure nvim-tree
 nvimtree.setup({
 	view = {
 		mappings = {
 			custom_only = false,
-			list = {
-				{ key = "nt", action = "tabnew" },
-			},
+			list = list,
 		},
 	},
 	-- change folder arrow icons

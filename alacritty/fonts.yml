@@ -13,7 +13,7 @@ font:
   # Italic font face
   italic:
     family: JetBrainsMono Nerd Font
-    style: MediumItalic
+    style: Italic
 
   # Bold italic font face
   bold_italic:
@@ -21,7 +21,7 @@ font:
     style: BoldItalic
 
   # Point size
-  size: 15
+  size: 16
   offset:
     x: 0
     y: 2

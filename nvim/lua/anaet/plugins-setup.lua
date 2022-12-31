@@ -45,6 +45,10 @@ return packer.startup(function(use)
 	use("ellisonleao/gruvbox.nvim")
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({ "lalitmee/cobalt2.nvim", requires = "tjdevries/colorbuddy.nvim" })
+	use("sainnhe/sonokai")
+	use("sainnhe/everforest")
+	use("rebelot/kanagawa.nvim")
+	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
