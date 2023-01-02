@@ -32,7 +32,7 @@ tabby_tabline.set(function(line)
 
 			return {
 				line.sep("", hl, theme.fill),
-				tab.is_current() and "" or "",
+				-- tab.is_current() and "" or "",
 				-- tab.number(),
 				tab.name(),
 				-- tab.close_btn(""),

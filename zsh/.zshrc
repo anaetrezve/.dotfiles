@@ -136,11 +136,21 @@ alias ll="ls -l"
 alias tree="exa -T --icons -I \".git|node_modules\""
 alias vi="nvim"
 alias vim="nvim"
+# MongoDB and Docker aliases
 alias localMongo="docker run -p 27017:27017 --name localMongo mongo:6.0.2-focal"
 alias localMongoBG="docker run -d -p 27017:27017 --name localMongo mongo:6.0.2-focal"
 alias localMongoStart="docker container start localMongo"
 alias localMongoStop="docker container stop localMongo"
+
+# PostgreSQL and Docker aliases
+alias localPostgres="docker run --name localPostgres -p 5432:5432 -e POSTGRES_USER=user -e POSTGRES_PASSWORD=pass postgres:15.1-alpine"
+alias localPostgresBG="docker run --name localPostgres -p 5432:5432 -e POSTGRES_USER=user -e POSTGRES_PASSWORD=pass -d postgres:15.1-alpine"
+alias localPostgresStart="docker container start localPostgres"
+alias localPostgresStop="docker container stop localPostgres"
+
+# Directory Shortcut aliases
 alias leetcodeGo="cd /Users/anaet/Experiments/DSA/leetcode/golang"
+
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
