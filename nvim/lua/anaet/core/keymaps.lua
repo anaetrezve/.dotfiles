@@ -21,7 +21,7 @@ local keymap = vim.keymap -- for conciseness
 keymap.set("i", "jk", "<ESC>", opts)
 
 -- clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>", opts)
+keymap.set("n", "<leader>cs", ":nohl<CR>", opts)
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')

@@ -47,7 +47,7 @@ function clone_tmux_plugin_manager() {
 }
 
 # Checking if ZSH config already exists
-if [ -f $ZSH_CONFIG_FILE_PATH]; then
+if [ -f $ZSH_CONFIG_FILE_PATH ]; then
   printf "ZSH config already exists"
 else
   printf "Creating and linking ZSH config file"
