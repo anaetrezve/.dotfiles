@@ -1,7 +1,7 @@
 -- import nvim-tree plugin safely
 local setup, nvimtree = pcall(require, "nvim-tree")
 if not setup then
-  return
+	return
 end
 
 -- recommended settings from nvim-tree documentation
@@ -11,69 +11,79 @@ vim.g.loaded_netrwPlugin = 1
 -- change color for arrows in tree to light blue
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
-local list = {
-	{ key = "nt", action = "tabnew" },
-}
+-- local list = {
+-- 	{ key = "nt", action = "tabnew" },
+-- }
+
+-- kaymapping
+local function my_on_attach(bufnr)
+	local api = require("nvim-tree.api")
+
+	api.config.mappings.default_on_attach(bufnr)
+
+	vim.keymap.set("n", "nt", api.node.open.tab, { buffer = bufnr })
+end
 
 -- configure nvim-tree
 nvimtree.setup({
-	view = {
-		mappings = {
-			custom_only = false,
-			list = list,
+	-- view = {
+	-- 	mappings = {
+	-- 		custom_only = false,
+	-- 		list = list,
+	-- 	},
+	-- },
+	-- change folder arrow icons
+	renderer = {
+		icons = {
+			glyphs = {
+				folder = {
+					arrow_closed = "", -- arrow when folder is closed
+					arrow_open = "", -- arrow when folder is open
+				},
+			},
 		},
 	},
-  -- change folder arrow icons
-  renderer = {
-    icons = {
-      glyphs = {
-        folder = {
-          arrow_closed = "", -- arrow when folder is closed
-					arrow_open = "", -- arrow when folder is open
-        },
-      },
-    },
-  },
-  -- disable window_picker for
-  -- explorer to work well with
-  -- window splits
-  actions = {
-    open_file = {
-      window_picker = {
-        enable = false,
-      },
-    },
-  },
-  -- 	git = {
-  -- 		ignore = false,
-  -- 	},
+	-- disable window_picker for
+	-- explorer to work well with
+	-- window splits
+	actions = {
+		open_file = {
+			window_picker = {
+				enable = false,
+			},
+		},
+	},
+	-- 	git = {
+	-- 		ignore = false,
+	-- 	},
 	filters = {
 		custom = {
 			"^.git$",
 		},
 	},
+	on_attach = my_on_attach,
 })
 
 -- open nvim-tree on setup
 
 local function open_nvim_tree(data)
-  -- buffer is a [No Name]
-  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+	-- buffer is a [No Name]
+	local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
-  -- buffer is a directory
-  local directory = vim.fn.isdirectory(data.file) == 1
+	-- buffer is a directory
+	local directory = vim.fn.isdirectory(data.file) == 1
 
-  if not no_name and not directory then
-    return
-  end
+	if not no_name and not directory then
+		return
+	end
 
-  -- change to the directory
-  if directory then
-    vim.cmd.cd(data.file)
-  end
+	-- change to the directory
+	if directory then
+		vim.cmd.cd(data.file)
+	end
 
-  -- open the tree
-  require("nvim-tree.api").tree.open()
+	-- open the tree
+	require("nvim-tree.api").tree.open()
 end
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
