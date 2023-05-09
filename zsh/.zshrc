@@ -7,7 +7,7 @@ fi
 
 eval "$(zoxide init zsh)"
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/opt/homebrew/bin:$(yarn global bin):/usr/local/bin:/opt/homebrew/opt/ruby/bin:$(ruby -e 'puts Gem.bindir'):$HOME/go/bin:$PATH
+export PATH=$HOME/bin:/opt/homebrew/bin:$HOME/.yarn/bin:/usr/local/bin:/opt/homebrew/opt/ruby/bin:$(ruby -e 'puts Gem.bindir'):$HOME/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
