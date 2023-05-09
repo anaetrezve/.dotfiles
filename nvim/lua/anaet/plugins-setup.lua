@@ -55,6 +55,8 @@ return packer.startup(function(use)
 	use("nvim-tree/nvim-web-devicons")
 
 	-- statusline
+	use({ "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" })
+
 	use("nvim-lualine/lualine.nvim")
 
 	-- fuzzy finding w/ telescope
@@ -108,6 +110,10 @@ return packer.startup(function(use)
 
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+
+	use("RRethy/vim-illuminate") -- highlight
+
+	use("lukas-reineke/indent-blankline.nvim")
 
 	-- Lua
 	use({
