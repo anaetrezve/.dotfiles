@@ -115,6 +115,9 @@ return packer.startup(function(use)
 
 	use("lukas-reineke/indent-blankline.nvim")
 
+	-- toggle term
+	use("akinsho/toggleterm.nvim")
+
 	-- Lua
 	use({
 		"folke/which-key.nvim",
