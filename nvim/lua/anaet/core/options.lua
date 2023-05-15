@@ -66,24 +66,24 @@ opt.scrolloff = 4 -- is one of my fav
 
 opt.sidescrolloff = 4
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_create_autocmd("ColorScheme", {
-	callback = function()
-		local highlights = {
-			"Normal",
-			"LineNr",
-			"Folded",
-			"NonText",
-			"SpecialKey",
-			"VertSplit",
-			"SignColumn",
-			"EndOfBuffer",
-			"TablineFill", -- this is specific to how I like my tabline to look like
-		}
-		for _, name in pairs(highlights) do
-			vim.cmd.highlight(name .. " guibg=none ctermbg=none")
-		end
-	end,
-})
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+-- 	callback = function()
+-- 		local highlights = {
+-- 			"Normal",
+-- 			"LineNr",
+-- 			"Folded",
+-- 			"NonText",
+-- 			"SpecialKey",
+-- 			"VertSplit",
+-- 			"SignColumn",
+-- 			"EndOfBuffer",
+-- 			"TablineFill", -- this is specific to how I like my tabline to look like
+-- 		}
+-- 		for _, name in pairs(highlights) do
+-- 			vim.cmd.highlight(name .. " guibg=none ctermbg=none")
+-- 		end
+-- 	end,
+-- })
 vim.cmd("autocmd Colorscheme * highlight NvimTreeNormal guibg=none guifg=none")
