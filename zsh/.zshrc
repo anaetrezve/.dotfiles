@@ -9,6 +9,9 @@ eval "$(zoxide init zsh)"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/opt/homebrew/bin:$HOME/.yarn/bin:/usr/local/bin:/opt/homebrew/opt/ruby/bin:$(ruby -e 'puts Gem.bindir'):$HOME/go/bin:$PATH
 
+# this goes before oh-my-zsh.sh is sourced
+ZSH_DISABLE_COMPFIX=true
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/.dotfiles"
@@ -94,15 +97,15 @@ source $ZSH/oh-my-zsh.sh
 # source $(dirname $(gem which colorls))/tab_complete.sh
 # User configuration
 
-# local config for specific local machine 
+# local config for specific local machine
 if [ -d "$HOME/.zsh" ]; then
-  if [ -f "$HOME/.zsh/local.zsh" ]; then 
+  if [ -f "$HOME/.zsh/local.zsh" ]; then
     source "$HOME/.zsh/local.zsh"
   fi
-else 
+else
   mkdir "$HOME/.zsh"
 fi
- 
+
 # export MANPATH="/usr/local/man:$MANPATH"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
