@@ -33,6 +33,12 @@ local plugins = {
         "tailwindcss",
         "lua_ls",
         "emmet_ls",
+        "eslint_d",
+        "tsserver",
+        "stylelint_lsp",
+        "jsonls",
+        "graphql"
+  
         -- "rust-analyzer",
         -- "python-lsp-server",
       },

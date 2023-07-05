@@ -11,13 +11,12 @@ function fix_tmux_alacritty_zsh_color_and_text_duplicate_issue() {
   curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
   wait
   $(which tic) -xe tmux-256color,xterm-256color terminfo.src
-  wait 
+  wait
   rm terminfo.src
   wait
 }
 
 fix_tmux_alacritty_zsh_color_and_text_duplicate_issue
-
 
 # Checking if brew installed then installing ripgrep
 if [ -x "$(command -v brew)" ]; then
@@ -62,12 +61,12 @@ else
 fi
 
 # Checking if NvChad config already exists
-if [ -d $NVCHAD_CUSTOM_CONFIG_DIR]; then
+if [ -d $NVCHAD_CUSTOM_CONFIG_DIR ]; then
   printf "NvChad config setup started...\n"
   link_nvchad_custom_config
   printf "NvChad config setup done \n\n"
 else
-  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
   link_nvchad_custom_config
   printf "NvChad config setup done \n\n"
 fi
@@ -102,4 +101,3 @@ else
   link_alacritty_config
   printf "Setting up Alacritty config done\n\n"
 fi
-
