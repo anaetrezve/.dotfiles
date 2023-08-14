@@ -90,6 +90,8 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 # It's working after repeating this below line
 # plugins=(zsh-autosuggestions)
 
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+
 source $ZSH/oh-my-zsh.sh
 # source $(dirname $(gem which colorls))/tab_complete.sh
 # User configuration
