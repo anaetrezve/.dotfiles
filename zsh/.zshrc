@@ -24,7 +24,7 @@ export DOTFILES="$HOME/.dotfiles"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
 
