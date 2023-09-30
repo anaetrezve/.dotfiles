@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-NVIM_CONFIG_FILE_DIR=~/.config
+NVIM_CONFIG_FILE_DIR=~/.config/nvim
 TMUX_CONFIG_FILE_PATH=~/.tmux.conf
 ALACRITTY_CONFIG_FILE_PATH=~/.config/alacritty/alacritty.yml
 ZSH_CONFIG_FILE_PATH=~/.zshrc
@@ -33,7 +33,7 @@ function link_zsh_config() {
 }
 
 function link_nvim_config() {
-  ln -s ~/.dotfiles/nvim ~/.config
+  ln -s ~/.dotfiles/nvim/lua/custom "$NVIM_CONFIG_FILE_DIR/lua/custom"
 }
 
 function link_tmux_config() {
@@ -46,6 +46,10 @@ function link_alacritty_config() {
 
 function clone_tmux_plugin_manager() {
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
+function clone_nvchad_editor() {
+  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 }
 
 # Checking if ZSH config already exists
@@ -65,6 +69,7 @@ if [ -d $NVIM_CONFIG_FILE_DIR ]; then
 else
   printf ".config folder not found. Creating .config folder on home directory\n\n"
   mkdir -p ~/.config/
+  clone_nvchad_editor
   link_nvim_config
   printf ".config folder created and Neovim config setup done \n\n"
 fi
