@@ -1,6 +1,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -25,8 +26,7 @@ export DOTFILES="$HOME/.dotfiles"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
 
@@ -90,14 +90,17 @@ source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 # Above line not working on my macbook
 # It's working after repeating this below line
 # plugins=(zsh-autosuggestions)
 
 # fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
+zstyle ':omz:update' mode auto
+
 source $ZSH/oh-my-zsh.sh
+
 # source $(dirname $(gem which colorls))/tab_complete.sh
 # User configuration
 
@@ -111,6 +114,7 @@ else
 fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
+
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -136,7 +140,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias cd="z"
 alias ls="exa --icons"
 alias la="ls -al --all"
 alias ll="ls -l"
@@ -157,7 +160,6 @@ alias localPostgresStop="docker container stop localPostgres"
 
 # Directory Shortcut aliases
 alias leetcodeGo="cd /Users/anaet/Experiments/DSA/leetcode/golang"
-
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -187,4 +189,3 @@ load-nvmrc
 if command -v ngrok &>/dev/null; then
   eval "$(ngrok completion)"
 fi
-

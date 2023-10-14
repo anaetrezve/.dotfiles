@@ -18,16 +18,13 @@ function fix_tmux_alacritty_zsh_color_and_text_duplicate_issue() {
 fix_tmux_alacritty_zsh_color_and_text_duplicate_issue
 
 # https://github.com/ohmyzsh/ohmyzsh/wiki/FAQ#i-have-enabled-a-completion-plugin-but-the-completion-doesnt-work
-rm "$ZSH_COMPDUMP"
+# rm "$ZSH_COMPDUMP"
 
 function install_necessary_packages() {
-  brew install zsh-syntax-highlighting
   brew install ripgrep
-  brew install zsh-autosuggestions
   brew install neovim
   brew install tmux
   brew install --cask alacritty
-  brew install --cask visual-studio-code
 }
 
 # Checking if brew installed then installing ripgrep
