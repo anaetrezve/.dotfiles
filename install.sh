@@ -20,16 +20,31 @@ fix_tmux_alacritty_zsh_color_and_text_duplicate_issue
 # https://github.com/ohmyzsh/ohmyzsh/wiki/FAQ#i-have-enabled-a-completion-plugin-but-the-completion-doesnt-work
 rm "$ZSH_COMPDUMP"
 
+function install_necessary_packages() {
+  brew install zsh-syntax-highlighting
+  brew install ripgrep
+  brew install zsh-autosuggestions
+  brew install neovim
+  brew install tmux
+  brew install --cask alacritty
+  brew install --cask visual-studio-code
+}
+
 # Checking if brew installed then installing ripgrep
 if [ -x "$(command -v brew)" ]; then
-  brew install ripgrep
+  install_necessary_packages
   wait
 else
-  echo "brew is not installed. Skip installing ripgrep..."
+  echo "brew is not installed. installing brew..."
+
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+
 
 function link_zsh_config() {
   ln -s ~/.dotfiles/zsh/.zshrc $ZSH_CONFIG_FILE_PATH
+
+  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 }
 
 function link_nvim_config() {

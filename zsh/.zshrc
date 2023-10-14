@@ -7,10 +7,10 @@ fi
 
 eval "$(zoxide init zsh)"
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/opt/homebrew/bin:$HOME/.yarn/bin:/usr/local/bin:/opt/homebrew/opt/ruby/bin:$(ruby -e 'puts Gem.bindir'):$HOME/go/bin:$PATH
+export PATH=$HOME/bin:$HOMEBREW_PREFIX/bin:$HOME/.yarn/bin:/usr/local/bin:$HOME/go/bin:$PATH
 
 # this goes before oh-my-zsh.sh is sourced
-ZSH_DISABLE_COMPFIX=true
+# ZSH_DISABLE_COMPFIX=true
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -24,7 +24,9 @@ export DOTFILES="$HOME/.dotfiles"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
 
@@ -88,10 +90,12 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git)
 # Above line not working on my macbook
 # It's working after repeating this below line
 # plugins=(zsh-autosuggestions)
+
+# fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
 # source $(dirname $(gem which colorls))/tab_complete.sh
@@ -179,3 +183,8 @@ load-nvmrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion)"
+fi
+
