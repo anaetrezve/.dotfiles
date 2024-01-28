@@ -4,7 +4,7 @@ local capabilities = config.capabilities
 
 local lspconfig = require("lspconfig")
 
-local util = require "lspconfig/util"
+local util = require("lspconfig/util")
 
 local function organize_imports()
   local params = {

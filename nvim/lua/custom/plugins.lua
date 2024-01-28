@@ -85,8 +85,9 @@ local plugins = {
         "typescript-language-server",
         "stylelint_lsp",
         "jsonls",
-        "graphql"
-  
+        "graphql",
+        "stylua"
+
         -- "rust-analyzer",
         -- "python-lsp-server",
       },
@@ -168,7 +169,7 @@ local plugins = {
       local M = require "plugins.configs.cmp"
       M.mapping["<C-k>"] = cmp.mapping.select_prev_item() -- previous suggestion
       M.mapping["<C-j>"] = cmp.mapping.select_next_item() -- next suggestion
-      
+
       -- M.completion.completeopt = "menu,menuone,noselect"
       -- M.mapping["<CR>"] = cmp.mapping.confirm {
       --   behavior = cmp.ConfirmBehavior.Insert,
@@ -192,8 +193,8 @@ local plugins = {
     opts = {
       defaults = {
       mapping = {
-        n = { 
-          ["q"] = actions.close 
+        n = {
+          ["q"] = actions.close
         },
         i = {
            ["<Down>"] = actions.move_selection_next,
@@ -205,6 +206,38 @@ local plugins = {
       },
     },
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+  renderer = {
+    icons = {
+      glyphs = {
+        default = "󰈚",
+        symlink = "",
+        folder = {
+          default = "󰉋",
+          empty = "",
+          empty_open = "",
+          open = "󰝰",
+          symlink = "",
+          symlink_open = "",
+          arrow_open = "",
+          arrow_closed = "",
+        },
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌",
+        },
+      },
+    }
+  }
+    }
+  }
 }
 
 return plugins

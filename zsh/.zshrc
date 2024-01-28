@@ -8,7 +8,7 @@ fi
 
 eval "$(zoxide init zsh)"
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOMEBREW_PREFIX/bin:$HOME/.yarn/bin:/usr/local/bin:$HOME/go/bin:$PATH
+export PATH=$HOME/bin:$HOMEBREW_PREFIX/bin:$HOME/.yarn/bin:/usr/local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH
 
 # this goes before oh-my-zsh.sh is sourced
 # ZSH_DISABLE_COMPFIX=true

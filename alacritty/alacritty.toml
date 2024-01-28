@@ -1,0 +1,13 @@
+import = ["/Users/anaet/.dotfiles/alacritty/fonts.toml", "/Users/anaet/.dotfiles/alacritty/colors.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "buttonless"
+dynamic_padding = true
+dynamic_title = true
+history = 10000
+multiplier = 3
+opacity = 0.94
+startup_mode = "Fullscreen"
