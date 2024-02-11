@@ -2,7 +2,8 @@
 
 NVIM_CONFIG_FILE_DIR=~/.config/nvim
 TMUX_CONFIG_FILE_PATH=~/.tmux.conf
-ALACRITTY_CONFIG_FILE_PATH=~/.config/alacritty/alacritty.yml
+ALACRITTY_CONFIG_FILE_PATH=~/.config/alacritty/alacritty.toml
+STARSHIP_CONFIG_FILE_PATH=~/.config/starship.toml
 ZSH_CONFIG_FILE_PATH=~/.zshrc
 TERMINFO_DIR=~/.terminfo
 
@@ -23,6 +24,7 @@ fix_tmux_alacritty_zsh_color_and_text_duplicate_issue
 function install_necessary_packages() {
   brew install ripgrep
   brew install neovim
+  brew install starship
   brew install tmux
   brew install --cask alacritty
 }
@@ -62,6 +64,10 @@ function clone_tmux_plugin_manager() {
 
 function clone_nvchad_editor() {
   git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+}
+
+function link_starship_config() {
+  ln -s ~/.dotfiles/starship.toml ~/.config
 }
 
 # Checking if ZSH config already exists
@@ -104,3 +110,13 @@ else
   link_alacritty_config
   printf "Setting up Alacritty config done\n\n"
 fi
+
+# Checking if starship config already exists
+if [ -f $STARSHIP_CONFIG_FILE_PATH ]; then
+  printf "Starship config file already exists\n\n"
+else
+  printf "Setting up Starship config\n"
+  link_starship_config
+  printf "Setting up Starship config done\n\n"
+fi
+

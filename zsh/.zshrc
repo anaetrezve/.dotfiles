@@ -104,7 +104,6 @@ plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 
 zstyle ':omz:update' mode auto
 
-
 # source $(dirname $(gem which colorls))/tab_complete.sh
 # User configuration
 
@@ -196,3 +195,4 @@ fi
 
 # Starship
 eval "$(starship init zsh)"
+
