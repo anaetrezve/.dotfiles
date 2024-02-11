@@ -2,11 +2,15 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 eval "$(zoxide init zsh)"
+
+autoload -Uz compinit
+compinit
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOMEBREW_PREFIX/bin:$HOME/.yarn/bin:/usr/local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH
 
@@ -14,8 +18,9 @@ export PATH=$HOME/bin:$HOMEBREW_PREFIX/bin:$HOME/.yarn/bin:/usr/local/bin:$HOME/
 # ZSH_DISABLE_COMPFIX=true
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/.dotfiles"
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 # export GOPATH=$HOME/go
 # export GOBIN=$GOPATH/bin
@@ -25,7 +30,7 @@ export DOTFILES="$HOME/.dotfiles"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
+# source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
@@ -99,7 +104,6 @@ plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 
 zstyle ':omz:update' mode auto
 
-source $ZSH/oh-my-zsh.sh
 
 # source $(dirname $(gem which colorls))/tab_complete.sh
 # User configuration
@@ -122,11 +126,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -184,8 +188,11 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 if command -v ngrok &>/dev/null; then
   eval "$(ngrok completion)"
 fi
+
+# Starship
+eval "$(starship init zsh)"
