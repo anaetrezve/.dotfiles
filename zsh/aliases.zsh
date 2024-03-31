@@ -30,10 +30,10 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
 
 # general
-alias ls="exa --icons"
+alias ls="eza --icons"
 alias la="ls -al --all"
 alias ll="ls -l"
-alias tree="exa -T --icons -I \".git|node_modules\""
+alias tree="eza -T --icons -I \".git|node_modules\""
 alias vi="nvim"
 alias vim="nvim"
 
@@ -52,22 +52,3 @@ alias localPostgresStop="docker container stop localPostgres"
 # Directory Shortcut aliases
 alias leetcodeGo="cd $HOME/Experiments/DSA/leetcode/golang"
 
-
-case "$(uname -s)" in
-
-Darwin)
-	# echo 'Mac OS X'
-	alias ls='ls -G'
-	;;
-
-Linux)
-	alias ls='ls --color=auto'
-	;;
-
-CYGWIN* | MINGW32* | MSYS* | MINGW*)
-	# echo 'MS Windows'
-	;;
-*)
-	# echo 'Other OS'
-	;;
-esac

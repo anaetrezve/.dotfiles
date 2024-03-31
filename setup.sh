@@ -1,5 +1,32 @@
 #!/usr/bin/env bash
 
+install_or_update_brew_app() {
+   local app_name="$1"
+
+    # Check if the application is installed as a formula or cask
+    if ! command -v "$app_name" &>/dev/null || brew list --formula "$app_name" &>/dev/null || brew list --cask "$app_name" &>/dev/null; then
+        echo "$app_name is already installed."
+    else
+        # If not installed, check if it's a cask
+        if brew info --cask "$app_name" &>/dev/null; then
+            # If it's a cask, install it using Homebrew Cask
+            echo "$app_name is not installed. Installing via Homebrew Cask..."
+            brew install --cask "$app_name"
+        else
+            # If it's not a cask, install it using regular Homebrew
+            echo "$app_name is not installed. Installing via Homebrew..."
+            brew install "$app_name"
+        fi
+
+        # Check if installation was successful
+        if [ $? -eq 0 ]; then
+            echo "Installation of $app_name successful."
+        else
+            echo "Installation of $app_name failed. Please check Homebrew or try again later."
+        fi
+    fi
+}
+
 function setup_zshenv() {
   echo "Coping .zshenv to home directory \n"
   cp -R $HOME/.dotfiles/.zshenv $HOME
@@ -8,58 +35,48 @@ function setup_zshenv() {
 
 function install_zsh_plugins() {
   # powerlevel10k
-  brew install powerlevel10k
+  install_or_update_brew_app powerlevel10k
   # zsh-syntax-highlighting
-  brew install zsh-syntax-highlighting
+  install_or_update_brew_app zsh-syntax-highlighting
   # zsh-autosuggestions
-  brew install zsh-autosuggestions
+  install_or_update_brew_app zsh-autosuggestions
   # zsh-history-substring-search
-  brew install zsh-history-substring-search
+  install_or_update_brew_app zsh-history-substring-search
   # zsh-you-should-use
-  brew install zsh-you-should-use
+  install_or_update_brew_app zsh-you-should-use
 }
 
 function install_other_necessary_packages() {
-  brew install tree    # allows you to see the outline of a directory
-  brew install zoxide  # jump anywhere within your filesystem with z <foldername>
-  brew install ripgrep # blazingly fast grep
-  brew install fd      # blazingly fast find
-  brew install eza
-  brew install neovim
-  brew install tmux
-  brew install --cask visual-studio-code
-  brew install --cask kitty
-  brew install --cask raycast
+  install_or_update_brew_app tree  
+  install_or_update_brew_app zoxide 
+  install_or_update_brew_app ripgrep
+  install_or_update_brew_app fd     
+  install_or_update_brew_app eza
+  install_or_update_brew_app neovim
+  install_or_update_brew_app tmux
+  install_or_update_brew_app visual-studio-code
+  install_or_update_brew_app kitty
+  install_or_update_brew_app raycast
+  # install_or_update_brew_app alacritty
 
   # programming languages & tools
-  brew install go
-  brew install rust
-  brew install nvm
-  brew install --cask mongodb-compass
-  brew install --cask postman
-  brew install docker
+  install_or_update_brew_app go
+  install_or_update_brew_app rust
+  install_or_update_brew_app mongodb-compass
+  install_or_update_brew_app postman
+  install_or_update_brew_app docker
 
   # Nerd fonts
   brew tap homebrew/cask-fonts
-  brew install --cask font-jetbrains-mono-nerd-font
+  install_or_update_brew_app font-jetbrains-mono-nerd-font
 }
 
 function setup_alacritty_config() {
-  if [[ $(command -v alacritty) == "" ]]; then
-    echo "Alacritty not installed. Installing Alacritty"
-    brew install --cask alacritty
-  fi
-
   echo "Coping alacritty config"
   cp -R $HOME/.dotfiles/alacritty $XDG_CONFIG_HOME
 }
 
 function setup_kitty_config() {
-  if [[ $(command -v kitty) == "" ]]; then
-    echo "Kitty not installed. Installing Kitty"
-    brew install --cask kitty
-  fi
-
   echo "Coping kitty config"
   cp -R $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
 }
@@ -76,24 +93,14 @@ function setup_homebrew() {
 }
 
 function setup_tmux_config() {
-  if [[ $(command -v brew) == "" ]]; then
-    echo "Tmux not installed. Installing Tmux"
-    brew install tmux
-
-    echo "Installing tmux plugin manager"
-    git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
-  fi
+  echo "Installing tmux plugin manager"
+  git clone https://github.com/tmux-plugins/tpm.git $XDG_CONFIG_HOME/tmux/plugins/tpm
 
   echo "Coping tmux config"
   cp -R $HOME/.dotfiles/tmux $XDG_CONFIG_HOME
 }
 
 function setup_nvim_config() {
-  if [[ $(command -v nvim) == "" ]]; then
-    echo "Neovim not installed. Installing Neovim"
-    brew install neovim
-  fi
-
   # Temporary NVCHAD
   git clone https://github.com/NvChad/starter $XDG_CONFIG_HOME/nvim
   echo "Coping nvim config"
@@ -103,6 +110,12 @@ function setup_nvim_config() {
 function setup_zsh_config() {
   echo "Coping zsh config"
   cp -R $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
+}
+
+function setup_nvm() {
+  if [[ $(command -v nvm) == "" ]]; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  fi
 }
 
 # if [ "$(uname)" == "Darwin" ]; then
@@ -115,8 +128,10 @@ function setup_zsh_config() {
 setup_zshenv
 install_other_necessary_packages
 install_zsh_plugins
+setup_nvm
 setup_zsh_config
 # setup_alacritty_config
 setup_kitty_config
 setup_tmux_config
 setup_nvim_config
+
