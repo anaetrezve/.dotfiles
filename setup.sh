@@ -66,7 +66,6 @@ function install_zsh_plugins() {
 }
 
 function install_other_necessary_packages() {
-  install_or_update_brew_app tree
   install_or_update_brew_app zoxide
   install_or_update_brew_app ripgrep
   install_or_update_brew_app fd
@@ -74,17 +73,17 @@ function install_other_necessary_packages() {
   install_or_update_brew_app neovim
   install_or_update_brew_app tmux
   install_or_update_brew_app nvm
-  install_or_update_brew_app visual-studio-code
+  # install_or_update_brew_app visual-studio-code
   # install_or_update_brew_app kitty
-  install_or_update_brew_app raycast
-  install_or_update_brew_app alacritty
+  # install_or_update_brew_app raycast
+  # install_or_update_brew_app alacritty
 
   # programming languages & tools
   install_or_update_brew_app go
   install_or_update_brew_app rust
-  install_or_update_brew_app mongodb-compass
-  install_or_update_brew_app postman
-  install_or_update_brew_app docker
+  # install_or_update_brew_app mongodb-compass
+  # install_or_update_brew_app postman
+  # install_or_update_brew_app docker
 
   # Nerd fonts
   brew tap homebrew/cask-fonts

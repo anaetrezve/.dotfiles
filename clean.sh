@@ -22,12 +22,12 @@ brew remove fd
 brew remove eza
 brew remove go
 brew remove rust
-brew remove docker
+# brew remove docker
 # brew remove kitty
-brew remove alacritty
-brew remove visual-studio-code
-brew remove mongodb-compass
-brew remove postman
+# brew remove alacritty
+# brew remove visual-studio-code
+# brew remove mongodb-compass
+# brew remove postman
 brew remove zsh-syntax-highlighting
 brew remove zsh-autosuggestions
 brew remove zsh-history-substring-search

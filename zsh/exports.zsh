@@ -3,7 +3,7 @@
 # history
 HISTSIZE=1000000
 SAVEHIST=1000000
-HISTFILE=$HOME/.cashe/zsh/.zsh_history
+HISTFILE=$XDG_CACHE_HOME/zsh/.zsh_history
 
 export KEYTIMEOUT=1
 export EDITOR=vim
