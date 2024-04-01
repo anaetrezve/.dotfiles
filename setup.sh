@@ -34,7 +34,7 @@ install_or_update_brew_app() {
     # If not installed, install using Homebrew
     echo "$app_name is not installed. Installing via Homebrew..."
     brew install "$app_name"
-    
+
     # Check if installation was successful
     if [ $? -eq 0 ]; then
         echo "Installation of $app_name successful."
@@ -66,13 +66,14 @@ function install_zsh_plugins() {
 }
 
 function install_other_necessary_packages() {
-  install_or_update_brew_app tree  
-  install_or_update_brew_app zoxide 
+  install_or_update_brew_app tree
+  install_or_update_brew_app zoxide
   install_or_update_brew_app ripgrep
-  install_or_update_brew_app fd     
+  install_or_update_brew_app fd
   install_or_update_brew_app eza
   install_or_update_brew_app neovim
   install_or_update_brew_app tmux
+  install_or_update_brew_app nvm
   install_or_update_brew_app visual-studio-code
   # install_or_update_brew_app kitty
   install_or_update_brew_app raycast
@@ -101,6 +102,8 @@ function setup_kitty_config() {
 }
 
 function setup_homebrew() {
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
   if [[ $(command -v brew) == "" ]]; then
     echo "Hombrew not installed. Installing Hombrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -132,12 +135,6 @@ function setup_zsh_config() {
   ln -s $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
 }
 
-function setup_nvm() {
-  if ! command -v "nvm" &>/dev/null; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-  fi
-}
-
 if [ "$(uname)" == "Darwin" ]; then
   # Do something under Mac OS X platform
   setup_homebrew
@@ -146,12 +143,11 @@ fi
 
 # setting up
 setup_zshenv
-# install_other_necessary_packages
+install_other_necessary_packages
 setup_zsh_config
 install_zsh_plugins
-# setup_nvm
 setup_alacritty_config
 # setup_kitty_config
-# setup_tmux_config
-# setup_nvim_config
+setup_tmux_config
+setup_nvim_config
 

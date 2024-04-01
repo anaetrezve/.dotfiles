@@ -68,3 +68,7 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+if command -v "zoxide" &>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
