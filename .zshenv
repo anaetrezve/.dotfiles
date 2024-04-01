@@ -16,4 +16,6 @@ export GOPATH=$XDG_CONFIG_HOME/go
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
 export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 
+export TERM='xterm-256color'
+
 eval "$(/opt/homebrew/bin/brew shellenv)"

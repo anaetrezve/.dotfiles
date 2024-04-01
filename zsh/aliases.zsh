@@ -52,3 +52,4 @@ alias localPostgresStop="docker container stop localPostgres"
 # Directory Shortcut aliases
 alias leetcodeGo="cd $HOME/Experiments/DSA/leetcode/golang"
 
+alias dotfiles="cd $HOME/.dotfiles/"
