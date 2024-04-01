@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Removing files and folder from HOME directory"
-rm -rf ~/.tmux  ~/.zsh* ~/.zprofile
+rm -rf ~/.tmux  ~/.zsh* ~/.zprofile ~/.nvm ~/.npm ~/.viminfo ~/.vscode ~/.terminfo
 
 echo "Removing files and folder from .config directory"
 rm -rf ~/.config/zsh ~/.config/kitty ~/.config/tmux ~/.config/nvim ~/.config/alacritty

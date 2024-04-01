@@ -1,3 +1,4 @@
-nvim/plugin
 .DS_Store
 .zcompdump
+tmux/plugins
+nvim/plugin
