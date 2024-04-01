@@ -21,3 +21,11 @@ export DOTFILES="$HOME/.dotfiles"
 
 eval "$(zoxide init zsh)"
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"; # This loads nvm
+
+echo "NVM PATH === $NVM_DIR"
+
+# Below line if we install nvm using curl or other command
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+

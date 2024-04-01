@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Options
 setopt extended_history
 setopt hist_expire_dups_first
@@ -7,9 +14,8 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-
-source $ZDOTDIR/exports.zsh
 source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/exports.zsh
 source $ZDOTDIR/completion.zsh
 
 # Basic auto/tab complete:
@@ -40,10 +46,6 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
