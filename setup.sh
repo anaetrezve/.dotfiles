@@ -48,7 +48,7 @@ install_or_update_brew_app() {
 
 function setup_zshenv() {
   echo "Setting up .zshenv to home directory \n"
-  ln -s $HOME/.dotfiles/.zshenv $HOME
+  ln -nsf $HOME/.dotfiles/.zshenv $HOME
   source $HOME/.zshenv
 }
 
@@ -92,12 +92,12 @@ function install_other_necessary_packages() {
 
 function setup_alacritty_config() {
   echo "Setting up alacritty config"
-  ln -s $HOME/.dotfiles/alacritty $XDG_CONFIG_HOME
+  ln -nsf $HOME/.dotfiles/alacritty $XDG_CONFIG_HOME
 }
 
 function setup_kitty_config() {
   echo "Setting up kitty config"
-  ln -s $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
+  ln -nsf $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
 }
 
 function setup_homebrew() {
@@ -115,23 +115,28 @@ function setup_homebrew() {
 
 function setup_tmux_config() {
   echo "Setting up tmux config"
-  ln -s $HOME/.dotfiles/tmux $XDG_CONFIG_HOME
+  ln -nsf $HOME/.dotfiles/tmux $XDG_CONFIG_HOME
 
   echo "Installing tmux plugin manager"
   git clone https://github.com/tmux-plugins/tpm.git $XDG_CONFIG_HOME/tmux/plugins/tpm
 }
 
-function setup_nvim_config() {
-  # Temporary NVCHAD
-  git clone https://github.com/NvChad/starter $XDG_CONFIG_HOME/nvim
+# function setup_nvim_config() {
+#   # Temporary NVCHAD
+#   git clone https://github.com/NvChad/starter $XDG_CONFIG_HOME/nvim
+#
+#   echo "Setting up nvim config"
+#   ln -nsf $HOME/.dotfiles/nvim/lua/custom $XDG_CONFIG_HOME/nvim/lua/custom
+# }
 
-  echo "Setting up nvim config"
-  ln -s $HOME/.dotfiles/nvim/lua/custom $XDG_CONFIG_HOME/nvim/lua/custom
+function setup_nvim_config() {
+   echo "Setting up nvim config"
+   ln -nsf $HOME/.dotfiles/nvim $XDG_CONFIG_HOME/nvim
 }
 
 function setup_zsh_config() {
   echo "Setting up zsh config"
-  ln -s $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
+  ln -nsf $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
 }
 
 if [ "$(uname)" == "Darwin" ]; then
