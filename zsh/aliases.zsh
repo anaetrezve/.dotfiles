@@ -30,12 +30,13 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
 
 # general
-alias ls="eza --icons"
+alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias la="ls -al --all"
 alias ll="ls -l"
-alias tree="eza -T --icons -I \".git|node_modules\""
+alias tree="eza -T --color=always --icons=always -I \".git|node_modules\""
 alias vi="nvim"
 alias vim="nvim"
+alias cd="z"
 
 # MongoDB and Docker aliases
 alias localMongo="docker run -p 27017:27017 --name localMongo mongo:6.0.2-focal"
@@ -53,3 +54,4 @@ alias localPostgresStop="docker container stop localPostgres"
 alias leetcodeGo="cd $HOME/Experiments/DSA/leetcode/golang"
 
 alias dotfiles="cd $HOME/.dotfiles/"
+
