@@ -8,46 +8,43 @@ return {
 		"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
 	cmd = "Neotree",
-	keys = function()
-		local find_buffer_by_type = function(type)
-			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-				local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-				if ft == type then
-					return buf
-				end
-			end
-			return -1
-		end
-
-		local toggle_neotree = function(toggle_command)
-			if find_buffer_by_type("neo-tree") > 0 then
-				require("neo-tree.command").execute({ action = "close" })
-			else
-				toggle_command()
-			end
-		end
-
-		return {
-			{
-				"<leader>fe",
-				function()
-					toggle_neotree(function()
-						require("neo-tree.command").execute({ action = "focus", reveal = true, dir = vim.uv.cwd() })
-					end)
-				end,
-				desc = "Toggle Explorer (cwd)",
-			},
-			{
-				"<leader>fE",
-				function()
-					toggle_neotree(function()
-						require("neo-tree.command").execute({ action = "focus", reveal = true })
-					end)
-				end,
-				desc = "Toggle Explorer (root)",
-			},
-		}
-	end,
+	keys = {
+		{
+			"<leader>fe",
+			function()
+				require("neo-tree.command").execute({
+					toggle = true,
+					action = "focus",
+					reveal = true,
+					dir = vim.uv.cwd(),
+				})
+			end,
+			desc = "Explorer NeoTree (Root Dir)",
+		},
+		{
+			"<leader>fE",
+			function()
+				require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+			end,
+			desc = "Explorer NeoTree (cwd)",
+		},
+		{ "<leader>e", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+		{ "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
+		{
+			"<leader>ge",
+			function()
+				require("neo-tree.command").execute({ source = "git_status", toggle = true })
+			end,
+			desc = "Git Explorer",
+		},
+		{
+			"<leader>be",
+			function()
+				require("neo-tree.command").execute({ source = "buffers", toggle = true })
+			end,
+			desc = "Buffer Explorer",
+		},
+	},
 
 	opts = {
 		sources = { "filesystem", "buffers", "git_status", "document_symbols" },

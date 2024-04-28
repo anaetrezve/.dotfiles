@@ -29,7 +29,7 @@ opt.cursorline = false -- highlight the current cursor line
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
--- opt.colorcolumn = "100" 
+-- opt.colorcolumn = "100"
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
@@ -71,6 +71,9 @@ opt.scrolloff = 4 -- is one of my fav
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- hide startup empty buffer
+opt.hidden = true
 
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
