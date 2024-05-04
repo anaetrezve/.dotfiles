@@ -2,19 +2,19 @@
 size = 16
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "MesloLGS Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "MesloLGS Nerd Font Mono"
 style = "BoldItalic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "MesloLGS Nerd Font Mono"
 style = "Italic"
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "MesloLGS Nerd Font Mono"
 style = "Regular"
 
 [font.offset]
