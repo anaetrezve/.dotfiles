@@ -30,7 +30,8 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
 
 # general
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+# alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ls="eza --color=always --icons=always"
 alias la="ls -al --all"
 alias ll="ls -l"
 alias tree="eza -T --color=always --icons=always -I \".git|node_modules\""
