@@ -1,21 +1,23 @@
 [font]
 size = 16
 
-[font.bold]
-family = "MesloLGS Nerd Font Mono"
-style = "Bold"
+normal.family = "MesloLGS Nerd Font Mono"
 
-[font.bold_italic]
-family = "MesloLGS Nerd Font Mono"
-style = "BoldItalic"
-
-[font.italic]
-family = "MesloLGS Nerd Font Mono"
-style = "Italic"
-
-[font.normal]
-family = "MesloLGS Nerd Font Mono"
-style = "Regular"
+# [font.bold]
+# family = "MesloLGS Nerd Font Mono"
+# style = "Bold"
+#
+# [font.bold_italic]
+# family = "MesloLGS Nerd Font Mono"
+# style = "BoldItalic"
+#
+# [font.italic]
+# family = "MesloLGS Nerd Font Mono"
+# style = "Italic"
+#
+# [font.normal]
+# family = "MesloLGS Nerd Font Mono"
+# style = "Regular"
 
 [font.offset]
 x = 0
