@@ -87,8 +87,8 @@ function install_other_necessary_packages() {
 
   # Nerd fonts
   brew tap homebrew/cask-fonts
-  # install_or_update_brew_app font-jetbrains-mono-nerd-font
-  install_or_update_brew_app font-meslo-lg-nerd-font
+  install_or_update_brew_app font-jetbrains-mono-nerd-font
+  # install_or_update_brew_app font-meslo-lg-nerd-font
 }
 
 function setup_alacritty_config() {
