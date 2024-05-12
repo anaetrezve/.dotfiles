@@ -20,7 +20,7 @@ opt.number = true
 opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-opt.mouse = 'a'
+opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 opt.showmode = false
@@ -28,7 +28,9 @@ opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-opt.clipboard = 'unnamedplus'
+-- use system clipboard as default register
+-- opt.clipboard = "unnamedplus"
+opt.clipboard:append("unnamedplus")
 
 -- Enable break indent
 opt.breakindent = true
@@ -41,7 +43,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- Keep signcolumn on by default
-opt.signcolumn = 'yes'
+opt.signcolumn = "yes"
 
 -- Decrease update time
 opt.updatetime = 250
@@ -55,7 +57,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- Preview substitutions live, as you type!
-opt.inccommand = 'split'
+opt.inccommand = "split"
 
 -- Show which line your cursor is on
 opt.cursorline = true
@@ -84,7 +86,7 @@ opt.termguicolors = true
 opt.backspace = "indent,eol,start"
 
 -- consider string-string as whole word
-opt.iskeyword = "-"
+opt.iskeyword:append("-")
 
 -- the encoding written to a file
 opt.fileencoding = "utf-8"
@@ -94,3 +96,5 @@ opt.conceallevel = 0
 
 -- hide startup empty buffer
 opt.hidden = true
+
+opt.fixendofline = true

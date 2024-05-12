@@ -10,7 +10,8 @@ return {
 	opt = {
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     integrations = {
-      neotree = true
+      neotree = true,
+      treesitter = true
     }
   },
 }

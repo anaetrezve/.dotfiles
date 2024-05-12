@@ -12,4 +12,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("anaet.plugins")
+require("lazy").setup("anaet.plugins", {
+  change_detection = {
+    notify = false
+  }
+})
