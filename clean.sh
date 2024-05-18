@@ -2,7 +2,7 @@
 
 function remove_all_configs() {
   echo "Removing files and folder from HOME directory"
-  rm -rf ~/.tmux  ~/.zsh* ~/.zprofile ~/.nvm ~/.npm ~/.viminfo ~/.vscode ~/.terminfo
+  rm -rf ~/.tmux  ~/.zsh* ~/.zprofile ~/.nvm ~/.npm ~/.viminfo ~/.terminfo
 
   echo "Removing files and folder from .config directory"
   rm -rf ~/.config/zsh ~/.config/kitty ~/.config/tmux ~/.config/nvim ~/.config/alacritty
@@ -41,7 +41,7 @@ function remove_all_zsh_plugins() {
   brew remove zsh-you-should-use
 }
 
-# Calling all functions here 
+# Calling all functions here
 remove_all_configs
 remove_all_apps
 remove_all_zsh_plugins

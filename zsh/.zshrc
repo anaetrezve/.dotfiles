@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/exports.zsh
+source $ZDOTDIR/completion.zsh
+
 # Options
 setopt extended_history
 setopt hist_expire_dups_first
@@ -13,10 +17,12 @@ setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
 setopt share_history
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
 
-source $ZDOTDIR/aliases.zsh
-source $ZDOTDIR/exports.zsh
-source $ZDOTDIR/completion.zsh
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -37,9 +43,15 @@ source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 # zstyle ':omz:update' mode auto
 
 # VIM MODE
-bindkey -v
-bindkey ^R history-incremental-search-backward
-bindkey ^S history-incremental-search-forward
+# bindkey -v
+# bindkey ^R history-incremental-search-backward
+# bindkey ^S history-incremental-search-forward
+
+# Keybindings
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+# bindkey '^[w' kill-region
 
 # zsh-history-substring-search keybinding to up and down arrow
 bindkey '^[[A' history-substring-search-up

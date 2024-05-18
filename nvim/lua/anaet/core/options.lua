@@ -98,3 +98,7 @@ opt.conceallevel = 0
 opt.hidden = true
 
 opt.fixendofline = true
+
+-- disable nvim intro
+-- opt.shortmess:append "sI"
+
