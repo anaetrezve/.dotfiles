@@ -101,4 +101,3 @@ opt.fixendofline = true
 
 -- disable nvim intro
 -- opt.shortmess:append "sI"
-

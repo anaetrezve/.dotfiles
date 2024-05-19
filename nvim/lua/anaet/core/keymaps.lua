@@ -4,7 +4,14 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local keymap = vim.keymap
+local keymap = vim.keymap.set
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-keymap.set("n", "<ESC>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
+keymap("n", "<ESC>", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
+
+-- better indenting
+keymap("n", "<", "<<", { desc = "Left indent" })
+keymap("n", ">", ">>", { desc = "Right indent" })
+keymap("v", "<", "<gv", { desc = "Left visual indent" })
+keymap("v", ">", ">gv", { desc = "Right visual indent" })
+
