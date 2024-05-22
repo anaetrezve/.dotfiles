@@ -1,2 +1,2 @@
-require("anaet.core")
-require("anaet.lazy")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
