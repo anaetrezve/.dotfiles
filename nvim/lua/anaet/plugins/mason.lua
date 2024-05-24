@@ -42,7 +42,6 @@ return {
     })
 
     mason_tool_installer.setup({
-      -- list of linters or formatters for mason to install
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
