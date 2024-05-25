@@ -1,11 +1,5 @@
 #!/bin/sh
 
-# history
-HISTSIZE=1000000
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-HISTFILE=$XDG_CACHE_HOME/zsh/.zsh_history
-
 export KEYTIMEOUT=1
 export EDITOR=vim
 export MANPAGER='nvim +Man!'

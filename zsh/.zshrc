@@ -9,6 +9,12 @@ source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/exports.zsh
 source $ZDOTDIR/completion.zsh
 
+# history
+HISTSIZE=1000000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+HISTFILE=$XDG_CACHE_HOME/zsh/.zsh_history
+
 # Options
 setopt extended_history
 setopt hist_expire_dups_first
