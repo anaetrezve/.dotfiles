@@ -2,38 +2,52 @@ return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.6",
 
-  dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+  dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", 
+    "nvim-tree/nvim-web-devicons",
+    "folke/todo-comments.nvim",
+  },
 
-  keys = function()
-    return {
-      { mode = { "n" }, "<leader>fw", "<cmd>Telescope live_grep<CR>", desc = "telescope live grep" },
-      { mode = { "n" }, "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "telescope find buffers" },
-      { mode = { "n" }, "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "telescope help page" },
-      { mode = { "n" }, "<leader>ma", "<cmd>Telescope marks<CR>", desc = "telescope find marks" },
-      { mode = { "n" }, "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "telescope find oldfiles" },
-      {
-        mode = { "n" },
-        "<leader>fz",
-        "<cmd>Telescope current_buffer_fuzzy_find<CR>",
-        desc = "telescope find in current buffer",
-      },
-      { mode = { "n" }, "<leader>cm", "<cmd>Telescope git_commits<CR>", desc = "telescope git commits" },
-      { mode = { "n" }, "<leader>gt", "<cmd>Telescope git_status<CR>", desc = "telescope git status" },
-      { mode = { "n" }, "<leader>pt", "<cmd>Telescope terms<CR>", desc = "telescope pick hidden term" },
-      { mode = { "n" }, "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "telescope find files" },
-      {
-        mode = { "n" },
-        "<leader>fa",
-        "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-        desc = "telescope find all files",
-      },
-    }
-  end,
+  keys = {
+    { mode = { "n" }, "<leader>fw", "<cmd>Telescope live_grep<CR>", desc = "telescope live grep" },
+    { mode = { "n" }, "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "telescope find buffers" },
+    { mode = { "n" }, "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "telescope help page" },
+    { mode = { "n" }, "<leader>ma", "<cmd>Telescope marks<CR>", desc = "telescope find marks" },
+    { mode = { "n" }, "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "telescope find in current buffer", },
+    { mode = { "n" }, "<leader>cm", "<cmd>Telescope git_commits<CR>", desc = "telescope git commits" },
+    { mode = { "n" }, "<leader>gt", "<cmd>Telescope git_status<CR>", desc = "telescope git status" },
+    { mode = { "n" }, "<leader>pt", "<cmd>Telescope terms<CR>", desc = "telescope pick hidden term" },
+    { mode = { "n" }, "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "telescope find oldfiles" },
+    { mode = { "n" }, "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "telescope find files" },
+    { mode = { "n" }, "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", desc = "telescope find all files", },
+  },
 
   opts = function()
     local actions = require("telescope.actions")
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "TelescopeResults",
+      callback = function(ctx)
+        vim.api.nvim_buf_call(ctx.buf, function()
+          vim.fn.matchadd("TelescopeParent", "- .*$")
+          vim.api.nvim_set_hl(0, "TelescopeParent", { link = "Comment" })
+        end)
+      end,
+    })
+
+    local function filenameFirst(_, path)
+      local tail = vim.fs.basename(path)
+      local parent = vim.fs.dirname(path)
+      if parent == "." then return tail end
+      return string.format("%s - %s", tail, parent)
+    end
+
 
     return {
+      pickers = {
+        find_files = {
+          path_display = filenameFirst,
+        }
+      },
+
       defaults = {
         vimgrep_arguments = {
           "rg",
@@ -46,15 +60,16 @@ return {
           "--smart-case",
         },
         prompt_prefix = "   ",
-        selection_caret = "  ",
+        -- selection_caret = "   ",
+        selection_caret = "  ",
         entry_prefix = "  ",
         initial_mode = "insert",
         selection_strategy = "reset",
-        sorting_strategy = "ascending",
+        -- sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_config = {
           horizontal = {
-            prompt_position = "top",
+            prompt_position = "bottom",
             preview_width = 0.55,
             results_width = 0.8,
           },
@@ -66,7 +81,13 @@ return {
           preview_cutoff = 120,
         },
         file_ignore_patterns = { "node_modules" },
-        path_display = { "smart" },
+        -- path_display = { "smart" },
+        -- Format path as "file.txt (path\to\file\)"
+        -- path_display = function(opts, path)
+        --   local tail = require("telescope.utils").path_tail(path)
+        --
+        --   return string.format("%s - (%s)", tail, path), { { { 1, #tail }, "Constant" } }
+        -- end, 
         winblend = 0,
         border = {},
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -74,7 +95,9 @@ return {
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         -- Developer configurations: Not meant for general override
         mappings = {
-          n = { ["q"] = actions.close },
+          -- Scroll preview up - <C-u>
+          -- Scroll preview down - <C-d>
+          n = { ["<esc>"] = actions.close },
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
             ["<C-j>"] = actions.move_selection_next, -- move to next result
@@ -89,5 +112,7 @@ return {
   config = function(_, opts)
     local telescope = require("telescope")
     telescope.setup(opts)
+
+    -- telescope.load_extension("fzf")
   end,
 }
