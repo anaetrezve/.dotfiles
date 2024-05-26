@@ -132,8 +132,14 @@ function setup_tmux_config() {
 
 function setup_nvim_config() {
    echo "Setting up nvim config"
-   ln -nsf $HOME/.dotfiles/nvim $XDG_CONFIG_HOME/nvim
+   ln -nsf $HOME/.dotfiles/nvim $XDG_CONFIG_HOME
 }
+
+function setup_wezterm_config() {
+   echo "Setting up wezterm config"
+   ln -nsf $HOME/.dotfiles/wezterm $XDG_CONFIG_HOME
+}
+
 
 function setup_zsh_config() {
   echo "Setting up zsh config"
@@ -152,6 +158,7 @@ install_other_necessary_packages
 setup_zsh_config
 install_zsh_plugins
 setup_alacritty_config
+setup_wezterm_config
 # setup_kitty_config
 setup_tmux_config
 setup_nvim_config

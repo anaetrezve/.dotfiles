@@ -70,6 +70,10 @@ return {
       pickers = {
         find_files = {
           path_display = filenameFirst,
+          layout_config = {
+            prompt_position = "top",
+          },
+          sorting_strategy = "ascending",
         },
       },
 
@@ -105,7 +109,9 @@ return {
           height = 0.80,
           preview_cutoff = 120,
         },
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = {
+          "node_modules",
+        },
         -- path_display = { "smart" },
         -- Format path as "file.txt (path\to\file\)"
         -- path_display = function(opts, path)
