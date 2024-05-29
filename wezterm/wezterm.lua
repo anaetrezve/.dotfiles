@@ -1,13 +1,28 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
 
--- This will hold the configuration.
-local config = wezterm.config_builder()
+return {
+	color_scheme = "Catppuccin Mocha",
 
--- This is where you actually apply your config choices
+	font = wezterm.font({
+		family = "JetBrains Mono",
+	}),
 
--- For example, changing the color scheme:
-config.color_scheme = "Catppuccin Mocha"
+	font_size = 16,
+	enable_tab_bar = false,
+	line_height = 1.3,
+	window_decorations = "RESIZE",
+	window_padding = {
+		bottom = 0,
+		top = 0,
+		left = 0,
+		right = 0,
+	},
 
--- and finally, return the configuration to wezterm
-return config
+	keys = {
+		{
+			key = "m",
+			mods = "CTRL",
+			action = wezterm.action.ToggleFullScreen,
+		},
+	},
+}
