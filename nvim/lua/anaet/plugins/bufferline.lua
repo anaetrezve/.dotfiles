@@ -45,16 +45,16 @@ return {
             text_align = "left",
           },
         },
-        indicator = {
-          -- icon = '▎',
-          style = "underline", -- 'icon' | 'underline' | 'none'
-        },
-        -- name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
-        --     -- remove extension from markdown files for example
-        --     if buf.name:match('%.md') then
-        --         return vim.fn.fnamemodify(buf.name, ':t:r')
-        --     end
-        -- end,
+        -- indicator = {
+        --   -- icon = '▎',
+        --   style = "underline", -- 'icon' | 'underline' | 'none'
+        -- },
+        -- -- name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
+        -- --     -- remove extension from markdown files for example
+        -- --     if buf.name:match('%.md') then
+        -- --         return vim.fn.fnamemodify(buf.name, ':t:r')
+        -- --     end
+        -- -- end,
         tab_size = 20,
         diagnostics = "nvim_lsp",
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
