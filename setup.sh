@@ -140,6 +140,12 @@ function setup_zsh_config() {
   ln -nsf $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
 }
 
+function setup_wezterm_config() {
+  echo "Setting up wezterm config"
+  ln -nsf $HOME/.dotfiles/wezterm $XDG_CONFIG_HOME
+}
+
+
 if [ "$(uname)" == "Darwin" ]; then
   # Do something under Mac OS X platform
   setup_homebrew
@@ -155,4 +161,4 @@ setup_alacritty_config
 # setup_kitty_config
 setup_tmux_config
 setup_nvim_config
-
+setup_wezterm_config
