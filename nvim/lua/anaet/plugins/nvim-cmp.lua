@@ -21,9 +21,38 @@ return {
     local luasnip = require("luasnip")
 
     local lspkind = require("lspkind")
-    
+
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
+    local kind_icons = {
+      Class = " ",
+      Color = " ",
+      Comment = "//",
+      Constant = " ",
+      Constructor = " ",
+      Enum = " ",
+      EnumMember = " ",
+      Event = "",
+      Field = "󰄶 ",
+      File = " ",
+      Folder = " ",
+      Function = "ƒ ",
+      Interface = " ",
+      Keyword = "󰌆 ",
+      Method = " ",
+      Module = "󰏗 ",
+      Operator = "󰆕 ",
+      Property = " ",
+      Reference = " ",
+      Snippet = " ",
+      String = "󱌯 ",
+      Struct = " ",
+      Text = " ",
+      TypeParameter = "󰅲 ",
+      Unit = " ",
+      Value = "󰎠 ",
+      Variable = "󰀫",
+    }
 
     cmp.setup({
       completion = {
@@ -33,6 +62,23 @@ return {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
+      },
+      window = {
+        completion = {
+          border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+          winhighlight = "Normal:CmpPmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        },
+        documentation = {
+          border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+          winhighlight = "Normal:CmpPmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        },
+      },
+      view = {
+        entries = {
+          name = "custom",
+          selection_order = "near_cursor",
+          follow_cursor = true,
+        },
       },
       mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
@@ -45,7 +91,7 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "nvim_lsp"},
+        { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
@@ -53,12 +99,40 @@ return {
 
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
-        format = lspkind.cmp_format({
-          maxwidth = 50,
-          ellipsis_char = "...",
-        }),
+        fields = { "abbr", "kind", "menu" },
+        format = function(entry, vim_item)
+          -- Kind icons
+          -- This concatonates the icons with the name of the item kind
+          vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+          -- Trim text function
+          function trim(text)
+            local max = 40
+            if text and text:len(1, max) > max then
+              text = text:sub(1, max) .. "..."
+            end
+            return text
+          end
+          vim_item.abbr = trim(vim_item.abbr)
+          -- Source
+          vim_item.menu = ({
+            nvim_lsp = "( LSP )",
+            nvim_lsp_signature_help = "( Signature )",
+            luasnip = "( LuaSnip )",
+            buffer = "( Buffer )",
+            cmp_yanky = "( Yanky )",
+            path = "( Path )",
+            nvim_lua = "( Lua )",
+            treesitter = "( Treesitter )",
+            look = "( Look )",
+            cmdline = "(CMDLine)",
+            cmdline_history = "(CMDLine History)",
+          })[entry.source.name]
+          return vim_item
+        end,
+      },
+      experimental = {
+        ghost_text = true,
       },
     })
   end,
 }
-
