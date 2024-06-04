@@ -5,29 +5,37 @@ return {
             formatters_by_ft = {
                 css = { 'prettier' },
                 html = { 'prettier' },
-                java = { 'prettier' },
-                javascript = { 'prettier' },
                 json = { 'prettier' },
-                tex = { 'latexindent' },
                 lua = { 'stylua' },
                 markdown = { 'prettier' },
-                php = { 'prettier' },
-                python = { 'black' },
                 rust = { 'rustfmt' },
                 scss = { 'prettier' },
-                typst = { 'typstfmt' },
                 vue = { 'prettier' },
-                yaml = { 'yamlfmt' },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
+        svelte = { "prettier" },
+        yaml = { "prettier" },
+        graphql = { "prettier" },
+        python = { "isort", "black" },
             },
             format_on_save = {
                 lsp_fallback = true,
                 async = false,
                 timeout_ms = 500,
             },
-            -- formatters = {
-            --     latexindent = {
-            --         prepend_args = { '-l', '/Users/ilias/.indentconfig.yaml' },
-            --     },
-            -- },
         },
+        config = function(_, opts)
+            local conform = require("conform");
+
+            conform.setup(opts);
+    vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+      conform.format({
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 1000,
+      })
+    end, { desc = "Format file or range (in visual mode)" })
+        end,
     }
