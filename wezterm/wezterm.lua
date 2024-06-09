@@ -9,7 +9,7 @@ local function scheme_for_appearance(appearance)
 end
 
 return {
-	term = "xterm-256color",
+	-- term = "xterm-256color",
 
 	-- color_scheme = "Catppuccin Mocha", -- or Macchiato, Frappe, Latte
 	color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
@@ -22,14 +22,14 @@ return {
 
 	-- FONT
 	font_size = 15,
-	line_height = 1.4,
+	line_height = 1.5,
 	font = wezterm.font({
 		family = "JetBrains Mono",
 		harfbuzz_features = { "liga=1" },
 	}),
 
 	window_padding = {
-		top = 8,
+		top = 0,
 		left = 0,
 		right = 0,
 		bottom = 0,
