@@ -48,6 +48,7 @@ install_or_update_brew_app() {
 
 function setup_zshenv() {
   echo "Setting up .zshenv to home directory \n"
+  mkdir -p $XDG_CACHE_HOME/zsh && touch $XDG_CACHE_HOME/zsh/.zsh_history
   ln -nsf $HOME/.dotfiles/.zshenv $HOME
   source $HOME/.zshenv
 }
@@ -148,13 +149,13 @@ function setup_wezterm_config() {
 
 if [ "$(uname)" == "Darwin" ]; then
   # Do something under Mac OS X platform
-  setup_homebrew
+  # setup_homebrew
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 fi
 
 # setting up
 setup_zshenv
-install_other_necessary_packages
+# install_other_necessary_packages
 setup_zsh_config
 install_zsh_plugins
 setup_alacritty_config
