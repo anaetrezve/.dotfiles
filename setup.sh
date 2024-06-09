@@ -1,33 +1,33 @@
 #!/usr/bin/env bash
 
-# install_or_update_brew_app() {
-#    local app_name="$1"
-#
-#     # Check if the application is installed as a formula or cask
-#     if ! command -v "$app_name" &>/dev/null || brew list --formula "$app_name" &>/dev/null || brew list --cask "$app_name" &>/dev/null; then
-#         echo "$app_name is already installed."
-#     else
-#         # If not installed, check if it's a cask
-#         if brew info --cask "$app_name" &>/dev/null; then
-#             # If it's a cask, install it using Homebrew Cask
-#             echo "$app_name is not installed. Installing via Homebrew Cask..."
-#             brew install --cask "$app_name"
-#         else
-#             # If it's not a cask, install it using regular Homebrew
-#             echo "$app_name is not installed. Installing via Homebrew..."
-#             brew install "$app_name"
-#         fi
-#
-#         # Check if installation was successful
-#         if [ $? -eq 0 ]; then
-#             echo "Installation of $app_name successful."
-#         else
-#             echo "Installation of $app_name failed. Please check Homebrew or try again later."
-#         fi
-#     fi
-# }
+function install_or_update_brew_app() {
+  local app_name="$1"
 
-install_or_update_brew_app() {
+  # Check if the application is installed as a formula or cask
+  if ! command -v "$app_name" &>/dev/null || brew list --formula "$app_name" &>/dev/null || brew list --cask "$app_name" &>/dev/null; then
+    echo "$app_name is already installed."
+  else
+    # If not installed, check if it's a cask
+    if brew info --cask "$app_name" &>/dev/null; then
+      # If it's a cask, install it using Homebrew Cask
+      echo "$app_name is not installed. Installing via Homebrew Cask..."
+      brew install --cask "$app_name"
+    else
+      # If it's not a cask, install it using regular Homebrew
+      echo "$app_name is not installed. Installing via Homebrew..."
+      brew install "$app_name"
+    fi
+
+    # Check if installation was successful
+    if [ $? -eq 0 ]; then
+      echo "Installation of $app_name successful."
+    else
+      echo "Installation of $app_name failed. Please check Homebrew or try again later."
+    fi
+  fi
+}
+
+function install_or_update_brew_app() {
   local app_name="$1"
   # Check if the application is already installed
   if ! command -v "$app_name" &>/dev/null; then
@@ -37,9 +37,9 @@ install_or_update_brew_app() {
 
     # Check if installation was successful
     if [ $? -eq 0 ]; then
-        echo "Installation of $app_name successful."
+      echo "Installation of $app_name successful."
     else
-        echo "Installation of $app_name failed. Please check Homebrew or try again later."
+      echo "Installation of $app_name failed. Please check Homebrew or try again later."
     fi
   else
     echo "$app_name is already installed."
@@ -48,9 +48,9 @@ install_or_update_brew_app() {
 
 function setup_zshenv() {
   echo "Setting up .zshenv to home directory \n"
-  mkdir -p $XDG_CACHE_HOME/zsh && touch $XDG_CACHE_HOME/zsh/.zsh_history
-  ln -nsf $HOME/.dotfiles/.zshenv $HOME
-  source $HOME/.zshenv
+  mkdir -p "$XDG_CACHE_HOME"/zsh && touch "$XDG_CACHE_HOME"/zsh/.zsh_history
+  ln -nsf "$HOME"/.dotfiles/.zshenv "$HOME"
+  source "$HOME"/.zshenv
 }
 
 function install_zsh_plugins() {
@@ -94,12 +94,12 @@ function install_other_necessary_packages() {
 
 function setup_alacritty_config() {
   echo "Setting up alacritty config"
-  ln -nsf $HOME/.dotfiles/alacritty $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/alacritty "$XDG_CONFIG_HOME"
 }
 
 function setup_kitty_config() {
   echo "Setting up kitty config"
-  ln -nsf $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/kitty "$XDG_CONFIG_HOME"
 }
 
 function setup_homebrew() {
@@ -117,10 +117,10 @@ function setup_homebrew() {
 
 function setup_tmux_config() {
   echo "Setting up tmux config"
-  ln -nsf $HOME/.dotfiles/tmux $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/tmux "$XDG_CONFIG_HOME"
 
   echo "Installing tmux plugin manager"
-  git clone https://github.com/tmux-plugins/tpm.git $XDG_CONFIG_HOME/tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm.git "$XDG_CONFIG_HOME"/tmux/plugins/tpm
 }
 
 # function setup_nvim_config() {
@@ -132,34 +132,102 @@ function setup_tmux_config() {
 # }
 
 function setup_nvim_config() {
-   echo "Setting up nvim config"
-   ln -nsf $HOME/.dotfiles/nvim $XDG_CONFIG_HOME/nvim
+  echo "Setting up nvim config"
+  ln -nsf "$HOME"/.dotfiles/nvim "$XDG_CONFIG_HOME"/nvim
 }
 
 function setup_zsh_config() {
   echo "Setting up zsh config"
-  ln -nsf $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/zsh "$XDG_CONFIG_HOME"
 }
 
 function setup_wezterm_config() {
   echo "Setting up wezterm config"
-  ln -nsf $HOME/.dotfiles/wezterm $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/wezterm "$XDG_CONFIG_HOME"
 }
 
-
-if [ "$(uname)" == "Darwin" ]; then
-  # Do something under Mac OS X platform
-  # setup_homebrew
+# if [ "$(uname)" == "Darwin" ]; then
+# Do something under Mac OS X platform
+# setup_homebrew
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+# fi
+
+function show_help() {
+  echo "Usage: $0 [OPTION]"
+  echo "Options:"
+  echo "  -h, --help                    Show this help message and exit"
+  echo "  -hb, --homebrew               Setup Homebrew"
+  echo "  -sz, --setup-zshenv           Setup .zshenv"
+  echo "  -izp, --install-zsh-plugins   Install zsh plugins"
+  echo "  -in, --install-packages       Install other necessary packages"
+  echo "  -sa, --setup-alacritty        Setup alacritty config"
+  echo "  -sk, --setup-kitty            Setup kitty config"
+  echo "  -st, --setup-tmux             Setup tmux config"
+  echo "  -sn, --setup-neovim           Setup neovim config"
+  echo "  -szc, --setup-zsh             Setup zsh config"
+  echo "  -sw, --setup-wezterm          Setup wezterm config"
+  echo "  -a, --all                     Run all setup and install functions"
+}
+
+# Parse command-line arguments
+if [[ $# -eq 0 ]]; then
+  show_help
+  exit 1
 fi
 
-# setting up
-setup_zshenv
-# install_other_necessary_packages
-setup_zsh_config
-install_zsh_plugins
-setup_alacritty_config
-# setup_kitty_config
-setup_tmux_config
-setup_nvim_config
-setup_wezterm_config
+while [[ $# -gt 0 ]]; do
+  case $1 in
+  -h | --help)
+    show_help
+    exit 0
+    ;;
+  -hb | --homebrew)
+    setup_homebrew
+    ;;
+  -sz | --setup-zshenv)
+    setup_zshenv
+    ;;
+  -izp | --install-zsh-plugins)
+    install_zsh_plugins
+    ;;
+  -in | --install-packages)
+    install_other_necessary_packages
+    ;;
+  -sa | --setup-alacritty)
+    setup_alacritty_config
+    ;;
+  -sk | --setup-kitty)
+    setup_kitty_config
+    ;;
+  -st | --setup-tmux)
+    setup_tmux_config
+    ;;
+  -sn | --setup-neovim)
+    setup_nvim_config
+    ;;
+  -szc | --setup-zsh)
+    setup_zsh_config
+    ;;
+  -sw | --setup-wezterm)
+    setup_wezterm_config
+    ;;
+  -a | --all)
+    setup_homebrew
+    setup_zshenv
+    install_zsh_plugins
+    install_other_necessary_packages
+    setup_alacritty_config
+    setup_kitty_config
+    setup_tmux_config
+    setup_nvim_config
+    setup_zsh_config
+    setup_wezterm_config
+    ;;
+  *)
+    echo "Unknown option: $1"
+    show_help
+    exit 1
+    ;;
+  esac
+  shift
+done
