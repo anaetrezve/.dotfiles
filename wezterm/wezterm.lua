@@ -35,9 +35,12 @@ return {
 		bottom = 0,
 	},
 
-	native_macos_fullscreen_mode = false,
+	native_macos_fullscreen_mode = true,
 	window_decorations = "RESIZE",
 	enable_tab_bar = false,
+
+	initial_cols = 200,
+	initial_rows = 100,
 
 	keys = {
 		{
