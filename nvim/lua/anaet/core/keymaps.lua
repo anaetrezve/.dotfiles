@@ -41,6 +41,21 @@ keymap({ "i", "n" }, "<C-s>", "<CMD> w <CR>", { desc = "Save file" })
 -- Not yanking with 'c' and 'x'
 keymap({ "n", "v" }, "c", '"_c')
 keymap("n", "C", '"_C')
+keymap("n", "x", '"_x')
+
+-- Move text up and down
+keymap("x", "J", ":move '>+1<CR>gv-gv")
+keymap("x", "K", ":move '<-2<CR>gv-gv")
+keymap("x", "<A-j>", ":move '>+1<CR>gv-gv")
+keymap("x", "<A-k>", ":move '<-2<CR>gv-gv")
+
+-- Move text up and down
+keymap("v", "<A-j>", ":m .+1<CR>==")
+keymap("v", "<A-k>", ":m .-2<CR>==")
+keymap("n", "J", "mzJ`z")
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
+keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- increment/decrement numbers
 -- keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment

@@ -42,6 +42,9 @@ return {
 	initial_cols = 200,
 	initial_rows = 100,
 
+	enable_kitty_keyboard = true,
+	enable_csi_u_key_encoding = false,
+
 	keys = {
 		{
 			key = "m",
