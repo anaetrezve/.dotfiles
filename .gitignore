@@ -2,3 +2,4 @@
 .zcompdump
 tmux/plugins
 nvim/plugin
+lazy-lock.json
