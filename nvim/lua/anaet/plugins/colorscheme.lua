@@ -47,7 +47,6 @@ return {
       },
       custom_highlights = function(colors)
         return {
-
           -- cmp colors
           CmpItemAbbr = { fg = mocha.subtext1 },
           CmpItemAbbrMatch = { fg = mocha.blue, bold = true },
@@ -56,6 +55,7 @@ return {
           CmpPmenu = { bg = mocha.crust },
           CmpSel = { link = "PmenuSel", bold = true },
           CmpBorder = { fg = mocha.surface0 },
+          -- PmenuSel = { fg = colors.base, bg = colors.maroon, style = { "bold" } },
 
           -- cmp item kinds
           -- CmpItemKindConstant = { fg = base16.base09 },
@@ -89,6 +89,7 @@ return {
           -- CmpItemKindCopilot = { fg = colors.green },
           -- CmpItemKindCodeium = { fg = colors.vibrant_green },
           -- CmpItemKindTabNine = { fg = colors.baby_pink },
+
           -- CmpItemAbbr = { fg = C.overlay2 },
           -- CmpItemAbbrDeprecated = { fg = C.overlay0, style = { "strikethrough" } },
           -- CmpItemKind = { fg = C.blue },
@@ -123,6 +124,30 @@ return {
           -- CmpItemKindOperator = { fg = C.blue },
           -- CmpItemKindTypeParameter = { fg = C.blue },
           -- CmpItemKindCopilot = { fg = C.teal },
+
+          -- Telescope highlight groups
+          -- TelescopePromptPrefix = {
+          --   fg = colors.red,
+          --   bg = colors.black2,
+          -- },
+          -- TelescopeNormal = { bg = colors.darker_black },
+          -- TelescopePreviewTitle = {
+          --   fg = colors.black,
+          --   bg = colors.green,
+          -- },
+          -- TelescopePromptTitle = {
+          --   fg = colors.black,
+          --   bg = colors.red,
+          -- },
+          -- TelescopeSelection = { bg = colors.black2, fg = colors.white },
+          -- TelescopeResultsDiffAdd = { fg = colors.green },
+          -- TelescopeResultsDiffChange = { fg = colors.yellow },
+          -- TelescopeResultsDiffDelete = { fg = colors.red },
+          -- TelescopeMatching = { bg = colors.one_bg, fg = colors.blue },
+          -- TelescopeBorder = { fg = colors.darker_black, bg = colors.darker_black },
+          -- TelescopePromptBorder = { fg = colors.black2, bg = colors.black2 },
+          -- TelescopePromptNormal = { fg = colors.white, bg = colors.black2 },
+          -- TelescopeResultsTitle = { fg = colors.darker_black, bg = colors.darker_black },
         }
       end,
     }
@@ -133,3 +158,6 @@ return {
     vim.cmd.colorscheme("catppuccin")
   end,
 }
+
+-- `vim.tbl_deep_extend` function which is used for merging tables and their values recursively.
+-- local result = vim.tbl_deep_extend("force", hlgroups, styles[telescope_style])

@@ -159,7 +159,6 @@ return {
         return item
       end,
     }
-
     local function border(hl_name)
       return {
         { "╭", hl_name },
@@ -175,19 +174,20 @@ return {
 
     return {
       completion = {
-        completeopt = "menu,menuone",
+        completeopt = "menu,menuone,preview",
+        -- completeopt = "menu,menuone,preview,noselect",
       },
 
       window = {
         completion = {
-          side_padding = 1,
-          winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
+          -- side_padding = 1,
+          --   winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
           scrollbar = false,
         },
-        documentation = {
-          border = border("CmpDocBorder"),
-          winhighlight = "Normal:CmpDoc",
-        },
+        -- documentation = {
+        --   border = border("CmpDocBorder"),
+        --   winhighlight = "Normal:CmpDoc",
+        -- },
       },
       snippet = {
         expand = function(args)
