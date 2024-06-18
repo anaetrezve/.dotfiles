@@ -65,12 +65,55 @@ return {
 
     local formatting_style = {
       fields = { "abbr", "kind", "menu" },
+
       format = function(_, item)
+        -- local icons = {
+        --   Namespace = "󰌗",
+        --   Text = "󰉿",
+        --   Method = "󰆧",
+        --   Function = "󰆧",
+        --   Constructor = "",
+        --   Field = "󰜢",
+        --   Variable = "󰀫",
+        --   Class = "󰠱",
+        --   Interface = "",
+        --   Module = "",
+        --   Property = "󰜢",
+        --   Unit = "󰑭",
+        --   Value = "󰎠",
+        --   Enum = "",
+        --   Keyword = "󰌋",
+        --   Snippet = "",
+        --   Color = "󰏘",
+        --   File = "󰈚",
+        --   Reference = "󰈇",
+        --   Folder = "󰉋",
+        --   EnumMember = "",
+        --   Constant = "󰏿",
+        --   Struct = "󰙅",
+        --   Event = "",
+        --   Operator = "󰆕",
+        --   TypeParameter = "󰊄",
+        --   Table = "",
+        --   Object = "󰅩",
+        --   Tag = "",
+        --   Array = "[]",
+        --   Boolean = "",
+        --   Number = "",
+        --   Null = "󰟢",
+        --   String = "󰉿",
+        --   Calendar = "",
+        --   Watch = "󰥔",
+        --   Package = "",
+        --   Copilot = "",
+        --   Codeium = "",
+        --   TabNine = "",
+        -- }
+
         local icons = {
-          Namespace = "󰌗",
           Text = "󰉿",
           Method = "󰆧",
-          Function = "󰆧",
+          Function = "󰊕",
           Constructor = "",
           Field = "󰜢",
           Variable = "󰀫",
@@ -84,7 +127,7 @@ return {
           Keyword = "󰌋",
           Snippet = "",
           Color = "󰏘",
-          File = "󰈚",
+          File = "󰈙",
           Reference = "󰈇",
           Folder = "󰉋",
           EnumMember = "",
@@ -93,6 +136,7 @@ return {
           Event = "",
           Operator = "󰆕",
           TypeParameter = "󰊄",
+          Namespace = "󰌗",
           Table = "",
           Object = "󰅩",
           Tag = "",
@@ -152,6 +196,7 @@ return {
       },
 
       formatting = formatting_style,
+
       mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -163,6 +208,20 @@ return {
           behavior = cmp.ConfirmBehavior.Insert,
           select = true,
         }),
+        ["<Tab>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
+        }),
+
+        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.select_prev_item()
+        --   elseif require("luasnip").jumpable(-1) then
+        --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+        --   else
+        --     fallback()
+        --   end
+        -- end, { "i", "s" }),
       },
       sources = {
         { name = "nvim_lsp" },
