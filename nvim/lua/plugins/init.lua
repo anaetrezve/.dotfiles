@@ -79,6 +79,7 @@ return {
         "tailwindcss-language-server",
         "lua_ls",
         "emmet_ls",
+        "eslint-lsp",
         "js-debug-adapter",
         "typescript-language-server",
         "stylelint_lsp",
@@ -154,5 +155,9 @@ return {
 
       return conf
     end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    enabled = false,
   },
 }

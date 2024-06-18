@@ -34,3 +34,14 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Move up", expr = t
 map({ "n", "x" }, "p", "P", { desc = "Dont copy replaced text" })
 map("v", "p", '"_dP')
 map("n", "dD", '"_dd')
+
+-- Neo tree
+map("n", "<leader>e", function()
+  require("neo-tree.command").execute({ toggle = true, position = "left", dir = vim.uv.cwd() })
+end, { desc = "Explorer NeoTree Filesystem (cwd)" })
+
+-- Disable mappings
+local nomap = vim.keymap.del
+
+-- nomap("n", "<leader>e")
+nomap("n", "<C-n>")
