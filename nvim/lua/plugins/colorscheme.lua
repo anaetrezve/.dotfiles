@@ -10,6 +10,9 @@ return {
         neotree = true,
         mason = true,
         window_picker = true,
+        navic = {
+          enabled = true,
+        },
         -- diffview = true,
         -- which_key = true,
         -- lsp_trouble = true,
