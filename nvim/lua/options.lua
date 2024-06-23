@@ -24,8 +24,7 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
-opt.cursorlineopt = "number"
-
+-- opt.cursorlineopt = "number"
 
 -- appearance
 
