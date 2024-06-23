@@ -9,7 +9,7 @@ return {
       integrations = {
         neotree = true,
         mason = true,
-        -- window_picker = true,
+        window_picker = true,
         -- diffview = true,
         -- which_key = true,
         -- lsp_trouble = true,

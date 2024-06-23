@@ -72,8 +72,8 @@ return {
           -- Status type
           untracked = "U",
           ignored = "",
-          unstaged = "",
-          staged = "",
+          unstaged = "U",
+          staged = "S",
           conflict = "C",
         },
       },
