@@ -65,6 +65,7 @@ return {
       require("mason-lspconfig").setup(opts)
     end,
   },
+
   {
     "neovim/nvim-lspconfig",
     dependencies = { "hrsh7th/cmp-nvim-lsp" },
