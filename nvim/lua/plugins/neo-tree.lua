@@ -7,6 +7,7 @@ return {
     "MunifTanjim/nui.nvim",
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
+
   keys = {
     {
       "<leader>e",
@@ -51,8 +52,10 @@ return {
       desc = "Buffer Explorer NeoTree",
     },
   },
+
   opts = {
     popup_border_style = "single",
+    enable_diagnostics = false,
     default_component_configs = {
       modified = {
         symbol = "",
@@ -65,19 +68,26 @@ return {
       },
       git_status = {
         symbols = {
-          added = "A", -- or "✚", but this is redundant info if you use git_status_colors on the name
-          modified = "M", -- or "", but this is redundant info if you use git_status_colors on the name
-          deleted = "D", -- this can only be used in the git_status source
-          renamed = "R", -- this can only be used in the git_status source
+          added = " ", -- or "✚", but this is redundant info if you use git_status_colors on the name
+          modified = " ", -- or "", but this is redundant info if you use git_status_colors on the name
+          deleted = " ", -- this can only be used in the git_status source
+          renamed = " ", -- this can only be used in the git_status source
           -- Status type
-          untracked = "U",
-          ignored = "",
-          unstaged = "U",
-          staged = "S",
+          untracked = " ",
+          ignored = " ",
+          unstaged = " ",
+          staged = " ",
           conflict = "C",
         },
       },
+
+      icon = {
+        folder_closed = "",
+        folder_open = "",
+        folder_empty = "󰜌",
+      },
     },
+
     filesystem = {
       filtered_items = {
         hide_dotfiles = false,
@@ -93,4 +103,8 @@ return {
       },
     },
   },
+
+  config = function(_, opts)
+    require("neo-tree").setup(opts)
+  end,
 }
