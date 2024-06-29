@@ -1,23 +1,25 @@
-local function border(hl_name)
-  return {
-    { "┌", hl_name },
-    { "─", hl_name },
-    { "┐", hl_name },
-    { "│", hl_name },
-    { "┘", hl_name },
-    { "─", hl_name },
-    { "└", hl_name },
-    { "│", hl_name },
+local function border()
+  return { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 
-    -- { "╭", hl_name },
-    -- { "─", hl_name },
-    -- { "╮", hl_name },
-    -- { "│", hl_name },
-    -- { "╯", hl_name },
-    -- { "─", hl_name },
-    -- { "╰", hl_name },
-    -- { "│", hl_name },
-  }
+  -- return {
+  --   { "┌", hl_name },
+  --   { "─", hl_name },
+  --   { "┐", hl_name },
+  --   { "│", hl_name },
+  --   { "┘", hl_name },
+  --   { "─", hl_name },
+  --   { "└", hl_name },
+  --   { "│", hl_name },
+  --
+  --   -- { "╭", hl_name },
+  --   -- { "─", hl_name },
+  --   -- { "╮", hl_name },
+  --   -- { "│", hl_name },
+  --   -- { "╯", hl_name },
+  --   -- { "─", hl_name },
+  --   -- { "╰", hl_name },
+  --   -- { "│", hl_name },
+  -- }
 end
 
 local icons = {
@@ -110,13 +112,14 @@ return {
         completion = {
           scrollbar = false,
           side_padding = 0,
-          border = border("CmpBorder"),
-          winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
+          border = border(),
+          winhighlight = "Normal:CmpMenu,FloatBorder:CmpMenuBorder,CursorLine:CmpSelectedLine,Search:None",
         },
 
         documentation = {
-          border = border("CmpDocBorder"),
-          winhighlight = "Normal:CmpDoc",
+          -- border = false,
+          border = border(),
+          winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder,Search:None",
         },
 
         -- completion = cmp.config.window.bordered(),
@@ -139,6 +142,10 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<C-e>"] = cmp.mapping.abort(), -- close completion window
         ["<CR>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
+        }),
+        ["<Tab>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Insert,
           select = true,
         }),

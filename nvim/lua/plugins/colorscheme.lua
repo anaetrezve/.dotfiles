@@ -49,14 +49,14 @@ return {
       custom_highlights = function(colors)
         return {
           -- Cmp Menu
-          -- CmpPmenu = { bg = colors.crust },
-          CmpBorder = { fg = colors.overlay2 },
-          CmpSel = { link = "PmenuSel", bold = true },
-          -- CmpItemMenu = { fg = colors.overlay1, italic = true },
-          CmpItemAbbr = { fg = colors.subtext1 },
-          CmpItemAbbrMatch = { fg = colors.sapphire, bold = true },
-          -- CmpDoc = { bg = colors.crust },
-          CmpDocBorder = { fg = colors.overlay2 },
+          CmpMenu = { bg = colors.base },
+          CmpMenuBorder = { fg = colors.overlay0 },
+          CmpSelectedLine = { bg = colors.surface0 },
+          CmpItemAbbr = { fg = colors.text },
+          CmpItemAbbrMatch = { fg = colors.mauve, bold = true },
+          CmpItemAbbrMatchFuzzy = { fg = colors.mauve, bold = true },
+          CmpDoc = { bg = colors.base },
+          CmpDocBorder = { fg = colors.overlay0 },
 
           -- Telescope
           TelescopeBorder = { fg = colors.blue },
