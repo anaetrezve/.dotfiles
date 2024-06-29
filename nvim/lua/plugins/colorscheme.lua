@@ -91,6 +91,13 @@ return {
 
           -- Treesitter Context
           TreesitterContext = { bg = colors.mantle },
+
+          -- Diagnostics
+          DiagnosticVirtualTextWarn = { bg = "None" },
+          DiagnosticVirtualTextInfo = { bg = "None" },
+          DiagnosticVirtualTextHint = { bg = "None" },
+          DiagnosticVirtualTextError = { bg = "None" },
+          DiagnosticVirtualTextOk = { bg = "None" },
         }
       end,
     }
