@@ -5,12 +5,15 @@ local opt = vim.opt -- for conciseness
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+opt.numberwidth = 2
+opt.ruler = false
 
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
+opt.softtabstop = 2
 
 -- line wrapping
 -- opt.wrap = true -- disable line wrapping
@@ -20,7 +23,8 @@ opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
 -- cursor line
-opt.cursorline = false -- highlight the current cursor line
+opt.cursorline = true -- highlight the current cursor line
+-- opt.cursorlineopt = "number"
 
 -- appearance
 
@@ -73,26 +77,7 @@ opt.scrolloff = 4 -- is one of my fav
 opt.swapfile = false
 
 -- hide startup empty buffer
-opt.hidden = true
+-- opt.hidden = true
 
--- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
--- vim.api.nvim_create_autocmd("ColorScheme", {
--- 	callback = function()
--- 		local highlights = {
--- 			"Normal",
--- 			"LineNr",
--- 			"Folded",
--- 			"NonText",
--- 			"SpecialKey",
--- 			"VertSplit",
--- 			"SignColumn",
--- 			"EndOfBuffer",
--- 			"TablineFill", -- this is specific to how I like my tabline to look like
--- 		}
--- 		for _, name in pairs(highlights) do
--- 			vim.cmd.highlight(name .. " guibg=none ctermbg=none")
--- 		end
--- 	end,
--- })
--- vim.cmd("autocmd Colorscheme * highlight NvimTreeNormal guibg=none guifg=none")
+-- disable nvim intro
+opt.shortmess:append("sI")

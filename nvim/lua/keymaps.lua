@@ -31,9 +31,9 @@ keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Move up", expr 
 
 -- Don't copy the replaced text after pasting in visual mode
 -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-keymap({ "n", "x" }, "p", "P", { desc = "Dont copy replaced text" })
+-- keymap({ "n", "x" }, "p", "P", { desc = "Dont copy replaced text" })
 keymap("v", "p", '"_dP')
-keymap("x", "p", "P")
+-- keymap("x", "p", "P")
 keymap("n", "dD", '"_dd')
 
 keymap({ "i", "n" }, "<C-s>", "<CMD> w <CR>", { desc = "Save file" })
@@ -56,6 +56,7 @@ keymap("n", "J", "mzJ`z")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap("n", ";", ":")
 
 -- increment/decrement numbers
 -- keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
