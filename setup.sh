@@ -48,9 +48,12 @@ function install_or_update_brew_app() {
 
 function setup_zshenv() {
   echo "Setting up .zshenv to home directory \n"
-  mkdir -p "$XDG_CACHE_HOME"/zsh && touch "$XDG_CACHE_HOME"/zsh/.zsh_history
+
   ln -nsf "$HOME"/.dotfiles/.zshenv "$HOME"
   source "$HOME"/.zshenv
+
+  mkdir -p "$XDG_CACHE_HOME"/zsh && touch "$XDG_CACHE_HOME"/zsh/.zsh_history
+  rm -rf $HOME/.zsh_history
 }
 
 function install_zsh_plugins() {
@@ -73,23 +76,21 @@ function install_other_necessary_packages() {
   install_or_update_brew_app eza
   install_or_update_brew_app neovim
   install_or_update_brew_app tmux
-  install_or_update_brew_app nvm
-  # install_or_update_brew_app visual-studio-code
-  # install_or_update_brew_app kitty
-  # install_or_update_brew_app raycast
-  # install_or_update_brew_app alacritty
+  install_or_update_brew_app wezterm 
 
   # programming languages & tools
   install_or_update_brew_app go
   install_or_update_brew_app rust
-  # install_or_update_brew_app mongodb-compass
+  install_or_update_brew_app nvm
+
   # install_or_update_brew_app postman
   # install_or_update_brew_app docker
+  # install_or_update_brew_app docker-compose
+  # install_or_update_brew_app visual-studio-code
 
   # Nerd fonts
   brew tap homebrew/cask-fonts
   install_or_update_brew_app font-jetbrains-mono-nerd-font
-  # install_or_update_brew_app font-meslo-lg-nerd-font
 }
 
 function setup_alacritty_config() {
