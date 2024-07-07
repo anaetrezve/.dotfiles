@@ -15,6 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Load global options
 require("options")
 
+-- Load global Autocmd
+require("autocmd")
+
 -- Load global keymaps
 require("keymaps")
 

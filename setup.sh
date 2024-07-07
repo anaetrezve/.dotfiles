@@ -153,6 +153,15 @@ function setup_wezterm_config() {
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 # fi
 
+function set_mac_key_repeat() {
+  if [ "$(uname)" == "Darwin" ]; then
+    defaults write -g ApplePressAndHoldEnabled -bool false
+    defaults write -g InitialKeyRepeat -int 13
+    defaults write -g KeyRepeat -int 1
+  fi
+}
+
+
 function show_help() {
   echo "Usage: $0 [OPTION]"
   echo "Options:"

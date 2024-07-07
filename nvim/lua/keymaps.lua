@@ -38,6 +38,8 @@ keymap("n", "dD", '"_dd')
 
 keymap({ "i", "n" }, "<C-s>", "<CMD> w <CR>", { desc = "Save file" })
 
+keymap("n", "<c-a>", "ggVG", { desc = "Select All" })
+
 -- Not yanking with 'c' and 'x'
 keymap({ "n", "v" }, "c", '"_c')
 keymap("n", "C", '"_C')
