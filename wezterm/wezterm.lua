@@ -1,4 +1,17 @@
 local wezterm = require("wezterm")
+local local_config = require("local-config") or {}
+
+local function spread(...)
+	local result = {}
+
+	for _, t in ipairs({ ... }) do
+		for k, v in pairs(t) do
+			result[k] = v
+		end
+	end
+
+	return result
+end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
@@ -8,8 +21,8 @@ local function scheme_for_appearance(appearance)
 	end
 end
 
-return {
-	-- term = "xterm-256color",
+return spread({
+	term = "xterm-256color",
 
 	-- color_scheme = "Catppuccin Mocha", -- or Macchiato, Frappe, Latte
 	color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
@@ -23,9 +36,9 @@ return {
 	-- FONT
 	font_size = 15,
 	line_height = 1.5,
-	font = wezterm.font({
-		family = "JetBrains Mono",
-		harfbuzz_features = { "liga=1" },
+	cell_width = 1.05,
+	font = wezterm.font("JetBrains Mono", {
+		weight = "Bold",
 	}),
 
 	window_padding = {
@@ -52,4 +65,4 @@ return {
 			action = wezterm.action.ToggleFullScreen,
 		},
 	},
-}
+}, local_config)

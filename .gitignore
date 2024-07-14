@@ -4,3 +4,4 @@ tmux/plugins
 nvim/plugin
 lazy-lock.json
 .zsh_sessions
+local-config
