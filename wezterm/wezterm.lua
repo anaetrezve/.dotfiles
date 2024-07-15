@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 local ok, local_config = pcall(require, "local-config")
 
+local action = wezterm.action
+
 if not ok then
 	local_config = {}
 end
@@ -66,12 +68,15 @@ return spread({
 		{
 			key = "m",
 			mods = "CTRL",
-			action = wezterm.action.ToggleFullScreen,
+			action = action.ToggleFullScreen,
 		},
 		{
-			key = "K",
-			mods = "CTRL|SHIFT",
-			action = wezterm.action.ClearScrollback("ScrollbackAndViewport"),
+			key = "k",
+			mods = "SUPER",
+			action = action.Multiple({
+				action.ClearScrollback("ScrollbackAndViewport"),
+				action.SendKey({ key = "L", mods = "CTRL" }),
+			}),
 		},
 	},
 }, local_config)
