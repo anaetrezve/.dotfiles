@@ -37,6 +37,7 @@ setopt hist_find_no_dups
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
@@ -94,3 +95,4 @@ load-nvmrc
 if command -v "zoxide" &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
+
