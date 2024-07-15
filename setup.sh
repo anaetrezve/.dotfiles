@@ -79,8 +79,8 @@ function install_other_necessary_packages() {
   install_or_update_brew_app wezterm 
 
   # programming languages & tools
-  install_or_update_brew_app go
-  install_or_update_brew_app rust
+  # install_or_update_brew_app go
+  # install_or_update_brew_app rust
   install_or_update_brew_app nvm
 
   # install_or_update_brew_app postman

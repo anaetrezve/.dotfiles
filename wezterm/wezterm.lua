@@ -1,5 +1,9 @@
 local wezterm = require("wezterm")
-local local_config = require("local-config") or {}
+local ok, local_config = pcall(require, "local-config")
+
+if not ok then
+	local_config = {}
+end
 
 local function spread(...)
 	local result = {}
@@ -63,6 +67,11 @@ return spread({
 			key = "m",
 			mods = "CTRL",
 			action = wezterm.action.ToggleFullScreen,
+		},
+		{
+			key = "K",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.ClearScrollback("ScrollbackAndViewport"),
 		},
 	},
 }, local_config)
