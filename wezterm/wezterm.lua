@@ -42,7 +42,6 @@ return spread({
 	-- FONT
 	font_size = 15,
 	line_height = 1.5,
-	cell_width = 1.05,
 	font = wezterm.font("JetBrains Mono", {
 		weight = "Bold",
 	}),
