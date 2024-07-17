@@ -55,7 +55,7 @@ return spread({
 	},
 
 	native_macos_fullscreen_mode = true,
-	window_decorations = "RESIZE",
+	window_decorations = "TITLE | RESIZE",
 	enable_tab_bar = false,
 
 	initial_cols = 200,
