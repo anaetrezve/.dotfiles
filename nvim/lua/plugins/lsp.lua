@@ -82,6 +82,14 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
+          vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+            max_width = 80,
+            max_height = 15,
+          })
+          vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+            max_width = 80,
+            max_height = 15,
+          })
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
           local opts = function(desc)
@@ -122,16 +130,27 @@ return {
 
       vim.diagnostic.config({
         virtual_text = {
-          prefix = "",
+          prefix = "",
         },
         signs = true,
         underline = true,
-        -- update_in_insert = false,
+        update_in_insert = false,
 
-        float = {
-          border = "single",
-        },
+        -- float = {
+        --   border = "single",
+        -- },
       })
+
+      -- To instead override globally
+      -- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+      -- function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+      --   opts = opts or {}
+      --   opts.width = 80
+      --   opts.height = 30
+      --   opts.max_width = 100
+      --   opts.max_height = 30
+      --   return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      -- end
 
       -- lsps with default config
       for _, lsp in ipairs(servers) do

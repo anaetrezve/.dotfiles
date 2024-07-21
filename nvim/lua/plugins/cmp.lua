@@ -1,25 +1,25 @@
-local function border()
-  return { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+local function border(hl_name)
+  -- return { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 
-  -- return {
-  --   { "┌", hl_name },
-  --   { "─", hl_name },
-  --   { "┐", hl_name },
-  --   { "│", hl_name },
-  --   { "┘", hl_name },
-  --   { "─", hl_name },
-  --   { "└", hl_name },
-  --   { "│", hl_name },
-  --
-  --   -- { "╭", hl_name },
-  --   -- { "─", hl_name },
-  --   -- { "╮", hl_name },
-  --   -- { "│", hl_name },
-  --   -- { "╯", hl_name },
-  --   -- { "─", hl_name },
-  --   -- { "╰", hl_name },
-  --   -- { "│", hl_name },
-  -- }
+  return {
+    -- { "┌", hl_name },
+    -- { "─", hl_name },
+    -- { "┐", hl_name },
+    -- { "│", hl_name },
+    -- { "┘", hl_name },
+    -- { "─", hl_name },
+    -- { "└", hl_name },
+    -- { "│", hl_name },
+
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
 end
 
 local icons = {
@@ -80,7 +80,7 @@ return {
 
   config = function()
     local cmp = require("cmp")
-    local lspkind = require("lspkind")
+    -- local lspkind = require("lspkind")
 
     -- snippets
     require("luasnip.loaders.from_vscode").lazy_load({
@@ -99,57 +99,60 @@ return {
       },
 
       completion = {
-        -- completeopt = "menu,menuone",
-        completeopt = "menu,menuone,preview,noselect",
+        completeopt = "menu,menuone",
+        -- completeopt = "menu,menuone,preview,noselect",
       },
 
       -- configure lspkind for vs-code like pictograms in completion menu
-      formatting = {
-        format = lspkind.cmp_format({
-          maxwidth = 50,
-          ellipsis_char = "...",
-        }),
-      },
       -- formatting = {
-      --   fields = { "kind", "abbr", "menu" },
-      --   format = function(_, item)
-      --     local icon = icons[item.kind] or ""
-      --     icon = " " .. icon .. " "
-      --     item.menu = " " .. item.kind .. " "
-      --     item.kind = icon
-      --
-      --     -- item.kind = string.format("%s %s", icon, item.kind or "")
-      --     -- item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
-      --
-      --     return item
-      --   end,
+      --   format = lspkind.cmp_format({
+      --     maxwidth = 50,
+      --     ellipsis_char = "...",
+      --   }),
       -- },
+      formatting = {
+        fields = { "kind", "abbr", "menu" },
+        expandable_indicator = false,
+        format = function(_, item)
+          local icon = icons[item.kind] or ""
+          item.menu = " " .. item.kind
+          item.kind = " " .. icon .. " "
 
-      -- window = {
-      --   completion = {
-      --     scrollbar = false,
-      --     side_padding = 0,
-      --     border = border(),
-      --     winhighlight = "Normal:CmpMenu,FloatBorder:CmpMenuBorder,CursorLine:CmpSelectedLine,Search:None",
-      --   },
-      --
-      --   documentation = {
-      --     -- border = false,
-      --     border = border(),
-      --     winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder,Search:None",
-      --   },
-      --
-      --   -- completion = cmp.config.window.bordered(),
-      --   -- documentation = cmp.config.window.bordered(),
-      -- },
+          -- item.kind = string.format("%s %s", icon, item.kind or "")
+          -- item.menu = item.kind and "(" .. item.kind .. ")" or ""
 
-      view = {
-        entries = {
-          name = "custom",
-          selection_order = "near_cursor",
-          follow_cursor = true,
-        },
+          return item
+        end,
       },
+
+      window = {
+        completion = {
+          scrollbar = false,
+          side_padding = 0,
+          -- border = border("CmpBorder"),
+          winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
+        },
+
+        documentation = false,
+        -- documentation = {
+        --   -- side_padding = 2,
+        --   -- border = border("CmpDocBorder"),
+        --   -- winhighlight = "Normal:CmpDoc",
+        --   -- max_width = 20,
+        --   -- max_height = 10,
+        -- },
+
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
+      },
+
+      -- view = {
+      --   entries = {
+      --     name = "custom",
+      --     selection_order = "near_cursor",
+      --     follow_cursor = true,
+      --   },
+      -- },
 
       mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
@@ -168,12 +171,20 @@ return {
         }),
       }),
 
-      sources = cmp.config.sources({
+      sources = {
         { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
         { name = "nvim_lua" },
-        { name = "luasnip" }, -- snippets
-        { name = "path" }, -- file system paths
-      }, { name = "buffer", keyword_length = 3 }),
+        { name = "path" },
+      },
+
+      -- sources = cmp.config.sources({
+      --   { name = "nvim_lsp" },
+      --   { name = "nvim_lua" },
+      --   { name = "luasnip" }, -- snippets
+      --   { name = "path" }, -- file system paths
+      -- }, { name = "buffer", keyword_length = 3 }),
 
       experimental = {
         ghost_text = true,
@@ -181,13 +192,13 @@ return {
     })
 
     -- Set configuration for specific filetype.
-    cmp.setup.filetype("gitcommit", {
-      sources = cmp.config.sources({
-        { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-      }, {
-        { name = "buffer" },
-      }),
-    })
+    -- cmp.setup.filetype("gitcommit", {
+    --   sources = cmp.config.sources({
+    --     { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+    --   }, {
+    --     { name = "buffer" },
+    --   }),
+    -- })
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
     -- cmp.setup.cmdline({ "/", "?" }, {

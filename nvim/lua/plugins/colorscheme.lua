@@ -49,14 +49,28 @@ return {
       custom_highlights = function(colors)
         return {
           -- Cmp Menu
-          CmpMenu = { bg = colors.base },
-          CmpMenuBorder = { fg = colors.overlay0 },
-          CmpSelectedLine = { bg = colors.surface0 },
-          CmpItemAbbr = { fg = colors.text },
-          CmpItemAbbrMatch = { fg = colors.mauve, bold = true },
-          CmpItemAbbrMatchFuzzy = { fg = colors.mauve, bold = true },
-          CmpDoc = { bg = colors.base },
-          CmpDocBorder = { fg = colors.overlay0 },
+          -- NVChad Style
+          PmenuSel = { bg = colors.green, fg = colors.crust },
+          -- CmpBorder = { fg = colors.mantle },
+          -- CmpBorder = { fg = colors.subtext0 },
+          CmpItemAbbr = { fg = colors.white },
+          CmpItemAbbrMatch = { fg = colors.blue, bold = true },
+          CmpItemAbbrMatchFuzzy = { fg = colors.blue, bold = true },
+
+          CmpDoc = { bg = colors.mantle },
+          CmpDocBorder = { bg = colors.mantle, fg = colors.mantle },
+          CmpPmenu = { bg = colors.mantle },
+          CmpSel = { link = "PmenuSel", bold = true },
+
+          -- Custom Style
+          -- CmpMenu = { bg = colors.base },
+          -- CmpMenuBorder = { fg = colors.overlay0 },
+          -- CmpSelectedLine = { bg = colors.surface0 },
+          -- CmpItemAbbr = { fg = colors.text },
+          -- CmpItemAbbrMatch = { fg = colors.mauve, bold = true },
+          -- CmpItemAbbrMatchFuzzy = { fg = colors.mauve, bold = true },
+          -- CmpDoc = { bg = colors.base },
+          -- CmpDocBorder = { fg = colors.overlay0 },
 
           -- Telescope
           TelescopeBorder = { fg = colors.blue },
