@@ -10,7 +10,7 @@ return {
     return {
       {
         "<leader>ff",
-        "<cmd>Telescope find_files<cr>",
+        "<cmd>Telescope find_files hidden=true<cr>",
         desc = "telescope find files",
       },
       {
@@ -20,7 +20,7 @@ return {
       },
       {
         "<leader>fw",
-        "<cmd>Telescope live_grep<CR>",
+        "<cmd>Telescope live_grep hidden=true<CR>",
         desc = "telescope live grep",
       },
       {
@@ -30,7 +30,7 @@ return {
       },
       {
         "<leader>fr",
-        "<cmd>Telescope oldfiles<CR>",
+        "<cmd>Telescope oldfiles hiddne=true<CR>",
         desc = "telescope find recently used files",
       },
       {

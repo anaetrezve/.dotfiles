@@ -77,6 +77,7 @@ function install_other_necessary_packages() {
   install_or_update_brew_app neovim
   install_or_update_brew_app tmux
   install_or_update_brew_app wezterm 
+  install_or_update_brew_app starship
 
   # programming languages & tools
   # install_or_update_brew_app go
@@ -147,6 +148,11 @@ function setup_wezterm_config() {
   ln -nsf "$HOME"/.dotfiles/wezterm "$XDG_CONFIG_HOME"
 }
 
+function setup_starship_config() {
+  echo "Setting up starship config"
+  ln -nsf "$HOME"/.dotfiles/starship "$XDG_CONFIG_HOME"
+}
+
 # if [ "$(uname)" == "Darwin" ]; then
 # Do something under Mac OS X platform
 # setup_homebrew
@@ -161,7 +167,6 @@ function set_mac_key_repeat() {
   fi
 }
 
-
 function show_help() {
   echo "Usage: $0 [OPTION]"
   echo "Options:"
@@ -174,6 +179,7 @@ function show_help() {
   echo "  -sk, --setup-kitty            Setup kitty config"
   echo "  -st, --setup-tmux             Setup tmux config"
   echo "  -sn, --setup-neovim           Setup neovim config"
+  echo "  -ss, --setup-starship         Setup starship config"
   echo "  -szc, --setup-zsh             Setup zsh config"
   echo "  -sw, --setup-wezterm          Setup wezterm config"
   echo "  -a, --all                     Run all setup and install functions"
@@ -220,6 +226,9 @@ while [[ $# -gt 0 ]]; do
     ;;
   -sw | --setup-wezterm)
     setup_wezterm_config
+    ;;
+  -ss | --setup-starship)
+    setup_starship_config
     ;;
   -a | --all)
     setup_homebrew

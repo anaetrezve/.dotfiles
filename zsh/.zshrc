@@ -59,16 +59,16 @@ source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 # bindkey ^S history-incremental-search-forward
 
 # Keybindings
-bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+# bindkey -e
+# bindkey '^p' history-search-backward
+# bindkey '^n' history-search-forward
 # bindkey '^[w' kill-region
 
 # zsh-history-substring-search keybinding to up and down arrow
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
+# bindkey -M vicmd 'k' history-substring-search-up
+# bindkey -M vicmd 'j' history-substring-search-down
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -95,4 +95,6 @@ load-nvmrc
 if command -v "zoxide" &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
+
+# eval "$(starship init zsh)"
 

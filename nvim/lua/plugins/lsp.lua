@@ -84,11 +84,11 @@ return {
         callback = function(ev)
           vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
             max_width = 80,
-            max_height = 15,
+            max_height = 12,
           })
           vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
             max_width = 80,
-            max_height = 15,
+            max_height = 12,
           })
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
