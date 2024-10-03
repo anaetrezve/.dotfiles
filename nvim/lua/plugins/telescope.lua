@@ -1,45 +1,40 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
-  },
 
-  keys = function()
-    return {
-      {
-        "<leader>ff",
-        "<cmd>Telescope find_files hidden=true<cr>",
-        desc = "telescope find files",
-      },
-      {
-        "<leader>fa",
-        "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-        desc = "telescope find all files",
-      },
-      {
-        "<leader>fw",
-        "<cmd>Telescope live_grep hidden=true<CR>",
-        desc = "telescope live grep",
-      },
-      {
-        "<leader>fb",
-        "<cmd>Telescope buffers<CR>",
-        desc = "telescope find buffers",
-      },
-      {
-        "<leader>fr",
-        "<cmd>Telescope oldfiles hiddne=true<CR>",
-        desc = "telescope find recently used files",
-      },
-      {
-        "<leader>ft",
-        "<cmd>TodoTelescope<cr>",
-        desc = "Find todos",
-      },
-    }
-  end,
+  branch = "0.1.x",
+
+  keys = {
+    {
+      "<leader>ff",
+      "<cmd>Telescope find_files hidden=true<cr>",
+      desc = "telescope find files",
+    },
+    {
+      "<leader>fa",
+      "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+      desc = "telescope find all files",
+    },
+    {
+      "<leader>fw",
+      "<cmd>Telescope live_grep hidden=true<CR>",
+      desc = "telescope live grep",
+    },
+    {
+      "<leader>fb",
+      "<cmd>Telescope buffers<CR>",
+      desc = "telescope find buffers",
+    },
+    {
+      "<leader>fr",
+      "<cmd>Telescope oldfiles hiddne=true<CR>",
+      desc = "telescope find recently used files",
+    },
+    {
+      "<leader>ft",
+      "<cmd>TodoTelescope<cr>",
+      desc = "Find todos",
+    },
+  },
 
   opts = function()
     local actions = require("telescope.actions")
@@ -78,9 +73,6 @@ return {
       -- },
 
       defaults = {
-        path_display = {
-          "filename_first",
-        },
         results_title = false,
         -- dynamic_preview_title = true,
         prompt_prefix = "   ",
@@ -90,7 +82,7 @@ return {
         selection_strategy = "reset",
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = { "node_modules", ".git" },
         layout_strategy = "horizontal",
         sorting_strategy = "ascending",
         layout_config = {
@@ -119,11 +111,5 @@ return {
         },
       },
     }
-  end,
-
-  config = function(_, opts)
-    local telescope = require("telescope")
-
-    telescope.setup(opts)
   end,
 }

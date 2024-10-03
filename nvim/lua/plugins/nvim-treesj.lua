@@ -1,5 +1,8 @@
 return {
   "Wansmer/treesj",
+
+  disable = true,
+
   keys = {
     "<leader>m",
     "<leader>j",
@@ -10,7 +13,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
   }, -- if you install parsers with `nvim-treesitter`
 
-  config = function()
-    require("treesj").setup({})
-  end,
+  opts = {
+    max_join_length = 500,
+  },
 }
