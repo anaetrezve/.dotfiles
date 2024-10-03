@@ -49,11 +49,11 @@ function install_or_update_brew_app() {
 function setup_zshenv() {
   echo "Setting up .zshenv to home directory \n"
 
-  ln -nsf "$HOME"/.dotfiles/.zshenv "$HOME"
-  source "$HOME"/.zshenv
+  ln -nsf $HOME/.dotfiles/.zshenv $HOME
+  source $HOME/.zshenv
 
-  mkdir -p "$XDG_CACHE_HOME"/zsh && touch "$XDG_CACHE_HOME"/zsh/.zsh_history
-  rm -rf $HOME/.zsh_history
+  touch $XDG_CACHE_HOME/zsh/.zsh_history
+  rm -f $HOME/.zsh_history
 }
 
 function install_zsh_plugins() {
@@ -90,18 +90,17 @@ function install_other_necessary_packages() {
   # install_or_update_brew_app visual-studio-code
 
   # Nerd fonts
-  brew tap homebrew/cask-fonts
   install_or_update_brew_app font-jetbrains-mono-nerd-font
 }
 
 function setup_alacritty_config() {
   echo "Setting up alacritty config"
-  ln -nsf "$HOME"/.dotfiles/alacritty "$XDG_CONFIG_HOME"
+  ln -nsf $HOME/.dotfiles/alacritty $XDG_CONFIG_HOME
 }
 
 function setup_kitty_config() {
   echo "Setting up kitty config"
-  ln -nsf "$HOME"/.dotfiles/kitty "$XDG_CONFIG_HOME"
+  ln -nsf $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
 }
 
 function setup_homebrew() {
@@ -119,10 +118,10 @@ function setup_homebrew() {
 
 function setup_tmux_config() {
   echo "Setting up tmux config"
-  ln -nsf "$HOME"/.dotfiles/tmux "$XDG_CONFIG_HOME"
+  ln -nsf $HOME/.dotfiles/tmux $XDG_CONFIG_HOME
 
   echo "Installing tmux plugin manager"
-  git clone https://github.com/tmux-plugins/tpm.git "$XDG_CONFIG_HOME"/tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm.git $XDG_CONFIG_HOME/tmux/plugins/tpm
 }
 
 # function setup_nvim_config() {
@@ -135,22 +134,22 @@ function setup_tmux_config() {
 
 function setup_nvim_config() {
   echo "Setting up nvim config"
-  ln -nsf "$HOME"/.dotfiles/nvim "$XDG_CONFIG_HOME"/nvim
+  ln -nsf $HOME/.dotfiles/nvim $XDG_CONFIG_HOME
 }
 
 function setup_zsh_config() {
   echo "Setting up zsh config"
-  ln -nsf "$HOME"/.dotfiles/zsh "$XDG_CONFIG_HOME"
+  ln -nsf $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
 }
 
 function setup_wezterm_config() {
   echo "Setting up wezterm config"
-  ln -nsf "$HOME"/.dotfiles/wezterm "$XDG_CONFIG_HOME"
+  ln -nsf $HOME/.dotfiles/wezterm $XDG_CONFIG_HOME
 }
 
 function setup_starship_config() {
   echo "Setting up starship config"
-  ln -nsf "$HOME"/.dotfiles/starship "$XDG_CONFIG_HOME"
+  ln -nsf $HOME/.dotfiles/starship $XDG_CONFIG_HOME
 }
 
 # if [ "$(uname)" == "Darwin" ]; then
@@ -167,92 +166,114 @@ function setup_mac_key_repeat() {
   fi
 }
 
+
 function show_help() {
-  echo "Usage: $0 [OPTION]"
-  echo "Options:"
-  echo "  -h, --help                    Show this help message and exit"
-  echo "  -hb, --homebrew               Setup Homebrew"
-  echo "  -sz, --setup-zshenv           Setup .zshenv"
-  echo "  -izp, --install-zsh-plugins   Install zsh plugins"
-  echo "  -in, --install-packages       Install other necessary packages"
-  echo "  -sa, --setup-alacritty        Setup alacritty config"
-  echo "  -sk, --setup-kitty            Setup kitty config"
-  echo "  -st, --setup-tmux             Setup tmux config"
-  echo "  -sn, --setup-neovim           Setup neovim config"
-  echo "  -ss, --setup-starship         Setup starship config"
-  echo "  -szc, --setup-zsh             Setup zsh config"
-  echo "  -sw, --setup-wezterm          Setup wezterm config"
-  echo " -smkr, --setup-mac-keyrepeat   Setup mac key repeat and press speed"
-  echo "  -a, --all                     Run all setup and install functions"
+  GREEN="\033[1;32m"
+  YELLOW="\033[1;33m"
+  BOLD="\033[1m"
+  RESET="\033[0m"
+  CYAN="\033[1;36m"
+
+  echo 
+  echo -e "${CYAN}${BOLD}Usage:${RESET} ${GREEN}$0 [OPTION]${RESET}"
+  echo 
+  echo -e "${CYAN}${BOLD}Options:${RESET}"
+  
+  echo -e "  ${GREEN}-h, --help${RESET}                    ${YELLOW}Display this help message and exit.${RESET}"
+  echo -e "  ${GREEN}-hb, --homebrew${RESET}               ${YELLOW}Install and configure Homebrew package manager.${RESET}"
+  echo -e "  ${GREEN}-sz, --setup-zshenv${RESET}           ${YELLOW}Set up the .zshenv file for shell configuration.${RESET}"
+  echo -e "  ${GREEN}-izp, --install-zsh-plugins${RESET}   ${YELLOW}Install useful plugins for zsh (Z shell).${RESET}"
+  echo -e "  ${GREEN}-in, --install-packages${RESET}       ${YELLOW}Install essential system packages.${RESET}"
+  echo -e "  ${GREEN}-sa, --setup-alacritty${RESET}        ${YELLOW}Configure Alacritty terminal settings.${RESET}"
+  echo -e "  ${GREEN}-sk, --setup-kitty${RESET}            ${YELLOW}Set up Kitty terminal emulator configuration.${RESET}"
+  echo -e "  ${GREEN}-st, --setup-tmux${RESET}             ${YELLOW}Configure tmux (terminal multiplexer) settings.${RESET}"
+  echo -e "  ${GREEN}-sn, --setup-neovim${RESET}           ${YELLOW}Set up Neovim editor configuration.${RESET}"
+  echo -e "  ${GREEN}-ss, --setup-starship${RESET}         ${YELLOW}Configure Starship prompt for shell customization.${RESET}"
+  echo -e "  ${GREEN}-szc, --setup-zsh${RESET}             ${YELLOW}Set up the zsh shell configuration.${RESET}"
+  echo -e "  ${GREEN}-sw, --setup-wezterm${RESET}          ${YELLOW}Configure WezTerm terminal settings.${RESET}"
+  echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
+  echo -e "  ${GREEN}-a, --all${RESET}                     ${YELLOW}Run all setup steps and install necessary components.${RESET}"
+  echo 
 }
 
-# Parse command-line arguments
-if [[ $# -eq 0 ]]; then
-  show_help
-  exit 1
-fi
 
-while [[ $# -gt 0 ]]; do
-  case $1 in
-  -h | --help)
-    show_help
-    exit 0
-    ;;
-  -hb | --homebrew)
-    setup_homebrew
-    ;;
-  -sz | --setup-zshenv)
-    setup_zshenv
-    ;;
-  -izp | --install-zsh-plugins)
-    install_zsh_plugins
-    ;;
-  -in | --install-packages)
-    install_other_necessary_packages
-    ;;
-  -sa | --setup-alacritty)
-    setup_alacritty_config
-    ;;
-  -sk | --setup-kitty)
-    setup_kitty_config
-    ;;
-  -st | --setup-tmux)
-    setup_tmux_config
-    ;;
-  -sn | --setup-neovim)
-    setup_nvim_config
-    ;;
-  -szc | --setup-zsh)
-    setup_zsh_config
-    ;;
-  -sw | --setup-wezterm)
-    setup_wezterm_config
-    ;;
-  -ss | --setup-starship)
-    setup_starship_config
-    ;;
-  -smkr | --setup-mac-keyrepeat)
-    setup_mac_key_repeat
-    ;;
-  -a | --all)
-    set_mac_key_repeat
-    setup_homebrew
-    setup_zshenv
-    install_zsh_plugins
-    install_other_necessary_packages
-    setup_alacritty_config
-    setup_kitty_config
-    setup_tmux_config
-    setup_nvim_config
-    setup_zsh_config
-    setup_wezterm_config
-    ;;
-  *)
-    echo "Unknown option: $1"
+
+function initial_setup() {
+  # Initial setup directories
+  mkdir -p $HOME/.config
+  mkdir -p $XDG_CACHE_HOME/zsh
+
+  # Parse command-line arguments
+  if [[ $# -eq 0 ]]; then
     show_help
     exit 1
-    ;;
-  esac
-  shift
-done
+  fi
+
+  while [[ $# -gt 0 ]]; do
+    case $1 in
+    -h | --help)
+      show_help
+      exit 0
+      ;;
+    -hb | --homebrew)
+      setup_homebrew
+      ;;
+    -sz | --setup-zshenv)
+      setup_zshenv
+      ;;
+    -izp | --install-zsh-plugins)
+      install_zsh_plugins
+      ;;
+    -in | --install-packages)
+      install_other_necessary_packages
+      ;;
+    -sa | --setup-alacritty)
+      setup_alacritty_config
+      ;;
+    -sk | --setup-kitty)
+      setup_kitty_config
+      ;;
+    -st | --setup-tmux)
+      setup_tmux_config
+      ;;
+    -sn | --setup-neovim)
+      setup_nvim_config
+      ;;
+    -szc | --setup-zsh)
+      setup_zsh_config
+      ;;
+    -sw | --setup-wezterm)
+      setup_wezterm_config
+      ;;
+    -ss | --setup-starship)
+      setup_starship_config
+      ;;
+    -smkr | --setup-mac-keyrepeat)
+      setup_mac_key_repeat
+      ;;
+    -a | --all)
+      set_mac_key_repeat
+      setup_homebrew
+      setup_zshenv
+      install_zsh_plugins
+      install_other_necessary_packages
+      setup_alacritty_config
+      setup_kitty_config
+      setup_tmux_config
+      setup_nvim_config
+      setup_zsh_config
+      setup_wezterm_config
+      ;;
+    *)
+      echo "Unknown option: $1"
+      show_help
+      exit 1
+      ;;
+    esac
+    shift
+  done
+}
+
+# Initial setup
+initial_setup "$@"
 
