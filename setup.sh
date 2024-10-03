@@ -159,7 +159,7 @@ function setup_starship_config() {
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 # fi
 
-function set_mac_key_repeat() {
+function setup_mac_key_repeat() {
   if [ "$(uname)" == "Darwin" ]; then
     defaults write -g ApplePressAndHoldEnabled -bool false
     defaults write -g InitialKeyRepeat -int 13
@@ -182,6 +182,7 @@ function show_help() {
   echo "  -ss, --setup-starship         Setup starship config"
   echo "  -szc, --setup-zsh             Setup zsh config"
   echo "  -sw, --setup-wezterm          Setup wezterm config"
+  echo " -smkr, --setup-mac-keyrepeat   Setup mac key repeat and press speed"
   echo "  -a, --all                     Run all setup and install functions"
 }
 
@@ -230,7 +231,11 @@ while [[ $# -gt 0 ]]; do
   -ss | --setup-starship)
     setup_starship_config
     ;;
+  -smkr | --setup-mac-keyrepeat)
+    setup_mac_key_repeat
+    ;;
   -a | --all)
+    set_mac_key_repeat
     setup_homebrew
     setup_zshenv
     install_zsh_plugins
@@ -250,3 +255,4 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
+
