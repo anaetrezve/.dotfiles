@@ -138,13 +138,27 @@ function setup_nvim_config() {
 }
 
 function setup_zsh_config() {
+  local ZSH_LOCAL_CONFIG_DIR=$HOME/.dotfiles/zsh/local-config
   echo "Setting up zsh config"
   ln -nsf $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
+  
+  # Create local config file if not exists 
+  if [[ ! -d $ZSH_LOCAL_CONFIG_DIR ]]; then
+    mkdir -p $ZSH_LOCAL_CONFIG_DIR
+    touch $ZSH_LOCAL_CONFIG_DIR/config.zsh 
+  fi
 }
 
 function setup_wezterm_config() {
+  local WEZTERM_LOCAL_CONFIG_DIR=$HOME/.dotfiles/wezterm/local-config
   echo "Setting up wezterm config"
   ln -nsf $HOME/.dotfiles/wezterm $XDG_CONFIG_HOME
+
+  # Create local config file if not exists 
+  if [[ ! -d $WEZTERM_LOCAL_CONFIG_DIR ]]; then
+    mkdir -p $WEZTERM_LOCAL_CONFIG_DIR
+    echo 'return {}' > $WEZTERM_LOCAL_CONFIG_DIR/init.lua
+  fi
 }
 
 function setup_starship_config() {
