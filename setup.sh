@@ -252,7 +252,7 @@ function initial_setup() {
       setup_mac_key_repeat
       ;;
     -a | --all)
-      set_mac_key_repeat
+      setup_mac_key_repeat 
       setup_homebrew
       setup_zshenv
       install_zsh_plugins
