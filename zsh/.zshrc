@@ -41,21 +41,12 @@ _comp_options+=(globdots)		# Include hidden files.
 # PLUGINS
 # =====================
 
-if [[ -d $(brew --prefix)/share/zsh-autosuggestions ]]; then
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-if [[ -d $(brew --prefix)/share/zsh-syntax-highlighting ]]; then
-  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi 
-
-if [[ -d $(brew --prefix)/share/zsh-history-substring-search ]]; then
-  source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-fi
-
-if [[ -d $(brew --prefix)/share/zsh-you-should-use ]]; then
-  source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
-fi
+source $ZDOTDIR/.p10k.zsh
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 
 # plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 # zstyle ':omz:update' mode auto
@@ -114,8 +105,9 @@ fi
 if [[ -r "$ZDOTDIR/local-config/config.zsh" ]]; then
   source "$ZDOTDIR/local-config/config.zsh"
 fi
+
 # =====================
 # STARSHIP PROMPT
 # =====================
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
