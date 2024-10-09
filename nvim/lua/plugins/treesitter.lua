@@ -1,7 +1,12 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+
+  dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+
   event = { "BufReadPost", "BufNewFile" },
+
   build = ":TSUpdate",
+
   opts = {
     ensure_installed = {
       "vim",
@@ -48,8 +53,4 @@ return {
 
     indent = { enable = true },
   },
-
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
-  end,
 }

@@ -107,9 +107,37 @@ return {
         },
       },
     },
-  },
 
-  config = function(_, opts)
-    require("neo-tree").setup(opts)
-  end,
+    commands = {
+      -- create a new neo-tree command
+      grug_far_replace = function(state)
+        local node = state.tree:get_node()
+        local prefills = {
+          -- get the current path and get the parent directory if a file is selected
+          paths = node.type == "directory" and node:get_id() or vim.fn.fnamemodify(node:get_id(), ":h"),
+        }
+
+        local grug_far = require("grug-far")
+        -- instance check
+        if not grug_far.has_instance("explorer") then
+          grug_far.open({
+            instanceName = "explorer",
+            prefills = prefills,
+            staticTitle = "Find and Replace from Explorer",
+          })
+        else
+          grug_far.open_instance("explorer")
+          -- updating the prefills without clearing the search and other fields
+          grug_far.update_instance_prefills("explorer", prefills, false)
+        end
+      end,
+    },
+
+    window = {
+      mappings = {
+        -- map our new command to z
+        z = "grug_far_replace",
+      },
+    },
+  },
 }
