@@ -67,6 +67,9 @@ local icons = {
 
 return {
   "hrsh7th/nvim-cmp",
+
+  enabled = true,
+
   dependencies = {
     "L3MON4D3/LuaSnip",
     "hrsh7th/cmp-buffer", -- source for text in buffer
