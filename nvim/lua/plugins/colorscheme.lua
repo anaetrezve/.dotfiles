@@ -87,6 +87,7 @@ return {
           TelescopePreviewNormal = { bg = colors.crust },
           TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
           TelescopePreviewTitle = { fg = colors.crust, bg = colors.sapphire, style = { "bold", "italic" } },
+          TelescopeParent = {fg = colors.surface0, bg = "None" },
 
           -- Cursorline & Linenumbers
           -- CursorLine = { bg = colors.mantle },

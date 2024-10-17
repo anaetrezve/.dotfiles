@@ -50,6 +50,7 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "eslint_d", -- js/ts linter
+        "rubocop", -- ruby formatter
       },
     },
     config = function(_, opts)
@@ -65,7 +66,10 @@ return {
       require("mason-lspconfig").setup(opts)
     end,
   },
-
+  {
+    "j-hui/fidget.nvim",
+    config = true,
+  },
   {
     "neovim/nvim-lspconfig",
     dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/nvim-cmp" },
@@ -160,6 +164,14 @@ return {
           capabilities = capabilities,
         })
       end
+
+      lspconfig["ruby_lsp"].setup({
+        capabilities = capabilities,
+        init_options = {
+          formatter = "standard",
+          linters = { "standard" },
+        },
+      })
     end,
   },
 }
