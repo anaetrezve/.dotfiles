@@ -14,7 +14,7 @@ local servers = {
   "html",
   "htmx",
   "jsonls",
-  "tsserver",
+  "ts_ls",
   "remark_ls", -- Markdown
   "pylsp",
   "rust_analyzer",
