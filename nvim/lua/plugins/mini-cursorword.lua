@@ -3,5 +3,9 @@ return {
 
   version = "*",
 
+  opts = {
+    delay = 500,
+  },
+
   config = true,
 }

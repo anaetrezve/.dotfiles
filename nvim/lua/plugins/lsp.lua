@@ -12,7 +12,6 @@ local servers = {
   "gopls",
   "graphql",
   "html",
-  "htmx",
   "jsonls",
   "ts_ls",
   "remark_ls", -- Markdown
