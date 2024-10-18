@@ -79,7 +79,8 @@ return {
       -- local navic = require("nvim-navic")
 
       -- Add additional capabilities supported by nvim-cmp
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local keymap = vim.keymap -- for conciseness
 
