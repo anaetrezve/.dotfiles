@@ -80,14 +80,14 @@ function install_other_necessary_packages() {
   install_or_update_brew_app starship
 
   # programming languages & tools
-  # install_or_update_brew_app go
-  # install_or_update_brew_app rust
+  install_or_update_brew_app go
+  install_or_update_brew_app rust
   install_or_update_brew_app nvm
 
   # install_or_update_brew_app postman
   # install_or_update_brew_app docker
   # install_or_update_brew_app docker-compose
-  # install_or_update_brew_app visual-studio-code
+  install_or_update_brew_app visual-studio-code
 
   # Nerd fonts
   install_or_update_brew_app font-jetbrains-mono-nerd-font
