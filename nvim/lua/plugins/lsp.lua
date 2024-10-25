@@ -107,6 +107,7 @@ return {
           keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Goto Declaration"))
           keymap.set("n", "K", vim.lsp.buf.hover, opts("Show documentation for what is under cursor")) -- show documentation for what is under cursor
           keymap.set("n", "gK", vim.lsp.buf.signature_help, opts("Signature Help"))
+          keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("Smart rename")) -- smart rename
 
           -- keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts("Show LSP references")) -- show definition, references
           -- keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration")) -- go to declaration

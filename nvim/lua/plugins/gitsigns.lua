@@ -11,8 +11,4 @@ return {
       untracked = { text = "│" },
     },
   },
-
-  config = function(_, opts)
-    require("gitsigns").setup(opts)
-  end,
 }

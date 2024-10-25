@@ -1,27 +1,36 @@
-return { "stevearc/conform.nvim",
+return {
+  "stevearc/conform.nvim",
   event = { "BufReadPre", "BufNewFile" },
 
   opts = {
-      formatters_by_ft = {
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
-        svelte = { "prettier" },
-        css = { "prettier" },
-        html = { "prettier" },
-        json = { "prettier" },
-        yaml = { "prettier" },
-        markdown = { "prettier" },
-        graphql = { "prettier" },
-        lua = { "stylua" },
-      },
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 500,
-      },
+    default_format_opts = {
+      lsp_format = "fallback",
     },
+
+    notify_on_error = true,
+    notify_no_formatters = true,
+
+    formatters_by_ft = {
+      javascript = { { "prettierd", "prettier" }, stop_after_first = true },
+      typescript = { { "prettierd", "prettier" }, stop_after_first = true },
+      javascriptreact = { { "prettierd", "prettier" }, stop_after_first = true },
+      typescriptreact = { { "prettierd", "prettier" }, stop_after_first = true },
+      svelte = { { "prettierd", "prettier" }, stop_after_first = true },
+      css = { { "prettierd", "prettier" }, stop_after_first = true },
+      html = { { "prettierd", "prettier" }, stop_after_first = true },
+      json = { { "prettierd", "prettier" }, stop_after_first = true },
+      yaml = { { "prettierd", "prettier" }, stop_after_first = true },
+      markdown = { { "prettierd", "prettier" }, stop_after_first = true },
+      graphql = { { "prettierd", "prettier" }, stop_after_first = true },
+      lua = { "stylua" },
+    },
+
+    format_on_save = {
+      async = false,
+      timeout_ms = 500,
+      lsp_format = "fallback",
+    },
+  },
 
   config = function(_, opts)
     local conform = require("conform")

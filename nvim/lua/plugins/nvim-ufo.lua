@@ -1,5 +1,4 @@
-return 
-{
+return {
   "kevinhwang91/nvim-ufo",
 
   dependencies = { "kevinhwang91/promise-async" },
@@ -44,7 +43,7 @@ return
     --   return { "treesitter", "indent" }
     -- end,
     open_fold_hl_timeout = 400,
-    close_fold_kinds_for_ft = { default = { "imports", "comment" } },
+    -- close_fold_kinds_for_ft = { default = { "imports", "comment" } },
 
     preview = {
       win_config = {

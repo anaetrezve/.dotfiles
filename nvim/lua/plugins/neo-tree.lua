@@ -140,4 +140,7 @@ return {
       },
     },
   },
+  init = function()
+    require("neo-tree.sources.manager").show("filesystem")
+  end,
 }
