@@ -102,12 +102,17 @@ return {
           -- set keybinds
           keymap.set("n", "gd", vim.lsp.buf.definition, opts("Goto Definition"))
           keymap.set("n", "gr", vim.lsp.buf.references, opts("References"))
-          keymap.set("n", "gI", vim.lsp.buf.implementation, opts("Goto Implementation"))
+          keymap.set("n", "gi", vim.lsp.buf.implementation, opts("Goto Implementation"))
           keymap.set("n", "gt", vim.lsp.buf.type_definition, opts("Goto Type Definition"))
           keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Goto Declaration"))
-          keymap.set("n", "K", vim.lsp.buf.hover, opts("Show documentation for what is under cursor")) -- show documentation for what is under cursor
+          keymap.set("n", "K", vim.lsp.buf.hover, opts("Show documentation for what is under cursor"))
           keymap.set("n", "gK", vim.lsp.buf.signature_help, opts("Signature Help"))
-          keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("Smart rename")) -- smart rename
+          keymap.set("n", "gf", vim.lsp.buf.formatting, opts("LSP Formating"))
+          keymap.set("n", "ga", vim.lsp.buf.code_action, opts("LSP Code Action"))
+          keymap.set("n", "g]", vim.diagnostic.goto_next, opts("Goto Previous Diagnostic"))
+          keymap.set("n", "g[", vim.diagnostic.goto_prev, opts("Goto Next Diagnostic"))
+          keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("LSP Rename"))
+          keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts("Restart LSP"))
 
           -- keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts("Show LSP references")) -- show definition, references
           -- keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration")) -- go to declaration
