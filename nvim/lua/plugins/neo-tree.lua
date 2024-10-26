@@ -140,7 +140,8 @@ return {
       },
     },
   },
-  init = function()
-    require("neo-tree.sources.manager").show("filesystem")
-  end,
+  -- Enable below if you want to open sidebar when open vim
+  -- init = function()
+  --   require("neo-tree.sources.manager").show("filesystem")
+  -- end,
 }
