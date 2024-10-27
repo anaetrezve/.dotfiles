@@ -1,6 +1,11 @@
 return {
   "nvim-telescope/telescope.nvim",
 
+  dependencies = {
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    "nvim-telescope/telescope-live-grep-args.nvim",
+  },
+
   keys = {
     {
       "<leader>ff",
@@ -14,7 +19,7 @@ return {
     },
     {
       "<leader>fw",
-      "<cmd>Telescope live_grep hidden=true<CR>",
+      ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
       desc = "telescope live grep",
     },
     {
@@ -141,5 +146,14 @@ return {
         },
       },
     }
+  end,
+
+  config = function(_, opts)
+    local telescope = require("telescope")
+
+    telescope.setup(opts)
+
+    telescope.load_extension("fzf")
+    telescope.load_extension("live_grep_args")
   end,
 }
