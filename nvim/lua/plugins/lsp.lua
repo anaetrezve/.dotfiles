@@ -83,7 +83,7 @@ return {
       local keymap = vim.keymap -- for conciseness
 
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
         callback = function(ev)
           vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
             max_width = 80,
@@ -107,10 +107,11 @@ return {
           keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Goto Declaration"))
           keymap.set("n", "K", vim.lsp.buf.hover, opts("Show documentation for what is under cursor"))
           keymap.set("n", "gK", vim.lsp.buf.signature_help, opts("Signature Help"))
-          keymap.set("n", "gf", vim.lsp.buf.formatting, opts("LSP Formating"))
-          keymap.set("n", "ga", vim.lsp.buf.code_action, opts("LSP Code Action"))
-          keymap.set("n", "g]", vim.diagnostic.goto_next, opts("Goto Previous Diagnostic"))
-          keymap.set("n", "g[", vim.diagnostic.goto_prev, opts("Goto Next Diagnostic"))
+          keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts("Signature Help"))
+          keymap.set("n", "gf", vim.lsp.buf.format, opts("LSP Formating"))
+          keymap.set("n", "ca", vim.lsp.buf.code_action, opts("LSP Code Action"))
+          keymap.set("n", "]]", vim.diagnostic.goto_next, opts("Goto Previous Diagnostic"))
+          keymap.set("n", "[[", vim.diagnostic.goto_prev, opts("Goto Next Diagnostic"))
           keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("LSP Rename"))
           keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts("Restart LSP"))
 

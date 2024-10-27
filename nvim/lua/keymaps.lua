@@ -88,7 +88,8 @@ keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) --
 -- Barbar keymaps --
 
 -- Close buffer
-keymap("n", "<leader>tx", "<Cmd>BufferClose<CR>", { desc = "Close current buffer" })
+keymap("n", "<leader>tx", "<Cmd>bd<CR>", { desc = "Close current buffer" })
+-- keymap("n", "<leader>tx", "<Cmd>BufferClose<CR>", { desc = "Close current buffer" })
 -- Move to previous/next
 keymap("n", "<Tab>", function()
   if vim.fn.tabpagenr("$") > 1 then
@@ -106,16 +107,16 @@ keymap("n", "<S-Tab>", function()
   end
 end, { desc = "Go to previous tab or buffer" })
 -- Goto buffer in position...
-keymap("n", "<C-1>", "<Cmd>BufferGoto 1<CR>", { desc = "Goto buffer 1" })
-keymap("n", "<C-2>", "<Cmd>BufferGoto 2<CR>", { desc = "Goto buffer 2" })
-keymap("n", "<C-3>", "<Cmd>BufferGoto 3<CR>", { desc = "Goto buffer 3" })
-keymap("n", "<C-4>", "<Cmd>BufferGoto 4<CR>", { desc = "Goto buffer 4" })
-keymap("n", "<C-5>", "<Cmd>BufferGoto 5<CR>", { desc = "Goto buffer 5" })
-keymap("n", "<C-6>", "<Cmd>BufferGoto 6<CR>", { desc = "Goto buffer 6" })
-keymap("n", "<C-7>", "<Cmd>BufferGoto 7<CR>", { desc = "Goto buffer 7" })
-keymap("n", "<C-8>", "<Cmd>BufferGoto 8<CR>", { desc = "Goto buffer 8" })
-keymap("n", "<C-9>", "<Cmd>BufferGoto 9<CR>", { desc = "Goto buffer 9" })
-keymap("n", "<C-0>", "<Cmd>BufferLast<CR>", { desc = "Goto buffer last" })
+keymap("n", "<C-1>", "<Cmd>BufferLineGoToBuffer 1<CR>", { desc = "Goto buffer 1" })
+keymap("n", "<C-2>", "<Cmd>BufferLineGoToBuffer 2<CR>", { desc = "Goto buffer 2" })
+keymap("n", "<C-3>", "<Cmd>BufferLineGoToBuffer 3<CR>", { desc = "Goto buffer 3" })
+keymap("n", "<C-4>", "<Cmd>BufferLineGoToBuffer 4<CR>", { desc = "Goto buffer 4" })
+keymap("n", "<C-5>", "<Cmd>BufferLineGoToBuffer 5<CR>", { desc = "Goto buffer 5" })
+keymap("n", "<C-6>", "<Cmd>BufferLineGoToBuffer 6<CR>", { desc = "Goto buffer 6" })
+keymap("n", "<C-7>", "<Cmd>BufferLineGoToBuffer 7<CR>", { desc = "Goto buffer 7" })
+keymap("n", "<C-8>", "<Cmd>BufferLineGoToBuffer 8<CR>", { desc = "Goto buffer 8" })
+keymap("n", "<C-9>", "<Cmd>BufferLineGoToBuffer 9<CR>", { desc = "Goto buffer 9" })
+keymap("n", "<C-0>", "<Cmd>BufferLineGoToBuffer -1<CR>", { desc = "Goto buffer last" })
 -- Re-order to left/right
-keymap("n", "<C-,>", "<Cmd>BufferMovePrevious<CR>", { desc = "Move current buffer to left" })
-keymap("n", "<C-.>", "<Cmd>BufferMoveNext<CR>", { desc = "Move current buffer to right" })
+keymap("n", "<C-,>", "<Cmd>BufferLineMovePrev<CR>", { desc = "Move current buffer to left" })
+keymap("n", "<C-.>", "<Cmd>BufferLineMoveNext<CR>", { desc = "Move current buffer to right" })
