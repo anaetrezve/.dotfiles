@@ -53,7 +53,7 @@ return {
           PmenuSel = { bg = colors.green, fg = colors.crust },
           -- CmpBorder = { fg = colors.mantle },
           -- CmpBorder = { fg = colors.subtext0 },
-          CmpItemAbbr = { fg = colors.white },
+          CmpItemAbbr = { fg = colors.text },
           CmpItemAbbrMatch = { fg = colors.blue, bold = true },
           CmpItemAbbrMatchFuzzy = { fg = colors.blue, bold = true },
 
@@ -75,8 +75,8 @@ return {
           -- Telescope
           TelescopeBorder = { fg = colors.blue },
           TelescopeSelectionCaret = { fg = colors.red },
-          TelescopeSelection = { fg = colors.yellow, bg = colors.surface0, style = { "bold" } },
-          TelescopeMatching = { fg = colors.blue },
+          TelescopeSelection = { fg = colors.text, bg = colors.surface0, style = {} },
+          TelescopeMatching = { fg = colors.peach },
           TelescopePromptPrefix = { fg = colors.yellow, bg = colors.crust },
           TelescopePromptTitle = { fg = colors.crust, bg = colors.mauve, style = { "bold", "italic" } },
           TelescopePromptNormal = { bg = colors.crust },
@@ -87,6 +87,7 @@ return {
           TelescopePreviewNormal = { bg = colors.crust },
           TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
           TelescopePreviewTitle = { fg = colors.crust, bg = colors.sapphire, style = { "bold", "italic" } },
+          TelescopeParent = { fg = colors.surface0, bg = "None" },
 
           -- Cursorline & Linenumbers
           -- CursorLine = { bg = colors.mantle },
@@ -112,6 +113,10 @@ return {
           DiagnosticVirtualTextHint = { bg = "None" },
           DiagnosticVirtualTextError = { bg = "None" },
           DiagnosticVirtualTextOk = { bg = "None" },
+
+          -- Mini
+          MiniCursorword = { bg = colors.surface0, style = {} },
+          MiniCursorwordCurrent = { bg = colors.surface0, style = {} },
         }
       end,
     }

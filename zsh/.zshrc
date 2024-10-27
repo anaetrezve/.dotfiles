@@ -1,25 +1,19 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-if [[ -r "$ZDOTDIR/local-config/config.zsh" ]]; then
-  source "$ZDOTDIR/local-config/config.zsh"
-fi
-
+# =====================
+# ALIASES AND EXPORTS
+# =====================
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/exports.zsh
 source $ZDOTDIR/completion.zsh
 
-# history
+# =====================
+# HISTORY SETTINGS
+# =====================
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 HISTFILE=$XDG_CACHE_HOME/zsh/.zsh_history
 
-# Options
+# History Options
 setopt extended_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
@@ -29,12 +23,13 @@ setopt inc_append_history
 setopt share_history
 setopt appendhistory
 setopt sharehistory
-setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_find_no_dups
 
 
-# Basic auto/tab complete:
+# =====================
+# AUTO-COMPLETION SETTINGS
+# =====================
 autoload -U compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -42,7 +37,10 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-# Plugins
+# =====================
+# PLUGINS
+# =====================
+
 source $ZDOTDIR/.p10k.zsh
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -70,7 +68,9 @@ source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 # bindkey -M vicmd 'k' history-substring-search-up
 # bindkey -M vicmd 'j' history-substring-search-down
 
-# place this after nvm initialization!
+# =====================
+# NVM CONFIGURATION
+# =====================
 autoload -U add-zsh-hook
 load-nvmrc() {
   local node_version="$(nvm version)"
@@ -92,9 +92,22 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+# =====================
+# ZOXIDE INTEGRATION
+# =====================
 if command -v "zoxide" &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+# =====================
+# LOCAL CONFIGURATION
+# =====================
+if [[ -r "$ZDOTDIR/local-config/config.zsh" ]]; then
+  source "$ZDOTDIR/local-config/config.zsh"
+fi
+
+# =====================
+# STARSHIP PROMPT
+# =====================
 # eval "$(starship init zsh)"
 

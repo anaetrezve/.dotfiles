@@ -151,11 +151,15 @@ repo_root_style = 'bold blue'
 # format = '\[[$symbol$cloud(\($project\))]($style)\]'
 
 [os]
+format = '[$symbol](bold white) '
 disabled = false
-format = '[$symbol]($style)'
 
 [os.symbols]
-Macos = "  "
+Windows = ' '
+Arch = '󰣇'
+Ubuntu = ''
+Macos = '󰀵'
+Unknown = '󰠥'
 
 # [package]
 # format = '\[[$symbol$version]($style)\]'

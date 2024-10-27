@@ -67,6 +67,9 @@ local icons = {
 
 return {
   "hrsh7th/nvim-cmp",
+
+  enabled = true,
+
   dependencies = {
     "L3MON4D3/LuaSnip",
     "hrsh7th/cmp-buffer", -- source for text in buffer
@@ -171,13 +174,12 @@ return {
         }),
       }),
 
-      sources = {
+      sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = "buffer" },
         { name = "nvim_lua" },
         { name = "path" },
-      },
+      }, { { name = "buffer" } }),
 
       -- sources = cmp.config.sources({
       --   { name = "nvim_lsp" },
