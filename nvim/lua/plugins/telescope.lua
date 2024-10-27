@@ -1,8 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
 
-  branch = "0.1.x",
-
   keys = {
     {
       "<leader>ff",
@@ -125,12 +123,20 @@ return {
         mappings = {
           -- Scroll preview up - <C-u>
           -- Scroll preview down - <C-d>
+          -- Scroll preview left - <C-l>
+          -- Scroll preview right - <C-h>
           i = {
             ["<ESC>"] = actions.close,
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
             ["<C-j>"] = actions.move_selection_next, -- move to next result
             ["<C-q>"] = actions.send_selected_to_qflist + custom_actions.open_trouble_qflist,
             ["<C-t>"] = trouble_telescope.open,
+            ["<C-h>"] = actions.preview_scrolling_right,
+            ["<C-l>"] = actions.preview_scrolling_left,
+          },
+          n = {
+            ["<C-h>"] = actions.preview_scrolling_right,
+            ["<C-l>"] = actions.preview_scrolling_left,
           },
         },
       },
