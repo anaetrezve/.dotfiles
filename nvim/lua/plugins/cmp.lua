@@ -79,6 +79,16 @@ return {
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
     "hrsh7th/cmp-cmdline",
+    {
+      "zbirenbaum/copilot-cmp",
+      dependencies = "copilot.lua",
+      opts = {},
+      config = function(_, opts)
+        local copilot_cmp = require("copilot_cmp")
+
+        copilot_cmp.setup(opts)
+      end,
+    },
   },
 
   config = function()
@@ -175,6 +185,7 @@ return {
       }),
 
       sources = cmp.config.sources({
+        { name = "copilot", priority = 100, group_index = 1 },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "nvim_lua" },

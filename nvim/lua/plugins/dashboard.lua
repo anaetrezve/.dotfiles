@@ -14,8 +14,11 @@ return {
 
     logo = string.rep("\n", 4) .. logo .. "\n\n"
 
-    return {
+    local options = {
       theme = "doom",
+      hide = {
+        statusline = false,
+      },
       config = {
         header = vim.split(logo, "\n"),
         center = {
@@ -68,5 +71,12 @@ return {
         -- footer = {}, --your footer
       },
     }
+
+    for _, button in ipairs(options.config.center) do
+      button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+      button.key_format = "  %s"
+    end
+
+    return options
   end,
 }
