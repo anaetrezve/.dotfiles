@@ -93,13 +93,14 @@ return {
     -- end
 
     return {
-      pickers = {
-        find_files = {
-          path_display = filenameFirst,
-        },
-      },
+      -- pickers = {
+      -- find_files = {
+      --   path_display = filenameFirst,
+      -- },
+      -- },
 
       defaults = {
+        path_display = filenameFirst,
         results_title = false,
         -- dynamic_preview_title = true,
         prompt_prefix = "   ",
