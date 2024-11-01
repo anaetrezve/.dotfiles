@@ -40,7 +40,8 @@ return {
     end,
     keys = {
       { "<leader>cc", "", desc = "+ai", mode = { "n", "v", "x" } },
-      { "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
+      { "<C-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
+      { "<D-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
       {
         "<leader>cch",
         function()
@@ -91,9 +92,16 @@ return {
       { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
       { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
       { "<leader>ccn", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
+      {
+        "<leader>cci",
+        ":CopilotChatInline<cr>",
+        mode = "x",
+        desc = "CopilotChat - Inline chat",
+      },
     },
     config = function(_, opts)
       local chat = require("CopilotChat")
+      local select = require("CopilotChat.select")
       require("CopilotChat.integrations.cmp").setup()
 
       vim.api.nvim_create_autocmd("BufEnter", {
@@ -107,6 +115,20 @@ return {
       })
 
       chat.setup(opts)
+
+      -- Inline chat with Copilot
+      vim.api.nvim_create_user_command("CopilotChatInline", function(args)
+        chat.ask(args.args, {
+          selection = select.visual,
+          window = {
+            layout = "float",
+            relative = "cursor",
+            width = 1,
+            height = 0.4,
+            row = 1,
+          },
+        })
+      end, { nargs = "*", range = true })
     end,
   },
 }
