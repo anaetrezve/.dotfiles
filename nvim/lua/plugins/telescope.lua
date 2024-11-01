@@ -4,6 +4,7 @@ return {
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-telescope/telescope-live-grep-args.nvim",
+    "nvim-telescope/telescope-ui-select.nvim",
   },
 
   keys = {
@@ -103,6 +104,16 @@ return {
             ["<C-l>"] = actions.preview_scrolling_left,
           },
         },
+        extensions = {
+          fzf = {
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+          },
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown(),
+          },
+        },
       },
     }
   end,
@@ -114,5 +125,6 @@ return {
 
     telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
+    telescope.load_extension("ui-select")
   end,
 }
