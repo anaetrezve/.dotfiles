@@ -9,5 +9,10 @@ return {
   },
   opts = {
     focus = true,
+    win = {
+      wo = {
+        wrap = true,
+      },
+    },
   },
 }
