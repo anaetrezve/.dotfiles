@@ -1,7 +1,10 @@
 return {
   "nvimdev/dashboard-nvim",
+
   event = "VimEnter",
+
   dependencies = { { "nvim-tree/nvim-web-devicons" } },
+
   opts = function()
     local logo = [[
 ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
@@ -12,7 +15,7 @@ return {
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
       ]]
 
-    logo = string.rep("\n", 4) .. logo .. "\n\n"
+    logo = string.rep("\n", 4) .. logo .. "\n"
 
     local options = {
       theme = "doom",
@@ -68,7 +71,17 @@ return {
             key = "q",
           },
         },
-        -- footer = {}, --your footer
+        footer = function()
+          local stats = require("lazy").stats()
+          local ms = math.floor(stats.startuptime) .. " ms"
+          local text = "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
+          local line = string.rep("-", #text + 16)
+          return {
+            line,
+            text,
+            line,
+          }
+        end, --your footer
       },
     }
 

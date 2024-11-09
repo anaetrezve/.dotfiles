@@ -117,6 +117,9 @@ return {
           -- Mini
           MiniCursorword = { bg = colors.surface0, style = {} },
           MiniCursorwordCurrent = { bg = colors.surface0, style = {} },
+
+          -- Dashboard
+          DashboardFooter = { fg = colors.overlay2 },
         }
       end,
     }
