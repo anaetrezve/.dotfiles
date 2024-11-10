@@ -1,5 +1,6 @@
 local M = {}
 local keymap = vim.keymap.set -- for conciseness
+local servers = require("plugins.lsp.servers")
 
 M.on_attach = function(_, bufnr)
   local function opts(desc)
@@ -31,6 +32,8 @@ end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
+-- M.capabilities = vim.tbl_deep_extend("force", M.capabilities, require("cmp_nvim_lsp").default_capabilities())
+
 M.capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
   snippetSupport = true,
@@ -50,9 +53,18 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 M.defaults = function()
+  local lspconfig = require("lspconfig")
   require("plugins.lsp.diagnostic").diagnostic_config()
 
-  require("lspconfig").lua_ls.setup({
+  for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup({
+      on_attach = M.on_attach,
+      capabilities = M.capabilities,
+      on_init = M.on_init,
+    })
+  end
+
+  lspconfig.lua_ls.setup({
     on_attach = M.on_attach,
     capabilities = M.capabilities,
     on_init = M.on_init,
@@ -74,6 +86,12 @@ M.defaults = function()
         },
       },
     },
+  })
+
+  lspconfig["ruby_lsp"].setup({
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+    on_init = M.on_init,
   })
 end
 
