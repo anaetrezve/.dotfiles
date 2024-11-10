@@ -148,6 +148,10 @@ return {
         { name = "buffer", max_item_count = 8 },
         { name = "path", max_item_count = 8 },
       },
+
+      experimental = {
+        ghost_text = true,
+      },
     }
   end,
 }
