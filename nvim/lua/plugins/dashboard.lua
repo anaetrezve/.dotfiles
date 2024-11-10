@@ -75,7 +75,7 @@ return {
           local stats = require("lazy").stats()
           local ms = math.floor(stats.startuptime) .. " ms"
           local text = "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
-          local line = string.rep("-", #text + 16)
+          local line = string.rep("-", #text)
           return {
             line,
             text,
@@ -86,7 +86,7 @@ return {
     }
 
     for _, button in ipairs(options.config.center) do
-      button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+      button.desc = button.desc .. string.rep(" ", 27 - #button.desc)
       button.key_format = "  %s"
     end
 
