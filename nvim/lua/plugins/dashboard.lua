@@ -48,10 +48,19 @@ return {
             action = "lua require('telescope.builtin').live_grep()",
             desc = " Find Text",
             icon = " ",
-            key = "g",
+            key = "w",
+          },
+          {
+            action = function()
+              vim.cmd("cd ~/.dotfiles/nvim/")
+              require("telescope.builtin").find_files()
+            end,
+            desc = " Neovim Config",
+            icon = " ",
+            key = "c",
           },
           -- {
-          --   action = "lua LazyVim.pick.config_files()()",
+          --   action = "lua ",
           --   desc = " Config",
           --   icon = " ",
           --   key = "c",
