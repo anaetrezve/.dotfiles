@@ -22,6 +22,7 @@ return {
     opts = {
       ensure_installed = {
         "prettier", -- prettier formatter
+        "prettierd",
         "stylua", -- lua formatter
         "eslint_d", -- js/ts linter
       },

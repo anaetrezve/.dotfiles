@@ -1,7 +1,7 @@
 return {
   "kylechui/nvim-surround",
 
-  disable = true,
+  enabled = false,
 
   event = { "BufReadPre", "BufNewFile" },
 
