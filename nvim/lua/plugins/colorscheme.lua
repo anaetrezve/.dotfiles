@@ -48,6 +48,9 @@ return {
 
       custom_highlights = function(colors)
         return {
+          FloatBorder = { fg = colors.blue, bg = colors.base },
+          NormalFloat = { bg = colors.base },
+
           -- Cmp Menu
           -- NVChad Style
           PmenuSel = { bg = colors.blue, fg = colors.base },
@@ -120,6 +123,8 @@ return {
 
           -- Dashboard
           DashboardFooter = { fg = colors.overlay2 },
+
+          LspSignatureActiveParameter = { fg = colors.crust, bg = colors.green },
         }
       end,
     }

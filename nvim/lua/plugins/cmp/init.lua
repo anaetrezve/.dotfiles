@@ -142,11 +142,11 @@ return {
 
       sources = {
         { name = "copilot", priority = 100, group_index = 1 },
-        { name = "nvim_lsp", max_item_count = 8 },
-        { name = "luasnip", max_item_count = 8 },
-        { name = "nvim_lua", max_item_count = 8 },
-        { name = "buffer", max_item_count = 5 },
-        { name = "path", max_item_count = 5 },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "nvim_lua" },
+        { name = "buffer", max_item_count = 8 },
+        { name = "path", max_item_count = 8 },
       },
     }
   end,
