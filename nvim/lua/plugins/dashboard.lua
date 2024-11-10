@@ -59,6 +59,15 @@ return {
             icon = " ",
             key = "c",
           },
+          {
+            action = function()
+              vim.cmd("bd")
+              require("neo-tree.command").execute({ toggle = true })
+            end,
+            desc = " Open Sidebar",
+            icon = " ",
+            key = "s",
+          },
           -- {
           --   action = "lua ",
           --   desc = " Config",
