@@ -5,6 +5,8 @@ return {
 
   event = { "BufReadPost", "BufNewFile" },
 
+  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+
   build = ":TSUpdate",
 
   opts = {
@@ -18,8 +20,8 @@ return {
       "javascript",
       "tsx",
       "typescript",
+      "go",
     },
-    auto_install = true,
 
     highlight = {
       enable = true,
@@ -28,4 +30,8 @@ return {
 
     indent = { enable = true },
   },
+
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end,
 }
