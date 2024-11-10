@@ -39,7 +39,16 @@ return {
         require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
       end,
     },
+    {
+      "zbirenbaum/copilot-cmp",
+      dependencies = "copilot.lua",
+      opts = {},
+      config = function(_, opts)
+        local copilot_cmp = require("copilot_cmp")
 
+        copilot_cmp.setup(opts)
+      end,
+    },
     -- cmp sources plugins
     {
       "saadparwaiz1/cmp_luasnip",
@@ -83,17 +92,18 @@ return {
       },
 
       window = {
-
         completion = {
           scrollbar = false,
           side_padding = 0,
           winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None,FloatBorder:CmpBorder",
           border = "single",
+          max_height = 10,
         },
 
         documentation = {
           border = "single",
           winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder",
+          max_height = 15,
         },
       },
       mapping = {
@@ -131,11 +141,12 @@ return {
       },
 
       sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "nvim_lua" },
-        { name = "buffer" },
-        { name = "path" },
+        { name = "copilot", priority = 100, group_index = 1 },
+        { name = "nvim_lsp", max_item_count = 8 },
+        { name = "luasnip", max_item_count = 8 },
+        { name = "nvim_lua", max_item_count = 8 },
+        { name = "buffer", max_item_count = 5 },
+        { name = "path", max_item_count = 5 },
       },
     }
   end,
