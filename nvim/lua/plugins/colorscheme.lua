@@ -48,6 +48,8 @@ return {
 
       custom_highlights = function(colors)
         return {
+          ["@comment.danger"] = { bg = colors.red, fg = colors.mantle, style = {} },
+
           FloatBorder = { fg = colors.blue, bg = colors.base },
           NormalFloat = { bg = colors.base },
 
