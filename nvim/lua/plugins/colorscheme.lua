@@ -42,7 +42,7 @@ return {
           enabled = true,
         },
         -- diffview = true,
-        -- which_key = true,
+        which_key = true,
         -- lsp_trouble = true,
       },
 
@@ -50,15 +50,15 @@ return {
         return {
           -- Cmp Menu
           -- NVChad Style
-          PmenuSel = { bg = colors.green, fg = colors.crust },
+          PmenuSel = { bg = colors.blue, fg = colors.base },
           -- CmpBorder = { fg = colors.mantle },
           -- CmpBorder = { fg = colors.subtext0 },
           CmpItemAbbr = { fg = colors.text },
           CmpItemAbbrMatch = { fg = colors.blue, bold = true },
           CmpItemAbbrMatchFuzzy = { fg = colors.blue, bold = true },
 
-          CmpDoc = { bg = colors.mantle },
-          CmpDocBorder = { bg = colors.mantle, fg = colors.mantle },
+          -- CmpDoc = { bg = colors.mantle },
+          -- CmpDocBorder = { bg = colors.mantle, fg = colors.mantle },
           CmpPmenu = { bg = colors.mantle },
           CmpSel = { link = "PmenuSel", bold = true },
 

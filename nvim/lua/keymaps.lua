@@ -41,6 +41,7 @@ keymap({ "i", "n" }, "<C-s>", "<CMD> w <CR>", { desc = "Save file" })
 keymap({ "i", "n" }, "<D-s>", "<CMD> w <CR>", { desc = "Save file" })
 
 keymap("n", "<C-a>", "ggVG", { desc = "Select All" })
+keymap("n", "<D-a>", "ggVG", { desc = "Select All" })
 
 -- Not yanking with 'c' and 'x'
 keymap({ "n", "v" }, "c", '"_c')
@@ -66,10 +67,12 @@ keymap("n", ";", ":")
 -- keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
 
 -- window management
-keymap("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-keymap("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-keymap("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+keymap("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+keymap("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+keymap("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+keymap("n", "<leader>.", "5<C-w>>", { desc = "Increase split size to right" })
+keymap("n", "<leader>,", "5<C-w><", { desc = "Increase split size to left" })
 
 -- keymap("n", "<ESC>", function()
 --   for _, win in ipairs(vim.api.nvim_list_wins()) do
