@@ -62,7 +62,6 @@ return spread({
 
 	enable_kitty_keyboard = true,
 	enable_csi_u_key_encoding = false,
-	disable_default_key_bindings = true,
 
 	keys = {
 		{
