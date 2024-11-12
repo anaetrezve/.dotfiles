@@ -84,9 +84,9 @@ return {
       },
 
       icon = {
-        folder_closed = "",
-        folder_open = "",
-        folder_empty = "󰜌",
+        folder_closed = "",
+        folder_open = "",
+        folder_empty = "",
       },
     },
 
