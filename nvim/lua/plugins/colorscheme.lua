@@ -64,7 +64,7 @@ return {
 
           -- CmpDoc = { bg = colors.mantle },
           -- CmpDocBorder = { bg = colors.mantle, fg = colors.mantle },
-          CmpPmenu = { bg = colors.mantle },
+          CmpPmenu = { bg = colors.base },
           CmpSel = { link = "PmenuSel", bold = true },
 
           -- Custom Style
