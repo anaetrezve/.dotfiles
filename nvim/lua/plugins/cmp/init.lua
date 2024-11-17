@@ -54,7 +54,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
+      -- "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
     },
   },
@@ -92,19 +92,21 @@ return {
       },
 
       window = {
-        completion = {
-          scrollbar = false,
-          side_padding = 0,
-          winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None,FloatBorder:CmpBorder",
-          border = "single",
-          max_height = 10,
-        },
-
-        documentation = {
-          border = "single",
-          winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder",
-          max_height = 15,
-        },
+        -- completion = {
+        --   scrollbar = false,
+        --   side_padding = 0,
+        --   winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None,FloatBorder:CmpBorder",
+        --   border = "single",
+        --   max_height = 10,
+        -- },
+        --
+        -- documentation = {
+        --   border = "single",
+        --   winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder",
+        --   max_height = 15,
+        -- },
+        completion = vim.tbl_extend("force", cmp.config.window.bordered(), { scrollbar = false }),
+        documentation = vim.tbl_extend("force", cmp.config.window.bordered(), { scrollbar = false }),
       },
       mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
@@ -140,14 +142,15 @@ return {
         end, { "i", "s" }),
       },
 
-      sources = {
+      sources = cmp.config.sources({
         { name = "copilot", priority = 100, group_index = 1 },
         { name = "nvim_lsp", priority = 90 },
         { name = "luasnip", priority = 80 },
         { name = "nvim_lua", priority = 70 },
-        { name = "buffer", max_item_count = 5, priority = 10 },
-        { name = "path", max_item_count = 5, priority = 20 },
-      },
+        { name = "path", priority = 20 },
+      }, {
+        -- { name = "buffer", priority = 10 },
+      }),
 
       experimental = {
         ghost_text = true,
