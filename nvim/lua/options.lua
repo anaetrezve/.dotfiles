@@ -81,3 +81,6 @@ opt.swapfile = false
 
 -- disable nvim intro
 opt.shortmess:append("sI")
+
+-- Maximum item to show in popup menu
+opt.pumheight = 10
