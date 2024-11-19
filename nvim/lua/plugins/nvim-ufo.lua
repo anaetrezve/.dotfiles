@@ -44,6 +44,7 @@ return {
     -- end,
     open_fold_hl_timeout = 400,
     -- close_fold_kinds_for_ft = { default = { "imports", "comment" } },
+    filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "yaml" },
 
     preview = {
       win_config = {

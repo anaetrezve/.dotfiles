@@ -23,7 +23,7 @@ return {
       markdown = { "prettierd", "prettier", stop_after_first = true },
       graphql = { "prettierd", "prettier", stop_after_first = true },
       lua = { "stylua" },
-      ruby = { "rubocop" },
+      ruby = { "rubocop", "ruby" },
     },
 
     format_on_save = {
