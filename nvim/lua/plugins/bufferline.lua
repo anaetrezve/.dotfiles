@@ -7,7 +7,7 @@ return {
   opts = {
     options = {
       diagnostics = "nvim_lsp",
-      always_show_bufferline = false,
+      always_show_bufferline = true,
       -- separator_style = "thick", -- | "slope" | "thick" | "thin" | { "any", "any" },
       -- buffer_close_icon = "󰖭",
       hover = {

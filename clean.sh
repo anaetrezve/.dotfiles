@@ -20,16 +20,6 @@ function remove_nodejs_configs() {
   rm -rf ~/.nvm ~/.npm ~/.yarn ~/.config/nvm
 }
 
-function remove_kitty_configs() {
-  echo "Removing Kitty configs"
-  rm -rf ~/.config/kitty
-}
-
-function remove_alacritty_configs() {
-  echo "Removing Alacritty configs"
-  rm -rf ~/.config/alacritty
-}
-
 function remove_wezterm_configs() {
   echo "Removing Wezterm configs"
   rm -rf ~/.config/wezterm
@@ -44,8 +34,6 @@ function remove_all_configs() {
   remove_zsh_configs
   remove_tmux_configs
   remove_nodejs_configs
-  remove_kitty_configs
-  remove_alacritty_configs
   remove_wezterm_configs
   remove_neovim_configs
   remove_other_configs
@@ -63,8 +51,6 @@ function remove_all_apps() {
   # brew remove go
   # brew remove rust
   # brew remove docker
-  # brew remove kitty
-  # brew remove alacritty
   # brew remove visual-studio-code
   # brew remove mongodb-compass
   # brew remove postman
@@ -89,8 +75,6 @@ function show_help {
   echo "  -zco, --zsh-configs-only     Remove only ZSH configs"
   echo "  -tco, --tmux-configs-only    Remove only Tmux configs"
   echo "  -noco, --nodejs-configs-only Remove only Node.js configs"
-  echo "  -kco, --kitty-configs-only   Remove only Kitty configs"
-  echo "  -aco, --alacritty-configs-only Remove only Alacritty configs"
   echo "  -wco, --wezterm-configs-only Remove only Wezterm configs"
   echo "  -oco, --other-configs-only   Remove only other configs"
   echo "  -h, --help                   Show this help message and exit"
@@ -131,12 +115,6 @@ while [[ $# -gt 0 ]]; do
     ;;
   -noco | --nodejs-configs-only)
     remove_nodejs_configs
-    ;;
-  -kco | --kitty-configs-only)
-    remove_kitty_configs
-    ;;
-  -aco | --alacritty-configs-only)
-    remove_alacritty_configs
     ;;
   -wco | --wezterm-configs-only)
     remove_wezterm_configs

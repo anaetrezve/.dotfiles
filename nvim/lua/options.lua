@@ -84,3 +84,12 @@ opt.shortmess:append("sI")
 
 -- Maximum item to show in popup menu
 opt.pumheight = 10
+
+-- Totally disable statusline
+---------------------------------------------
+-- opt.laststatus = 3
+-- vim.api.nvim_set_hl(0, "Statusline", { link = "Normal" })
+-- vim.api.nvim_set_hl(0, "StatuslineNC", { link = "Normal" })
+-- opt.statusline = string.rep("-", vim.api.nvim_win_get_width(0))
+-- -- if you want give the line a highlight can be
+-- vim.opt.statusline = "%#Myhighlight#" .. "mystring" .. "%*"

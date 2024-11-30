@@ -93,16 +93,6 @@ function install_other_necessary_packages() {
   install_or_update_brew_app font-jetbrains-mono-nerd-font
 }
 
-function setup_alacritty_config() {
-  echo "Setting up alacritty config"
-  ln -nsf $HOME/.dotfiles/alacritty $XDG_CONFIG_HOME
-}
-
-function setup_kitty_config() {
-  echo "Setting up kitty config"
-  ln -nsf $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
-}
-
 function setup_homebrew() {
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -198,8 +188,6 @@ function show_help() {
   echo -e "  ${GREEN}-sz, --setup-zshenv${RESET}           ${YELLOW}Set up the .zshenv file for shell configuration.${RESET}"
   echo -e "  ${GREEN}-izp, --install-zsh-plugins${RESET}   ${YELLOW}Install useful plugins for zsh (Z shell).${RESET}"
   echo -e "  ${GREEN}-in, --install-packages${RESET}       ${YELLOW}Install essential system packages.${RESET}"
-  echo -e "  ${GREEN}-sa, --setup-alacritty${RESET}        ${YELLOW}Configure Alacritty terminal settings.${RESET}"
-  echo -e "  ${GREEN}-sk, --setup-kitty${RESET}            ${YELLOW}Set up Kitty terminal emulator configuration.${RESET}"
   echo -e "  ${GREEN}-st, --setup-tmux${RESET}             ${YELLOW}Configure tmux (terminal multiplexer) settings.${RESET}"
   echo -e "  ${GREEN}-sn, --setup-neovim${RESET}           ${YELLOW}Set up Neovim editor configuration.${RESET}"
   echo -e "  ${GREEN}-ss, --setup-starship${RESET}         ${YELLOW}Configure Starship prompt for shell customization.${RESET}"
@@ -241,12 +229,6 @@ function initial_setup() {
     -in | --install-packages)
       install_other_necessary_packages
       ;;
-    -sa | --setup-alacritty)
-      setup_alacritty_config
-      ;;
-    -sk | --setup-kitty)
-      setup_kitty_config
-      ;;
     -st | --setup-tmux)
       setup_tmux_config
       ;;
@@ -271,8 +253,6 @@ function initial_setup() {
       setup_zshenv
       install_zsh_plugins
       install_other_necessary_packages
-      setup_alacritty_config
-      setup_kitty_config
       setup_tmux_config
       setup_nvim_config
       setup_zsh_config

@@ -56,13 +56,14 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
     },
   },
 
   opts = function()
     local cmp = require("cmp")
 
-    return {
+    local config = {
       completion = { completeopt = "menu,menuone" },
       snippet = {
         expand = function(args)
@@ -160,5 +161,40 @@ return {
         ghost_text = true,
       },
     }
+
+    -- local override_mapping = {
+    --   ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+    --   ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+    --   ["<C-c>"] = cmp.mapping.complete(),
+    --   ["<C-e>"] = cmp.mapping.close(),
+    --   ["<CR>"] = cmp.mapping.confirm({
+    --     select = true,
+    --   }),
+    -- }
+
+    -- `/` cmdline setup.
+    cmp.setup.cmdline("/", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = "buffer" },
+      },
+    })
+
+    -- `:` cmdline setup.
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        {
+          name = "cmdline",
+          option = {
+            ignore_cmds = { "Man", "!" },
+          },
+        },
+      }),
+    })
+
+    return config
   end,
 }
