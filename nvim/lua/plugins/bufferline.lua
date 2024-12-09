@@ -19,7 +19,11 @@ return {
       offsets = {
         {
           filetype = "neo-tree",
-          text = "File Explorer",
+          text = function()
+            local state = require("neo-tree.sources.manager").get_state("filesystem")
+            -- get last part of the path
+            return string.match(state.path, ".*/(.*)")
+          end,
           highlight = "Directory",
           text_align = "center",
         },

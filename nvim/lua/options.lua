@@ -77,7 +77,7 @@ opt.scrolloff = 4 -- is one of my fav
 opt.swapfile = false
 
 -- hide startup empty buffer
--- opt.hidden = true
+opt.hidden = false
 
 -- disable nvim intro
 opt.shortmess:append("sI")

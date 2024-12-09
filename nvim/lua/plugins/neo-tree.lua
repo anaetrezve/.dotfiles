@@ -54,6 +54,7 @@ return {
   },
 
   opts = {
+    hide_root_node = true,
     popup_border_style = "single",
     enable_diagnostics = false,
     open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
@@ -93,6 +94,12 @@ return {
       filtered_items = {
         hide_dotfiles = false,
         hide_gitignored = false,
+        hide_by_name = {
+          ".git",
+          ".DS_Store",
+          "thumbs.db",
+          "node_modules",
+        },
       },
       follow_current_file = {
         enabled = true,
