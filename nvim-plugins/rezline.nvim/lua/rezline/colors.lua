@@ -48,9 +48,17 @@ M.mode_colors = function()
 	end
 end
 
+M.git_colors = function()
+	vim.cmd("highlight " .. "St_git_added" .. " guifg=#a6e3a1 guibg=#181825")
+	vim.cmd("highlight " .. "St_git_modified" .. " guifg=#f9e2af guibg=#181825")
+	vim.cmd("highlight " .. "St_git_deleted" .. " guifg=#f38ba8 guibg=#181825")
+	vim.cmd("highlight " .. "St_git_branch" .. " guifg=#cdd6f4 guibg=#181825")
+end
+
 M.set_default_Mode_highlight_colors = function()
 	M.mode_colors()
 	M.diagnostic_colors()
+	M.git_colors()
 end
 
 return M

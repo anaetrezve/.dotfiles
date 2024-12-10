@@ -9,14 +9,14 @@ M.mode = function()
 
 	local modes = utils.modes
 	local m = vim.api.nvim_get_mode().mode
-	return "%#St_" .. modes[m][2] .. "_Mode#" .. "  " .. modes[m][1] .. " "
+	return "%#St_" .. modes[m][2] .. "_Mode#" .. "  " .. modes[m][1] .. " %#StText#"
 end
 
-M.file = function()
-	local x = utils.file()
-	local name = " " .. x[2] .. " "
-	return "%#StText# " .. x[1] .. name
-end
+-- M.file = function()
+-- 	local x = utils.file()
+-- 	local name = " " .. x[2] .. " "
+-- 	return "%#StText# " .. x[1] .. name
+-- end
 
 M.git = utils.git
 M.lsp_msg = utils.lsp_msg

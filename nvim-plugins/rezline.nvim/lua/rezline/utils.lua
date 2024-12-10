@@ -9,8 +9,7 @@ M.is_activewin = function()
 end
 
 local orders = {
-	default = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
-	vscode = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "cwd" },
+	vscode = { "mode", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "cwd" },
 }
 
 M.generate = function(theme, modules)
@@ -110,10 +109,15 @@ M.git = function()
 
 	local git_status = vim.b[M.stbufnr()].gitsigns_status_dict
 
-	local added = (git_status.added and git_status.added ~= 0) and (" 󰐙 " .. git_status.added) or ""
-	local changed = (git_status.changed and git_status.changed ~= 0) and (" 󰆗 " .. git_status.changed) or ""
-	local removed = (git_status.removed and git_status.removed ~= 0) and (" 󰍷 " .. git_status.removed) or ""
-	local branch_name = " " .. git_status.head
+	local added = (git_status.added and git_status.added ~= 0) and ("%#St_git_added#" .. "  " .. git_status.added)
+		or ""
+	local changed = (git_status.changed and git_status.changed ~= 0)
+			and ("%#St_git_modified#" .. "  " .. git_status.changed)
+		or ""
+	local removed = (git_status.removed and git_status.removed ~= 0)
+			and ("%#St_git_deleted#" .. "  " .. git_status.removed)
+		or ""
+	local branch_name = "%#St_git_branch# " .. git_status.head
 
 	return " " .. branch_name .. added .. changed .. removed
 end
