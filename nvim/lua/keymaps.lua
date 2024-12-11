@@ -92,7 +92,20 @@ keymap("n", "<leader>,", "5<C-w><", { desc = "Increase split size to left" })
 
 -- Close buffer
 keymap("n", "<leader>tx", "<Cmd>bd<CR>", { desc = "Close current buffer" })
--- keymap("n", "<leader>tx", "<Cmd>BufferClose<CR>", { desc = "Close current buffer" })
+keymap("n", "<leader>tn", function()
+  if vim.fn.tabpagenr("$") > 1 then
+    vim.cmd("tabnext")
+  else
+    vim.cmd("bnext")
+  end
+end, { desc = "Go to next tab or buffer" }) --  go to next tab
+keymap("n", "<leader>tp", function()
+  if vim.fn.tabpagenr("$") > 1 then
+    vim.cmd("tabprev")
+  else
+    vim.cmd("bprev")
+  end
+end, { desc = "Go to previous tab or buffer" }) --  go to previous tab
 -- Move to previous/next
 keymap("n", "<Tab>", function()
   if vim.fn.tabpagenr("$") > 1 then
