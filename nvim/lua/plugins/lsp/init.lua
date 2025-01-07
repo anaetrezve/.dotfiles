@@ -40,13 +40,16 @@ return {
       require("mason-lspconfig").setup(opts)
     end,
   },
-  {
-    "j-hui/fidget.nvim",
-    config = true,
-  },
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   config = true,
+  -- },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/nvim-cmp" },
+    dependencies = {
+      "saghen/blink.cmp",
+      -- "hrsh7th/cmp-nvim-lsp", "hrsh7th/nvim-cmp"
+    },
     lazy = false,
     config = function()
       require("plugins.lsp.lspconfig").defaults()
