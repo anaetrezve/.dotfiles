@@ -33,30 +33,30 @@ end
 -- M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 M.capabilities = require("blink.cmp").get_lsp_capabilities()
--- M.capabilities.textDocument.foldingRange = {
---   dynamicRegistration = false,
---   lineFoldingOnly = true,
--- }
+M.capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 -- M.capabilities = vim.lsp.protocol.make_client_capabilities()
---
--- M.capabilities.textDocument.completion.completionItem = {
---   documentationFormat = { "markdown", "plaintext" },
---   snippetSupport = true,
---   preselectSupport = true,
---   insertReplaceSupport = true,
---   labelDetailsSupport = true,
---   deprecatedSupport = true,
---   commitCharactersSupport = true,
---   tagSupport = { valueSet = { 1 } },
---   resolveSupport = {
---     properties = {
---       "documentation",
---       "detail",
---       "additionalTextEdits",
---     },
---   },
--- }
+
+M.capabilities.textDocument.completion.completionItem = {
+  documentationFormat = { "markdown", "plaintext" },
+  snippetSupport = true,
+  preselectSupport = true,
+  insertReplaceSupport = true,
+  labelDetailsSupport = true,
+  deprecatedSupport = true,
+  commitCharactersSupport = true,
+  tagSupport = { valueSet = { 1 } },
+  resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  },
+}
 
 M.defaults = function()
   local lspconfig = require("lspconfig")
@@ -70,7 +70,7 @@ M.defaults = function()
     })
   end
 
-  lspconfig.lua_ls.setup({
+  lspconfig["lua_ls"].setup({
     on_attach = M.on_attach,
     capabilities = M.capabilities,
     on_init = M.on_init,
@@ -99,6 +99,25 @@ M.defaults = function()
     capabilities = M.capabilities,
     on_init = M.on_init,
   })
+  --
+  -- lspconfig["solargraph"].setup({
+  --   on_attach = M.on_attach,
+  --   capabilities = M.capabilities,
+  --   on_init = M.on_init,
+  --
+  --   settings = {
+  --     solargraph = {
+  --       autoformat = true,
+  --       completion = true,
+  --       diagnostic = true,
+  --       folding = true,
+  --       references = true,
+  --       rename = true,
+  --       symbols = true,
+  --       max_files = 0,
+  --     },
+  --   },
+  -- })
 end
 
 return M

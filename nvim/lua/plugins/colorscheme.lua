@@ -55,17 +55,17 @@ return {
 
           -- Cmp Menu
           -- NVChad Style
-          PmenuSel = { bg = colors.blue, fg = colors.base },
+          -- PmenuSel = { bg = colors.blue, fg = colors.base },
           -- CmpBorder = { fg = colors.mantle },
           -- CmpBorder = { fg = colors.subtext0 },
-          CmpItemAbbr = { fg = colors.text },
-          CmpItemAbbrMatch = { fg = colors.blue, bold = true },
-          CmpItemAbbrMatchFuzzy = { fg = colors.blue, bold = true },
+          -- CmpItemAbbr = { fg = colors.text },
+          -- CmpItemAbbrMatch = { fg = colors.blue, bold = true },
+          -- CmpItemAbbrMatchFuzzy = { fg = colors.blue, bold = true },
 
           -- CmpDoc = { bg = colors.mantle },
           -- CmpDocBorder = { bg = colors.mantle, fg = colors.mantle },
-          CmpPmenu = { bg = colors.base },
-          CmpSel = { link = "PmenuSel", bold = true },
+          -- CmpPmenu = { bg = colors.base },
+          -- CmpSel = { link = "PmenuSel", bold = true },
 
           -- Custom Style
           -- CmpMenu = { bg = colors.base },

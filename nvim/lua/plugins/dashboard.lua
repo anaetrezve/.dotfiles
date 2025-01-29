@@ -93,7 +93,7 @@ return {
           local stats = require("lazy").stats()
           local ms = math.floor(stats.startuptime) .. " ms"
           local text = "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
-          local line = string.rep("-", #text)
+          local line = string.rep("", #text)
           return {
             line,
             text,

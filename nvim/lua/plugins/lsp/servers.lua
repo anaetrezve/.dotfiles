@@ -15,6 +15,8 @@ return {
   "remark_ls",
   "pylsp",
   "rust_analyzer",
+  "solargraph",
+  "ruby_lsp",
   "sqlls",
   "stylelint_lsp",
   "taplo",

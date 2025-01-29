@@ -22,8 +22,9 @@ return {
       yaml = { "prettierd", "prettier", stop_after_first = true },
       markdown = { "prettierd", "prettier", stop_after_first = true },
       graphql = { "prettierd", "prettier", stop_after_first = true },
-      lua = { "stylua" },
-      ruby = { "rubocop", "ruby" },
+      lua = { "stylua", stop_after_first = true },
+      ruby = { "rubocop", "ruby", stop_after_first = true },
+      python = { "black", stop_after_first = true },
     },
 
     format_on_save = {
