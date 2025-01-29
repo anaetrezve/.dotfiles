@@ -3,29 +3,30 @@ return {
 
   dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 
-  event = { "BufReadPost", "BufNewFile" },
+  -- event = { "BufReadPost", "BufNewFile" },
 
-  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+  -- cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 
-  build = ":TSUpdate",
+  -- build = ":TSUpdate",
 
   opts = {
-    ensure_installed = {
-      "vim",
-      "vimdoc",
-      "lua",
-      "luadoc",
-      "bash",
+    -- ensure_installed = {
+    --   "vim",
+    --   "vimdoc",
+    --   "lua",
+    --   "luadoc",
+    --   "bash",
+    --
+    --   "javascript",
+    --   "tsx",
+    --   "typescript",
+    --   "go",
+    -- },
 
-      "javascript",
-      "tsx",
-      "typescript",
-      "go",
-    },
+  auto_install = true,
 
     highlight = {
       enable = true,
-      use_languagetree = true,
     },
 
     indent = { enable = true },
