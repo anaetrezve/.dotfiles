@@ -6,6 +6,12 @@ return {
   opts = {
     servers = {
       lua_ls = {},
+      pylsp = {},
+      ts_ls = {},
+      ruby_lsp = {},
+      solargraph = {},
+      jsonls = {},
+      bashl = {},
     },
   },
 
