@@ -1,9 +1,9 @@
 return {
   "saghen/blink.cmp",
 
-  -- version = "*",
+  version = "*",
 
-  build = "cargo +nightly build --release",
+  -- build = "cargo +nightly build --release",
 
   opts = {
     keymap = {

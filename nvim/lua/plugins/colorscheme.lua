@@ -50,7 +50,7 @@ return {
         return {
           ["@comment.danger"] = { bg = colors.red, fg = colors.mantle, style = {} },
 
-          FloatBorder = { fg = colors.blue, bg = colors.base },
+          FloatBorder = { fg = colors.text, bg = colors.base },
           NormalFloat = { bg = colors.base },
 
           -- Cmp Menu
@@ -62,8 +62,8 @@ return {
           -- CmpItemAbbrMatch = { fg = colors.blue, bold = true },
           -- CmpItemAbbrMatchFuzzy = { fg = colors.blue, bold = true },
 
-          -- CmpDoc = { bg = colors.mantle },
-          -- CmpDocBorder = { bg = colors.mantle, fg = colors.mantle },
+          CmpDoc = { bg = colors.mantle },
+          CmpDocBorder = { bg = colors.mantle, fg = colors.mantle },
           -- CmpPmenu = { bg = colors.base },
           -- CmpSel = { link = "PmenuSel", bold = true },
 

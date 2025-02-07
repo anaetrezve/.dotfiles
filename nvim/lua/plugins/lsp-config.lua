@@ -3,20 +3,84 @@ return {
 
   dependencies = { "saghen/blink.cmp" },
 
-  opts = {
-    servers = {
-      lua_ls = {},
-      pylsp = {},
-      ts_ls = {},
-      ruby_lsp = {},
-      solargraph = {},
-      jsonls = {},
-      bashls = {},
-    },
-  },
+  opts = function()
+    -- local nvim_lsp = require("lspconfig")
+
+    return {
+      servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              runtime = {
+                version = "LuaJIT",
+              },
+              diagnostics = {
+                globals = { "vim", "use", "winid" },
+              },
+            },
+          },
+        },
+        pylsp = {},
+        ts_ls = {},
+        ruby_lsp = {
+          -- cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv("GLOBAL_GEMFILE") },
+          -- cmd = { "ruby-lsp" },
+          -- filetypes = { "ruby", "eruby" },
+          -- root_dir = function()
+          --   return vim.loop.cwd()
+          -- end,
+          cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv("GLOBAL_GEMFILE") },
+          cmd = { "ruby-lsp" },
+          filetypes = { "ruby", "eruby" },
+          root_dir = function()
+            return vim.loop.cwd()
+          end,
+        },
+        solargraph = {
+          -- cmd = { os.getenv("HOME") .. "/.rbenv/shims/solargraph", "stdio" },
+          -- root_dir = nvim_lsp.util.root_pattern("Gemfile", ".git", "."),
+          settings = {
+            solargraph = {
+              commandPath = { os.getenv("HOME") .. "/.rbenv/shims/solargraph", "stdio" },
+              autoformat = true,
+              completion = true,
+              diagnostic = true,
+              folding = true,
+              references = true,
+              rename = true,
+              symbols = true,
+            },
+          },
+          -- cmd = {
+          --   "asdf",
+          --   "exec",
+          --   "solargraph",
+          --   "stdio",
+          -- },
+        },
+        jsonls = {},
+        bashls = {},
+      },
+    }
+  end,
 
   config = function(_, opts)
     local lspconfig = require("lspconfig")
+
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+      border = "single",
+      focusable = false,
+      silent = true,
+      max_height = 8,
+      max_width = 80,
+    })
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+      border = "single",
+      focusable = false,
+      silent = true,
+      max_height = 8,
+      max_width = 80,
+    })
 
     local signs = { Error = " ", Warn = " ", Hint = "󰌶 ", Info = " " }
     -- local signs = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
@@ -24,6 +88,30 @@ return {
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
+
+    -- vim.diagnostic.config({
+    --   virtual_text = {
+    --     prefix = "", -- Could be '●', '▎', │, 'x', '■', , 
+    --   },
+    --   jump = {
+    --     float = true,
+    --   },
+    --   float = { border = "single" },
+    --   signs = {
+    --     text = {
+    --       [vim.diagnostic.severity.ERROR] = " ",
+    --       [vim.diagnostic.severity.WARN] = " ",
+    --       [vim.diagnostic.severity.HINT] = "󰌶 ",
+    --       [vim.diagnostic.severity.INFO] = " ",
+    --     },
+    --     numhl = {
+    --       [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+    --       [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+    --       [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+    --       [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+    --     },
+    --   },
+    -- })
 
     for server, config in pairs(opts.servers) do
       config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)

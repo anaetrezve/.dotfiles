@@ -136,3 +136,15 @@ keymap("n", "<C-0>", "<Cmd>BufferLineGoToBuffer -1<CR>", { desc = "Goto buffer l
 -- Re-order to left/right
 keymap("n", "<C-,>", "<Cmd>BufferLineMovePrev<CR>", { desc = "Move current buffer to left" })
 keymap("n", "<C-.>", "<Cmd>BufferLineMoveNext<CR>", { desc = "Move current buffer to right" })
+
+-- Copying
+keymap("n", "<leader>y", "", { desc = "󰆏 Copy..." })
+keymap("n", "<leader>yp", function()
+  vim.fn.setreg("+", vim.fn.expand("%:p:."))
+end, { desc = "Copy file path" })
+keymap("n", "<leader>yd", function()
+  vim.fn.setreg("+", vim.fn.expand("%:h"))
+end, { desc = "Copy directory path" })
+keymap("n", "<leader>yf", function()
+  vim.fn.setreg("+", vim.fn.expand("%:t:r"))
+end, { desc = "Copy file name" })
