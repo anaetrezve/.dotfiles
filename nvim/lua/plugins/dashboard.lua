@@ -15,12 +15,12 @@ return {
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
       ]]
 
-    logo = string.rep("\n", 4) .. logo .. "\n"
+    logo = string.rep("\n", 3) .. logo .. "\n"
 
     local options = {
       theme = "doom",
       hide = {
-        statusline = false,
+        statusline = true,
       },
       config = {
         header = vim.split(logo, "\n"),
@@ -93,7 +93,7 @@ return {
           local stats = require("lazy").stats()
           local ms = math.floor(stats.startuptime) .. " ms"
           local text = "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
-          local line = string.rep("-", #text)
+          local line = string.rep("", #text)
           return {
             line,
             text,

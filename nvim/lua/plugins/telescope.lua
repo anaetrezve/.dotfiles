@@ -69,7 +69,7 @@ return {
         selection_strategy = "reset",
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
-        file_ignore_patterns = { "node_modules", ".git" },
+        file_ignore_patterns = { "node_modules" },
         layout_strategy = "horizontal",
         sorting_strategy = "ascending",
         layout_config = {
