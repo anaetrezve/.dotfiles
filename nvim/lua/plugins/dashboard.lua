@@ -42,13 +42,13 @@ return {
             action = "lua require('telescope.builtin').oldfiles()",
             desc = " Recent Files",
             icon = " ",
-            key = "r",
+            key = "o",
           },
           {
             action = "lua require('telescope.builtin').live_grep()",
             desc = " Find Text",
             icon = " ",
-            key = "w",
+            key = "g",
           },
           {
             action = function()
