@@ -1,5 +1,8 @@
 return {
   "akinsho/bufferline.nvim",
+
+  enabled = false,
+
   dependencies = {
     "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
   },
