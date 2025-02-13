@@ -19,7 +19,7 @@ return {
       local linters_and_formatters = require("plugins.lsp.linters-formatters")
 
       return {
-        ensure_installed = vim.tbl_extend("force", vim.tbl_keys(linters_and_formatters), vim.tbl_keys(servers)),
+        ensure_installed = vim.list_extend(vim.tbl_keys(servers), vim.tbl_keys(linters_and_formatters)),
       }
     end,
   },
