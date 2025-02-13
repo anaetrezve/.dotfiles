@@ -15,7 +15,7 @@ M.on_attach = function(client, bufnr)
   keymap("n", "gD", vim.lsp.buf.declaration, opts("Goto Declaration"))
   keymap("n", "gn", vim.lsp.buf.rename, opts("Rename"))
   keymap("n", "gf", vim.lsp.buf.format, opts("Formating"))
-  keymap("n", "gca", vim.lsp.buf.code_action, opts("Code Action"))
+  keymap("n", "gc", vim.lsp.buf.code_action, opts("Code Action"))
   keymap("n", "gk", vim.lsp.buf.signature_help, opts("Signature Help"))
   keymap("n", "K", vim.lsp.buf.hover, opts("Show documentation for what is under cursor"))
   keymap("i", "<C-k>", vim.lsp.buf.signature_help, opts("Insert Mode Signature Help"))
@@ -88,13 +88,15 @@ end
 
 M.defaults = function()
   local lspconfig = require("lspconfig")
+  local lsp_defaults = lspconfig.util.default_config
   local blink = require("blink.cmp")
   require("plugins.lsp.diagnostic").diagnostic_config()
+  lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, blink.get_lsp_capabilities())
 
   M.handlers()
 
   for server, config in pairs(servers) do
-    config.capabilities = blink.get_lsp_capabilities(config.capabilities)
+    -- config.capabilities = blink.get_lsp_capabilities(config.capabilities)
     config.on_attach = M.on_attach
 
     lspconfig[server].setup(config)

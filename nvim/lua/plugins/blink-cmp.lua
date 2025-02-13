@@ -116,6 +116,11 @@ return {
       end,
 
       providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100,
+        },
         lsp = {
           min_keyword_length = 0,
           score_offset = 0,
@@ -129,11 +134,6 @@ return {
         buffer = {
           min_keyword_length = 2,
           max_items = 5,
-        },
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-          score_offset = 100,
         },
       },
     },
