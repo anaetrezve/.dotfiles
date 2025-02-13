@@ -40,31 +40,31 @@ return {
       require("mason-lspconfig").setup(opts)
     end,
   },
-  {
-    "j-hui/fidget.nvim",
-    config = true,
-  },
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   config = true,
+  -- },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/nvim-cmp" },
-    lazy = false,
+    dependencies = { "saghen/blink.cmp" },
+
     config = function()
       require("plugins.lsp.lspconfig").defaults()
 
-      vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-          vim.schedule(function()
-            local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-            if client then
-              local signatureProvider = client.server_capabilities.signatureHelpProvider
-              if signatureProvider and signatureProvider.triggerCharacters then
-                require("plugins.lsp.signature").setup(client, args.buf)
-              end
-            end
-          end)
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("LspAttach", {
+      --   callback = function(args)
+      --     vim.schedule(function()
+      --       local client = vim.lsp.get_client_by_id(args.data.client_id)
+      --
+      --       if client then
+      --         local signatureProvider = client.server_capabilities.signatureHelpProvider
+      --         if signatureProvider and signatureProvider.triggerCharacters then
+      --           require("plugins.lsp.signature").setup(client, args.buf)
+      --         end
+      --       end
+      --     end)
+      --   end,
+      -- })
     end,
   },
 }
