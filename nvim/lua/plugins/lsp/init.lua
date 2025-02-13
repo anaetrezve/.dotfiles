@@ -1,5 +1,3 @@
--- Servernames added from https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
-
 return {
   {
     "williamboman/mason.nvim",
@@ -13,32 +11,21 @@ return {
         border = "single",
       },
     },
-    config = function(_, opts)
-      require("mason").setup(opts)
-    end,
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "prettier", -- prettier formatter
-        "prettierd",
-        "stylua", -- lua formatter
-        "eslint_d", -- js/ts linter
-      },
-    },
-    config = function(_, opts)
-      require("mason-tool-installer").setup(opts)
+    opts = function()
+      local servers = require("plugins.lsp.servers")
+      local linters_and_formatters = require("plugins.lsp.linters-formatters")
+
+      return {
+        ensure_installed = vim.tbl_extend("force", vim.tbl_keys(linters_and_formatters), vim.tbl_keys(servers)),
+      }
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = require("plugins.lsp.servers"),
-    },
-    config = function(_, opts)
-      require("mason-lspconfig").setup(opts)
-    end,
+    opts = {},
   },
   -- {
   --   "j-hui/fidget.nvim",

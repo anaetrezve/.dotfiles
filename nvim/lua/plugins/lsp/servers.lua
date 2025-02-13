@@ -13,8 +13,13 @@ return {
       },
     },
   },
+
   pylsp = {},
+
   ts_ls = {},
+
+  gopls = {},
+
   ruby_lsp = {
     cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv("GLOBAL_GEMFILE") },
     cmd = { "ruby-lsp" },
@@ -23,6 +28,7 @@ return {
       return vim.loop.cwd()
     end,
   },
+
   -- solargraph = {
   --   settings = {
   --     solargraph = {
@@ -37,6 +43,8 @@ return {
   --     },
   --   },
   -- },
+
   jsonls = {},
+
   bashls = {},
 }
