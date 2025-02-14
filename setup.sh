@@ -193,7 +193,7 @@ function show_help() {
   echo -e "  ${GREEN}-hb, --homebrew${RESET}               ${YELLOW}Install and configure Homebrew package manager.${RESET}"
   echo -e "  ${GREEN}-sz, --setup-zshenv${RESET}           ${YELLOW}Set up the .zshenv file for shell configuration.${RESET}"
   echo -e "  ${GREEN}-izp, --install-zsh-plugins${RESET}   ${YELLOW}Install useful plugins for zsh (Z shell).${RESET}"
-  echo -e "  ${GREEN}-in, --install-packages${RESET}       ${YELLOW}Install essential system packages.${RESET}"
+  echo -e "  ${GREEN}-ip, --install-packages${RESET}       ${YELLOW}Install essential system packages.${RESET}"
   echo -e "  ${GREEN}-st, --setup-tmux${RESET}             ${YELLOW}Configure tmux (terminal multiplexer) settings.${RESET}"
   echo -e "  ${GREEN}-sn, --setup-neovim${RESET}           ${YELLOW}Set up Neovim editor configuration.${RESET}"
   echo -e "  ${GREEN}-ss, --setup-starship${RESET}         ${YELLOW}Configure Starship prompt for shell customization.${RESET}"
@@ -233,7 +233,7 @@ function initial_setup() {
     -izp | --install-zsh-plugins)
       install_zsh_plugins
       ;;
-    -in | --install-packages)
+    -ip | --install-packages)
       install_other_necessary_packages
       ;;
     -st | --setup-tmux)
