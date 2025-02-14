@@ -30,6 +30,11 @@ function remove_other_configs() {
   rm -rf ~/.terminfo
 }
 
+function remove_ghostty_configs() {
+  echo "Removing Ghostty configs"
+  rm -rf ~/.config/ghostty
+}
+
 function remove_all_configs() {
   remove_zsh_configs
   remove_tmux_configs
@@ -37,23 +42,24 @@ function remove_all_configs() {
   remove_wezterm_configs
   remove_neovim_configs
   remove_other_configs
+  remove_ghostty_configs 
 }
 
 function remove_all_apps() {
   echo "Removing applications using brew"
   brew remove neovim
-  # brew remove tmux
+  brew remove tmux
   # brew remove nvm
-  # brew remove zoxide
-  # brew remove ripgrep
-  # brew remove fd
-  # brew remove eza
-  # brew remove go
-  # brew remove rust
-  # brew remove docker
+  brew remove zoxide
+  brew remove ripgrep
+  brew remove fd
+  brew remove eza
+  brew remove go
+  brew remove rust
+  brew remove docker
   # brew remove visual-studio-code
-  # brew remove mongodb-compass
-  # brew remove postman
+  brew remove mongodb-compass
+  brew remove postman
 }
 
 function remove_all_zsh_plugins() {
@@ -67,17 +73,18 @@ function remove_all_zsh_plugins() {
 function show_help {
   echo "Usage: $0 [OPTION]"
   echo "Options:"
-  echo "  -a, --all                    Remove all configs, apps, and zsh plugins"
-  echo "  -co, --configs-only          Remove all configs"
-  echo "  -ao, --apps-only             Remove all apps"
-  echo "  -zo, --zsh-plugins-only      Remove all zsh plugins"
-  echo "  -nco, --neovim-configs-only  Remove only Neovim configs"
-  echo "  -zco, --zsh-configs-only     Remove only ZSH configs"
-  echo "  -tco, --tmux-configs-only    Remove only Tmux configs"
-  echo "  -noco, --nodejs-configs-only Remove only Node.js configs"
-  echo "  -wco, --wezterm-configs-only Remove only Wezterm configs"
-  echo "  -oco, --other-configs-only   Remove only other configs"
-  echo "  -h, --help                   Show this help message and exit"
+  echo "  -a, --all                      Remove all configs, apps, and zsh plugins"
+  echo "  -co, --configs-only            Remove all configs"
+  echo "  -ao, --apps-only               Remove all apps"
+  echo "  -zo, --zsh-plugins-only        Remove all zsh plugins"
+  echo "  -nco, --neovim-configs-only    Remove only Neovim configs"
+  echo "  -zco, --zsh-configs-only       Remove only ZSH configs"
+  echo "  -tco, --tmux-configs-only      Remove only Tmux configs"
+  echo "  -noco, --nodejs-configs-only   Remove only Node.js configs"
+  echo "  -wco, --wezterm-configs-only   Remove only Wezterm configs"
+  echo "  -oco, --other-configs-only     Remove only Other configs"
+  echo "  -gco, --ghostty-configs-only   Remove only Ghostty configs"
+  echo "  -h, --help                     Show this help message and exit"
 }
 
 # Parse command-line arguments
@@ -121,6 +128,9 @@ while [[ $# -gt 0 ]]; do
     ;;
   -oco | --other-configs-only)
     remove_other_configs
+    ;;
+  -gco | --ghostty-config-only)
+    remove_ghostty_configs
     ;;
   -h | --help)
     show_help

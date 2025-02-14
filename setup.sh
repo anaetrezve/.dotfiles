@@ -267,6 +267,7 @@ function initial_setup() {
       setup_nvim_config
       setup_zsh_config
       setup_wezterm_config
+      setup_ghostty_config 
       ;;
     *)
       echo "Unknown option: $1"
