@@ -1,2 +1,4 @@
-font-family = CartographCF Nerd Font
-theme = catppuccin-mocha
+theme=catppuccin-mocha
+font-family="CartographCF Nerd Font"
+font-size=16
+adjust-cell-height=50%
