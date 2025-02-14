@@ -78,6 +78,7 @@ function install_other_necessary_packages() {
   install_or_update_brew_app tmux
   install_or_update_brew_app wezterm 
   install_or_update_brew_app starship
+  install_or_update_brew_app ghostty
 
   # programming languages & tools
   install_or_update_brew_app go
@@ -156,6 +157,11 @@ function setup_starship_config() {
   ln -nsf $HOME/.dotfiles/starship $XDG_CONFIG_HOME
 }
 
+function setup_ghostty_config() {
+  echo "Setting up ghostty config"
+  ln -nsf $HOME/.dotfiles/ghostty $XDG_CONFIG_HOME
+}
+
 # if [ "$(uname)" == "Darwin" ]; then
 # Do something under Mac OS X platform
 # setup_homebrew
@@ -193,6 +199,7 @@ function show_help() {
   echo -e "  ${GREEN}-ss, --setup-starship${RESET}         ${YELLOW}Configure Starship prompt for shell customization.${RESET}"
   echo -e "  ${GREEN}-szc, --setup-zsh${RESET}             ${YELLOW}Set up the zsh shell configuration.${RESET}"
   echo -e "  ${GREEN}-sw, --setup-wezterm${RESET}          ${YELLOW}Configure WezTerm terminal settings.${RESET}"
+  echo -e "  ${GREEN}-sg, --setup-ghostty${RESET}          ${YELLOW}Configure Ghostty terminal settings.${RESET}"
   echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
   echo -e "  ${GREEN}-a, --all${RESET}                     ${YELLOW}Run all setup steps and install necessary components.${RESET}"
   echo 
@@ -243,6 +250,9 @@ function initial_setup() {
       ;;
     -ss | --setup-starship)
       setup_starship_config
+      ;;
+    -sg | --setup-ghostty)
+      setup_ghostty_config
       ;;
     -smkr | --setup-mac-keyrepeat)
       setup_mac_key_repeat
