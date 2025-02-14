@@ -95,6 +95,7 @@ return {
     completion = {
       menu = {
         draw = {
+          gap = 2,
           columns = { { "kind_icon" }, { "label", gap = 1 } },
           components = {
             label = {
