@@ -2,7 +2,7 @@ local M = {}
 local keymap = vim.keymap.set -- for conciseness
 local servers = require("plugins.lsp.servers")
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
   local function opts(desc)
     return { buffer = bufnr, desc = "LSP " .. desc }
   end
@@ -30,11 +30,11 @@ M.on_attach = function(client, bufnr)
   end, opts("Toggle Inlay Hints"))
 
   -- INLAY HINTS
-  if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(true)
-  else
-    vim.lsp.inlay_hint.enable(false)
-  end
+  -- if client.server_capabilities.inlayHintProvider then
+  --   vim.lsp.inlay_hint.enable(true)
+  -- else
+  --   vim.lsp.inlay_hint.enable(false)
+  -- end
 end
 
 M.handlers = function()

@@ -14,7 +14,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
+    -- branch = "main",
     cmd = "CopilotChat",
     opts = function()
       local user = vim.env.USER or "User"
@@ -36,10 +36,11 @@ return {
             insert = "",
           },
         },
+        chat_autocomplete = true,
       }
     end,
     keys = {
-      { "<leader>cc", "", desc = "+ai", mode = { "n", "v", "x" } },
+      { "<leader>cc", "", desc = "+Copilot", mode = { "n", "v", "x" } },
       { "<C-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
       { "<D-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
       {
@@ -102,7 +103,6 @@ return {
     config = function(_, opts)
       local chat = require("CopilotChat")
       local select = require("CopilotChat.select")
-      require("CopilotChat.integrations.cmp").setup()
 
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern = "copilot-chat",
