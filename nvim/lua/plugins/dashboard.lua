@@ -24,6 +24,7 @@ return {
       },
       config = {
         header = vim.split(logo, "\n"),
+        -- header = {},
         center = {
           {
             action = "lua require('telescope.builtin').find_files()",
@@ -99,7 +100,7 @@ return {
             text,
             line,
           }
-        end, --your footer
+        end,
       },
     }
 
