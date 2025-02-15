@@ -1,4 +1,8 @@
-theme=catppuccin-mocha
-font-family="CartographCF Nerd Font"
-font-size=16
-adjust-cell-height=50%
+theme = catppuccin-mocha
+font-family = CartographCF Nerd Font
+font-size = 16
+adjust-cell-height = 50%
+
+cursor-style = block
+cursor-style-blink = true
+shell-integration-features = no-cursor
