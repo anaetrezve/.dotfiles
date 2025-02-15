@@ -6,6 +6,7 @@ adjust-cell-height = 47%
 
 cursor-style = block
 cursor-style-blink = true
+adjust-cursor-height = 40%
 shell-integration-features = no-cursor
 
 fullscreen = true
