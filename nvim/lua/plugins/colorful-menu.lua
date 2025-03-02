@@ -1,6 +1,8 @@
 return {
   "xzbdmw/colorful-menu.nvim",
 
+  enabled = true,
+
   opts = {},
 
   config = function(_, opts)

@@ -6,29 +6,56 @@ return {
   version = "*",
 
   opts = {
+    appearance = {
+      use_nvim_cmp_as_default = false,
+      nerd_font_variant = "mono",
+
+      kind_icons = {
+        Method = "󰆧 ",
+        Function = "󰡱 ",
+        Constructor = " ",
+        Variable = "󰀫 ",
+        Class = " ",
+        Interface = " ",
+        Module = " ",
+        Unit = "󰑭 ",
+        Value = "󰎠 ",
+        Enum = " ",
+        Snippet = " ",
+        Color = "󰏘 ",
+        File = "󰈙 ",
+        Folder = "󰉋 ",
+        EnumMember = " ",
+        Constant = "󰏿 ",
+        Struct = "󰙅 ",
+        Event = " ",
+        Array = " ",
+        Boolean = "󰨙 ",
+        Codeium = "󰘦 ",
+        Control = " ",
+        Collapsed = " ",
+        Copilot = " ",
+        Field = " ",
+        Key = " ",
+        Keyword = " ",
+        Namespace = "󰦮 ",
+        Null = " ",
+        Number = "󰎠 ",
+        Object = " ",
+        Operator = " ",
+        Package = " ",
+        Property = " ",
+        Reference = " ",
+        String = " ",
+        Supermaven = " ",
+        TabNine = "󰏚 ",
+        Text = " ",
+        TypeParameter = " ",
+      },
+    },
+
     keymap = {
       preset = "none",
-      cmdline = {
-        ["<CR>"] = { "fallback" },
-        ["<C-k>"] = { "select_prev", "fallback" },
-        ["<C-j>"] = { "select_next", "fallback" },
-        ["<C-c>"] = { "show", "show_documentation", "hide_documentation" },
-        ["<C-u>"] = { "scroll_documentation_up", "fallback" },
-        ["<C-d>"] = { "scroll_documentation_down", "fallback" },
-        ["<Tab>"] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.accept()
-            else
-              return cmp.select_and_accept()
-            end
-          end,
-          "snippet_forward",
-          "fallback",
-        },
-        ["<S-Tab>"] = { "snippet_backward", "fallback" },
-      },
-
       ["<C-k>"] = { "select_prev", "fallback" },
       ["<C-j>"] = { "select_next", "fallback" },
       ["<C-c>"] = { "show", "show_documentation", "hide_documentation" },
@@ -56,46 +83,50 @@ return {
         "snippet_forward",
         "fallback",
       },
-      ["<S-Tab>"] = { "snippet_backward", "fallback" },
     },
 
-    appearance = {
-      use_nvim_cmp_as_default = false,
-      nerd_font_variant = "mono",
+    cmdline = {
+      completion = { ghost_text = { enabled = true } },
 
-      kind_icons = {
-        Text = "󰉿",
-        Method = "󰆧",
-        Function = "󰡱",
-        Constructor = "",
-        Field = "󰜢",
-        Variable = "󰀫",
-        Class = "󰠱",
-        Property = "󰜢",
-        Interface = "",
-        Module = "",
-        Unit = "󰑭",
-        Value = "󰎠",
-        Enum = "",
-        Keyword = "󰌋",
-        Snippet = "",
-        Color = "󰏘",
-        File = "󰈙",
-        Reference = "󰈇",
-        Folder = "󰉋",
-        EnumMember = "",
-        Constant = "󰏿",
-        Struct = "󰙅",
-        Event = "",
-        Operator = "󰆕",
-        TypeParameter = "󰬛",
+      sources = function()
+        local type = vim.fn.getcmdtype()
+        -- Search forward and backward
+        if type == "/" or type == "?" then
+          return { "buffer" }
+        end
+        -- Commands
+        if type == ":" then
+          return { "cmdline" }
+        end
+        return {}
+      end,
+
+      keymap = {
+        ["<CR>"] = { "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-c>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
+          end,
+          "snippet_forward",
+          "fallback",
+        },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
       },
     },
 
     completion = {
       menu = {
+        border = "none",
         draw = {
-          gap = 2,
           columns = { { "kind_icon" }, { "label", gap = 1 } },
           components = {
             label = {
@@ -107,6 +138,13 @@ return {
               end,
             },
           },
+        },
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
+        window = {
+          border = "single",
         },
       },
 
@@ -130,19 +168,6 @@ return {
 
     sources = {
       default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-
-      cmdline = function()
-        local type = vim.fn.getcmdtype()
-        -- Search forward and backward
-        if type == "/" or type == "?" then
-          return { "buffer" }
-        end
-        -- Commands
-        if type == ":" then
-          return { "cmdline" }
-        end
-        return {}
-      end,
 
       providers = {
         lazydev = {
