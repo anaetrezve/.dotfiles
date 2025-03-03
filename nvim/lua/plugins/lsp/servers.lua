@@ -33,28 +33,28 @@ return {
 
   gopls = {},
 
-  ruby_lsp = {
-    -- cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv("GLOBAL_GEMFILE") },
-    -- cmd = { "ruby-lsp" },
-    -- filetypes = { "ruby", "eruby" },
-    -- root_dir = function()
-    --   return vim.loop.cwd()
-    -- end,
-    --   cmd = { get_ruby_lsp_path(), "stdio" },
-    --   settings = {
-    --     ruby_lsp = {
-    --       diagnostics = true,
-    --     },
-    --   },
-  },
-
-  -- solargraph = {
-  -- cmd = { get_solargraph_path(), "stdio" },
+  -- ruby_lsp = {
+  -- cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv("GLOBAL_GEMFILE") },
+  -- cmd = { "ruby-lsp" },
+  -- filetypes = { "ruby", "eruby" },
+  -- root_dir = function()
+  --   return vim.loop.cwd()
+  -- end,
+  --   cmd = { get_ruby_lsp_path(), "stdio" },
   -- settings = {
-  --   solargraph = {
+  --   ruby_lsp = {
   --     diagnostics = true,
   --   },
   -- },
+  -- },
+
+  -- solargraph = {
+  -- cmd = { get_solargraph_path(), "stdio" },
+  --   settings = {
+  --     solargraph = {
+  --       diagnostics = true,
+  --     },
+  --   },
   -- },
 
   jsonls = {},

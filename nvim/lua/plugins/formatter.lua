@@ -22,13 +22,13 @@ return {
       yaml = { "prettierd", "prettier", stop_after_first = true },
       markdown = { "prettierd", "prettier", stop_after_first = true },
       graphql = { "prettierd", "prettier", stop_after_first = true },
-      lua = { "stylua" },
-      ruby = { "rubocop", "ruby" },
+      lua = { "stylua", stop_after_first = true },
+      ruby = { "rubocop", stop_after_first = true },
     },
 
     format_on_save = {
       async = false,
-      timeout_ms = 500,
+      -- timeout_ms = 500,
       lsp_format = "fallback",
     },
   },
