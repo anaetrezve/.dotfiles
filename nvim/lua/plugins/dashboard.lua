@@ -15,15 +15,16 @@ return {
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
       ]]
 
-    logo = string.rep("\n", 4) .. logo .. "\n"
+    logo = string.rep("\n", 2) .. logo .. "\n"
 
     local options = {
       theme = "doom",
       hide = {
-        statusline = false,
+        statusline = true,
       },
       config = {
         header = vim.split(logo, "\n"),
+        -- header = {},
         center = {
           {
             action = "lua require('telescope.builtin').find_files()",
@@ -42,13 +43,13 @@ return {
             action = "lua require('telescope.builtin').oldfiles()",
             desc = " Recent Files",
             icon = " ",
-            key = "r",
+            key = "o",
           },
           {
             action = "lua require('telescope.builtin').live_grep()",
             desc = " Find Text",
             icon = " ",
-            key = "w",
+            key = "g",
           },
           {
             action = function()
@@ -93,13 +94,13 @@ return {
           local stats = require("lazy").stats()
           local ms = math.floor(stats.startuptime) .. " ms"
           local text = "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
-          local line = string.rep("-", #text)
+          local line = string.rep("─", #text)
           return {
             line,
             text,
             line,
           }
-        end, --your footer
+        end,
       },
     }
 

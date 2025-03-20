@@ -19,6 +19,7 @@ end
 -- end
 
 M.git = utils.git
+M["%="] = "%="
 M.lsp_msg = utils.lsp_msg
 M.diagnostics = utils.diagnostics
 

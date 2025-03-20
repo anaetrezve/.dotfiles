@@ -32,18 +32,51 @@ return {
   name = "catppuccin",
   priority = 1000,
   opts = function()
+    local ucolors = require("catppuccin.utils.colors")
+
     return {
       flavour = "mocha",
+      -- transparent_background = true,
+      styles = {
+        keywords = { "italic" },
+        variables = { "italic" },
+        booleans = { "italic" },
+        properties = { "italic" },
+      },
+      -- Integrations
       integrations = {
         neotree = true,
-        mason = true,
+        blink_cmp = true,
+        which_key = true,
         window_picker = true,
+        colorful_winsep = {
+          enabled = true,
+          color = "red",
+        },
+        flash = true,
+        grug_far = true,
+        hop = true,
+        lsp_trouble = true,
+        mason = true,
+        native_lsp = {
+          enabled = true,
+          underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+          },
+          inlay_hints = {
+            background = false,
+          },
+        },
         navic = {
           enabled = true,
         },
-        -- diffview = true,
-        which_key = true,
-        -- lsp_trouble = true,
+        noice = true,
+        notify = true,
+        nvim_surround = true,
+        nvimtree = false,
       },
 
       custom_highlights = function(colors)
@@ -55,17 +88,17 @@ return {
 
           -- Cmp Menu
           -- NVChad Style
-          PmenuSel = { bg = colors.blue, fg = colors.base },
+          -- PmenuSel = { bg = colors.blue, fg = colors.base },
           -- CmpBorder = { fg = colors.mantle },
           -- CmpBorder = { fg = colors.subtext0 },
-          CmpItemAbbr = { fg = colors.text },
-          CmpItemAbbrMatch = { fg = colors.blue, bold = true },
-          CmpItemAbbrMatchFuzzy = { fg = colors.blue, bold = true },
+          -- CmpItemAbbr = { fg = colors.text },
+          -- CmpItemAbbrMatch = { fg = colors.blue, bold = true },
+          -- CmpItemAbbrMatchFuzzy = { fg = colors.blue, bold = true },
 
           -- CmpDoc = { bg = colors.mantle },
           -- CmpDocBorder = { bg = colors.mantle, fg = colors.mantle },
-          CmpPmenu = { bg = colors.base },
-          CmpSel = { link = "PmenuSel", bold = true },
+          -- CmpPmenu = { bg = colors.base },
+          -- CmpSel = { link = "PmenuSel", bold = true },
 
           -- Custom Style
           -- CmpMenu = { bg = colors.base },
@@ -110,7 +143,13 @@ return {
           NeoTreeGitStaged = { fg = colors.green, style = { "italic" } },
 
           -- Treesitter Context
-          TreesitterContext = { bg = colors.mantle },
+          -- TreesitterContext = { bg = colors.mantle },
+          TreesitterContext = { bg = ucolors.darken(colors.base, 0.55, colors.mantle) },
+          TreesitterContextBottom = { sp = colors.surface1 },
+          TreesitterContextLineNumber = {
+            fg = colors.rosewater,
+            bg = ucolors.darken(colors.base, 0.55, colors.mantle),
+          },
 
           -- Diagnostics
           DiagnosticVirtualTextWarn = { bg = "None" },
@@ -127,6 +166,26 @@ return {
           DashboardFooter = { fg = colors.overlay2 },
 
           LspSignatureActiveParameter = { fg = colors.crust, bg = colors.green },
+
+          -- Search
+          CurSearch = { bg = ucolors.darken(colors.lavender, 0.65, colors.base), fg = colors.mantle },
+
+          -- Lazy.nvim
+          LazyButton = { bg = colors.mantle },
+
+          -- Mason
+          MasonHeader = { bg = colors.mauve, fg = colors.mantle },
+          MasonHighlightBlockBold = { bg = colors.blue, fg = colors.mantle },
+          MasonMutedBlock = { bg = colors.surface0, fg = colors.text },
+
+          -- blink.cmp
+          BlinkCmpMenuBorder = { fg = colors.blue },
+          BlinkCmpDocBorder = { fg = colors.sapphire },
+          BlinkCmpSignatureHelpBorder = { fg = colors.yellow },
+
+          -- Folds
+          -- Folded = { bg = colors.mantle },
+          Folded = { bg = ucolors.darken(colors.peach, 0.1, colors.base) },
         }
       end,
     }

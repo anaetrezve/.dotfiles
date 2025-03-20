@@ -77,7 +77,7 @@ opt.scrolloff = 4 -- is one of my fav
 opt.swapfile = false
 
 -- hide startup empty buffer
-opt.hidden = false
+opt.hidden = true
 
 -- disable nvim intro
 opt.shortmess:append("sI")
@@ -93,3 +93,8 @@ opt.laststatus = 3
 -- opt.statusline = string.rep("-", vim.api.nvim_win_get_width(0))
 -- -- if you want give the line a highlight can be
 -- vim.opt.statusline = "%#Myhighlight#" .. "mystring" .. "%*"
+
+-- Remove comment on new line
+----------------------------------------------
+-- vim.cmd("autocmd BufEnter * set formatoptions-=cro")
+-- vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")

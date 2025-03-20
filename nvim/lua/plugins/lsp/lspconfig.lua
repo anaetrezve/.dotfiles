@@ -7,34 +7,64 @@ M.on_attach = function(_, bufnr)
     return { buffer = bufnr, desc = "LSP " .. desc }
   end
 
+  -- KEYMAPS
   keymap("n", "gd", vim.lsp.buf.definition, opts("Goto Definition"))
   keymap("n", "gr", vim.lsp.buf.references, opts("References"))
   keymap("n", "gi", vim.lsp.buf.implementation, opts("Goto Implementation"))
   keymap("n", "gt", vim.lsp.buf.type_definition, opts("Goto Type Definition"))
   keymap("n", "gD", vim.lsp.buf.declaration, opts("Goto Declaration"))
-  keymap("n", "K", vim.lsp.buf.hover, opts("Show documentation for what is under cursor"))
-  keymap("n", "gK", vim.lsp.buf.signature_help, opts("Signature Help"))
-  keymap("i", "<C-k>", vim.lsp.buf.signature_help, opts("Signature Help"))
+  keymap("n", "gn", vim.lsp.buf.rename, opts("Rename"))
   keymap("n", "gf", vim.lsp.buf.format, opts("Formating"))
-  keymap("n", "ca", vim.lsp.buf.code_action, opts("Code Action"))
-  keymap("n", "]]", vim.diagnostic.goto_next, opts("Goto Previous Diagnostic"))
-  keymap("n", "[[", vim.diagnostic.goto_prev, opts("Goto Next Diagnostic"))
+  keymap("n", "gc", vim.lsp.buf.code_action, opts("Code Action"))
+  keymap("n", "gk", vim.lsp.buf.signature_help, opts("Signature Help"))
+  keymap("n", "K", vim.lsp.buf.hover, opts("Show documentation for what is under cursor"))
+  keymap("i", "<C-k>", vim.lsp.buf.signature_help, opts("Insert Mode Signature Help"))
+  keymap("n", "g]", vim.diagnostic.goto_next, opts("Goto Previous Diagnostic"))
+  keymap("n", "g[", vim.diagnostic.goto_prev, opts("Goto Next Diagnostic"))
   keymap("n", "<leader>rn", require("plugins.lsp.renamer"), opts("Rename"))
   keymap("n", "<leader>rs", ":LspRestart<CR>", opts("Restart LSP"))
+  keymap("n", "<leader>ih", function()
+    if vim.lsp.inlay_hint then
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end
+  end, opts("Toggle Inlay Hints"))
+
+  -- INLAY HINTS
+  -- if client.server_capabilities.inlayHintProvider then
+  --   vim.lsp.inlay_hint.enable(true)
+  -- else
+  --   vim.lsp.inlay_hint.enable(false)
+  -- end
+end
+
+M.handlers = function()
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "single",
+    silent = true,
+    max_height = 15,
+    max_width = 80,
+  })
+
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "single",
+    silent = true,
+    max_height = 15,
+    max_width = 80,
+  })
 end
 
 -- disable semanticTokens
-M.on_init = function(client, _)
-  if client.supports_method("textDocument/semanticTokens") then
-    client.server_capabilities.semanticTokensProvider = nil
-  end
-end
-
-M.capabilities = require("cmp_nvim_lsp").default_capabilities()
-M.capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
-}
+-- M.on_init = function(client, _)
+--   if client.supports_method("textDocument/semanticTokens") then
+--     client.server_capabilities.semanticTokensProvider = nil
+--   end
+-- end
+--
+-- M.capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- M.capabilities.textDocument.foldingRange = {
+--   dynamicRegistration = false,
+--   lineFoldingOnly = true,
+-- }
 
 -- M.capabilities = vim.lsp.protocol.make_client_capabilities()
 --
@@ -58,45 +88,19 @@ M.capabilities.textDocument.foldingRange = {
 
 M.defaults = function()
   local lspconfig = require("lspconfig")
+  local lsp_defaults = lspconfig.util.default_config
+  local blink = require("blink.cmp")
   require("plugins.lsp.diagnostic").diagnostic_config()
+  lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, blink.get_lsp_capabilities())
 
-  for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup({
-      on_attach = M.on_attach,
-      capabilities = M.capabilities,
-      on_init = M.on_init,
-    })
+  M.handlers()
+
+  for server, config in pairs(servers) do
+    -- config.capabilities = blink.get_lsp_capabilities(config.capabilities)
+    config.on_attach = M.on_attach
+
+    lspconfig[server].setup(config)
   end
-
-  lspconfig.lua_ls.setup({
-    on_attach = M.on_attach,
-    capabilities = M.capabilities,
-    on_init = M.on_init,
-
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "vim" },
-        },
-        -- workspace = {
-        --   library = {
-        --     vim.fn.expand("$VIMRUNTIME/lua"),
-        --     vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
-        --     vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-        --     "${3rd}/luv/library",
-        --   },
-        --   maxPreload = 100000,
-        --   preloadFileSize = 10000,
-        -- },
-      },
-    },
-  })
-
-  lspconfig["ruby_lsp"].setup({
-    on_attach = M.on_attach,
-    capabilities = M.capabilities,
-    on_init = M.on_init,
-  })
 end
 
 return M

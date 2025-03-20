@@ -36,10 +36,10 @@ M.colors = {
 }
 
 M.diagnostic_colors = function()
-	vim.cmd("highlight " .. "St_lspError" .. " guifg=#f38ba8")
-	vim.cmd("highlight " .. "St_lspInfo" .. " guifg=#89b4fa")
-	vim.cmd("highlight " .. "St_lspWarning" .. " guifg=#fab387")
-	vim.cmd("highlight " .. "St_lspHints" .. " guifg=#89dceb")
+	vim.cmd("highlight " .. "St_lspError" .. " guifg=#f38ba8 guibg=#181825")
+	vim.cmd("highlight " .. "St_lspInfo" .. " guifg=#89b4fa guibg=#181825")
+	vim.cmd("highlight " .. "St_lspWarning" .. " guifg=#fab387 guibg=#181825")
+	vim.cmd("highlight " .. "St_lspHints" .. " guifg=#89dceb guibg=#181825")
 end
 
 M.mode_colors = function()
@@ -55,10 +55,16 @@ M.git_colors = function()
 	vim.cmd("highlight " .. "St_git_branch" .. " guifg=#cdd6f4 guibg=#181825")
 end
 
+M.lsp_loaders = function()
+	vim.cmd("highlight " .. "St_lsp_loader" .. " guifg=#89b4fa guibg=#181825")
+	vim.cmd("highlight " .. "St_lsp_loading_done" .. " guifg=#a6e3a1 guibg=#181825")
+end
+
 M.set_default_Mode_highlight_colors = function()
 	M.mode_colors()
 	M.diagnostic_colors()
 	M.git_colors()
+	M.lsp_loaders()
 end
 
 return M

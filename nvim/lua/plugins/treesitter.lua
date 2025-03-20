@@ -1,37 +1,50 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
+  {
+    "nvim-treesitter/nvim-treesitter",
 
-  dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
+      {
+        "nvim-treesitter/nvim-treesitter-context",
 
-  event = { "BufReadPost", "BufNewFile" },
+        enabled = false,
 
-  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-
-  build = ":TSUpdate",
-
-  opts = {
-    ensure_installed = {
-      "vim",
-      "vimdoc",
-      "lua",
-      "luadoc",
-      "bash",
-
-      "javascript",
-      "tsx",
-      "typescript",
-      "go",
+        opts = {},
+      },
     },
 
-    highlight = {
-      enable = true,
-      use_languagetree = true,
+    event = { "BufReadPost", "BufNewFile" },
+
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+
+    build = ":TSUpdate",
+
+    opts = {
+      auto_install = true,
+
+      highlight = {
+        enable = true,
+      },
+
+      indent = { enable = true },
     },
 
-    indent = { enable = true },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
 
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
-  end,
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
+  },
+
+  {
+    "ckolkey/ts-node-action",
+    keys = {
+      { "+", "<cmd>NodeAction<cr>", desc = "Trigger Node Action" },
+    },
+    opts = {},
+  },
 }

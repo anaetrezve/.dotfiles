@@ -122,15 +122,11 @@ M.git = function()
 	return " " .. branch_name .. added .. changed .. removed
 end
 
-M.lsp_msg = function()
-	return vim.o.columns < 120 and "" or M.state.lsp_msg
-end
-
 M.lsp = function()
 	if rawget(vim, "lsp") then
 		for _, client in ipairs(vim.lsp.get_clients()) do
 			if client.attached_buffers[M.stbufnr()] then
-				return (vim.o.columns > 100 and "   LSP ~ " .. client.name .. " ") or "   LSP "
+				return (vim.o.columns > 100 and "   LSP " .. client.name .. " ") or "   LSP "
 			end
 		end
 	end
@@ -143,15 +139,15 @@ M.diagnostics = function()
 		return ""
 	end
 
-	local err = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.ERROR })
-	local warn = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.WARN })
-	local hints = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.HINT })
-	local info = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.INFO })
+	local errNum = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.ERROR })
+	local warnNum = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.WARN })
+	local hintsNum = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.HINT })
+	local infoNum = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.INFO })
 
-	err = (err and err > 0) and ("%#St_lspError#" .. "󰅙 " .. err .. " ") or ""
-	warn = (warn and warn > 0) and ("%#St_lspWarning#" .. " " .. warn .. " ") or ""
-	hints = (hints and hints > 0) and ("%#St_lspHints#" .. "󰌵 " .. hints .. " ") or ""
-	info = (info and info > 0) and ("%#St_lspInfo#" .. "󰋼 " .. info .. " ") or ""
+	local err = (errNum and errNum > 0) and ("%#St_lspError#" .. "󰅙 " .. errNum .. " ") or ""
+	local warn = (warnNum and warnNum > 0) and ("%#St_lspWarning#" .. " " .. warnNum .. " ") or ""
+	local hints = (hintsNum and hintsNum > 0) and ("%#St_lspHints#" .. "󰌵 " .. hintsNum .. " ") or ""
+	local info = (infoNum and infoNum > 0) and ("%#St_lspInfo#" .. "󰋼 " .. infoNum .. " ") or ""
 
 	return " " .. err .. warn .. hints .. info
 end
@@ -165,22 +161,33 @@ M.separators = {
 
 M.state = { lsp_msg = "" }
 
-local spinners = { "", "", "", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" }
+M.lsp_msg = function()
+	return vim.o.columns < 120 and "" or "%#St_lsp_loader#" .. M.state.lsp_msg
+end
+
+local spinners = { "󰪞", "󰪟", "󰪠", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥", "%#St_lsp_loading_done#" }
 
 M.autocmds = function()
 	vim.api.nvim_create_autocmd("LspProgress", {
-		pattern = { "begin", "end" },
+		pattern = { "begin", "report", "end" },
 		callback = function(args)
+			-- Ensure params exists before accessing its fields
+			if not args.data or not args.data.params then
+				return
+			end
+
 			local data = args.data.params.value
 			local progress = ""
 
 			if data.percentage then
-				local idx = math.max(1, math.floor(data.percentage / 10))
-				local icon = spinners[idx]
+				local idx = math.max(0, math.floor(data.percentage / 10))
+				local icon = idx > 0 and spinners[idx] or ""
 				progress = icon .. " " .. data.percentage .. "%% "
 			end
 
-			local str = progress .. (data.message or "") .. " " .. (data.title or "")
+			local loaded_count = data.message and string.match(data.message, "^(%d+/%d+)") or ""
+			local str = (data.title .. " " or "") .. (loaded_count and loaded_count .. " " or "") .. progress
+			-- local str = progress .. (data.title or "") .. " " .. (loaded_count or "")
 			M.state.lsp_msg = data.kind == "end" and "" or str
 			vim.cmd.redrawstatus()
 		end,
