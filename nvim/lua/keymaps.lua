@@ -96,8 +96,8 @@ keymap(
 -- keymap("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 -- keymap("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
--- Reaload configs keymaps --
-keymap("n", "<D-r>", ":so $MYVIMRC<CR>", { desc = "Reload neovim config" })
+-- Reaload config keymaps --
+keymap("n", "<D-r>", ":so %<CR>", { desc = "Reload neovim config" })
 
 -- Close buffer
 keymap("n", "<leader>tx", "<Cmd>bd<CR>", { desc = "Close current buffer" })
