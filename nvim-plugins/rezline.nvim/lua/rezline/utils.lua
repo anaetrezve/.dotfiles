@@ -110,13 +110,13 @@ M.git = function()
 	local git_status = vim.b[M.stbufnr()].gitsigns_status_dict
 
 	local added = (git_status.added and git_status.added ~= 0) and ("%#St_git_added#" .. "  " .. git_status.added)
-		or ""
+			or ""
 	local changed = (git_status.changed and git_status.changed ~= 0)
 			and ("%#St_git_modified#" .. "  " .. git_status.changed)
-		or ""
+			or ""
 	local removed = (git_status.removed and git_status.removed ~= 0)
 			and ("%#St_git_deleted#" .. "  " .. git_status.removed)
-		or ""
+			or ""
 	local branch_name = "%#St_git_branch# " .. git_status.head
 
 	return " " .. branch_name .. added .. changed .. removed
@@ -186,7 +186,7 @@ M.autocmds = function()
 			end
 
 			local loaded_count = data.message and string.match(data.message, "^(%d+/%d+)") or ""
-			local str = (data.title or "") .. (loaded_count and " " .. loaded_count or "") .. " " .. progress
+			local str = (data.title .. " " or "") .. (loaded_count and loaded_count .. " " or "") .. progress
 			-- local str = progress .. (data.title or "") .. " " .. (loaded_count or "")
 			M.state.lsp_msg = data.kind == "end" and "" or str
 			vim.cmd.redrawstatus()
