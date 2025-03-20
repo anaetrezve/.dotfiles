@@ -7,14 +7,17 @@ return {
         search_replace = { kind = "search", pattern = "^:%%s/", icon = "󰛔", lang = "regex" },
       },
     },
+
     messages = {
       view_history = "popup",
     },
+
     commands = {
       history = {
         view = "popup",
       },
     },
+
     lsp = {
       hover = { enabled = false },
       progress = {
@@ -34,7 +37,7 @@ return {
     views = {
       cmdline_popup = {
         position = {
-          row = 3,
+          row = "50%",
           col = "50%",
         },
       },
