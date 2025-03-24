@@ -190,6 +190,8 @@ return {
           -- Folds
           -- Folded = { bg = colors.mantle },
           Folded = { bg = ucolors.darken(colors.peach, 0.1, colors.base) },
+
+          IblScope = { fg = colors.surface2 },
         }
       end,
     }
