@@ -77,6 +77,10 @@ return {
         notify = true,
         nvim_surround = true,
         nvimtree = false,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = true,
+        },
       },
 
       custom_highlights = function(colors)
