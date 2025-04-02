@@ -125,19 +125,23 @@ return {
 
     completion = {
       menu = {
-        border = "none",
+        border = "single",
+        scrollbar = false,
         draw = {
-          columns = { { "kind_icon" }, { "label", gap = 1 } },
-          components = {
-            label = {
-              text = function(ctx)
-                return require("colorful-menu").blink_components_text(ctx)
-              end,
-              highlight = function(ctx)
-                return require("colorful-menu").blink_components_highlight(ctx)
-              end,
-            },
-          },
+          padding = 1,
+          gap = 0,
+          -- columns = { { "kind_icon" }, { "label", gap = 0 } },
+          treesitter = { "lsp" },
+          -- components = {
+          --   label = {
+          --     text = function(ctx)
+          --       return require("colorful-menu").blink_components_text(ctx)
+          --     end,
+          --     highlight = function(ctx)
+          --       return require("colorful-menu").blink_components_highlight(ctx)
+          --     end,
+          --   },
+          -- },
         },
       },
       documentation = {
@@ -177,7 +181,7 @@ return {
         },
         lsp = {
           min_keyword_length = 0,
-          score_offset = 0,
+          score_offset = 90,
         },
         path = {
           min_keyword_length = 0,

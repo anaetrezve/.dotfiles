@@ -183,9 +183,11 @@ return {
           MasonMutedBlock = { bg = colors.surface0, fg = colors.text },
 
           -- blink.cmp
-          BlinkCmpMenuBorder = { fg = colors.blue },
-          BlinkCmpDocBorder = { fg = colors.sapphire },
-          BlinkCmpSignatureHelpBorder = { fg = colors.yellow },
+          BlinkCmpMenu = { bg = colors.base },
+          BlinkCmpMenuBorder = { fg = colors.overlay0, bg = colors.base },
+          BlinkCmpDocBorder = { fg = colors.overlay0, bg = colors.base },
+          BlinkCmpMenuSelection = { bg = colors.surface0 },
+          BlinkCmpSignatureHelpBorder = { fg = colors.yellow, bg = colors.base },
 
           -- Folds
           -- Folded = { bg = colors.mantle },
