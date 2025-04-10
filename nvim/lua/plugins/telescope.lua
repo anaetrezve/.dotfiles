@@ -59,11 +59,11 @@ return {
 
     return {
       defaults = {
-        path_display = {
-          filename_first = {
-            reverse_directories = true,
-          },
-        },
+        -- path_display = {
+        --   filename_first = {
+        --     reverse_directories = false,
+        --   },
+        -- },
         results_title = false,
         -- dynamic_preview_title = true,
         prompt_prefix = "   ",
@@ -73,7 +73,19 @@ return {
         selection_strategy = "reset",
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = {
+          "node_modules",
+          ".git/",
+          ".cache",
+          "%.o",
+          "%.a",
+          "%.out",
+          "%.class",
+          "%.pdf",
+          "%.mkv",
+          "%.mp4",
+          "%.zip",
+        },
         layout_strategy = "horizontal",
         sorting_strategy = "ascending",
         layout_config = {
@@ -119,6 +131,7 @@ return {
         },
         extensions = {
           fzf = {
+            fuzzy = false,
             override_generic_sorter = true,
             override_file_sorter = true,
             case_mode = "smart_case",
