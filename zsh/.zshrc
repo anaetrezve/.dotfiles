@@ -26,7 +26,6 @@ setopt sharehistory
 setopt hist_save_no_dups
 setopt hist_find_no_dups
 
-
 # =====================
 # AUTO-COMPLETION SETTINGS
 # =====================
@@ -35,7 +34,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots) # Include hidden files.
 
 # =====================
 # PLUGINS
@@ -109,5 +108,6 @@ fi
 # =====================
 # STARSHIP PROMPT
 # =====================
-# eval "$(starship init zsh)"
-
+# if command -v starship &>/dev/null; then
+#   eval "$(starship init zsh)"
+# fi

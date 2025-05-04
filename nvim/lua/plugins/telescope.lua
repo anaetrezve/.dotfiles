@@ -35,7 +35,22 @@ return {
     { "<leader>fo", "<cmd>Telescope oldfiles hidden=true<cr>", desc = "Recently opened files" },
     -- { "<leader>fp", "<cmd>Telescope spell_suggest<cr>", desc = "Find Spell Suggest" },
     { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "Find Quickix" },
-    { "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Find Word Under Cursor" },
+    {
+      "<leader>fw",
+      function()
+        require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()
+      end,
+      mode = { "n", "v" },
+      desc = "Word Under Cursor",
+    },
+    {
+      "<leader>fs",
+      function()
+        require("telescope-live-grep-args.shortcuts").grep_visual_selection()
+      end,
+      mode = { "n", "v" },
+      desc = "Find Selected Text",
+    },
     -- { "<leader>fs", "<cmd>Telescope symbols<cr>", desc = "Find Symbols" },
     -- { "<leader>ft", "<cmd>Telescope git_files<cr>", desc = "Find Git Files" },
     { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find Undo" },
