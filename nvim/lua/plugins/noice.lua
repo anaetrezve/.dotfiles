@@ -16,7 +16,17 @@ return {
       },
     },
     lsp = {
-      hover = { enabled = false },
+      hover = {
+        enabled = true,
+        opts = {
+          scrollbar = false,
+          zindex = 100,
+          size = {
+            max_width = 90,
+            max_height = 12,
+          },
+        },
+      },
       progress = {
         enabled = false,
       },
@@ -25,11 +35,28 @@ return {
         ["vim.lsp.util.stylize_markdown"] = true,
       },
       signature = {
-        enabled = false,
+        enabled = true,
+        opts = {
+          scrollbar = false,
+          zindex = 100,
+          size = {
+            max_width = 90,
+            max_height = 12,
+          },
+        },
+        auto_open = {
+          enabled = true,
+          trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
+          throttle = 50, -- Debounce lsp signature help request by 50ms
+        },
+      },
+      documentation = {
+        view = "hover",
       },
     },
     presets = {
       inc_rename = true,
+      lsp_doc_border = true,
     },
     views = {
       cmdline_popup = {
@@ -37,11 +64,20 @@ return {
           row = "50%",
           col = "50%",
         },
+
+        -- border = {
+        --   style = "single",
+        --   padding = { 1, 1 },
+        -- },
+        -- filter_options = {},
+        -- win_options = {
+        --   winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+        -- },
       },
       popup = {
         size = {
           width = "80%",
-          height = "70%",
+          height = "50%",
         },
         border = {
           style = "single",
