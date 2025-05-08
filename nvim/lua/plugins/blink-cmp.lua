@@ -14,7 +14,8 @@ return {
       nerd_font_variant = "mono",
 
       kind_icons = {
-        Method = "󰆧 ",
+        Method = "󰡱 ",
+        -- Method = "󰆧 ",
         Function = "󰡱 ",
         Constructor = " ",
         Variable = "󰀫 ",
@@ -38,7 +39,6 @@ return {
         Control = " ",
         Collapsed = " ",
         Copilot = " ",
-        Field = " ",
         Key = " ",
         Keyword = " ",
         Namespace = "󰦮 ",
@@ -47,6 +47,8 @@ return {
         Object = " ",
         Operator = " ",
         Package = " ",
+        -- Field = " ",
+        Field = " ",
         Property = " ",
         Reference = " ",
         String = " ",
