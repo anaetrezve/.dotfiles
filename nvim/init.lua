@@ -22,7 +22,7 @@ require("autocmd")
 require("keymaps")
 
 -- Setup lazy.nvim plugin manager
-require("lazy").setup({ import = "plugins" }, {
+require("lazy").setup({{ import = "plugins" }, {import = "plugins.lsp"}}, {
   change_detection = {
     notify = false,
   },

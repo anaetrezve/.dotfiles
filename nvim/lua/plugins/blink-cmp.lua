@@ -168,12 +168,12 @@ return {
       },
     },
 
-    signature = {
-      enabled = true,
-      window = {
-        border = "single",
-      },
-    },
+    -- signature = {
+    --   enabled = true,
+    --   window = {
+    --     border = "single",
+    --   },
+    -- },
 
     sources = {
       default = { "lazydev", "lsp", "copilot", "path", "snippets", "buffer" },
