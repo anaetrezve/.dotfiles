@@ -157,6 +157,11 @@ function setup_starship_config() {
   ln -nsf $HOME/.dotfiles/starship $XDG_CONFIG_HOME
 }
 
+function setup_mise_config() {
+  echo "Setting up mise config"
+  ln -nsf $HOME/.dotfiles/mise $XDG_CONFIG_HOME
+}
+
 function setup_ghostty_config() {
   echo "Setting up ghostty config"
   ln -nsf $HOME/.dotfiles/ghostty $XDG_CONFIG_HOME
@@ -191,13 +196,14 @@ function show_help() {
   
   echo -e "  ${GREEN}-h, --help${RESET}                    ${YELLOW}Display this help message and exit.${RESET}"
   echo -e "  ${GREEN}-hb, --homebrew${RESET}               ${YELLOW}Install and configure Homebrew package manager.${RESET}"
-  echo -e "  ${GREEN}-sz, --setup-zshenv${RESET}           ${YELLOW}Set up the .zshenv file for shell configuration.${RESET}"
+  echo -e "  ${GREEN}-sz, --setup-zshenv${RESET}           ${YELLOW}Setup the .zshenv file for shell configuration.${RESET}"
   echo -e "  ${GREEN}-izp, --install-zsh-plugins${RESET}   ${YELLOW}Install useful plugins for zsh (Z shell).${RESET}"
+  echo -e "  ${GREEN}-sm, --setup-mise${RESET}             ${YELLOW}Setup mise configs.${RESET}"
   echo -e "  ${GREEN}-ip, --install-packages${RESET}       ${YELLOW}Install essential system packages.${RESET}"
   echo -e "  ${GREEN}-st, --setup-tmux${RESET}             ${YELLOW}Configure tmux (terminal multiplexer) settings.${RESET}"
-  echo -e "  ${GREEN}-sn, --setup-neovim${RESET}           ${YELLOW}Set up Neovim editor configuration.${RESET}"
+  echo -e "  ${GREEN}-sn, --setup-neovim${RESET}           ${YELLOW}Setup Neovim editor configuration.${RESET}"
   echo -e "  ${GREEN}-ss, --setup-starship${RESET}         ${YELLOW}Configure Starship prompt for shell customization.${RESET}"
-  echo -e "  ${GREEN}-szc, --setup-zsh${RESET}             ${YELLOW}Set up the zsh shell configuration.${RESET}"
+  echo -e "  ${GREEN}-szc, --setup-zsh${RESET}             ${YELLOW}Setup the zsh shell configuration.${RESET}"
   echo -e "  ${GREEN}-sw, --setup-wezterm${RESET}          ${YELLOW}Configure WezTerm terminal settings.${RESET}"
   echo -e "  ${GREEN}-sg, --setup-ghostty${RESET}          ${YELLOW}Configure Ghostty terminal settings.${RESET}"
   echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
@@ -226,6 +232,9 @@ function initial_setup() {
       ;;
     -hb | --homebrew)
       setup_homebrew
+      ;;
+    -sm | --setup-mise )
+     setup_mise_config 
       ;;
     -sz | --setup-zshenv)
       setup_zshenv
@@ -268,6 +277,7 @@ function initial_setup() {
       setup_zsh_config
       setup_wezterm_config
       setup_ghostty_config 
+      setup_mise_config 
       ;;
     *)
       echo "Unknown option: $1"

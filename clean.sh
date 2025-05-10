@@ -10,6 +10,11 @@ function remove_zsh_configs() {
   rm -rf ~/.zsh* ~/.zprofile ~/.config/zsh
 }
 
+function remove_mise_configs() {
+  echo "Removing mise configs"
+  rm -rf ~/.config/mise
+}
+
 function remove_tmux_configs() {
   echo "Removing Tmux configs"
   rm -rf ~/.tmux ~/.config/tmux
@@ -43,6 +48,7 @@ function remove_all_configs() {
   remove_neovim_configs
   remove_other_configs
   remove_ghostty_configs 
+  remove_mise_configs 
 }
 
 function remove_all_apps() {
@@ -75,6 +81,7 @@ function show_help {
   echo "Options:"
   echo "  -a, --all                      Remove all configs, apps, and zsh plugins"
   echo "  -co, --configs-only            Remove all configs"
+  echo "  -mco, --mise-configs-only      Remove mise configs"
   echo "  -ao, --apps-only               Remove all apps"
   echo "  -zo, --zsh-plugins-only        Remove all zsh plugins"
   echo "  -nco, --neovim-configs-only    Remove only Neovim configs"
@@ -103,6 +110,9 @@ while [[ $# -gt 0 ]]; do
     ;;
   -co | --configs-only)
     remove_all_configs
+    ;;
+  -mco | --mise-configs-only)
+    remove_mise_configs
     ;;
   -ao | --apps-only)
     remove_all_apps
