@@ -14,6 +14,7 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       ruby = { "rubocop" },
+      python = { "pylint" },
       -- lua = { "luacheck" },
     }
 

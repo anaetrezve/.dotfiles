@@ -59,4 +59,4 @@ opt.pumheight = 10 -- Limit popup menu height
 -- === Misc ===
 opt.iskeyword:append("-") -- consider string-string as whole word
 opt.conceallevel = 0 -- Hide markdown symbols like **bold** (Set 0 if you prefer visible)
-opt.formatoptions:remove("cro") -- Don't auto-comment new lines
+-- opt.formatoptions:remove("cro") -- Don't auto-comment new lines

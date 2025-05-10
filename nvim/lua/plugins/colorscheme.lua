@@ -178,9 +178,9 @@ return {
           LazyButton = { bg = colors.mantle },
 
           -- Mason
-          MasonHeader = { bg = colors.mauve, fg = colors.mantle },
-          MasonHighlightBlockBold = { bg = colors.blue, fg = colors.mantle },
-          MasonMutedBlock = { bg = colors.surface0, fg = colors.text },
+          -- MasonHeader = { bg = colors.mauve, fg = colors.mantle },
+          -- MasonHighlightBlockBold = { bg = colors.blue, fg = colors.mantle },
+          -- MasonMutedBlock = { bg = colors.surface0, fg = colors.text },
 
           -- blink.cmp
           BlinkCmpMenu = { bg = colors.base },
