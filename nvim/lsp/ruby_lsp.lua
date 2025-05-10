@@ -13,7 +13,6 @@
 --- ```
 return {
   cmd = { "ruby-lsp" },
-  cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv("GLOBAL_GEMFILE") },
   filetypes = { "ruby", "eruby" },
   root_markers = { "Gemfile", ".git" },
   init_options = {
