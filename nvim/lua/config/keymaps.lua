@@ -36,7 +36,7 @@ keymap("v", "p", '"_dP')
 -- keymap("x", "p", "P")
 keymap("n", "dD", '"_dd')
 
-keymap({ "i", "n" }, "<C-s>", "<CMD> w <CR>", { desc = "Save file" })
+-- keymap({ "i", "n" }, "<C-s>", "<CMD> w <CR>", { desc = "Save file" })
 -- Save with mac command key
 keymap({ "i", "n" }, "<D-s>", "<CMD> w <CR>", { desc = "Save file" })
 

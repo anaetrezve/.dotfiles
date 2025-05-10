@@ -19,6 +19,7 @@ return {
     opts = {
       ensure_installed = {
         "prettier",
+        "prettierd",
         "stylua",
         "eslint_d",
         "rubocop",
