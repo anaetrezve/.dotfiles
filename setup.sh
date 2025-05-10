@@ -47,9 +47,9 @@ function install_or_update_brew_app() {
 }
 
 function setup_zshenv() {
-  echo "Setting up .zshenv to home directory \n"
+  echo "Setting up .zshenv to home directory"
 
-  ln -nsf $HOME/.dotfiles/.zshenv $HOME
+  ln -nsf $HOME/.dotfiles/zsh/.zshenv $HOME
   source $HOME/.zshenv
 
   touch $XDG_CACHE_HOME/zsh/.zsh_history

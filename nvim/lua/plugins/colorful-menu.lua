@@ -1,7 +1,7 @@
 return {
   "xzbdmw/colorful-menu.nvim",
 
-  enabled = true,
+  enabled = false,
 
   opts = {},
 

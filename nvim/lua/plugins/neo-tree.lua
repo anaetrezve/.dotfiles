@@ -54,7 +54,7 @@ return {
   },
 
   opts = {
-    hide_root_node = true,
+    hide_root_node = false,
     popup_border_style = "single",
     enable_diagnostics = false,
     open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },

@@ -77,6 +77,10 @@ return {
         notify = true,
         nvim_surround = true,
         nvimtree = false,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = true,
+        },
       },
 
       custom_highlights = function(colors)
@@ -174,18 +178,22 @@ return {
           LazyButton = { bg = colors.mantle },
 
           -- Mason
-          MasonHeader = { bg = colors.mauve, fg = colors.mantle },
-          MasonHighlightBlockBold = { bg = colors.blue, fg = colors.mantle },
-          MasonMutedBlock = { bg = colors.surface0, fg = colors.text },
+          -- MasonHeader = { bg = colors.mauve, fg = colors.mantle },
+          -- MasonHighlightBlockBold = { bg = colors.blue, fg = colors.mantle },
+          -- MasonMutedBlock = { bg = colors.surface0, fg = colors.text },
 
           -- blink.cmp
-          BlinkCmpMenuBorder = { fg = colors.blue },
-          BlinkCmpDocBorder = { fg = colors.sapphire },
-          BlinkCmpSignatureHelpBorder = { fg = colors.yellow },
+          BlinkCmpMenu = { bg = colors.base },
+          BlinkCmpMenuBorder = { fg = colors.overlay0, bg = colors.base },
+          BlinkCmpDocBorder = { fg = colors.overlay0, bg = colors.base },
+          BlinkCmpMenuSelection = { bg = colors.surface0 },
+          BlinkCmpSignatureHelpBorder = { fg = colors.yellow, bg = colors.base },
 
           -- Folds
           -- Folded = { bg = colors.mantle },
           Folded = { bg = ucolors.darken(colors.peach, 0.1, colors.base) },
+
+          IblScope = { fg = colors.surface2 },
         }
       end,
     }
