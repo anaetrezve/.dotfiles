@@ -74,6 +74,14 @@ keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 keymap("n", "<leader>.", "5<C-w>>", { desc = "Increase split size to right" })
 keymap("n", "<leader>,", "5<C-w><", { desc = "Increase split size to left" })
 
+-- diagnostics
+keymap(
+  "n",
+  "<leader>d",
+  ':lua vim.diagnostic.open_float(nil, {scope="cursor"})<CR>',
+  { desc = "Open floating window for the diagnostic" }
+)
+
 -- keymap("n", "<ESC>", function()
 --   for _, win in ipairs(vim.api.nvim_list_wins()) do
 --     if vim.api.nvim_win_get_config(win).relative == "win" then
@@ -88,7 +96,8 @@ keymap("n", "<leader>,", "5<C-w><", { desc = "Increase split size to left" })
 -- keymap("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 -- keymap("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
--- Barbar keymaps --
+-- Reaload config keymaps --
+keymap("n", "<D-r>", ":so %<CR>", { desc = "Reload neovim config" })
 
 -- Close buffer
 keymap("n", "<leader>tx", "<Cmd>bd<CR>", { desc = "Close current buffer" })

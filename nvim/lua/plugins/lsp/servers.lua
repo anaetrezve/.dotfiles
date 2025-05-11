@@ -1,17 +1,4 @@
 -- Servernames added from https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
-local function get_ruby_lsp_path()
-  local handle = io.popen("rbenv which ruby-lsp")
-  local result = handle:read("*a")
-  handle:close()
-  return result:gsub("%s+", "")
-end
-
-local function get_solargraph_path()
-  local handle = io.popen("rbenv which solargraph")
-  local result = handle:read("*a")
-  handle:close()
-  return result:gsub("%s+", "")
-end
 
 return {
   lua_ls = {
@@ -40,22 +27,23 @@ return {
   -- root_dir = function()
   --   return vim.loop.cwd()
   -- end,
-  --   cmd = { get_ruby_lsp_path(), "stdio" },
-  -- settings = {
-  --   ruby_lsp = {
-  --     diagnostics = true,
-  --   },
-  -- },
   -- },
 
-  -- solargraph = {
-  -- cmd = { get_solargraph_path(), "stdio" },
-  --   settings = {
-  --     solargraph = {
-  --       diagnostics = true,
-  --     },
-  --   },
-  -- },
+  solargraph = {
+    -- filetypes = { 'ruby' },
+    -- settings = {
+    --   solargraph = {
+    --     commandPath = { os.getenv("HOME") .. "/.rbenv/shims/solargraph", "stdio" },
+    --     autoformat = true,
+    --     completion = true,
+    --     diagnostic = true,
+    --     folding = true,
+    --     references = true,
+    --     rename = true,
+    --     symbols = true,
+    --   },
+    -- },
+  },
 
   jsonls = {},
 

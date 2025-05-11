@@ -1,100 +1,62 @@
-vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd("let g:netrw_liststyle = 3") -- Netrw file explorer style
 
-local opt = vim.opt -- for conciseness
+local opt = vim.opt
 
--- line numbers
-opt.relativenumber = true -- show relative line numbers
-opt.number = true -- shows absolute line number on cursor line (when relative number is on)
-opt.numberwidth = 2
-opt.ruler = false
+-- === Line Numbers ===
+opt.relativenumber = true
+opt.number = true
+opt.numberwidth = 4 -- Ensures proper alignment
+opt.cursorline = true -- Highlight current line
 
--- tabs & indentation
-opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- 2 spaces for indent width
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+-- === Tabs & Indentation ===
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.autoindent = true
 opt.softtabstop = 2
+opt.smartindent = true -- Smarter auto-indentation
 
--- line wrapping
--- opt.wrap = true -- disable line wrapping
+-- === Line Wrapping ===
+opt.wrap = true
+opt.linebreak = true
+opt.breakindent = true
 
--- search settings
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+-- === Search ===
+opt.ignorecase = true
+opt.smartcase = true
+opt.incsearch = true -- Show matches while typing
+opt.hlsearch = true -- Highlight matches
 
--- cursor line
-opt.cursorline = true -- highlight the current cursor line
--- opt.cursorlineopt = "number"
-
--- appearance
-
--- turn on termguicolors for nightfly colorscheme to work
--- (have to use iterm2 or any other true color terminal)
+-- === UI Improvements ===
 opt.termguicolors = true
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
--- opt.colorcolumn = "100"
+opt.background = "dark"
+opt.signcolumn = "yes"
+opt.scrolloff = 4
+opt.sidescrolloff = 4 -- Ensures better side scrolling
+opt.shortmess:append("sI") -- Disable Neovim intro
+opt.laststatus = 3 -- Minimal statusline
 
--- backspace
-opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+-- === Clipboard ===
+opt.clipboard:append("unnamedplus")
 
--- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+-- === File & Buffer Management ===
+opt.undofile = true -- Persistent undo history
+opt.swapfile = false -- Disable swapfile
+opt.hidden = true -- Allows switching buffers without saving
+opt.bufhidden = "hide" -- Better way to hide buffers
+opt.fileencoding = "utf-8"
 
--- split windows
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal window to the bottom
+-- === Splits ===
+opt.splitright = true
+opt.splitbelow = true
 
+-- === Performance ===
+opt.updatetime = 300 -- Faster updates
+-- opt.lazyredraw = true -- Improve macro performance
+opt.timeoutlen = 500 -- Faster key sequence timeout
+opt.pumheight = 10 -- Limit popup menu height
+
+-- === Misc ===
 opt.iskeyword:append("-") -- consider string-string as whole word
-
-opt.fileencoding = "utf-8" -- the encoding written to a file
-
--- opt.backup = false -- creates a backup file
-
--- opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
-
--- opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
-
-opt.conceallevel = 0 -- so that `` is visible in markdown files
-
--- opt.showtabline = 2 -- always show tabs
-
--- opt.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
-
-opt.undofile = true -- enable persistent undo
-
-opt.updatetime = 300 -- faster completion (4000ms default)
-
--- opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-
--- opt.hlsearch = true -- highlight all matches on previous search pattern
-
-opt.scrolloff = 4 -- is one of my fav
-
--- opt.sidescrolloff = 4
-
--- turn off swapfile
-opt.swapfile = false
-
--- hide startup empty buffer
-opt.hidden = true
-
--- disable nvim intro
-opt.shortmess:append("sI")
-
--- Maximum item to show in popup menu
-opt.pumheight = 10
-
--- Totally disable statusline
----------------------------------------------
-opt.laststatus = 3
--- vim.api.nvim_set_hl(0, "Statusline", { link = "Normal" })
--- vim.api.nvim_set_hl(0, "StatuslineNC", { link = "Normal" })
--- opt.statusline = string.rep("-", vim.api.nvim_win_get_width(0))
--- -- if you want give the line a highlight can be
--- vim.opt.statusline = "%#Myhighlight#" .. "mystring" .. "%*"
-
--- Remove comment on new line
-----------------------------------------------
--- vim.cmd("autocmd BufEnter * set formatoptions-=cro")
--- vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+opt.conceallevel = 0 -- Hide markdown symbols like **bold** (Set 0 if you prefer visible)
+opt.formatoptions:remove("cro") -- Don't auto-comment new lines
