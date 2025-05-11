@@ -35,7 +35,22 @@ return {
     { "<leader>fo", "<cmd>Telescope oldfiles hidden=true<cr>", desc = "Recently opened files" },
     -- { "<leader>fp", "<cmd>Telescope spell_suggest<cr>", desc = "Find Spell Suggest" },
     { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "Find Quickix" },
-    { "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Find Word Under Cursor" },
+    {
+      "<leader>fw",
+      function()
+        require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()
+      end,
+      mode = { "n", "v" },
+      desc = "Word Under Cursor",
+    },
+    {
+      "<leader>fs",
+      function()
+        require("telescope-live-grep-args.shortcuts").grep_visual_selection()
+      end,
+      mode = { "n", "v" },
+      desc = "Find Selected Text",
+    },
     -- { "<leader>fs", "<cmd>Telescope symbols<cr>", desc = "Find Symbols" },
     -- { "<leader>ft", "<cmd>Telescope git_files<cr>", desc = "Find Git Files" },
     { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find Undo" },
@@ -59,11 +74,11 @@ return {
 
     return {
       defaults = {
-        path_display = {
-          filename_first = {
-            reverse_directories = true,
-          },
-        },
+        -- path_display = {
+        --   filename_first = {
+        --     reverse_directories = false,
+        --   },
+        -- },
         results_title = false,
         -- dynamic_preview_title = true,
         prompt_prefix = "   ",
@@ -73,7 +88,19 @@ return {
         selection_strategy = "reset",
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = {
+          "node_modules",
+          ".git/",
+          ".cache",
+          "%.o",
+          "%.a",
+          "%.out",
+          "%.class",
+          "%.pdf",
+          "%.mkv",
+          "%.mp4",
+          "%.zip",
+        },
         layout_strategy = "horizontal",
         sorting_strategy = "ascending",
         layout_config = {
@@ -119,6 +146,7 @@ return {
         },
         extensions = {
           fzf = {
+            fuzzy = false,
             override_generic_sorter = true,
             override_file_sorter = true,
             case_mode = "smart_case",

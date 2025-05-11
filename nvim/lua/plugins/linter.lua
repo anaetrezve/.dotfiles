@@ -4,6 +4,7 @@ return {
     "BufReadPre",
     "BufNewFile",
   },
+
   config = function()
     local lint = require("lint")
 
@@ -14,6 +15,7 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       ruby = { "rubocop" },
+      python = { "pylint" },
       -- lua = { "luacheck" },
     }
 
