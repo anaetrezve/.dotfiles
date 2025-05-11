@@ -1,12 +1,12 @@
-vim.cmd("let g:netrw_liststyle = 3") -- Netrw file explorer style
+vim.g.netrw_liststyle = 3 -- More modern Netrw style
 
 local opt = vim.opt
 
 -- === Line Numbers ===
 opt.relativenumber = true
 opt.number = true
-opt.numberwidth = 4   -- Ensures proper alignment
-opt.cursorline = true -- Highlight current line
+opt.numberwidth = 4
+opt.cursorline = true
 
 -- === Tabs & Indentation ===
 opt.tabstop = 2
@@ -14,7 +14,7 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 opt.softtabstop = 2
-opt.smartindent = true -- Smarter auto-indentation
+opt.smartindent = true
 
 -- === Line Wrapping ===
 opt.wrap = true
@@ -24,58 +24,64 @@ opt.breakindent = true
 -- === Search ===
 opt.ignorecase = true
 opt.smartcase = true
-opt.incsearch = true -- Show matches while typing
-opt.hlsearch = true  -- Highlight matches
+opt.incsearch = true
+opt.hlsearch = false -- Recommended: only show matches while typing, don't persist highlights
 
 -- === UI Improvements ===
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
-opt.scrolloff = 4
-opt.sidescrolloff = 4      -- Ensures better side scrolling
-opt.shortmess:append("sI") -- Disable Neovim intro
-opt.laststatus = 3         -- Minimal statusline
+opt.scrolloff = 8           -- More comfortable vertical context
+opt.sidescrolloff = 8       -- More horizontal context
+opt.shortmess:append("sI")  -- Hide startup message
+opt.laststatus = 3          -- Global statusline (preferred in 0.11+)
+
+opt.guicursor = table.concat({
+  "n-v-c:block-blinkon500-blinkoff500-blinkwait500",  -- Normal/Visual/Command: blinking block
+  "i-ci-ve:ver25-blinkon500-blinkoff500-blinkwait500", -- Insert modes: blinking vertical bar
+  "r-cr:hor20-blinkon500-blinkoff500-blinkwait500",    -- Replace modes: blinking horizontal
+  "o:hor50", -- Operator-pending (static horizontal bar)
+  "sm:block-blinkon250-blinkoff250-blinkwait250"       -- ShowMatch: faster blink
+}, ",")
+opt.smoothscroll = true     -- Enable smooth scrolling
 
 -- === Spell Checker ===
-opt.spell = false                -- Disable spell checking by default
-opt.spelllang = { 'en_us' }      -- Set spell check language to US English
-opt.spelloptions:append('camel') -- Better spell checking for camelCase
-opt.spellsuggest = 'best,9'      -- Show up to 9 suggestions, sorted by best match
-opt.spellcapcheck = ''           -- Don't check for capital letters at start of sentence
+opt.spell = false                          -- Disabled by default, enable per-file
+opt.spelllang = { "en_us" }
+opt.spelloptions:append("camel")
+opt.spellsuggest = "best,9"               -- Minor fix: actually show up to 9 suggestions
+opt.spellcapcheck = ""                    -- Disable sentence-start capitalization check
 
 -- === Clipboard ===
-opt.clipboard:append("unnamedplus")
+opt.clipboard:prepend("unnamedplus")      -- Use system clipboard as default yank/paste
 
 -- === File & Buffer Management ===
-opt.undofile = true    -- Persistent undo history
-opt.swapfile = false   -- Disable swapfile
-opt.hidden = true      -- Allows switching buffers without saving
-opt.bufhidden = "hide" -- Better way to hide buffers
+opt.undofile = true
+opt.swapfile = false
+opt.hidden = true
+opt.bufhidden = "hide"
 opt.fileencoding = "utf-8"
+opt.encoding = "utf-8" -- Optional, default is utf-8 anyway
 
 -- === Splits ===
 opt.splitright = true
 opt.splitbelow = true
 
 -- === Performance ===
-opt.updatetime = 300 -- Faster updates
--- opt.lazyredraw = true -- Improve macro performance
-opt.timeoutlen = 500 -- Faster key sequence timeout
-opt.pumheight = 10   -- Limit popup menu height
+opt.updatetime = 200         -- Slightly faster updates for things like CursorHold
+opt.timeoutlen = 300         -- Better responsiveness for mappings
+opt.pumheight = 10
+opt.lazyredraw = true        -- (Re-)enable for better macro performance
 
 -- === Misc ===
-opt.iskeyword:append("-")       -- consider string-string as whole word
-opt.conceallevel = 0            -- Hide markdown symbols like **bold** (Set 0 if you prefer visible)
-opt.formatoptions:remove("cro") -- Don't auto-comment new lines
+opt.iskeyword:append("-")
+opt.conceallevel = 0
+-- opt.formatoptions:remove({ "c", "r", "o" }) -- Don't continue comments automatically ( does not work )
 
--- === Neovim 0.11+ Specific ===
-opt.smoothscroll = true         -- Enable smooth scrolling
-opt.mousescroll = 'ver:1,hor:1' -- Smooth mouse scrolling
-opt.mousemoveevent = true       -- Enable mouse move events
-opt.mousemodel = 'extend'       -- Better mouse model
-opt.mousescroll = 'ver:1,hor:1' -- Smooth mouse scrolling
-opt.mousemoveevent = true       -- Enable mouse move events
-opt.mousemodel = 'extend'       -- Better mouse model
-opt.mousescroll = 'ver:1,hor:1' -- Smooth mouse scrolling
-opt.mousemoveevent = true       -- Enable mouse move events
-opt.mousemodel = 'extend'       -- Better mouse model
+-- === Completion ===
+opt.completeopt = { "menu", "menuone", "noselect" } -- Recommended for completion behavior
+
+-- === Folds (optional but modern) ===
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevel = 99
