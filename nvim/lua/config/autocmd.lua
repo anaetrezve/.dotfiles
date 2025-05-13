@@ -1,0 +1,79 @@
+-- HIGHLIGHT ON YANK
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank({ timeout = 200 }) -- Highlight yanked text for 200ms
+  end,
+})
+
+-- PREVENT COMMENT CONTINUETION TO NEXT LINE
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  callback = function()
+    vim.opt.formatoptions:remove({ "o", "r", "c" })
+    vim.opt.formatoptions:append({ "t" })
+  end,
+})
+
+-- JUMP TO LAST EDIT POSITION ON OPENING FILE
+vim.api.nvim_create_autocmd("BufReadPost", {
+  desc = "Open file at the last position it was edited earlier",
+  pattern = "*",
+  command = 'silent! normal! g`"zv',
+})
+
+-- OPEN HELP IN NEW BUFFER OR TAB
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "help",
+  command = ":wincmd L | vertical resize 80", -- Moves help to the right and resizes it
+  -- command = ":wincmd T", -- Moves help to a new tab
+})
+
+-- === Additional Useful Autocmds for Better Developer Experience ===
+
+-- Automatically trim trailing whitespace on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  command = "%s/\\s\\+$//e", -- Remove trailing whitespace
+})
+
+-- Automatically reload the file if it changes outside of Neovim
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  pattern = "*",
+  command = "echohl WarningMsg | echo 'File changed on disk. Reloaded.' | echohl None",
+})
+
+-- Show cursor line only in the active window
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+  callback = function()
+    vim.wo.cursorline = true
+  end,
+})
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+  callback = function()
+    vim.wo.cursorline = false
+  end,
+})
+
+-- Automatically close certain filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "help", "qf", "man", "lspinfo", "startuptime", "checkhealth" },
+  command = "nnoremap <buffer> <silent> q :close<CR>",
+})
+
+-- Enable spell checking for certain filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "gitcommit" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = { "en_us" }
+  end,
+})
+
+-- Automatically create missing directories when saving a file
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function()
+    local dir = vim.fn.expand("<afile>:p:h")
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, "p")
+    end
+  end,
+})
