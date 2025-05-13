@@ -4,3 +4,5 @@ require("config.options")
 require("config.keymaps")
 -- Loads Lazy.nvim plugin
 require("config.lazy")
+-- Loads global autocmds
+require("config.autocmd")
