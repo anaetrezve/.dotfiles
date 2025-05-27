@@ -48,11 +48,9 @@ function install_or_update_brew_app() {
 
 function setup_zshenv() {
   echo "Setting up .zshenv to home directory"
-
   ln -nsf $HOME/.dotfiles/zsh/.zshenv $HOME
   source $HOME/.zshenv
 
-  touch $XDG_CACHE_HOME/zsh/.zsh_history
   rm -f $HOME/.zsh_history
 }
 
@@ -176,6 +174,29 @@ function setup_mac_key_repeat() {
   fi
 }
 
+function setup_all() {
+  setup_zshenv
+  setup_zsh_config
+  setup_homebrew
+  install_zsh_plugins
+  install_other_necessary_packages
+  setup_mac_key_repeat 
+  setup_tmux_config
+  setup_nvim_config
+  # setup_wezterm_config
+  setup_ghostty_config 
+}
+
+function setup_all_configs() {
+  setup_zshenv
+  setup_zsh_config
+  install_zsh_plugins
+  setup_tmux_config
+  setup_nvim_config
+  # setup_wezterm_config
+  # setup_starship_config
+  setup_ghostty_config 
+}
 
 function show_help() {
   GREEN="\033[1;32m"
@@ -201,6 +222,7 @@ function show_help() {
   echo -e "  ${GREEN}-sw, --setup-wezterm${RESET}          ${YELLOW}Configure WezTerm terminal settings.${RESET}"
   echo -e "  ${GREEN}-sg, --setup-ghostty${RESET}          ${YELLOW}Configure Ghostty terminal settings.${RESET}"
   echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
+  echo -e "  ${GREEN}-ac, --all-configs${RESET}            ${YELLOW}Setup all configs.${RESET}"
   echo -e "  ${GREEN}-a, --all${RESET}                     ${YELLOW}Run all setup steps and install necessary components.${RESET}"
   echo 
 }
@@ -209,8 +231,11 @@ function show_help() {
 
 function initial_setup() {
   # Initial setup directories
-  mkdir -p $HOME/.config
-  mkdir -p $XDG_CACHE_HOME/zsh
+  [[ -d $HOME/.config/zsh ]] || mkdir -p $HOME/.config/zsh 
+  [[ -d $HOME/.cache/zsh ]] || mkdir -p $HOME/.cache/zsh 
+  [[ -d $HOME/.local/share/zsh ]] || mkdir -p $HOME/.local/share/zsh 
+  [[ -d $HOME/.local/state/zsh ]] || mkdir -p $HOME/.local/state/zsh 
+
 
   # Parse command-line arguments
   if [[ $# -eq 0 ]]; then
@@ -257,17 +282,11 @@ function initial_setup() {
     -smkr | --setup-mac-keyrepeat)
       setup_mac_key_repeat
       ;;
+    -ac | --all-configs)
+      setup_all_configs
+      ;;
     -a | --all)
-      setup_mac_key_repeat 
-      setup_homebrew
-      setup_zshenv
-      install_zsh_plugins
-      install_other_necessary_packages
-      setup_tmux_config
-      setup_nvim_config
-      setup_zsh_config
-      setup_wezterm_config
-      setup_ghostty_config 
+      setup_all
       ;;
     *)
       echo "Unknown option: $1"
