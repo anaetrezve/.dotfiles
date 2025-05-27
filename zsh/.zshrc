@@ -11,7 +11,9 @@ source $ZDOTDIR/completion.zsh
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
-HISTFILE=$XDG_CACHE_HOME/zsh/.zsh_history
+HISTFILE=$XDG_STATE_HOME/zsh/history
+
+# Use XDG dirs for completion and history files
 
 # History Options
 setopt extended_history
@@ -32,8 +34,9 @@ setopt hist_find_no_dups
 autoload -U compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 zmodload zsh/complist
-compinit
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 _comp_options+=(globdots) # Include hidden files.
 
 # =====================
