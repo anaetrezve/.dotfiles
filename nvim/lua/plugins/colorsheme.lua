@@ -32,8 +32,20 @@ return {
   name = "catppuccin",
   priority = 1000,
   opts = function()
+    local ucolors = require("catppuccin.utils.colors")
+
     return {
       flavour = "mocha",
+      integrations = {
+        which_key = true,
+      },
+   custom_highlights = function(colors)
+        return {
+          FloatBorder = { fg = colors.blue, bg = colors.base },
+          NormalFloat = { bg = colors.base },
+          -- CursorLineNr = { bg = ucolors.vary_color({ latte = ucolors.lighten(colors.mantle, 0.70, colors.base) }, ucolors.darken(colors.surface0, 0.64, colors.base))}
+        }
+      end,
     }
   end,
 

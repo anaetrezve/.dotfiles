@@ -1,4 +1,4 @@
-vim.g.netrw_liststyle = 3 -- More modern Netrw style
+-- vim.g.netrw_liststyle = 3 -- More modern Netrw style
 
 local opt = vim.opt
 
@@ -7,7 +7,7 @@ local opt = vim.opt
 -- === Line Numbers ===
 opt.relativenumber = true -- Show relative line numbers for easier navigation
 opt.number = true         -- Show absolute line number for the current line
-opt.numberwidth = 4       -- Set the width of the number column
+opt.numberwidth = 3       -- Set the width of the number column
 opt.cursorline = true     -- Highlight the current line for better focus
 
 -- === Tabs & Indentation ===
@@ -38,22 +38,8 @@ opt.sidescrolloff = 8      -- Keep 8 columns visible to the left and right of th
 opt.shortmess:append("sI") -- Hide startup message
 opt.laststatus = 3         -- Use a global statusline
 opt.cmdheight = 1          -- Minimal command line height
-opt.title = true           -- Set the window title to the filename
-opt.listchars:append({ precedes = '«', extends = '»', tab = '»-', trail = '·' })
-opt.fillchars:append({     -- Modernize UI separators
-  fold = ' ',
-  foldsep = ' ',
-  foldopen = '',
-  foldclose = '',
-  eob = ' ',
-  horiz = '━',
-  horizup = '┻',
-  horizdown = '┳',
-  vert = '┃',
-  vertleft = '┫',
-  vertright = '┣',
-  verthoriz = '╋'
-})
+-- opt.title = true           -- Set the window title to the filename
+-- opt.listchars:append({ precedes = '«', extends = '»', tab = '»-', trail = '·' })
 opt.guicursor = table.concat({                         -- Customize cursor shapes
   "n-v-c:block-blinkon500-blinkoff500-blinkwait500",   -- Normal/Visual/Command: blinking block
   "i-ci-ve:ver25-blinkon500-blinkoff500-blinkwait500", -- Insert modes: blinking vertical bar
@@ -97,11 +83,27 @@ opt.conceallevel = 0                                -- Show all text normally
 opt.completeopt = { "menu", "menuone", "noselect" } -- Recommended for completion behavior
 
 -- === Folding (VS Code-like) ===
-opt.foldcolumn = '1'
+opt.foldcolumn = '0'
 opt.foldlevel = 99
 opt.foldlevelstart = 99
-opt.foldenable = true
+-- opt.foldenable = true
+-- opt.foldnestmax = 4
 opt.foldmethod = 'expr'
 opt.foldtext = ''
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+-- opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 opt.foldopen:remove("hor") -- Disable horizontal movement from opening folds
+-- opt.fillchars:append({     -- Modernize UI separators
+--   fold = ' ',
+--   foldsep = ' ',
+--   foldopen = '',
+--   foldclose = '',
+--   eob = ' ',
+--   horiz = '━',
+--   horizup = '┻',
+--   horizdown = '┳',
+--   vert = '┃',
+--   vertleft = '┫',
+--   vertright = '┣',
+--   verthoriz = '╋'
+-- })
