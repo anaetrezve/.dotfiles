@@ -38,7 +38,7 @@ $line_break\
 $character\
 """
 
-palette = 'default'
+palette = 'catppuccin_mocha'
 
 [palettes.default]
 
@@ -114,6 +114,33 @@ color_duration = '#282828'
 color_vimcmd_ok = '#689d6a'
 color_vimcmd_replace = '#b16286'
 color_vimcmd_visual = '#d79921'
+
+[palettes.catppuccin_mocha]
+# Status colors
+color_ok = "#a6e3a1"           # green
+color_danger = "#f38ba8"       # red
+color_caution = "#f9e2af"      # yellow
+
+# Component colors
+color_os = "#fab387"           # peach
+color_username = "#fab387"     # peach
+color_directory = "#f9e2af"    # yellow
+color_git = "#94e2d5"          # teal
+color_git_added = "#a6e3a1"    # green
+color_git_deleted = "#f38ba8"  # red
+color_env = "#89b4fa"          # blue
+color_kubernetes = "#cba6f7"   # mauve
+color_docker = "#89b4fa"       # blue
+color_shell = "#a6adc8"        # subtext0
+color_container = "#f38ba8"    # red
+color_other = "#cdd6f4"        # text
+color_time = "#cdd6f4"         # text
+color_duration = "#cdd6f4"     # text
+
+# Vim mode colors
+color_vimcmd_ok = "#a6e3a1"       # green
+color_vimcmd_replace = "#cba6f7"  # mauve
+color_vimcmd_visual = "#f9e2af"   # yellow
 
 [os]
 disabled = false
