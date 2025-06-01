@@ -1,14 +1,14 @@
 return {
-  'stevearc/oil.nvim',
+  "stevearc/oil.nvim",
   ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {
-      buf_options = {
-    buflisted = false,
+    buf_options = {
+      buflisted = false,
     },
-view_options = {
-    show_hidden = false,
-  },
+    view_options = {
+      show_hidden = false,
+    },
   },
   -- Optional dependencies
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
