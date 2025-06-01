@@ -22,8 +22,6 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
-setopt share_history
-setopt appendhistory
 setopt sharehistory
 setopt hist_save_no_dups
 setopt hist_find_no_dups
@@ -36,15 +34,15 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 zmodload zsh/complist
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+compinit -u -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 _comp_options+=(globdots) # Include hidden files.
 
 # =====================
 # PLUGINS
 # =====================
 
-source $ZDOTDIR/.p10k.zsh
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+# source $ZDOTDIR/.p10k.zsh
+# source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -111,6 +109,6 @@ fi
 # =====================
 # STARSHIP PROMPT
 # =====================
-# if command -v starship &>/dev/null; then
-#   eval "$(starship init zsh)"
-# fi
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
