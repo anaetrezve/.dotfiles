@@ -16,3 +16,11 @@ keymap("n", "<leader>e", function()
     vim.cmd("Explore")
   end
 end, { desc = "Toggle File Explorer (Neo Tree/Native)" })
+
+keymap("n", "<Esc>", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative ~= "" then
+      vim.api.nvim_win_close(win, true)
+    end
+  end
+end, { desc = "Close popup window" })
