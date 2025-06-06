@@ -71,26 +71,56 @@ source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 # =====================
 # NVM CONFIGURATION
 # =====================
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
+#
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
+
+# =====================
+# MISE CONFIGURATION with .nvmrc support, no file writes
+# =====================
 autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
+load-miserc() {
+  if [ -f ".tool-versions" ] || [ -f ".mise.toml" ]; then
+    mise install
+    if command -v node &>/dev/null; then
+      echo "mise: Using Node version $(node -v)"
     fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
+  elif [ -f ".nvmrc" ]; then
+    local nvmrc_node_version
+    nvmrc_node_version="$(cat .nvmrc | tr -d '[:space:]')"
+    if [ -n "$nvmrc_node_version" ]; then
+      mise shell node@"$nvmrc_node_version" >/dev/null 2>&1
+      if command -v node &>/dev/null; then
+        echo "mise: Using Node version $(node -v) from .nvmrc"
+      fi
+    fi
+  # else
+  #   if command -v node &>/dev/null; then
+  #     echo "mise: Using global Node version $(node -v)"
+  #   fi
   fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+
+add-zsh-hook chpwd load-miserc
+load-miserc
 
 # =====================
 # ZOXIDE INTEGRATION
