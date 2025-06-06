@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  event = { "BufReadPre", "BufNewFile", "BufWritePre"},
+  event = { "BufReadPre", "BufNewFile", "BufWritePre" },
 
   opts = {
     default_format_opts = {
@@ -26,11 +26,17 @@ return {
       ruby = { "rubocop", stop_after_first = true },
     },
 
-    format_on_save = {
-      async = false,
-      -- timeout_ms = 500,
-      lsp_format = "fallback",
-    },
+    -- format_on_save = {
+    --   async = false,
+    --   -- timeout_ms = 500,
+    --   lsp_format = "fallback",
+    -- },
+    format_on_save = function(bufnr)
+      if vim.bo[bufnr].filetype == "ruby" then
+        return { timeout_ms = 3000, lsp_fallback = true, async = false }
+      end
+      return { timeout_ms = 1000, lsp_fallback = true, async = false }
+    end,
   },
 
   config = function(_, opts)
