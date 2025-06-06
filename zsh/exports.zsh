@@ -5,7 +5,7 @@ export EDITOR=vim
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 # PATH
-export PATH=$HOME/.local/bin:$PATH
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 export PATH=$HOMEBREW_PREFIX/bin:$PATH
 export PATH=$HOME/.yarn/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
@@ -13,6 +13,7 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH="$HOME/.local/share/neovim/bin":$PATH
 export PATH="$HOME/.local/share/bob/nvim-bin":$PATH
 export PATH=$XDG_DATA_HOME/npm/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 export DOTFILES="$HOME/.dotfiles"
 
