@@ -108,13 +108,15 @@ load-miserc() {
     local nvmrc_node_version
     nvmrc_node_version="$(cat .nvmrc | tr -d '[:space:]vV')"
     if [ -n "$nvmrc_node_version" ]; then
-      mise install node@"$nvmrc_node_version"
+      # mise install node@"$nvmrc_node_version"
       mise shell node@"$nvmrc_node_version" >/dev/null 2>&1
       if command -v node &>/dev/null; then
         echo "mise: Using Node version $(node -v) from .nvmrc"
       fi
     fi
-  # else
+  else
+    # Revert to global Ruby if not in Gemfile directory
+    mise shell --unset node >/dev/null 2>&1
   #   if command -v node &>/dev/null; then
   #     echo "mise: Using global Node version $(node -v)"
   #   fi
@@ -124,12 +126,15 @@ load-miserc() {
   if [ -f "Gemfile" ]; then
     ruby_version="$(grep "^ruby " Gemfile | head -n1 | sed -E "s/^ruby ['\"]([0-9.]+)['\"].*/\1/")"
     if [ -n "$ruby_version" ]; then
-      mise install ruby@"$ruby_version"
+      # mise install ruby@"$ruby_version"
       mise shell ruby@"$ruby_version" >/dev/null 2>&1
       if command -v ruby &>/dev/null; then
         echo "mise: Using Ruby version $(ruby -v | awk '{print $2}') from Gemfile"
       fi
     fi
+  else
+    # Revert to global Ruby if not in Gemfile directory
+    mise shell --unset ruby >/dev/null 2>&1
   fi
 }
 
