@@ -107,6 +107,7 @@ load-miserc() {
     local nvmrc_node_version
     nvmrc_node_version="$(cat .nvmrc | tr -d '[:space:]')"
     if [ -n "$nvmrc_node_version" ]; then
+      echo "nvmrc: ${nvmrc_node_version}"
       mise shell node@"$nvmrc_node_version" >/dev/null 2>&1
       if command -v node &>/dev/null; then
         echo "mise: Using Node version $(node -v) from .nvmrc"
@@ -123,22 +124,8 @@ add-zsh-hook chpwd load-miserc
 load-miserc
 
 # =====================
-# ZOXIDE INTEGRATION
-# =====================
-if command -v "zoxide" &>/dev/null; then
-  eval "$(zoxide init zsh)"
-fi
-
-# =====================
 # LOCAL CONFIGURATION
 # =====================
 if [[ -r "$ZDOTDIR/local-config/config.zsh" ]]; then
   source "$ZDOTDIR/local-config/config.zsh"
-fi
-
-# =====================
-# STARSHIP PROMPT
-# =====================
-if command -v starship &>/dev/null; then
-  eval "$(starship init zsh)"
 fi
