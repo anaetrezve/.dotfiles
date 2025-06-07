@@ -1,6 +1,7 @@
 # =====================
-# ALIASES AND EXPORTS
+# INITIALIZERS, ALIASES AND EXPORTS
 # =====================
+source $ZDOTDIR/initializers.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/exports.zsh
 source $ZDOTDIR/completion.zsh
@@ -105,7 +106,7 @@ load-miserc() {
     fi
   elif [ -f ".nvmrc" ]; then
     local nvmrc_node_version
-    nvmrc_node_version="$(cat .nvmrc | tr -d '[:space:]')"
+    nvmrc_node_version="$(cat .nvmrc | tr -d '[:space:]vV')"
     if [ -n "$nvmrc_node_version" ]; then
       echo "nvmrc: ${nvmrc_node_version}"
       mise shell node@"$nvmrc_node_version" >/dev/null 2>&1
