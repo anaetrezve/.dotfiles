@@ -39,11 +39,58 @@ return {
       integrations = {
         which_key = true,
       },
-   custom_highlights = function(colors)
+      custom_highlights = function(colors)
         return {
           FloatBorder = { fg = colors.blue, bg = colors.base },
           NormalFloat = { bg = colors.base },
           -- CursorLineNr = { bg = ucolors.vary_color({ latte = ucolors.lighten(colors.mantle, 0.70, colors.base) }, ucolors.darken(colors.surface0, 0.64, colors.base))}
+
+          -- blink.cmp
+          BlinkCmpMenu = { bg = colors.base },
+          -- BlinkCmpMenuBorder = { bg = colors.base },
+          -- BlinkCmpDoc = { bg = colors.base },
+          -- BlinkCmpDocBorder = { bg = colors.base },
+          BlinkCmpMenuBorder = { fg = colors.overlay0, bg = colors.base },
+          BlinkCmpDocBorder = { fg = colors.overlay0, bg = colors.base },
+          BlinkCmpMenuSelection = { bg = colors.surface0 },
+          BlinkCmpSignatureHelpBorder = { fg = colors.yellow, bg = colors.base },
+          -- BlinkCmpSignatureHelp = { bg = colors.mantle },
+          BlinkCmpLabelMatch = { fg = colors.mauve },
+          BlinkCmpLabel = { fg = colors.text },
+
+          -- Snacks
+          -- SnacksPickerBorder = { fg = colors.blue },
+          -- SnacksPickerSelection = { fg = colors.text, bg = colors.surface0, style = {} },
+          -- SnacksPickerSelectionCaret = { fg = colors.red },
+          -- SnacksPickerMatching = { fg = colors.peach },
+          -- SnacksPickerPromptPrefix = { fg = colors.yellow, bg = colors.crust },
+          -- SnacksPickerPromptTitle = { fg = colors.crust, bg = colors.mauve, style = { "bold", "italic" } },
+          -- SnacksPickerPrompt = { bg = colors.crust },
+          -- SnacksPickerPromptBorder = { bg = colors.crust, fg = colors.crust },
+          -- SnacksPickerResults = { bg = colors.mantle },
+          -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
+          -- SnacksPickerResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+
+          -- SnacksPicker = { bg = colors.crust },
+          -- SnacksPickerBackdrop = { bg = colors.base },
+          -- SnacksBackdrop = { bg = colors.base },
+          -- SnacksBackdrop_000000 = { bg = colors.base },
+          -- SnacksPickerBox = { bg = colors.crust },
+          -- SnacksPickerPreviewfooter = {},
+          -- SnacksPickerBoxFooter = {},
+          -- SnacksPickerParent = { fg = colors.surface0, bg = "None" },
+
+          SnacksPickerList = { bg = colors.mantle },
+          SnacksPickerBoxBorder = { bg = colors.mantle, fg = colors.mantle },
+          SnacksPickerInput = { bg = colors.mantle },
+          SnacksPickerInputCursorLine = { bg = colors.mantle },
+          SnacksPickerInputBorder = { bg = colors.mantle, fg = colors.mantle },
+          SnacksPickerListTitle = { bg = colors.mantle },
+          SnacksPickerBoxCursorLine = { bg = colors.mantle },
+          SnacksPickerBoxTitle = { fg = colors.crust, bg = colors.mauve, style = { "bold", "italic" } },
+          SnacksPickerPreview = { bg = colors.mantle },
+          SnacksPickerPreviewBorder = { bg = colors.mantle, fg = colors.mantle },
+          SnacksPickerPreviewTitle = { fg = colors.crust, bg = colors.sapphire, style = { "bold", "italic" } },
         }
       end,
     }

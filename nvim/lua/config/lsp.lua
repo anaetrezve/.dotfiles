@@ -1,5 +1,5 @@
 vim.lsp.config("*", {
-  capabilities = require("blink.cmp").get_lsp_capabilities(),
+  -- capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
 
 -- getting all filenames from lsp directory
