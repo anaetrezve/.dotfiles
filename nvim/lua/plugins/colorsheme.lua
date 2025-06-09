@@ -32,7 +32,7 @@ return {
   name = "catppuccin",
   priority = 1000,
   opts = function()
-    local ucolors = require("catppuccin.utils.colors")
+    -- local ucolors = require("catppuccin.utils.colors")
 
     return {
       flavour = "mocha",
