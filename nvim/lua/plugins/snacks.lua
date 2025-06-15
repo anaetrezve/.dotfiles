@@ -15,6 +15,21 @@ return {
     input = { enabled = true },
     picker = {
       enabled = true,
+      sources = {
+        explorer = {
+          hidden = true,
+        },
+        files = {
+          hidden = true,
+        },
+      },
+      win = {
+        preview = {
+          wo = {
+            number = false,
+          },
+        },
+      },
       layout = {
         preset = "default",
         layout = {

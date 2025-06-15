@@ -17,129 +17,129 @@ local prompts = {
   Concise = "Please rewrite the following text to make it more concise.",
 }
 return {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
-      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+  "CopilotC-Nvim/CopilotChat.nvim",
+  dependencies = {
+    { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+    { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+  },
+  build = "make tiktoken", -- Only on MacOS or Linux
+  opts = {
+    -- See Configuration section for options
+    question_header = "@User ",
+    answer_header = "@Copilot ",
+    error_header = "## Error ",
+    prompts = prompts,
+    -- model = "claude-3.7-sonnet",
+    mappings = {
+      -- Use tab for completion
+      complete = {
+        detail = "Use @<Tab> or /<Tab> for options.",
+        insert = "<Tab>",
+      },
+      -- Close the chat
+      close = {
+        normal = "q",
+        insert = "<C-c>",
+      },
+      -- Reset the chat buffer
+      reset = {
+        normal = "<C-x>",
+        insert = "<C-x>",
+      },
+      -- Submit the prompt to Copilot
+      submit_prompt = {
+        normal = "<CR>",
+        insert = "<C-CR>",
+      },
+      -- Accept the diff
+      accept_diff = {
+        normal = "<C-y>",
+        insert = "<C-y>",
+      },
+      -- Show help
+      show_help = {
+        normal = "g?",
+      },
     },
-    build = "make tiktoken", -- Only on MacOS or Linux
-    opts = {
-      -- See Configuration section for options
-      question_header = "@User ",
-      answer_header = "@Copilot ",
-      error_header = "## Error ",
-      prompts = prompts,
-      -- model = "claude-3.7-sonnet",
-      mappings = {
-        -- Use tab for completion
-        complete = {
-          detail = "Use @<Tab> or /<Tab> for options.",
-          insert = "<Tab>",
-        },
-        -- Close the chat
-        close = {
-          normal = "q",
-          insert = "<C-c>",
-        },
-        -- Reset the chat buffer
-        reset = {
-          normal = "<C-x>",
-          insert = "<C-x>",
-        },
-        -- Submit the prompt to Copilot
-        submit_prompt = {
-          normal = "<CR>",
-          insert = "<C-CR>",
-        },
-        -- Accept the diff
-        accept_diff = {
-          normal = "<C-y>",
-          insert = "<C-y>",
-        },
-        -- Show help
-        show_help = {
-          normal = "g?",
-        },
-      }
+  },
+  keys = {
+    -- Show prompts actions with telescope
+    {
+      "<leader>ap",
+      function()
+        require("CopilotChat").select_prompt({
+          context = {
+            "buffers",
+          },
+        })
+      end,
+      desc = "CopilotChat - Prompt actions",
     },
-keys = {
-      -- Show prompts actions with telescope
-      {
-        "<leader>ap",
-        function()
-          require("CopilotChat").select_prompt({
-            context = {
-              "buffers",
-            },
-          })
-        end,
-        desc = "CopilotChat - Prompt actions",
-      },
-      {
-        "<leader>ap",
-        function()
-          require("CopilotChat").select_prompt()
-        end,
-        mode = "x",
-        desc = "CopilotChat - Prompt actions",
-      },
-      -- Code related commands
-      { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-      { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
-      { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
-      { "<leader>aR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
-      { "<leader>an", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
-      -- Chat with Copilot in visual mode
-      {
-        "<leader>av",
-        ":CopilotChatVisual",
-        mode = "x",
-        desc = "CopilotChat - Open in vertical split",
-      },
-      {
-        "<leader>ax",
-        ":CopilotChatInline",
-        mode = "x",
-        desc = "CopilotChat - Inline chat",
-      },
-      -- Custom input for CopilotChat
-      {
-        "<leader>ai",
-        function()
-          local input = vim.fn.input("Ask Copilot: ")
-          if input ~= "" then
-            vim.cmd("CopilotChat " .. input)
-          end
-        end,
-        desc = "CopilotChat - Ask input",
-      },
-      -- Generate commit message based on the git diff
-      {
-        "<leader>am",
-        "<cmd>CopilotChatCommit<cr>",
-        desc = "CopilotChat - Generate commit message for all changes",
-      },
-      -- Quick chat with Copilot
-      {
-        "<leader>aq",
-        function()
-          local input = vim.fn.input("Quick Chat: ")
-          if input ~= "" then
-            vim.cmd("CopilotChatBuffer " .. input)
-          end
-        end,
-        desc = "CopilotChat - Quick chat",
-      },
-      -- Fix the issue with diagnostic
-      { "<leader>af", "<cmd>CopilotChatFixError<cr>", desc = "CopilotChat - Fix Diagnostic" },
-      -- Clear buffer and chat history
-      { "<leader>al", "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
-      -- Toggle Copilot Chat Vsplit
-      { "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
-      -- Copilot Chat Models
-      { "<leader>a?", "<cmd>CopilotChatModels<cr>", desc = "CopilotChat - Select Models" },
-      -- Copilot Chat Agents
-      { "<leader>aa", "<cmd>CopilotChatAgents<cr>", desc = "CopilotChat - Select Agents" },
+    {
+      "<leader>ap",
+      function()
+        require("CopilotChat").select_prompt()
+      end,
+      mode = "x",
+      desc = "CopilotChat - Prompt actions",
     },
-    -- See Commands section for default commands if you want to lazy load on them
+    -- Code related commands
+    { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+    { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+    { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
+    { "<leader>aR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
+    { "<leader>an", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
+    -- Chat with Copilot in visual mode
+    {
+      "<leader>av",
+      "<cmd>CopilotChatVisual<cr>",
+      mode = "x",
+      desc = "CopilotChat - Open in vertical split",
+    },
+    {
+      "<leader>ax",
+      "<cmd>CopilotChatInline<cr>",
+      mode = "x",
+      desc = "CopilotChat - Inline chat",
+    },
+    -- Custom input for CopilotChat
+    {
+      "<leader>ai",
+      function()
+        local input = vim.fn.input("Ask Copilot: ")
+        if input ~= "" then
+          vim.cmd("CopilotChat " .. input)
+        end
+      end,
+      desc = "CopilotChat - Ask input",
+    },
+    -- Generate commit message based on the git diff
+    {
+      "<leader>am",
+      "<cmd>CopilotChatCommit<cr>",
+      desc = "CopilotChat - Generate commit message for all changes",
+    },
+    -- Quick chat with Copilot
+    {
+      "<leader>aq",
+      function()
+        local input = vim.fn.input("Quick Chat: ")
+        if input ~= "" then
+          vim.cmd("CopilotChatBuffer " .. input)
+        end
+      end,
+      desc = "CopilotChat - Quick chat",
+    },
+    -- Fix the issue with diagnostic
+    { "<leader>af", "<cmd>CopilotChatFixError<cr>", desc = "CopilotChat - Fix Diagnostic" },
+    -- Clear buffer and chat history
+    { "<leader>al", "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
+    -- Toggle Copilot Chat Vsplit
+    { "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
+    -- Copilot Chat Models
+    { "<leader>a?", "<cmd>CopilotChatModels<cr>", desc = "CopilotChat - Select Models" },
+    -- Copilot Chat Agents
+    { "<leader>aa", "<cmd>CopilotChatAgents<cr>", desc = "CopilotChat - Select Agents" },
+  },
+  -- See Commands section for default commands if you want to lazy load on them
 }

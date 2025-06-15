@@ -1,7 +1,7 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-command_timeout = 2000
+# command_timeout = 2000
 
 # Inserts a blank line between shell prompts
 add_newline = false
@@ -11,6 +11,7 @@ $os\
 $username\
 $all\
 """
+
 
 # format = """
 # $os\
@@ -90,19 +91,19 @@ style_user = "fg:green"
 style_root = "bold fg:red"
 format = '[ $user ]($style)'
 
-# [directory]
-# style = "fg:color_directory"
-# read_only_style = "fg:color_directory"
-# repo_root_style = "bold fg:color_directory"
-# format = "[ $path ]($style)"
-# read_only = " "
-# home_symbol = "~"
-# truncation_symbol = "…/"
-# truncation_length = 0
-# truncate_to_repo = true
-# fish_style_pwd_dir_length = 0
-# use_logical_path = true
-#
+[directory]
+style = "fg:blue"
+read_only_style = "fg:flamingo"
+repo_root_style = "bold fg:blue"
+format = "[$path ]($style)"
+read_only = ""
+home_symbol = "~"
+truncation_symbol = "…/"
+truncation_length = 2
+truncate_to_repo = false
+fish_style_pwd_dir_length = 0
+use_logical_path = true
+
 # [git_branch]
 # symbol = ""
 # style = "fg:color_git"
@@ -113,7 +114,7 @@ format = '[ $user ]($style)'
 # truncation_symbol = "..."
 # always_show_remote = false
 # disabled = false
-#
+
 # [git_commit]
 # style = "fg:color_git"
 # format = "( [($tag)(@$hash)]($style) )"
@@ -139,7 +140,7 @@ format = '[ $user ]($style)'
 # untracked = "?${count}"
 # ignore_submodules = false
 # disabled = false
-#
+
 # [git_metrics]
 # format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:color_git) )'
 # added_style = "fg:color_git_added"
@@ -299,13 +300,13 @@ format = '[ $user ]($style)'
 # [[battery.display]]
 # threshold = 100
 # style = "fg:color_other"
-#
+
 # [time]
 # disabled = false
 # time_format = "%R"
-# style = "fg:color_time"
+# style = "fg:text"
 # format = '( [󰔛 $time]($style) )'
-#
+
 # [cmd_duration]
 # min_time = 2000
 # format = '( [󱫑 $duration]($style) )'

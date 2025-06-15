@@ -10,9 +10,9 @@ fi
 # =====================
 # STARSHIP PROMPT
 # =====================
-if command -v starship &>/dev/null; then
-  eval "$(starship init zsh)"
-fi
+# if command -v starship &>/dev/null; then
+#   eval "$(starship init zsh)"
+# fi
 
 # Activate mise in Zsh only if installed
 if command -v mise &>/dev/null; then
