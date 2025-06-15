@@ -9,7 +9,96 @@ add_newline = false
 format = """
 $os\
 $username\
-$all\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$mise\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$container\
+$netns\
+$shell\
+$character
 """
 
 
@@ -123,23 +212,23 @@ use_logical_path = true
 # tag_symbol = "󰓼 "
 # tag_disabled = false
 # disabled = false
-#
-# [git_status]
-# style = "fg:color_git"
-# format = '([$ahead_behind]($style) )([$all_status]($style) )'
-# stashed = "*${count}"
-# ahead = "⇡${count}"
-# behind = "⇣${count}"
-# up_to_date = ""
-# diverged = "⇡${ahead_count}⇣${behind_count}"
-# conflicted = "=${count}"
-# deleted = "×${count}"
-# renamed = "»${count}"
-# modified = "!${count}"
-# staged = "+${count}"
-# untracked = "?${count}"
-# ignore_submodules = false
-# disabled = false
+
+[git_status]
+style = "fg:color_git"
+format = '([$ahead_behind]($style) )([$all_status]($style) )'
+stashed = "*${count}"
+ahead = "[⇡($count)](green)"
+behind = "[⇣($count)](maroon)"
+up_to_date = ""
+diverged = "[⇡($ahead_count)](green)[⇣($behind_count)](maroon)"
+conflicted = "[c($count) ](red)"
+deleted = "[×($count) ](maroon)"
+renamed = "»${count}"
+modified = "[!($count) ](peach)"
+staged = "[+($count) ](green)"
+untracked = "[?($count)](red)"
+ignore_submodules = false
+disabled = false
 
 # [git_metrics]
 # format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:color_git) )'
