@@ -285,6 +285,11 @@ symbol = ""
 style = "fg:peach"
 format = '([$symbol( $version)]($style) )'
 
+[lua]
+symbol = ""
+style = "fg:blue"
+format = 'via [$symbol( $version)]($style) '
+
 [ruby]
 symbol = ""
 style = "fg:red"
