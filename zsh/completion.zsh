@@ -48,9 +48,9 @@ if command -v npm &>/dev/null; then
 fi
 
 # pipx
-if command -v pipx &>/dev/null; then
-  eval "$(register-python-argcomplete pipx)"
-fi
+# if command -v pipx &>/dev/null; then
+#   eval "$(register-python-argcomplete pipx)"
+# fi
 
 # ngrok
 if command -v ngrok &>/dev/null; then
