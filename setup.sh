@@ -179,6 +179,11 @@ function setup_eza_theme() {
   ln -nsf $HOME/.dotfiles/eza $XDG_CONFIG_HOME
 }
 
+function setup_mise_config() {
+  echo "Setting up mise config"
+  ln -nsf $HOME/.dotfiles/mise $XDG_CONFIG_HOME
+}
+
 function setup_all() {
   setup_zshenv
   setup_zsh_config
@@ -190,6 +195,7 @@ function setup_all() {
   setup_nvim_config
   # setup_wezterm_config
   setup_ghostty_config
+  setup_mise_config
 }
 
 function setup_all_configs() {
@@ -202,6 +208,7 @@ function setup_all_configs() {
   # setup_starship_config
   setup_eza_theme
   setup_ghostty_config
+  setup_mise_config
 }
 
 function show_help() {
@@ -226,6 +233,7 @@ function show_help() {
   echo -e "  ${GREEN}-ss, --setup-starship${RESET}         ${YELLOW}Configure Starship prompt for shell customization.${RESET}"
   echo -e "  ${GREEN}-szc, --setup-zsh${RESET}             ${YELLOW}Set up the zsh shell configuration.${RESET}"
   echo -e "  ${GREEN}-sw, --setup-wezterm${RESET}          ${YELLOW}Configure WezTerm terminal settings.${RESET}"
+  echo -e "  ${GREEN}-sm, --setup-mise${RESET}             ${YELLOW}Setup mise config.${RESET}"
   echo -e "  ${GREEN}-sg, --setup-ghostty${RESET}          ${YELLOW}Configure Ghostty terminal settings.${RESET}"
   echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
   echo -e "  ${GREEN}-ac, --all-configs${RESET}            ${YELLOW}Setup all configs.${RESET}"
@@ -281,6 +289,9 @@ function initial_setup() {
       ;;
     -ss | --setup-starship)
       setup_starship_config
+      ;;
+    -sm | --setup-mise)
+      setup_mise_config
       ;;
     -sg | --setup-ghostty)
       setup_ghostty_config
