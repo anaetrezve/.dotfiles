@@ -1,7 +1,7 @@
 [tools]
 lua = "latest"
 node = "latest"
-ruby = "latest"
+ruby = "3.3.8"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node", "ruby", "python", "go"]
