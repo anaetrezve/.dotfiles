@@ -77,3 +77,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
   end,
 })
+
+-- Automatically set normal number in insert mode
+vim.api.nvim_create_autocmd(
+  { "BufEnter", "FocusGained", "InsertLeave", "WinEnter" },
+  { pattern = "*", command = "if &nu && mode() != 'i' | set rnu | endif" }
+)
+-- Automatically set relative number in normal mode
+vim.api.nvim_create_autocmd(
+  { "BufLeave", "FocusLost", "InsertEnter", "WinLeave" },
+  { pattern = "*", command = "if &nu | set nornu | endif" }
+)
