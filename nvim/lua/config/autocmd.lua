@@ -88,3 +88,16 @@ vim.api.nvim_create_autocmd(
   { "BufLeave", "FocusLost", "InsertEnter", "WinLeave" },
   { pattern = "*", command = "if &nu | set nornu | endif" }
 )
+
+-- -- Hide the status line in command mode
+-- vim.api.nvim_create_autocmd("CmdlineEnter", {
+--   callback = function()
+--     vim.opt.laststatus = 0
+--   end,
+-- })
+-- -- Show the status line when leaving command mode
+-- vim.api.nvim_create_autocmd("CmdlineLeave", {
+--   callback = function()
+--     vim.opt.laststatus = 2
+--   end,
+-- })

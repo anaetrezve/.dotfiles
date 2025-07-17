@@ -6,17 +6,13 @@ return {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       {
         "nvim-treesitter/nvim-treesitter-context",
-
-        enabled = true,
-
+        enabled = false,
         opts = {},
       },
     },
 
     event = { "BufReadPost", "BufNewFile" },
-
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-
     build = ":TSUpdate",
 
     opts = {

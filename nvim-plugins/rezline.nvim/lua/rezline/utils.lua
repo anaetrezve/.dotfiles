@@ -8,6 +8,15 @@ M.is_activewin = function()
 	return vim.api.nvim_get_current_win() == vim.g.statusline_winid
 end
 
+M.is_snacks = function()
+	local filetype = vim.bo.filetype
+	if filetype == "snacks_picker_list" or filetype == "snacks_picker_input" then
+		return true
+	end
+
+	return false
+end
+
 local orders = {
 	vscode = { "mode", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "cwd" },
 }
@@ -110,13 +119,13 @@ M.git = function()
 	local git_status = vim.b[M.stbufnr()].gitsigns_status_dict
 
 	local added = (git_status.added and git_status.added ~= 0) and ("%#St_git_added#" .. "  " .. git_status.added)
-			or ""
+		or ""
 	local changed = (git_status.changed and git_status.changed ~= 0)
 			and ("%#St_git_modified#" .. "  " .. git_status.changed)
-			or ""
+		or ""
 	local removed = (git_status.removed and git_status.removed ~= 0)
 			and ("%#St_git_deleted#" .. "  " .. git_status.removed)
-			or ""
+		or ""
 	local branch_name = "%#St_git_branch# " .. git_status.head
 
 	return " " .. branch_name .. added .. changed .. removed
@@ -192,6 +201,45 @@ M.autocmds = function()
 			vim.cmd.redrawstatus()
 		end,
 	})
+end
+
+M.snacks_status = function()
+	local filetype = vim.bo.filetype
+	local title = filetype
+	local meta = ""
+
+	local picker = nil
+	if filetype == "snacks_picker_list" or filetype == "snacks_picker_input" then
+		local pickers = Snacks.picker.get()
+		if pickers[2] then
+			picker = pickers[2]
+		else
+			picker = pickers[1]
+		end
+	end
+
+	if filetype == "snacks_picker_list" then
+		title = " File Explorer"
+		if picker then
+			meta = vim.fn.fnamemodify(picker:dir(), ":~")
+		else
+			meta = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+		end
+	elseif filetype == "snacks_picker_input" then
+		if picker then
+			-- local input = picker.input and picker.input:get() or ""
+			local count = #picker:items()
+			local picker_title = picker.title or ""
+			title = (" Picker (%s)"):format(picker_title)
+			meta = count and (count .. " results")
+			-- meta = input ~= "" and (" " .. input .. ": " .. count .. " results") or (count .. " results")
+		else
+			title = " Picker"
+			meta = ""
+		end
+	end
+
+	return title, meta
 end
 
 return M

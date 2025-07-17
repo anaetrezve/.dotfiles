@@ -3,24 +3,122 @@ return {
   priority = 1000,
   enabled = true,
   lazy = false,
+
   ---@type snacks.Config
   opts = {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = {
+      sections = {
+        { section = "header" },
+        { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+        { section = "startup" },
+      },
+    },
     explorer = { enabled = true },
-    indent = { enabled = true },
+    indent = {
+      indent = { enabled = false, char = "▏" },
+      scope = {
+        enabled = true,
+        char = "▏",
+        underline = false,
+        only_current = true,
+        hl = {
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterCyan",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+        },
+      },
+    },
     input = { enabled = true },
     picker = {
       enabled = true,
       sources = {
         explorer = {
+          -- exclude = { ".git" },
+          -- include = { ".env" },
           hidden = true,
+          auto_close = false,
+          -- ignored = true,
+          layout = {
+            auto_hide = { "input" },
+          },
+          win = {
+            input = {
+              keys = {
+                ["<esc>"] = "",
+              },
+            },
+            list = {
+              keys = {
+                ["<esc>"] = "", -- Disable esc key to close explorer
+                ["Y"] = "copy_path",
+              },
+            },
+          },
+          actions = {
+            copy_path = function(_, item)
+              local modify = vim.fn.fnamemodify
+              local filepath = item.file
+              local filename = modify(filepath, ":t")
+              local values = {
+                filepath,
+                modify(filepath, ":."),
+                modify(filepath, ":~"),
+                filename,
+                modify(filename, ":r"),
+                modify(filename, ":e"),
+              }
+              local items = {
+                "Absolute path: " .. values[1],
+                "Path relative to CWD: " .. values[2],
+                "Path relative to HOME: " .. values[3],
+                "Filename: " .. values[4],
+              }
+              if vim.fn.isdirectory(filepath) == 0 then
+                vim.list_extend(items, {
+                  "Filename without extension: " .. values[5],
+                  "Extension of the filename: " .. values[6],
+                })
+              end
+              vim.ui.select(items, { prompt = "Choose to copy to clipboard:" }, function(choice, i)
+                if not choice then
+                  vim.notify("Selection cancelled")
+                  return
+                end
+                if not i then
+                  vim.notify("Invalid selection")
+                  return
+                end
+                local result = values[i]
+                vim.fn.setreg('"', result) -- Neovim unnamed register
+                vim.fn.setreg("+", result) -- System clipboard
+                vim.notify("Copied: " .. result)
+              end)
+            end,
+          },
         },
         files = {
           hidden = true,
+        },
+        icons = {
+          git = {
+            staged = "●",
+            added = "A",
+            deleted = "D",
+            ignored = "",
+            modified = "M",
+            renamed = "R",
+            untracked = "U",
+          },
         },
       },
       win = {
@@ -37,7 +135,7 @@ return {
         },
       },
     },
-    -- notifier = { enabled = true },
+    notifier = { enabled = true },
     -- quickfile = { enabled = true },
     scope = { enabled = true },
     -- scroll = { enabled = true },

@@ -39,7 +39,7 @@ opt.scrolloff = 8 -- Keep 8 lines visible above and below the cursor
 opt.sidescrolloff = 8 -- Keep 8 columns visible to the left and right of the cursor
 opt.shortmess:append("sI") -- Hide startup message
 opt.laststatus = 3 -- Use a global statusline
-opt.cmdheight = 1 -- Minimal command line height
+opt.cmdheight = 0 -- Minimal command line height
 -- opt.title = true           -- Set the window title to the filename
 -- opt.listchars:append({ precedes = '«', extends = '»', tab = '»-', trail = '·' })
 opt.guicursor = table.concat({ -- Customize cursor shapes
