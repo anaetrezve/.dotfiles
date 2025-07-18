@@ -18,9 +18,17 @@ keymap("n", "<leader>e", function()
 end, { desc = "Toggle File Explorer (Neo Tree/Native)" })
 
 keymap("n", "<Esc>", function()
+  -- Clear search highlights
+  vim.schedule(function()
+    vim.cmd("nohlsearch")
+  end)
+
+  -- Close all popup windows
   for _, win in ipairs(vim.api.nvim_list_wins()) do
-    if vim.api.nvim_win_get_config(win).relative ~= "" then
+    local win_config = vim.api.nvim_win_get_config(win)
+    -- do not close if col 0 assuming Snacks explorer is starting from col 0
+    if win_config.relative ~= "" and win_config.col ~= 0 then
       vim.api.nvim_win_close(win, true)
     end
   end
-end, { desc = "Close popup window" })
+end, { desc = "Close popup window & clear search highlights" })

@@ -29,7 +29,7 @@ opt.breakindent = true -- Preserve indentation for wrapped lines
 opt.ignorecase = true -- Ignore case in search patterns
 opt.smartcase = true -- Override ignorecase if search pattern contains uppercase letters
 opt.incsearch = true -- Show search matches as you type
-opt.hlsearch = false -- Only show matches while typing, don't persist highlights
+-- opt.hlsearch = false -- Only show matches while typing, don't persist highlights
 
 -- === UI Improvements ===
 opt.termguicolors = true -- Enable 24-bit RGB color in the TUI
