@@ -1,3 +1,5 @@
+local keymap = vim.keymap.set
+
 vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
@@ -30,4 +32,15 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
     },
   },
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+  callback = function(event)
+    local function opts(desc)
+      return { buffer = event.buf, desc = "LSP " .. desc }
+    end
+
+    keymap("n", "gk", vim.lsp.buf.signature_help, opts("Signature Help"))
+  end,
 })

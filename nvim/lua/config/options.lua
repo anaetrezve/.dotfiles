@@ -76,7 +76,7 @@ opt.splitbelow = true -- Open horizontal splits below
 -- === Performance ===
 opt.updatetime = 200 -- Slightly faster updates for things like CursorHold
 opt.timeoutlen = 300 -- Better responsiveness for mappings
-opt.pumheight = 10 -- Limit the height of the popup menu
+opt.pumheight = 5 -- Limit the height of the popup menu
 opt.lazyredraw = true -- (Re-)enable for better macro performance
 
 -- === Misc ===
@@ -115,3 +115,4 @@ opt.backup = false
 opt.writebackup = false
 
 opt.inccommand = "split"
+vim.o.winborder = "single"
