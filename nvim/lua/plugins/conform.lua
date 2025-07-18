@@ -24,6 +24,9 @@ return {
       graphql = { "prettier", "prettierd", stop_after_first = true },
       lua = { "stylua", stop_after_first = true },
       ruby = { "rubocop", stop_after_first = true },
+      python = { "isort", "black", stop_after_first = true },
+      go = { "goimports", "gofumpt" },
+      rust = { "rustfmt", lsp_format = "fallback" },
     },
 
     -- format_on_save = {
@@ -44,7 +47,7 @@ return {
 
     conform.setup(opts)
 
-    vim.keymap.set({ "n", "v" }, "<leader>f", function()
+    vim.keymap.set({ "n", "v" }, "<leader>ft", function()
       conform.format({
         lsp_fallback = true,
         async = false,
