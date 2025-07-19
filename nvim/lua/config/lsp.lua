@@ -1,3 +1,5 @@
+local utils = require("config.utils")
+
 local keymap = vim.keymap.set
 
 vim.lsp.config("*", {
@@ -41,6 +43,54 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return { buffer = event.buf, desc = "LSP " .. desc }
     end
 
-    keymap("n", "gk", vim.lsp.buf.signature_help, opts("Signature Help"))
+    -- Get client from event
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if not client then
+      return
+    end
+
+    keymap("n", "K", function()
+      local params = vim.lsp.util.make_position_params(0, "utf-8")
+      vim.lsp.buf_request(0, "textDocument/hover", params, function(_, result)
+        if not (result and result.contents) then
+          return
+        end
+
+        local lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+        lines = utils.normalize(lines)
+        lines = utils.add_padding(lines, 1, 1, 1, 1)
+
+        vim.lsp.util.open_floating_preview(lines, "markdown", {
+          focusable = true,
+          focus = true,
+          border = "single",
+          max_width = 90,
+          zindex = 50,
+          max_height = 10,
+        })
+      end)
+    end, opts("Hover"))
+
+    keymap("n", "gK", function()
+      local params = vim.lsp.util.make_position_params(0, "utf-8")
+      vim.lsp.buf_request(0, "textDocument/signatureHelp", params, function(_, result)
+        if not (result and result.signatures and result.signatures[1]) then
+          return
+        end
+
+        local lines = vim.lsp.util.convert_signature_help_to_markdown_lines(result)
+        lines = utils.normalize(lines)
+        lines = utils.add_padding(lines, 1, 1, 1, 1)
+
+        vim.lsp.util.open_floating_preview(lines, "markdown", {
+          focusable = true,
+          focus = true,
+          border = "single",
+          max_width = 90,
+          zindex = 50,
+          max_height = 10,
+        })
+      end)
+    end, opts("Signature Help"))
   end,
 })

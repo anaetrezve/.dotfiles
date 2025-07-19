@@ -76,7 +76,7 @@ return {
       },
       custom_highlights = function(colors)
         return {
-          FloatBorder = { fg = colors.blue, bg = colors.base },
+          FloatBorder = { fg = colors.overlay0, bg = colors.base },
           NormalFloat = { bg = colors.base },
           -- CursorLineNr = { bg = ucolors.vary_color({ latte = ucolors.lighten(colors.mantle, 0.70, colors.base) }, ucolors.darken(colors.surface0, 0.64, colors.base))}
 
