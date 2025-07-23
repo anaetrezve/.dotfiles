@@ -89,6 +89,13 @@ vim.api.nvim_create_autocmd(
   { pattern = "*", command = "if &nu | set nornu | endif" }
 )
 
+-- Auto-resize splits when window is resized
+vim.api.nvim_create_autocmd("VimResized", {
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+})
+
 -- -- Hide the status line in command mode
 -- vim.api.nvim_create_autocmd("CmdlineEnter", {
 --   callback = function()
@@ -101,3 +108,14 @@ vim.api.nvim_create_autocmd(
 --     vim.opt.laststatus = 2
 --   end,
 -- })
+
+vim.api.nvim_create_user_command("LspInfo", function()
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if #clients == 0 then
+    print("No LSP clients attached to current buffer")
+  else
+    for _, client in ipairs(clients) do
+      print("LSP: " .. client.name .. " (ID: " .. client.id .. ")")
+    end
+  end
+end, { desc = "Show LSP client info" })

@@ -115,4 +115,9 @@ opt.backup = false
 opt.writebackup = false
 
 opt.inccommand = "split"
-vim.o.winborder = "single"
+-- vim.o.winborder = "single"
+
+-- Command-line completion
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })

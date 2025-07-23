@@ -48,9 +48,9 @@ return {
           hidden = true,
           auto_close = false,
           -- ignored = true,
-          layout = {
-            auto_hide = { "input" },
-          },
+          -- layout = {
+          --   auto_hide = { "input" },
+          -- },
           win = {
             input = {
               keys = {
