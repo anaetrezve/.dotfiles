@@ -119,3 +119,13 @@ vim.api.nvim_create_user_command("LspInfo", function()
     end
   end
 end, { desc = "Show LSP client info" })
+
+-- Disable relative numbers and conceal level in Copilot buffers
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "copilot-*",
+  callback = function()
+    vim.opt_local.relativenumber = false
+    vim.opt_local.number = false
+    vim.opt_local.conceallevel = 0
+  end,
+})

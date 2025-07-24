@@ -17,6 +17,12 @@ return {
   -- build = "cargo build --release",
 
   opts = {
+    -- enabled = function()
+    --   return not vim.tbl_contains({ "tex" }, vim.bo.filetype) and vim.bo.buftype ~= "copilot-*"
+    -- end,
+    enabled = function()
+      return not vim.tbl_contains({ "copilot-chat" }, vim.bo.filetype)
+    end,
     -- fuzzy = {
     --   sorts = { "sort_text" },
     -- },
