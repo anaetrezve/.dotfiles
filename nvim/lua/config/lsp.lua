@@ -12,12 +12,20 @@ end
 
 vim.diagnostic.config({
   virtual_text = {
+    source = true,
     prefix = "▎", -- Could be '●', '▎', │, 'x', '■', , 
   },
   jump = {
     float = true,
   },
-  float = { border = "single" },
+  float = {
+    border = "single",
+    -- source = true,
+    -- focusable = true,
+    -- header = "",
+    -- prefix = "",
+    max_width = 100, -- adjust as needed
+  },
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = " ",
@@ -48,5 +56,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "gK", function()
       vim.lsp.buf.signature_help({ border = "single", max_height = 10, max_width = 90 })
     end, opts("Signature Help"))
+
+    keymap("n", "<leader>d", vim.diagnostic.open_float, opts("Open current diagnostic in float window"))
   end,
 })

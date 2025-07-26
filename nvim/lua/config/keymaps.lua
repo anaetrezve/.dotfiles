@@ -83,7 +83,7 @@ keymap("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 keymap("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
 -- Delete without yanking
-keymap({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
+-- keymap({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
 
 -- Splitting & Resizing
 keymap("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
