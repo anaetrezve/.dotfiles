@@ -35,3 +35,26 @@ keymap("n", "<Esc>", function()
     end
   end
 end, { desc = "Close popup window & clear search highlights" })
+
+-- Better indenting
+keymap("n", "<", "<<", { desc = "Left indent" })
+keymap("n", ">", ">>", { desc = "Right indent" })
+keymap("v", "<", "<gv", { desc = "Left visual indent" })
+keymap("v", ">", ">gv", { desc = "Right visual indent" })
+
+keymap({ "n", "x" }, "j", "gj", { desc = "Move down" })
+keymap({ "n", "x" }, "k", "gk", { desc = "Move up" })
+
+-- Don't copy the replaced text after pasting in visual mode
+-- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
+-- keymap({ "n", "x" }, "p", "P", { desc = "Dont copy replaced text" })
+keymap("v", "p", '"_dP')
+-- keymap("n", "dD", '"_dd')
+
+-- Save file
+keymap({ "i", "n" }, "<C-s>", "<CMD> w <CR>", { desc = "Save file" })
+keymap({ "i", "n" }, "<D-s>", "<CMD> w <CR>", { desc = "Save file" })
+
+-- Select all
+keymap("n", "<C-a>", "ggVG", { desc = "Select All" })
+keymap("n", "<D-a>", "ggVG", { desc = "Select All" })

@@ -122,7 +122,7 @@ end, { desc = "Show LSP client info" })
 
 -- Disable relative numbers and conceal level in Copilot buffers
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "copilot-*",
+  pattern = "copilot-chat",
   callback = function()
     vim.opt_local.relativenumber = false
     vim.opt_local.number = false

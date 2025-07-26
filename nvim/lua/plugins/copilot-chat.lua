@@ -30,10 +30,11 @@ return {
       Concise = "Please rewrite the following text to make it more concise.",
     },
     -- model = "claude-sonnet-4",
-    model = "copilot-gpt-4", -- optional, or leave it out
+    -- model = "copilot-gpt-4", -- optional, or leave it out
     mappings = {
       -- Use tab for completion
       complete = {
+        normal = "<Tab>",
         detail = "Use @<Tab> or /<Tab> for options.",
         insert = "<Tab>",
       },
@@ -136,7 +137,7 @@ return {
     -- Clear buffer and chat history
     { "<leader>al", "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
     -- Toggle Copilot Chat Vsplit
-    { "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
+    { "<leader>ag", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
     -- Copilot Chat Models
     { "<leader>a?", "<cmd>CopilotChatModels<cr>", desc = "CopilotChat - Select Models" },
     -- Copilot Chat Agents
