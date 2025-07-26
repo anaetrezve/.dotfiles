@@ -1,4 +1,14 @@
-local keymap = vim.keymap.set
+--- Wrapper for vim.keymap.set with type annotations.
+--- @param mode string|string[]
+--- @param lhs string
+--- @param rhs string|function
+--- @param opts table|nil
+local function keymap(mode, lhs, rhs, opts)
+  local default_opts = { noremap = true, silent = true }
+  opts = vim.tbl_extend("force", default_opts, opts or {})
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -42,6 +52,8 @@ keymap("n", ">", ">>", { desc = "Right indent" })
 keymap("v", "<", "<gv", { desc = "Left visual indent" })
 keymap("v", ">", ">gv", { desc = "Right visual indent" })
 
+-- Better J behavior
+keymap("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 keymap({ "n", "x" }, "j", "gj", { desc = "Move down" })
 keymap({ "n", "x" }, "k", "gk", { desc = "Move up" })
 
@@ -56,5 +68,19 @@ keymap({ "i", "n" }, "<C-s>", "<CMD> w <CR>", { desc = "Save file" })
 keymap({ "i", "n" }, "<D-s>", "<CMD> w <CR>", { desc = "Save file" })
 
 -- Select all
-keymap("n", "<C-a>", "ggVG", { desc = "Select All" })
-keymap("n", "<D-a>", "ggVG", { desc = "Select All" })
+keymap("n", "<C-a>", "ggVG", { desc = "Select all in current buffer" })
+keymap("n", "<D-a>", "ggVG", { desc = "Select all in current buffer" }) -- not work with ghostty
+
+-- Not yanking with 'c' and 'x'
+-- keymap({ "n", "v" }, "c", '"_c')
+keymap("n", "C", '"_C')
+keymap("n", "x", '"_x')
+
+-- Center screen when jumping
+keymap("n", "n", "nzzzv", { desc = "Next search result (centered)" })
+keymap("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
+keymap("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
+keymap("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+
+-- Delete without yanking
+keymap({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
