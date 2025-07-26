@@ -84,3 +84,19 @@ keymap("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
 -- Delete without yanking
 keymap({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
+
+-- Splitting & Resizing
+keymap("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
+keymap("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
+keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+
+-- Move lines up/down (M is option key in mac)
+keymap("n", "<M-j>", ":move .+1<CR>==", { desc = "Move line down" })
+keymap("n", "<M-k>", ":move .-2<CR>==", { desc = "Move line up" })
+keymap("v", "<M-j>", ":move '>+1<CR>gv=gv", { desc = "Move selection down" })
+keymap("v", "<M-k>", ":move '<-2<CR>gv=gv", { desc = "Move selection up" })
+keymap("x", "J", ":move '>+1<CR>gv-gv", { desc = "Move selected lines down" })
+keymap("x", "K", ":move '<-2<CR>gv-gv", { desc = "Move selected lines up" })
