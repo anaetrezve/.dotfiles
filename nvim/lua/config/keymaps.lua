@@ -88,6 +88,8 @@ keymap({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
 -- Splitting & Resizing
 keymap("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
 keymap("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
+keymap("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
