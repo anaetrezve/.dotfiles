@@ -40,6 +40,7 @@ return {
     },
     input = { enabled = true },
     picker = {
+      prompt = "   ",
       enabled = true,
       sources = {
         explorer = {
