@@ -184,6 +184,11 @@ function setup_mise_config() {
   ln -nsf $HOME/.dotfiles/mise $XDG_CONFIG_HOME
 }
 
+function setup_kitty_config() {
+  echo "Setting up kitty config"
+  ln -nsf $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
+}
+
 function setup_all() {
   setup_zshenv
   setup_zsh_config
@@ -196,6 +201,7 @@ function setup_all() {
   # setup_wezterm_config
   setup_ghostty_config
   setup_mise_config
+  setup_kitty_config
 }
 
 function setup_all_configs() {
@@ -209,6 +215,7 @@ function setup_all_configs() {
   setup_eza_theme
   setup_ghostty_config
   setup_mise_config
+  setup_kitty_config
 }
 
 function show_help() {
@@ -236,6 +243,7 @@ function show_help() {
   echo -e "  ${GREEN}-sm, --setup-mise${RESET}             ${YELLOW}Setup mise config.${RESET}"
   echo -e "  ${GREEN}-sg, --setup-ghostty${RESET}          ${YELLOW}Configure Ghostty terminal settings.${RESET}"
   echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
+  echo -e "  ${GREEN}-sk, --setup-kitty${RESET}            ${YELLOW}Setup kitty config.${RESET}"
   echo -e "  ${GREEN}-ac, --all-configs${RESET}            ${YELLOW}Setup all configs.${RESET}"
   echo -e "  ${GREEN}-a, --all${RESET}                     ${YELLOW}Run all setup steps and install necessary components.${RESET}"
   echo
@@ -301,6 +309,9 @@ function initial_setup() {
       ;;
     -ac | --all-configs)
       setup_all_configs
+      ;;
+    -sk | --setup-kitty)
+      setup_kitty_config
       ;;
     -a | --all)
       setup_all

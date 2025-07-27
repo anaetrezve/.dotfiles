@@ -35,6 +35,16 @@ function remove_ghostty_configs() {
   rm -rf ~/.config/ghostty
 }
 
+function remove_kitty_configs() {
+  echo "Removing Kitty configs"
+  rm -rf ~/.config/kitty
+}
+
+function remove_mise_configs() {
+  echo "Removing Mise configs"
+  rm -rf ~/.config/mise
+}
+
 function remove_all_configs() {
   remove_zsh_configs
   remove_tmux_configs
@@ -42,7 +52,9 @@ function remove_all_configs() {
   remove_wezterm_configs
   remove_neovim_configs
   remove_other_configs
-  remove_ghostty_configs 
+  remove_ghostty_configs
+  remove_kitty_configs
+  remove_mise_configs
 }
 
 function remove_all_apps() {
@@ -84,6 +96,8 @@ function show_help {
   echo "  -wco, --wezterm-configs-only   Remove only Wezterm configs"
   echo "  -oco, --other-configs-only     Remove only Other configs"
   echo "  -gco, --ghostty-configs-only   Remove only Ghostty configs"
+  echo "  -kco, --kitty-configs-only     Remove only Kitty configs"
+  echo "  -mco, --mise-configs-only      Remove only Mise configs"
   echo "  -h, --help                     Show this help message and exit"
 }
 
@@ -131,6 +145,12 @@ while [[ $# -gt 0 ]]; do
     ;;
   -gco | --ghostty-config-only)
     remove_ghostty_configs
+    ;;
+  -kco | --kitty-config-only)
+    remove_kitty_configs
+    ;;
+  -mco | --mise-config-only)
+    remove_mise_configs
     ;;
   -h | --help)
     show_help
