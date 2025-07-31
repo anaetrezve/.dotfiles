@@ -20,8 +20,8 @@ if [ -z "$HOMEBREW_PREFIX" ]; then
 fi
 
 # Multi-language managers (highest priority)
-# add_to_path "$HOME/.local/share/mise/shims"   # mise
-# add_to_path "$HOME/.asdf/shims"               # asdf
+add_to_path "$HOME/.local/share/mise/shims"   # mise
+add_to_path "$HOME/.asdf/shims"               # asdf
 # add_to_path "$HOME/.rtx/shims"                # rtx
 
 # Node (nodenv, nvm, volta, nodebrew)
