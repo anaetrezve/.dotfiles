@@ -104,6 +104,15 @@ load-miserc() {
     if command -v node &>/dev/null; then
       echo "mise: Using Node version $(node -v)"
     fi
+  elif [ -f ".node-version" ]; then
+    local node_version
+    node_version="$(cat .node-version | tr -d '[:space:]vV')"
+    if [ -n "$node_version" ]; then
+      mise shell node@"$node_version" >/dev/null 2>&1
+      if command -v node &>/dev/null; then
+        echo "mise: Using Node version $(node -v) from .node-version"
+      fi
+    fi
   elif [ -f ".nvmrc" ]; then
     local nvmrc_node_version
     nvmrc_node_version="$(cat .nvmrc | tr -d '[:space:]vV')"
@@ -123,10 +132,23 @@ load-miserc() {
   fi
 
   # Install ruby autometically
-  if [ -f "Gemfile" ]; then
+  if [ -f ".tool-versions" ] || [ -f ".mise.toml" ]; then
+    mise install
+    if command -v ruby &>/dev/null; then
+      echo "mise: Using ruby version $(ruby --version)"
+    fi
+  elif [ -f ".ruby-version" ]; then
+    local ruby_version
+    ruby_version="$(cat .ruby-version | tr -d '[:space:]vV')"
+    if [ -n "$ruby_version" ]; then
+      mise shell ruby@"$ruby_version" >/dev/null 2>&1
+      if command -v ruby &>/dev/null; then
+        echo "mise: Using Ruby version $(ruby --version) from .ruby-version"
+      fi
+    fi
+  elif [ -f "Gemfile" ]; then
     ruby_version="$(grep "^ruby " Gemfile | head -n1 | sed -E "s/^ruby ['\"]([0-9.]+)['\"].*/\1/")"
     if [ -n "$ruby_version" ]; then
-      # mise install ruby@"$ruby_version"
       mise shell ruby@"$ruby_version" >/dev/null 2>&1
       if command -v ruby &>/dev/null; then
         echo "mise: Using Ruby version $(ruby -v | awk '{print $2}') from Gemfile"
@@ -144,6 +166,6 @@ load-miserc
 # =====================
 # LOCAL CONFIGURATION
 # =====================
-if [[ -r "$ZDOTDIR/local-config/config.zsh" ]]; then
-  source "$ZDOTDIR/local-config/config.zsh"
+if [[ -f "$ZDOTDIR/local/config.zsh" ]]; then
+  source "$ZDOTDIR/local/config.zsh"
 fi

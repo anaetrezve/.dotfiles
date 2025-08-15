@@ -1,4 +1,5 @@
 [tools]
+java = "openjdk-21"
 lua = "latest"
 node = "latest"
 ruby = "3.3.9"
