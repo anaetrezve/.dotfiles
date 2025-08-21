@@ -16,6 +16,8 @@ return {
       topdelete = { text = "" },
       changedelete = { text = "▎" },
     },
+    auto_attach = true,
+    current_line_blame = true,
     on_attach = function(buffer)
       local gs = package.loaded.gitsigns
 
