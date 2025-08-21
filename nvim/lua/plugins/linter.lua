@@ -5,6 +5,8 @@ return {
     local lint = require("lint")
 
     -- Linters mapped per filetype
+    -- Note: ESLint auto-fixing on save is handled by conform.nvim
+    -- This configuration is for linting feedback during editing
     lint.linters_by_ft = {
       -- JavaScript/TypeScript
       javascript = { "eslint" },
@@ -17,9 +19,9 @@ return {
       -- Go
       go = { "golangci_lint" }, -- Requires `golangci-lint` installed
       -- Rust
-      rust = { "clippy" }, -- Linter runs via cargo, ensure clippy is installed
+      rust = { "clippy" },      -- Linter runs via cargo, ensure clippy is installed
       -- Python
-      python = { "pylint" }, -- Or use "flake8", "ruff", etc.
+      python = { "pylint" },    -- Or use "flake8", "ruff", etc.
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("LintAutogroup", { clear = true })
@@ -37,8 +39,8 @@ return {
       end
     end
 
-    -- Auto-trigger on common buffer events
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+    -- Auto-trigger on common buffer events (avoid BufWritePost since conform handles save)
+    vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged" }, {
       group = lint_augroup,
       callback = lint_or_lsp,
     })

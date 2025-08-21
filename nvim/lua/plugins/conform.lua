@@ -17,14 +17,20 @@ return {
         args = { "--stdin-filepath", "$FILENAME" },
         stdin = true,
       },
+      eslint_fix = {
+        command = "eslint",
+        args = { "--fix", "$FILENAME" },
+        stdin = false,
+        exit_codes = { 0, 1 },
+      },
     },
 
     formatters_by_ft = {
-      javascript = { "prettier" },
-      typescript = { "prettier" },
-      javascriptreact = { "prettier" },
-      typescriptreact = { "prettier" },
-      svelte = { "prettier" },
+      javascript = { "eslint_fix", "prettier" },
+      typescript = { "eslint_fix", "prettier" },
+      javascriptreact = { "eslint_fix", "prettier" },
+      typescriptreact = { "eslint_fix", "prettier" },
+      svelte = { "eslint_fix", "prettier" },
       css = { "prettier" },
       html = { "prettier" },
       json = { "prettier" },
@@ -44,8 +50,12 @@ return {
     --   lsp_format = "fallback",
     -- },
     format_on_save = function(bufnr)
-      if vim.bo[bufnr].filetype == "ruby" then
+      local ft = vim.bo[bufnr].filetype
+      if ft == "ruby" then
         return { timeout_ms = 3000, lsp_fallback = true, async = false }
+      elseif ft == "javascript" or ft == "typescript" or ft == "javascriptreact" or ft == "typescriptreact" or ft == "svelte" then
+        -- Longer timeout for ESLint fix + prettier
+        return { timeout_ms = 2000, lsp_fallback = true, async = false }
       end
       return { timeout_ms = 1000, lsp_fallback = true, async = false }
     end,
