@@ -58,8 +58,9 @@ add_to_path "${XDG_DATA_HOME:-$HOME/.local/share}/npm/bin"
 # Yarn
 add_to_path "$HOME/.yarn/bin"
 
-# Neovim and Bob
+# Neovim, mason and Bob
 add_to_path "$HOME/.local/share/neovim/bin"
+add_to_path "$HOME/.local/share/nvim/mason/bin"
 add_to_path "$HOME/.local/share/bob/nvim-bin"
 
 # Local user bin
