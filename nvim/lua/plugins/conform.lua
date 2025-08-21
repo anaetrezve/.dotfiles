@@ -10,18 +10,27 @@ return {
     notify_on_error = true,
     notify_no_formatters = true,
 
+    -- Explicit formatter configurations to ensure compatibility
+    formatters = {
+      prettier = {
+        command = "prettier",
+        args = { "--stdin-filepath", "$FILENAME" },
+        stdin = true,
+      },
+    },
+
     formatters_by_ft = {
-      javascript = { "prettier", "prettierd", stop_after_first = true },
-      typescript = { "prettier", "prettierd", stop_after_first = true },
-      javascriptreact = { "prettier", "prettierd", stop_after_first = true },
-      typescriptreact = { "prettier", "prettierd", stop_after_first = true },
-      svelte = { "prettier", "prettierd", stop_after_first = true },
-      css = { "prettier", "prettierd", stop_after_first = true },
-      html = { "prettier", "prettierd", stop_after_first = true },
-      json = { "prettier", "prettierd", stop_after_first = true },
-      yaml = { "prettier", "prettierd", stop_after_first = true },
-      markdown = { "prettier", "prettierd", stop_after_first = true },
-      graphql = { "prettier", "prettierd", stop_after_first = true },
+      javascript = { "prettier" },
+      typescript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescriptreact = { "prettier" },
+      svelte = { "prettier" },
+      css = { "prettier" },
+      html = { "prettier" },
+      json = { "prettier" },
+      yaml = { "prettier" },
+      markdown = { "prettier" },
+      graphql = { "prettier" },
       lua = { "stylua", stop_after_first = true },
       ruby = { "rubocop", stop_after_first = true },
       python = { "isort", "black", stop_after_first = true },
