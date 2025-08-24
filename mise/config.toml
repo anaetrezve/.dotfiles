@@ -7,3 +7,7 @@ rust = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node", "python", "go", "rust"]
+
+[hooks]
+enter = "mise install"
+
