@@ -180,6 +180,7 @@ function setup_eza_theme() {
 function setup_mise_config() {
   echo "Setting up mise config"
   ln -nsf $HOME/.dotfiles/mise $XDG_CONFIG_HOME
+  touch $HOME/.mise.local.toml
 }
 
 function setup_kitty_config() {
