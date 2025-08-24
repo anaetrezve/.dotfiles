@@ -71,17 +71,15 @@ function install_other_necessary_packages() {
   install_or_update_brew_app zoxide
   install_or_update_brew_app ripgrep
   install_or_update_brew_app fd
+  install_or_update_brew_app fzf
+  install_or_update_brew_app curl
   install_or_update_brew_app eza
   install_or_update_brew_app neovim
   install_or_update_brew_app tmux
   install_or_update_brew_app wezterm
   install_or_update_brew_app starship
   install_or_update_brew_app ghostty
-
-  # programming languages & tools
-  install_or_update_brew_app go
-  install_or_update_brew_app rust
-  install_or_update_brew_app nvm
+  install_or_update_brew_app mise
 
   # install_or_update_brew_app postman
   # install_or_update_brew_app docker
