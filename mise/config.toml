@@ -1,6 +1,6 @@
 [tools]
 lua = "latest"
-node = "lts"
+node = "latest"
 python = "latest"
 go = "latest"
 rust = "latest"
