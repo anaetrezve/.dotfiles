@@ -6,7 +6,8 @@ go = "latest"
 rust = "latest"
 
 [settings]
-global_config_file = "~/.config/mise/config.toml"
+# global_config_file = "~/.mise.local.toml"
+# global_config_file = "~/.config/mise/config.toml"
 idiomatic_version_file_enable_tools = ["node", "python", "go", "rust"]
 experimental = true
 # status.show_tools = true
