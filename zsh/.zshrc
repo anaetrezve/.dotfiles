@@ -5,6 +5,7 @@ source $ZDOTDIR/initializers.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/exports.zsh
 source $ZDOTDIR/completion.zsh
+source $ZDOTDIR/loaders.zsh
 
 # =====================
 # HISTORY SETTINGS
@@ -92,76 +93,6 @@ source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 # }
 # add-zsh-hook chpwd load-nvmrc
 # load-nvmrc
-
-# =====================
-# MISE CONFIGURATION with .nvmrc support, no file writes
-# =====================
-autoload -U add-zsh-hook
-
-load-miserc() {
-  if [ -f ".tool-versions" ] || [ -f ".mise.toml" ]; then
-    mise install
-    if command -v node &>/dev/null; then
-      echo "mise: Using Node version $(node -v)"
-    fi
-  elif [ -f ".node-version" ]; then
-    local node_version
-    node_version="$(cat .node-version | tr -d '[:space:]vV')"
-    if [ -n "$node_version" ]; then
-      mise shell node@"$node_version" >/dev/null 2>&1
-      if command -v node &>/dev/null; then
-        echo "mise: Using Node version $(node -v) from .node-version"
-      fi
-    fi
-  elif [ -f ".nvmrc" ]; then
-    local nvmrc_node_version
-    nvmrc_node_version="$(cat .nvmrc | tr -d '[:space:]vV')"
-    if [ -n "$nvmrc_node_version" ]; then
-      # mise install node@"$nvmrc_node_version"
-      mise shell node@"$nvmrc_node_version" >/dev/null 2>&1
-      if command -v node &>/dev/null; then
-        echo "mise: Using Node version $(node -v) from .nvmrc"
-      fi
-    fi
-  else
-    # Revert to global Ruby if not in Gemfile directory
-    mise shell --unset node >/dev/null 2>&1
-  #   if command -v node &>/dev/null; then
-  #     echo "mise: Using global Node version $(node -v)"
-  #   fi
-  fi
-
-  # Install ruby autometically
-  if [ -f ".tool-versions" ] || [ -f ".mise.toml" ]; then
-    mise install
-    if command -v ruby &>/dev/null; then
-      echo "mise: Using ruby version $(ruby --version)"
-    fi
-  elif [ -f ".ruby-version" ]; then
-    local ruby_version
-    ruby_version="$(cat .ruby-version | tr -d '[:space:]vV')"
-    if [ -n "$ruby_version" ]; then
-      mise shell ruby@"$ruby_version" >/dev/null 2>&1
-      if command -v ruby &>/dev/null; then
-        echo "mise: Using Ruby version $(ruby --version) from .ruby-version"
-      fi
-    fi
-  elif [ -f "Gemfile" ]; then
-    ruby_version="$(grep "^ruby " Gemfile | head -n1 | sed -E "s/^ruby ['\"]([0-9.]+)['\"].*/\1/")"
-    if [ -n "$ruby_version" ]; then
-      mise shell ruby@"$ruby_version" >/dev/null 2>&1
-      if command -v ruby &>/dev/null; then
-        echo "mise: Using Ruby version $(ruby -v | awk '{print $2}') from Gemfile"
-      fi
-    fi
-  else
-    # Revert to global Ruby if not in Gemfile directory
-    mise shell --unset ruby >/dev/null 2>&1
-  fi
-}
-
-add-zsh-hook chpwd load-miserc
-load-miserc
 
 # =====================
 # LOCAL CONFIGURATION
