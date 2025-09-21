@@ -1,228 +1,473 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# command_timeout = 2000
+
 # Inserts a blank line between shell prompts
 add_newline = false
 
 format = """
 $os\
-$all\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$deno\
+$golang\
+$helm\
+$java\
+$kotlin\
+$lua\
+$nodejs\
+$python\
+$ruby\
+$rust\
+$scala\
+$terraform\
+$container\
+$docker_context\
+$kubernetes\
+$fill\
+$status\
+$aws\
+$gcloud\
+$azure\
+$direnv\
+$env_var\
+$mise\
+$sudo\
+$cmd_duration\
+$time\
+$line_break\
+$character\
 """
 
 
-# [directory]
-# style = "fg:color_fg0 bg:color_yellow"
-# format = "[ $path ]($style)"
+# $package\
+# $c\
+# $cmake\
+# $cobol\
+# $daml\
+# $dart\
+# $deno\
+# $dotnet\
+# $elixir\
+# $elm\
+# $erlang\
+# $fennel\
+# $gleam\
+# $golang\
+# $guix_shell\
+# $haskell\
+# $haxe\
+# $helm\
+# $java\
+# $julia\
+# $kotlin\
+# $gradle\
+# $lua\
+# $nim\
+# $nodejs\
+# $ocaml\
+# $opa\
+# $perl\
+# $php\
+# $pulumi\
+# $purescript\
+# $python\
+# $quarto\
+# $raku\
+# $rlang\
+# $red\
+# $ruby\
+# $rust\
+# $scala\
+# $solidity\
+# $swift\
+# $terraform\
+# $typst\
+# $vlang\
+# $vagrant\
+# $zig\
+# $buf\
+# $nix_shell\
+# $conda\
+# $meson\
+# $spack\
+# $memory_usage\
+# $aws\
+# $gcloud\
+# $openstack\
+# $azure\
+# $nats\
+# $direnv\
+# $env_var\
+# $mise\
+# $crystal\
+# $custom\
+# $sudo\
+# $cmd_duration\
+# $line_break\
+# $jobs\
+# $battery\
 
-# [aws]
-# format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
-#
-# [bun]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [c]
-# format = '\[[$symbol($version(-$name))]($style)\]'
-#
-# [cmake]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [cmd_duration]
-# format = '\[[⏱ $duration]($style)\]'
-#
-# [cobol]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [conda]
-# format = '\[[$symbol$environment]($style)\]'
-#
-# [crystal]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [daml]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [dart]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [deno]
-# format = '\[[$symbol($version)]($style)\]'
+palette = 'catppuccin_mocha'
 
-[directory]
-home_symbol = "  "
-format = '[$path ]($style)'
-repo_root_style = 'bold blue'
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
 
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
-
-# [docker_context]
-# format = '\[[$symbol$context]($style)\]'
-#
-# [dotnet]
-# format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
-#
-# [elixir]
-# format = '\[[$symbol($version \(OTP $otp_version\))]($style)\]'
-#
-# [elm]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [erlang]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [fennel]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [fossil_branch]
-# format = '\[[$symbol$branch]($style)\]'
-#
-# [gcloud]
-# format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
-#
-# [git_branch]
-# format = '\[[$symbol$branch]($style)\]'
-#
-# [git_status]
-# format = '([\[$all_status$ahead_behind\]]($style))'
-#
-# [golang]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [gradle]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [guix_shell]
-# format = '\[[$symbol]($style)\]'
-#
-# [haskell]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [haxe]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [helm]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [hg_branch]
-# format = '\[[$symbol$branch]($style)\]'
-#
-# [java]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [julia]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [kotlin]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [kubernetes]
-# format = '\[[$symbol$context( \($namespace\))]($style)\]'
-#
-# [lua]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [memory_usage]
-# format = '\[$symbol[$ram( | $swap)]($style)\]'
-#
-# [meson]
-# format = '\[[$symbol$project]($style)\]'
-#
-# [nim]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [nix_shell]
-# format = '\[[$symbol$state( \($name\))]($style)\]'
-#
-# [nodejs]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [ocaml]
-# format = '\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'
-#
-# [opa]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [openstack]
-# format = '\[[$symbol$cloud(\($project\))]($style)\]'
+[palettes.gruvbox_dark]
+color_ok = '#b8bb26'
+color_danger = '#fb4934'
+color_caution = '#d79921'
+color_os = '#d65d0e'
+color_username = '#d65d0e'
+color_directory = '#d79921'
+color_git = '#689d6a'
+color_git_added = '#b8bb26'
+color_git_deleted = '#fb4934'
+color_env = '#458588'
+color_kubernetes = '#b16286'
+color_docker = '#458588'
+color_shell = '#a89984'
+color_container = '#cc241d'
+color_other = '#d5c4a1'
+color_time = '#fbf1c7'
+color_duration = '#fbf1c7'
+color_vimcmd_ok = '#8ec07c'
+color_vimcmd_replace = '#b16286'
+color_vimcmd_visual = '#d79921'
 
 [os]
-format = '[$symbol](bold white) '
 disabled = false
+style = "fg:text"
+format = '[$symbol]($style)'
 
 [os.symbols]
-Windows = ' '
-Arch = '󰣇'
-Ubuntu = ''
-Macos = '󰀵'
-Unknown = '󰠥'
+Macos = "󰀵"
 
-# [package]
-# format = '\[[$symbol$version]($style)\]'
-#
-# [perl]
-# format = '\[[$symbol($version)]($style)\]'
-#
+[username]
+show_always = true
+style_user = "fg:green"
+style_root = "bold fg:red"
+format = '[ $user ]($style)'
+
+[directory]
+style = "fg:blue"
+read_only_style = "fg:flamingo"
+repo_root_style = "bold fg:blue"
+format = "[$path ]($style)"
+read_only = ""
+home_symbol = "~"
+truncation_symbol = "…/"
+truncation_length = 2
+truncate_to_repo = false
+fish_style_pwd_dir_length = 0
+use_logical_path = true
+
+[git_branch]
+symbol = ""
+style = "fg:green"
+format = '([$symbol $branch]($style) )'
+only_attached = true
+ignore_branches = []
+truncation_length = 25
+truncation_symbol = "..."
+always_show_remote = false
+disabled = false
+
+[git_commit]
+style = "fg:green"
+format = "([($tag)(@$hash)]($style) )"
+commit_hash_length = 7
+only_detached = true
+tag_symbol = "󰓼 "
+tag_disabled = false
+disabled = false
+
+[git_status]
+style = "fg:green"
+format = '([$ahead_behind]($style) )([$all_status]($style) )'
+stashed = "*${count}"
+ahead = "[⇡($count)](green)"
+behind = "[⇣($count)](maroon)"
+up_to_date = ""
+diverged = "[⇡($ahead_count)](green)[⇣($behind_count)](maroon)"
+conflicted = "[c($count) ](red)"
+deleted = "[×($count) ](maroon)"
+renamed = "»${count}"
+modified = "[!($count) ](peach)"
+staged = "[+($count) ](green)"
+untracked = "[?($count)](red)"
+ignore_submodules = false
+disabled = false
+
+[git_metrics]
+format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:color_git) )'
+added_style = "fg:yellow"
+deleted_style = "fg:red"
+only_nonzero_diffs = true
+disabled = true
+
+[git_state]
+style = "fg:red"
+format = '([$state( $progress_current/$progress_total)]($style bold) )'
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+disabled = false
+
+[nodejs]
+symbol = ""
+style = "fg:green"
+format = '([$symbol( $version)]($style) )'
+
+# [c]
+# symbol = ""
+# style = "fg:color_env"
+# format = '( [$symbol( $version)]($style) )'
+
+[rust]
+symbol = "󱘗"
+style = "fg:flamingo"
+format = '([$symbol( $version)]($style) )'
+
+[golang]
+symbol = ""
+style = "fg:sapphire"
+format = '([$symbol( $version)]($style) )'
+
 # [php]
-# format = '\[[$symbol($version)]($style)\]'
+# symbol = ""
+# style = "fg:color_env"
+# format = '( [$symbol( $version)]($style) )'
+
+[java]
+symbol = ""
+style = "fg:peach"
+format = '([$symbol( $version)]($style) )'
+
+[kotlin]
+symbol = ""
+style = "fg:peach"
+format = '([$symbol( $version)]($style) )'
+
+[lua]
+symbol = ""
+style = "fg:blue"
+format = 'via [$symbol( $version)]($style) '
+
+[ruby]
+symbol = ""
+style = "fg:red"
+format = '([$symbol( $version)]($style) )'
+
+# [haskell]
+# symbol = ""
+# style = "fg:color_env"
+# format = '( [$symbol( $version)]($style) )'
+
+[python]
+symbol = ""
+style = "fg:yellow"
+format = '([$symbol( $version)( $virtualenv)]($style) )'
+version_format = '${raw}'
+
+[package]
+disabled = false
+symbol = "󰏗"
+style = "fg:rosewater"
+format = '([$symbol( $version)]($style) )'
+
+[docker_context]
+symbol = ""
+style = "fg:sapphire"
+format = '([$symbol( $context)]($style) )'
+
+[kubernetes]
+symbol = "󱃾"
+style = "fg:blue"
+format = '([($symbol( $cluster))]($style) )'
+disabled = false
+
+# [shell]
+# disabled = false
+# format = '[  $indicator ]($style)'
+# bash_indicator = "bash"
+# fish_indicator = "fish"
+# zsh_indicator = "zsh"
+# powershell_indicator = "powershell"
+# pwsh_indicator = "pwsh"
+# ion_indicator = "ion"
+# elvish_indicator = "elvish"
+# tcsh_indicator = "tcsh"
+# xonsh_indicator = "xonsh"
+# cmd_indicator = "cmd"
+# nu_indicator = "nu"
+# unknown_indicator = ""
+# style = "fg:color_shell"
+
+[container]
+style = "fg:red"
+format = '([$symbol $name]($style) )'
+
+# [jobs]
+# symbol = "󰒋"
+# style = "fg:color_other"
+# format = '( [$symbol( $number)]($style) )'
+# symbol_threshold = 1
+# number_threshold = 1
 #
-# [pijul_channel]
-# format = '\[[$symbol$channel]($style)\]'
+# [custom.memory_usage]
+# command = "starship module memory_usage"
+# when = '[ "${STARSHIP_COCKPIT_MEMORY_USAGE_ENABLED:-false}" = "true" ]'
+# shell = "sh"
+# format = "( $output )"
+# disabled = false
 #
-# [pulumi]
-# format = '\[[$symbol$stack]($style)\]'
+# [memory_usage]
+# threshold = 0
+# symbol = "󰓅"
+# style = "fg:color_other"
+# format = '( [$symbol( ${ram})]($style) )'
+# disabled = false
 #
-# [purescript]
-# format = '\[[$symbol($version)]($style)\]'
+# [custom.battery]
+# command = """
+# battery_info=$(starship module battery)
+# if [ -n "$battery_info" ]; then
+#     percent=$(echo "$battery_info" | grep -o '[0-9]*%' | sed 's/%//')
+#     if [ "$percent" -le "${STARSHIP_COCKPIT_BATTERY_THRESHOLD:-0}" ]; then
+#         echo "$battery_info" | sed 's/%%/%/'
+#     fi
+# fi
+# """
+# when = '[ "${STARSHIP_COCKPIT_BATTERY_ENABLED:-false}" = "true" ]'
+# shell = "sh"
+# format = "( $output )"
+# disabled = false
 #
-# [python]
-# format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+# [battery]
+# full_symbol = "󰁹"
+# charging_symbol = "󰂄"
+# discharging_symbol = "󰂃"
+# unknown_symbol = "󰂑"
+# empty_symbol = "󰂎"
+# format = '( [$symbol( $percentage)]($style) )'
+# disabled = false
 #
-# [raku]
-# format = '\[[$symbol($version-$vm_version)]($style)\]'
+# [[battery.display]]
+# threshold = 10
+# style = "bold fg:color_danger"
 #
-# [red]
-# format = '\[[$symbol($version)]($style)\]'
+# [[battery.display]]
+# threshold = 20
+# style = "fg:color_caution"
 #
-# [ruby]
-# format = '\[[$symbol($version)]($style)\]'
+# [[battery.display]]
+# threshold = 100
+# style = "fg:color_other"
+
+[time]
+#  🕙                  |
+format = '[ ](bold text)[$time]($style) '
+style = 'fg:text bold'
+time_format = '%I:%M%P'
+use_12hr = true
+disabled = false
+
+[fill]
+symbol = ' '
+disabled = false
+
+[cmd_duration]
+min_time = 5000
+format = '( [󱫑 $duration]($style) )'
+style = 'fg:rosewater'
+show_milliseconds = false
+disabled = false
+
+[status]
+disabled = false
+format = '( [$symbol( $common_meaning)( $signal_name)]($style) )'
+map_symbol = true
+pipestatus = true
+symbol = '󰅙'
+success_symbol = ''
+not_executable_symbol = '󰂭'
+not_found_symbol = '󰍉'
+sigint_symbol = '󰐊'
+signal_symbol = '󱐋'
+style = 'bold fg:red'
+recognize_signal_code = true
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+format = '$symbol '
+success_symbol = '[❯](bold fg:green)'
+error_symbol = '[❯](bold fg:red)'
+vimcmd_symbol = '[](bold fg:green)'
+vimcmd_replace_one_symbol = '[](bold fg:maroon)'
+vimcmd_replace_symbol = '[](bold fg:maroon)'
+vimcmd_visual_symbol = '[](bold fg:blue)'
+
+# [custom.keyboard_layout]
+# command = """
 #
-# [rust]
-# format = '\[[$symbol($version)]($style)\]'
+# # Set env variables if you want to use layout aliases (in uppercase)
+# #     export STARSHIP_COCKPIT_KEYBOARD_LAYOUT_ABC=ENG
+# #     export STARSHIP_COCKPIT_KEYBOARD_LAYOUT_UKRAINIAN=UKR
+# #
+# # Implementations:
+# #     macOS
 #
-# [scala]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [spack]
-# format = '\[[$symbol$environment]($style)\]'
-#
-# [sudo]
-# format = '\[[as $symbol]($style)\]'
-#
-# [swift]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [terraform]
-# format = '\[[$symbol$workspace]($style)\]'
-#
-# [time]
-# format = '\[[$time]($style)\]'
-#
-# [username]
-# format = '\[[$user]($style)\]'
-#
-# [vagrant]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [vlang]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [zig]
-# format = '\[[$symbol($version)]($style)\]'
-#
-# [solidity]
-# format = '\[[$symbol($version)]($style)\]'
+# if [ "$(uname -s)" = "Darwin" ]; then
+#         input_source=$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID)
+#         layout_id=$(echo "$input_source" | cut -d '.' -f4)
+#         layout=$(printenv "STARSHIP_COCKPIT_KEYBOARD_LAYOUT_$(echo "$layout_id" | tr '[:lower:]' '[:upper:]')")
+#         echo "$layout" || echo "$layout_id"
+# fi
+
+# """
+# symbol = "󰌌"
+# style = "fg:color_other"
+# format = '( [$symbol $output]($style) )'
+# when = '[ "${STARSHIP_COCKPIT_KEYBOARD_LAYOUT_ENABLED:-false}" = "true" ]'
+# shell = "sh"
+# disabled = false

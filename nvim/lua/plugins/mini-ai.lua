@@ -1,11 +1,7 @@
 return {
   "echasnovski/mini.ai",
-
-  version = "*",
-
   opts = function()
     local ai = require("mini.ai")
-
     return {
       n_lines = 500,
       custom_textobjects = {
@@ -21,9 +17,32 @@ return {
           { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
           "^().*()$",
         },
+        g = function(ai_type)
+          local start_line, end_line = 1, vim.fn.line("$")
+          if ai_type == "i" then
+            -- Skip first and last blank lines for `i` textobject
+            local first_nonblank, last_nonblank = vim.fn.nextnonblank(start_line), vim.fn.prevnonblank(end_line)
+            -- Do nothing for buffer with all blanks
+            if first_nonblank == 0 or last_nonblank == 0 then
+              return { from = { line = start_line, col = 1 } }
+            end
+            start_line, end_line = first_nonblank, last_nonblank
+          end
+
+          local to_col = math.max(vim.fn.getline(end_line):len(), 1)
+          return { from = { line = start_line, col = 1 }, to = { line = end_line, col = to_col } }
+        end, -- buffer
+        u = ai.gen_spec.function_call(), -- u for "Usage"
+        U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
       },
     }
   end,
-
-  config = true,
+  -- config = function(_, opts)
+  --   require("mini.ai").setup(opts)
+  --   LazyVim.on_load("which-key.nvim", function()
+  --     vim.schedule(function()
+  --       LazyVim.mini.ai_whichkey(opts)
+  --     end)
+  --   end)
+  -- end,
 }

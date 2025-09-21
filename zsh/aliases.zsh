@@ -31,12 +31,12 @@ alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
 
 # general
 # alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
-alias ls="eza --color=always --icons=always"
-alias la="ls -al --all"
-alias ll="ls -l"
+alias ls="eza --color=always --icons=always --grid --across"
+alias la="eza --color=always --icons=always -al --all"
+alias ll="eza --color=always --icons=always -l"
 alias tree="eza -T --color=always --icons=always -I \".git|node_modules\""
-alias vi="nvim"
-alias vim="nvim"
+# alias vi="nvim"
+# alias vim="nvim"
 alias cd="z"
 
 # MongoDB and Docker aliases

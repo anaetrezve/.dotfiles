@@ -1,15 +1,29 @@
 return {
-  "folke/lazydev.nvim",
-  ft = "lua",
-  dependencies = {
-    { "justinsgithub/wezterm-types", lazy = true },
-    { "Bilal2453/luvit-meta", lazy = true },
-  },
-  opts = {
-    library = {
-      "lazy.nvim",
-      "luvit-meta/library",
-      { path = "wezterm-types", mods = { "wezterm" } },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    cmd = "LazyDev",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
+      },
     },
   },
+  -- {
+  --   "saghen/blink.cmp",
+  --   opts = {
+  --     sources = {
+  --       default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+  --       providers = {
+  --         lazydev = {
+  --           name = "LazyDev",
+  --           module = "lazydev.integrations.blink",
+  --           score_offset = 100,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 }

@@ -1,121 +1,58 @@
 return {
   "lewis6991/gitsigns.nvim",
-  event = { "BufReadPre", "BufNewFile" },
   opts = {
     signs = {
-      add = { text = "│" },
-      change = { text = "│" },
-      delete = { text = "󰍵" },
-      topdelete = { text = "‾" },
-      changedelete = { text = "~" },
-      untracked = { text = "│" },
+      add = { text = "▎" },
+      change = { text = "▎" },
+      delete = { text = "" },
+      topdelete = { text = "" },
+      changedelete = { text = "▎" },
+      untracked = { text = "▎" },
     },
-    current_line_blame = true,
-    -- signs_staged = {
-    --   add          = { text = '┃' },
-    --   change       = { text = '┃' },
-    --   delete       = { text = '_' },
-    --   topdelete    = { text = '‾' },
-    --   changedelete = { text = '~' },
-    --   untracked    = { text = '┆' },
-    -- },
-    signs_staged_enable = true,
-    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-    word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-    watch_gitdir = {
-      follow_files = true,
+    signs_staged = {
+      add = { text = "▎" },
+      change = { text = "▎" },
+      delete = { text = "" },
+      topdelete = { text = "" },
+      changedelete = { text = "▎" },
     },
     auto_attach = true,
-    attach_to_untracked = false,
-    current_line_blame_opts = {
-      virt_text = true,
-      virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-      delay = 1000,
-      ignore_whitespace = false,
-      virt_text_priority = 100,
-      use_focus = true,
-    },
-    current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
-    sign_priority = 6,
-    update_debounce = 100,
-    status_formatter = nil, -- Use default
-    max_file_length = 40000, -- Disable if file is longer than this (in lines)
-    preview_config = {
-      -- Options passed to nvim_open_win
-      border = "single",
-      style = "minimal",
-      relative = "cursor",
-      row = 0,
-      col = 1,
-    },
+    current_line_blame = true,
+    on_attach = function(buffer)
+      local gs = package.loaded.gitsigns
 
-    on_attach = function(bufnr)
-      local gitsigns = require("gitsigns")
-
-      local function keymap(mode, l, r, opts)
-        opts = opts or {}
-        opts.buffer = bufnr
-        vim.keymap.set(mode, l, r, opts)
+      local function map(mode, l, r, desc)
+        vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
       end
 
-      -- Navigation
-      keymap("n", "]c", function()
+      -- stylua: ignore start
+      map("n", "]h", function()
         if vim.wo.diff then
           vim.cmd.normal({ "]c", bang = true })
         else
-          gitsigns.nav_hunk("next")
+          gs.nav_hunk("next")
         end
-      end, { desc = "Next hunk" })
-
-      keymap("n", "[c", function()
+      end, "Next Hunk")
+      map("n", "[h", function()
         if vim.wo.diff then
           vim.cmd.normal({ "[c", bang = true })
         else
-          gitsigns.nav_hunk("prev")
+          gs.nav_hunk("prev")
         end
-      end, { desc = "Next hunk" })
-
-      -- Actions
-      -- keymap("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage hunk" })
-      -- keymap("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Reset hunk" })
-
-      keymap("v", "<leader>hs", function()
-        gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-      end, { desc = "Stage hunk" })
-
-      -- keymap("v", "<leader>hr", function()
-      --   gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-      -- end, { desc = "Reset hunk" })
-
-      -- keymap("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage buffer" })
-      -- keymap("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset buffer" })
-      keymap("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview hunk" })
-      keymap("n", "<leader>hi", gitsigns.preview_hunk_inline, { desc = "Preview hunk inline" })
-
-      keymap("n", "<leader>hb", function()
-        gitsigns.blame_line({ full = true })
-      end, { desc = "Blame line full " })
-
-      keymap("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff this" })
-
-      -- keymap("n", "<leader>hD", function()
-      --   gitsigns.diffthis("~")
-      -- end, { desc = "Next hunk" })
-
-      -- keymap("n", "<leader>hQ", function()
-      --   gitsigns.setqflist("all")
-      -- end, { desc = "Next hunk" })
-      -- keymap("n", "<leader>hq", gitsigns.setqflist, { desc = "Next hunk" })
-
-      -- Toggles
-      keymap("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle current line blame" })
-      -- keymap("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Next hunk" })
-      -- keymap("n", "<leader>tw", gitsigns.toggle_word_diff, { desc = "Next hunk" })
-
-      -- Text object
-      -- keymap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Next hunk" })
+      end, "Prev Hunk")
+      map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
+      map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
+      map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+      map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+      map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+      map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+      map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+      map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
+      map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+      map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
+      map("n", "<leader>ghd", gs.diffthis, "Diff This")
+      map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
     end,
   },
 }

@@ -18,11 +18,11 @@ return {
     spec = {
       {
         mode = { "n", "v" },
-        { "g", group = "+LSP Functions" },
+        -- { "g", group = "+LSP Functions" },
         -- { "grw", group = "+LSP Workspace Folders" },
-        { "<leader>cc", group = "+Copilot" },
-        { "<leader>f", group = "+File" }, -- Telescope
-        { "<leader>h", group = "+Git & Harpoon" }, -- Gitsigns & Harpoon
+        { "<leader>a", group = "Copilot", icon = { icon = "" } },
+        -- { "<leader>f", group = "+File" }, -- Telescope
+        -- { "<leader>h", group = "+Git & Harpoon" }, -- Gitsigns & Harpoon
         -- { "<leader>l", group = "+Lazy", icon = "💤" }, -- Lazy & LTeX
         -- { "<leader>m", group = "+Show Messages" }, -- Messages
         -- { "<leader>t", group = "+ToggleTerm / Todo Comments" }, -- ToggleTerm & Todo Comments
@@ -30,7 +30,7 @@ return {
         -- { "<leader>g", group = "+Glance LSP" }, -- Glance LSP locations
         -- { "<leader>i", group = "+IncRename / Inlay Hints" }, -- IncRename
         -- { "<leader>n", group = "+Noice" }, -- Noice.nvim
-        { "<leader>x", group = "+Trouble" }, -- Trouble.nvim
+        -- { "<leader>x", group = "+Trouble" }, -- Trouble.nvim
       },
     },
     win = {

@@ -20,6 +20,7 @@ export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 # Z
 export _Z_DATA=$XDG_DATA_HOME/z
 
-export TERM='xterm-256color'
+# eza
+export EZA_CONFIG_DIR=$XDG_CONFIG_HOME/eza
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+export TERM='xterm-256color'

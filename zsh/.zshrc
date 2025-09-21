@@ -1,9 +1,11 @@
 # =====================
-# ALIASES AND EXPORTS
+# INITIALIZERS, ALIASES AND EXPORTS
 # =====================
+source $ZDOTDIR/initializers.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/exports.zsh
 source $ZDOTDIR/completion.zsh
+source $ZDOTDIR/loaders.zsh
 
 # =====================
 # HISTORY SETTINGS
@@ -22,8 +24,6 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
-setopt share_history
-setopt appendhistory
 setopt sharehistory
 setopt hist_save_no_dups
 setopt hist_find_no_dups
@@ -36,7 +36,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 zmodload zsh/complist
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+compinit -u -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 _comp_options+=(globdots) # Include hidden files.
 
 # =====================
@@ -73,44 +73,30 @@ source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 # =====================
 # NVM CONFIGURATION
 # =====================
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-# =====================
-# ZOXIDE INTEGRATION
-# =====================
-if command -v "zoxide" &>/dev/null; then
-  eval "$(zoxide init zsh)"
-fi
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
+#
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # =====================
 # LOCAL CONFIGURATION
 # =====================
-if [[ -r "$ZDOTDIR/local-config/config.zsh" ]]; then
-  source "$ZDOTDIR/local-config/config.zsh"
+if [[ -f "$ZDOTDIR/local/config.zsh" ]]; then
+  source "$ZDOTDIR/local/config.zsh"
 fi
-
-# =====================
-# STARSHIP PROMPT
-# =====================
-# if command -v starship &>/dev/null; then
-#   eval "$(starship init zsh)"
-# fi

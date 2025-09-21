@@ -1,14 +1,14 @@
 term = xterm-256color
 theme = catppuccin-mocha
-font-family = CartographCF Nerd Font 
+font-family = CartographCF Nerd Font
 font-size = 16
 font-synthetic-style = true
 adjust-cell-height = 26%
 
 cursor-style = block
 cursor-style-blink = true
-cursor-color = #f5e0dc 
-cursor-text = #11111b 
+cursor-color = #f5e0dc
+cursor-text = #11111b
 adjust-cursor-height = 25%
 shell-integration-features = no-cursor
 

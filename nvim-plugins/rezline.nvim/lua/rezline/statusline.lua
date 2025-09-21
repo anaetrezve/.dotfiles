@@ -7,6 +7,11 @@ M.mode = function()
 		return ""
 	end
 
+	if utils.is_snacks() then
+		local title, meta = utils.snacks_status()
+		return "%#St_snacks_picker_title# " .. title .. " %#St_snacks_meta#" .. " " .. meta .. " " .. "%*"
+	end
+
 	local modes = utils.modes
 	local m = vim.api.nvim_get_mode().mode
 	return "%#St_" .. modes[m][2] .. "_Mode#" .. "  " .. modes[m][1] .. " %#StText#"
@@ -27,7 +32,7 @@ M.lsp = function()
 	return "%#St_Lsp#" .. utils.lsp()
 end
 
-M.cursor = "%#StText# Ln %l, Col %c "
+M.cursor = "%#StText# %l:%c "
 M["%="] = "%="
 
 M.cwd = function()

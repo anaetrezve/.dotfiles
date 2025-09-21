@@ -1,6 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
-
+  enabled = false,
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-telescope/telescope-live-grep-args.nvim",
@@ -15,26 +15,26 @@ return {
       "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
       desc = "Find all files",
     },
-    { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find Buffers" },
+    { "<leader>fb", "<cmd>Telescope buffers<cr>",                     desc = "Find Buffers" },
     { "<leader>fc", ":lua require'telescope.builtin'.commands{}<cr>", desc = "List Commands" },
-    { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Find Diagnostics" },
+    { "<leader>fd", "<cmd>Telescope diagnostics<cr>",                 desc = "Find Diagnostics" },
     -- { "<leader>fe", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
-    { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
+    { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>",      desc = "Find Files" },
     -- { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find Word" },
     {
       "<leader>fg",
       ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
       desc = "Live grep",
     },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>",            desc = "Find Help" },
     -- { "<leader>fi", "<cmd>Telescope import<cr>", desc = "Find Imports" },
     -- { "<leader>fj", "<cmd>Telescope emoji<cr>", desc = "Find emoji" },
-    { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Find Keymaps" },
-    { "<leader>fl", "<cmd>Telescope highlights<cr>", desc = "Find Highlights" },
+    { "<leader>fk", "<cmd>Telescope keymaps<cr>",              desc = "Find Keymaps" },
+    { "<leader>fl", "<cmd>Telescope highlights<cr>",           desc = "Find Highlights" },
     -- { "<leader>fm", "<cmd>Telescope heading<cr>", desc = "Find Heading" },
     { "<leader>fo", "<cmd>Telescope oldfiles hidden=true<cr>", desc = "Recently opened files" },
     -- { "<leader>fp", "<cmd>Telescope spell_suggest<cr>", desc = "Find Spell Suggest" },
-    { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "Find Quickix" },
+    { "<leader>fq", "<cmd>Telescope quickfix<cr>",             desc = "Find Quickix" },
     {
       "<leader>fw",
       function()
@@ -133,7 +133,7 @@ return {
               end
             end,
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
-            ["<C-j>"] = actions.move_selection_next, -- move to next result
+            ["<C-j>"] = actions.move_selection_next,     -- move to next result
             ["<C-q>"] = actions.send_selected_to_qflist + custom_actions.open_trouble_qflist,
             ["<C-t>"] = trouble_telescope.open,
             ["<C-h>"] = actions.preview_scrolling_right,

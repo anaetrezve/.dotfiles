@@ -60,11 +60,17 @@ M.lsp_loaders = function()
 	vim.cmd("highlight " .. "St_lsp_loading_done" .. " guifg=#a6e3a1 guibg=#181825")
 end
 
+M.snacks_status_colors = function()
+	vim.cmd("highlight " .. "St_snacks_picker_title" .. " guifg=#74c7ec guibg=#313244")
+	vim.cmd("highlight " .. "St_snacks_meta" .. " guifg=#a6e3a1 guibg=#181825")
+end
+
 M.set_default_Mode_highlight_colors = function()
 	M.mode_colors()
 	M.diagnostic_colors()
 	M.git_colors()
 	M.lsp_loaders()
+	M.snacks_status_colors()
 end
 
 return M
