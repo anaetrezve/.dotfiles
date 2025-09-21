@@ -2,33 +2,6 @@
 
 function install_or_update_brew_app() {
   local app_name="$1"
-
-  # Check if the application is installed as a formula or cask
-  if ! command -v "$app_name" &>/dev/null || brew list --formula "$app_name" &>/dev/null || brew list --cask "$app_name" &>/dev/null; then
-    echo "$app_name is already installed."
-  else
-    # If not installed, check if it's a cask
-    if brew info --cask "$app_name" &>/dev/null; then
-      # If it's a cask, install it using Homebrew Cask
-      echo "$app_name is not installed. Installing via Homebrew Cask..."
-      brew install --cask "$app_name"
-    else
-      # If it's not a cask, install it using regular Homebrew
-      echo "$app_name is not installed. Installing via Homebrew..."
-      brew install "$app_name"
-    fi
-
-    # Check if installation was successful
-    if [ $? -eq 0 ]; then
-      echo "Installation of $app_name successful."
-    else
-      echo "Installation of $app_name failed. Please check Homebrew or try again later."
-    fi
-  fi
-}
-
-function install_or_update_brew_app() {
-  local app_name="$1"
   # Check if the application is already installed
   if ! command -v "$app_name" &>/dev/null; then
     # If not installed, install using Homebrew
@@ -48,10 +21,10 @@ function install_or_update_brew_app() {
 
 function setup_zshenv() {
   echo "Setting up .zshenv to home directory"
-  ln -nsf $HOME/.dotfiles/zsh/.zshenv $HOME
-  source $HOME/.zshenv
+  ln -nsf "$HOME"/.dotfiles/zsh/.zshenv "$HOME"
+  source "$HOME"/.zshenv
 
-  rm -f $HOME/.zsh_history
+  rm -f "$HOME"/.zsh_history
 }
 
 function install_zsh_plugins() {
@@ -80,6 +53,7 @@ function install_other_necessary_packages() {
   install_or_update_brew_app starship
   install_or_update_brew_app ghostty
   install_or_update_brew_app mise
+  install_or_update_brew_app opencode
 
   # install_or_update_brew_app postman
   # install_or_update_brew_app docker
@@ -105,10 +79,10 @@ function setup_homebrew() {
 
 function setup_tmux_config() {
   echo "Setting up tmux config"
-  ln -nsf $HOME/.dotfiles/tmux $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/tmux "$XDG_CONFIG_HOME"
 
   echo "Installing tmux plugin manager"
-  git clone https://github.com/tmux-plugins/tpm.git $XDG_CONFIG_HOME/tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm.git "$XDG_CONFIG_HOME"/tmux/plugins/tpm
 }
 
 # function setup_nvim_config() {
@@ -121,41 +95,41 @@ function setup_tmux_config() {
 
 function setup_nvim_config() {
   echo "Setting up nvim config"
-  ln -nsf $HOME/.dotfiles/nvim $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/nvim "$XDG_CONFIG_HOME"
 }
 
 function setup_zsh_config() {
   local ZSH_LOCAL_CONFIG_DIR=$HOME/.dotfiles/zsh/local-config
   echo "Setting up zsh config"
-  ln -nsf $HOME/.dotfiles/zsh $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/zsh "$XDG_CONFIG_HOME"
 
   # Create local config file if not exists
   if [[ ! -d $ZSH_LOCAL_CONFIG_DIR ]]; then
-    mkdir -p $ZSH_LOCAL_CONFIG_DIR
-    touch $ZSH_LOCAL_CONFIG_DIR/config.zsh
+    mkdir -p "$ZSH_LOCAL_CONFIG_DIR"
+    touch "$ZSH_LOCAL_CONFIG_DIR"/config.zsh
   fi
 }
 
 function setup_wezterm_config() {
   local WEZTERM_LOCAL_CONFIG_DIR=$HOME/.dotfiles/wezterm/local-config
   echo "Setting up wezterm config"
-  ln -nsf $HOME/.dotfiles/wezterm $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/wezterm "$XDG_CONFIG_HOME"
 
   # Create local config file if not exists
   if [[ ! -d $WEZTERM_LOCAL_CONFIG_DIR ]]; then
-    mkdir -p $WEZTERM_LOCAL_CONFIG_DIR
-    echo 'return {}' > $WEZTERM_LOCAL_CONFIG_DIR/init.lua
+    mkdir -p "$WEZTERM_LOCAL_CONFIG_DIR"
+    echo 'return {}' > "$WEZTERM_LOCAL_CONFIG_DIR"/init.lua
   fi
 }
 
 function setup_starship_config() {
   echo "Setting up starship config"
-  ln -nsf $HOME/.dotfiles/starship $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/starship "$XDG_CONFIG_HOME"
 }
 
 function setup_ghostty_config() {
   echo "Setting up ghostty config"
-  ln -nsf $HOME/.dotfiles/ghostty $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/ghostty "$XDG_CONFIG_HOME"
 }
 
 # if [ "$(uname)" == "Darwin" ]; then
@@ -174,18 +148,23 @@ function setup_mac_key_repeat() {
 
 function setup_eza_theme() {
   echo "Setting up eza theme"
-  ln -nsf $HOME/.dotfiles/eza $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/eza "$XDG_CONFIG_HOME"
 }
 
 function setup_mise_config() {
   echo "Setting up mise config"
-  ln -nsf $HOME/.dotfiles/mise $XDG_CONFIG_HOME
-  touch $HOME/.mise.local.toml
+  ln -nsf "$HOME"/.dotfiles/mise "$XDG_CONFIG_HOME"
+  touch "$HOME"/.mise.local.toml
 }
 
 function setup_kitty_config() {
   echo "Setting up kitty config"
-  ln -nsf $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
+  ln -nsf "$HOME"/.dotfiles/kitty "$XDG_CONFIG_HOME"
+}
+
+function setup_opencode_config() {
+  echo "Setting up opencode config"
+  ln -nsf "$HOME"/.dotfiles/opencode "$XDG_CONFIG_HOME"
 }
 
 function setup_all() {
@@ -201,6 +180,7 @@ function setup_all() {
   setup_ghostty_config
   setup_mise_config
   setup_kitty_config
+  setup_opencode_config
 }
 
 function setup_all_configs() {
@@ -215,6 +195,7 @@ function setup_all_configs() {
   setup_ghostty_config
   setup_mise_config
   setup_kitty_config
+  setup_opencode_config
 }
 
 function show_help() {
@@ -243,6 +224,7 @@ function show_help() {
   echo -e "  ${GREEN}-sg, --setup-ghostty${RESET}          ${YELLOW}Configure Ghostty terminal settings.${RESET}"
   echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
   echo -e "  ${GREEN}-sk, --setup-kitty${RESET}            ${YELLOW}Setup kitty config.${RESET}"
+  echo -e "  ${GREEN}-soc, --setup-opencode${RESET}        ${YELLOW}Setup opencode config.${RESET}"
   echo -e "  ${GREEN}-ac, --all-configs${RESET}            ${YELLOW}Setup all configs.${RESET}"
   echo -e "  ${GREEN}-a, --all${RESET}                     ${YELLOW}Run all setup steps and install necessary components.${RESET}"
   echo
@@ -252,10 +234,10 @@ function show_help() {
 
 function initial_setup() {
   # Initial setup directories
-  [[ -d $HOME/.config/zsh ]] || mkdir -p $HOME/.config/zsh
-  [[ -d $HOME/.cache/zsh ]] || mkdir -p $HOME/.cache/zsh
-  [[ -d $HOME/.local/share/zsh ]] || mkdir -p $HOME/.local/share/zsh
-  [[ -d $HOME/.local/state/zsh ]] || mkdir -p $HOME/.local/state/zsh
+  [[ -d $HOME/.config/zsh ]] || mkdir -p "$HOME"/.config/zsh
+  [[ -d $HOME/.cache/zsh ]] || mkdir -p "$HOME"/.cache/zsh
+  [[ -d $HOME/.local/share/zsh ]] || mkdir -p "$HOME"/.local/share/zsh
+  [[ -d $HOME/.local/state/zsh ]] || mkdir -p "$HOME"/.local/state/zsh
 
 
   # Parse command-line arguments
@@ -311,6 +293,9 @@ function initial_setup() {
       ;;
     -sk | --setup-kitty)
       setup_kitty_config
+      ;;
+    -soc | --setup-opencode)
+      setup_opencode_config
       ;;
     -a | --all)
       setup_all

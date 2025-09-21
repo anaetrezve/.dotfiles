@@ -45,6 +45,11 @@ function remove_mise_configs() {
   rm -rf ~/.config/mise
 }
 
+function remove_opencode_configs() {
+  echo "Removing Opencode configs"
+  rm -rf ~/.config/opencode
+}
+
 function remove_all_configs() {
   remove_zsh_configs
   remove_tmux_configs
@@ -55,6 +60,7 @@ function remove_all_configs() {
   remove_ghostty_configs
   remove_kitty_configs
   remove_mise_configs
+  remove_opencode_configs
 }
 
 function remove_all_apps() {
@@ -66,8 +72,6 @@ function remove_all_apps() {
   brew remove ripgrep
   brew remove fd
   brew remove eza
-  brew remove go
-  brew remove rust
   brew remove docker
   # brew remove visual-studio-code
   brew remove mongodb-compass
@@ -98,6 +102,7 @@ function show_help {
   echo "  -gco, --ghostty-configs-only   Remove only Ghostty configs"
   echo "  -kco, --kitty-configs-only     Remove only Kitty configs"
   echo "  -mco, --mise-configs-only      Remove only Mise configs"
+  echo "  -occo, --opencode-configs-only Remove only Opencode configs"
   echo "  -h, --help                     Show this help message and exit"
 }
 
@@ -151,6 +156,9 @@ while [[ $# -gt 0 ]]; do
     ;;
   -mco | --mise-config-only)
     remove_mise_configs
+    ;;
+  -occo | --opencode-config-only)
+    remove_opencode_configs
     ;;
   -h | --help)
     show_help
