@@ -188,6 +188,11 @@ function setup_kitty_config() {
   ln -nsf $HOME/.dotfiles/kitty $XDG_CONFIG_HOME
 }
 
+function setup_opencode_config() {
+  echo "Setting up opencode config"
+  ln -nsf $HOME/.dotfiles/opencode $XDG_CONFIG_HOME
+}
+
 function setup_all() {
   setup_zshenv
   setup_zsh_config
@@ -201,6 +206,7 @@ function setup_all() {
   setup_ghostty_config
   setup_mise_config
   setup_kitty_config
+  setup_opencode_config
 }
 
 function setup_all_configs() {
@@ -215,6 +221,7 @@ function setup_all_configs() {
   setup_ghostty_config
   setup_mise_config
   setup_kitty_config
+  setup_opencode_config
 }
 
 function show_help() {
@@ -243,6 +250,7 @@ function show_help() {
   echo -e "  ${GREEN}-sg, --setup-ghostty${RESET}          ${YELLOW}Configure Ghostty terminal settings.${RESET}"
   echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
   echo -e "  ${GREEN}-sk, --setup-kitty${RESET}            ${YELLOW}Setup kitty config.${RESET}"
+  echo -e "  ${GREEN}-soc, --setup-opencode${RESET}        ${YELLOW}Setup opencode config.${RESET}"
   echo -e "  ${GREEN}-ac, --all-configs${RESET}            ${YELLOW}Setup all configs.${RESET}"
   echo -e "  ${GREEN}-a, --all${RESET}                     ${YELLOW}Run all setup steps and install necessary components.${RESET}"
   echo
@@ -311,6 +319,9 @@ function initial_setup() {
       ;;
     -sk | --setup-kitty)
       setup_kitty_config
+      ;;
+    -soc | --setup-opencode)
+      setup_opencode_config
       ;;
     -a | --all)
       setup_all
