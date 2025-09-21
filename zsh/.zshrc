@@ -5,7 +5,7 @@ source $ZDOTDIR/initializers.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/exports.zsh
 source $ZDOTDIR/completion.zsh
-source $ZDOTDIR/loaders.zsh
+# source $ZDOTDIR/loaders.zsh
 
 # =====================
 # HISTORY SETTINGS
@@ -100,3 +100,4 @@ source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 if [[ -f "$ZDOTDIR/local/config.zsh" ]]; then
   source "$ZDOTDIR/local/config.zsh"
 fi
+

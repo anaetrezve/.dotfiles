@@ -24,7 +24,7 @@ vim.diagnostic.config({
     -- focusable = true,
     -- header = "",
     -- prefix = "",
-    max_width = 100, -- adjust as needed
+    max_width = 80, -- adjust as needed
   },
   signs = {
     text = {
@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return { buffer = event.buf, desc = "LSP " .. desc }
     end
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method('textDocument/inlayHint') then
+    if client and client:supports_method("textDocument/inlayHint") then
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
@@ -61,12 +61,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.signature_help({ border = "single", max_height = 10, max_width = 90 })
     end, opts("Signature Help"))
 
-    keymap('n', 'grd', vim.lsp.buf.definition, opts("Go to definition"))
-    keymap('n', 'grD', vim.lsp.buf.declaration, opts("Go to declaration"))
+    keymap("n", "grd", vim.lsp.buf.definition, opts("Go to definition"))
+    keymap("n", "grD", vim.lsp.buf.declaration, opts("Go to declaration"))
 
-    keymap('n', '<leader>th', function()
+    keymap("n", "<leader>th", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-    end, opts('Toggle inlay hints'))
+    end, opts("Toggle inlay hints"))
 
     keymap("n", "<leader>d", vim.diagnostic.open_float, opts("Open current diagnostic in float window"))
   end,

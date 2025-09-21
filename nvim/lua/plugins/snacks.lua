@@ -21,12 +21,12 @@ return {
     },
     explorer = { enabled = true },
     indent = {
-      indent = { enabled = false, char = "▏" },
+      indent = { enabled = true, char = "▏" },
       scope = {
         enabled = true,
         char = "▏",
         underline = false,
-        only_current = true,
+        only_current = false,
         hl = {
           "RainbowDelimiterRed",
           "RainbowDelimiterYellow",
