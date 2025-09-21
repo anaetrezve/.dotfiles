@@ -2,33 +2,6 @@
 
 function install_or_update_brew_app() {
   local app_name="$1"
-
-  # Check if the application is installed as a formula or cask
-  if ! command -v "$app_name" &>/dev/null || brew list --formula "$app_name" &>/dev/null || brew list --cask "$app_name" &>/dev/null; then
-    echo "$app_name is already installed."
-  else
-    # If not installed, check if it's a cask
-    if brew info --cask "$app_name" &>/dev/null; then
-      # If it's a cask, install it using Homebrew Cask
-      echo "$app_name is not installed. Installing via Homebrew Cask..."
-      brew install --cask "$app_name"
-    else
-      # If it's not a cask, install it using regular Homebrew
-      echo "$app_name is not installed. Installing via Homebrew..."
-      brew install "$app_name"
-    fi
-
-    # Check if installation was successful
-    if [ $? -eq 0 ]; then
-      echo "Installation of $app_name successful."
-    else
-      echo "Installation of $app_name failed. Please check Homebrew or try again later."
-    fi
-  fi
-}
-
-function install_or_update_brew_app() {
-  local app_name="$1"
   # Check if the application is already installed
   if ! command -v "$app_name" &>/dev/null; then
     # If not installed, install using Homebrew

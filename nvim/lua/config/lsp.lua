@@ -24,7 +24,7 @@ vim.diagnostic.config({
     -- focusable = true,
     -- header = "",
     -- prefix = "",
-    max_width = 100, -- adjust as needed
+    max_width = 80, -- adjust as needed
   },
   signs = {
     text = {
@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return { buffer = event.buf, desc = "LSP " .. desc }
     end
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method('textDocument/inlayHint') then
+    if client and client:supports_method("textDocument/inlayHint") then
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 

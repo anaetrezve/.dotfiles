@@ -4,5 +4,10 @@ return {
   root_markers = { "Gemfile", ".git" },
   init_options = {
     formatter = "auto",
+    enabledFeatures = {
+      hover = true,
+      diagnostics = true,
+      completion = true,
+    },
   },
 }
