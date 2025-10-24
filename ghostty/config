@@ -2,6 +2,7 @@ term = xterm-256color
 theme = Catppuccin Mocha
 font-family = CartographCF Nerd Font
 font-size = 16
+font-style = DemiBold
 font-synthetic-style = true
 adjust-cell-height = 26%
 
