@@ -102,3 +102,11 @@ keymap("v", "<M-j>", ":move '>+1<CR>gv=gv", { desc = "Move selection down" })
 keymap("v", "<M-k>", ":move '<-2<CR>gv=gv", { desc = "Move selection up" })
 keymap("x", "J", ":move '>+1<CR>gv-gv", { desc = "Move selected lines down" })
 keymap("x", "K", ":move '<-2<CR>gv-gv", { desc = "Move selected lines up" })
+
+-- Open opencode in tmux or neovim split
+keymap("n", "<leader>oc", function()
+  local in_tmux = vim.env.TMUX ~= nil
+  if in_tmux then
+    vim.fn.system("tmux split-window -h -l 30% opencode")
+  end
+end, { desc = "Open opencode in split" })
