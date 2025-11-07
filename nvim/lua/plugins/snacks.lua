@@ -45,6 +45,37 @@ return {
     picker = {
       prompt = "   ",
       enabled = true,
+      layouts = {
+        telescope = {
+          -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#telescope
+          reverse = false,
+          layout = {
+            box = "horizontal",
+            backdrop = false,
+            width = 0.9,
+            height = 0.9,
+            border = "none",
+            {
+              box = "vertical",
+              {
+                win = "input",
+                height = 1,
+                border = "single",
+                title = "Find {title} {live} {flags}",
+                title_pos = "center",
+              },
+              { win = "list", title = "", title_pos = "center", border = "single" },
+            },
+            {
+              win = "preview",
+              title = "{preview:Preview}",
+              width = 0.55,
+              border = "single",
+              title_pos = "center",
+            },
+          },
+        },
+      },
       sources = {
         explorer = {
           -- exclude = { ".git" },
@@ -112,6 +143,17 @@ return {
         },
         files = {
           hidden = true,
+          ignored = true,
+          layout = {
+            preset = "telescope",
+          },
+        },
+        recent = {
+          hidden = true,
+          ignored = true,
+          layout = {
+            preset = "telescope",
+          },
         },
         icons = {
           git = {

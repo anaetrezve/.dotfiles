@@ -122,8 +122,17 @@ return {
           --
           -- SnacksPickerInput = { bg = colors.mantle },
           SnacksPickerInputCursorLine = { bg = colors.base },
+          -- SnacksPickerBoxTitle = { bg = "#1c99f2", fg = "#ffffff", bold = true },
+          -- SnacksPickerInput = { bg = "#23273b", fg = "#C0CAF5" },
+          -- SnacksPickerInputBorder = { bg = "#23273b", fg = "#23273b" },
+          -- SnacksPickerInputTitle = { bg = "#1c99f2", fg = "#ffffff", bold = true },
+          -- SnacksPickerList = { bg = "#262e46" },
+          -- SnacksPickerListBorder = { bg = "#262e46", fg = "#23273b" },
+          -- SnacksPickerListCursorLine = { bg = "#1a1d2f" },
+          -- SnacksPickerPreviewBorder = { bg = "#16161E", fg = "#23273b" },
+          -- SnacksPickerPrompt = { bg = "#23273b", fg = "#1c99f2" },
+
           -- SnacksPickerInputBorder = { bg = colors.mantle, fg = colors.mantle },
-          --
           -- SnacksPickerBoxBorder = { bg = colors.mantle, fg = colors.mantle },
           -- SnacksPickerBoxCursorLine = { bg = colors.mantle },
           -- SnacksPickerBoxTitle = { fg = colors.crust, bg = colors.mauve, style = { "bold", "italic" } },
