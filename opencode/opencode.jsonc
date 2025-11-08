@@ -2,7 +2,4 @@
   "$schema": "https://opencode.ai/config.json",
   "theme": "catppuccin",
   "model": "github-copilot/claude-sonnet-4.5",
-  "keybinds": {
-    "input_newline": "shift+enter"
-  }
 }
