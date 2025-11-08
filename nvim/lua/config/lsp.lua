@@ -67,5 +67,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, opts("Toggle inlay hints"))
 
     keymap("n", "<leader>d", vim.diagnostic.open_float, opts("Open current diagnostic in float window"))
+    keymap("n", "<leader>rs", function()
+      vim.cmd(":LspRestart")
+    end, opts("Open current diagnostic in float window"))
   end,
 })
