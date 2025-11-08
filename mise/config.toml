@@ -4,7 +4,7 @@ node = "latest"
 python = "latest"
 go = "latest"
 rust = "latest"
-ruby = "latest"
+ruby = "latest" # If build fails then run `brew install zlib readline libyaml libffi`
 
 [settings]
 global_config_file = "~/.config/mise/config.toml"
