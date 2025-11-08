@@ -4,10 +4,11 @@ node = "latest"
 python = "latest"
 go = "latest"
 rust = "latest"
+ruby = "latest"
 
 [settings]
 global_config_file = "~/.config/mise/config.toml"
-idiomatic_version_file_enable_tools = ["node", "python", "go", "rust"]
+idiomatic_version_file_enable_tools = ["node", "python", "go", "rust", "ruby"]
 experimental = true
 # status.show_tools = true
 
