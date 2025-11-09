@@ -220,11 +220,11 @@ M.snacks_status = function()
 
 	if filetype == "snacks_picker_list" then
 		title = " File Explorer"
-		if picker then
-			meta = vim.fn.fnamemodify(picker:dir(), ":~")
-		else
-			meta = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
-		end
+		-- if picker then
+		-- 	meta = vim.fn.fnamemodify(picker:dir(), ":~")
+		-- else
+		meta = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+		-- end
 	elseif filetype == "snacks_picker_input" then
 		if picker then
 			-- local input = picker.input and picker.input:get() or ""

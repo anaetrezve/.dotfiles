@@ -61,7 +61,7 @@ return {
                 win = "input",
                 height = 1,
                 border = "single",
-                title = "Find {title} {live} {flags}",
+                title = "Find {title} {live}", -- {flags}
                 title_pos = "center",
               },
               { win = "list", title = "", title_pos = "center", border = "single" },
@@ -75,6 +75,27 @@ return {
             },
           },
         },
+        sidebar = {
+          preview = "main",
+          layout = {
+            backdrop = false,
+            width = 50,
+            min_width = 40,
+            height = 0,
+            position = "left",
+            border = "none",
+            box = "vertical",
+            {
+              win = "input",
+              height = 1,
+              border = true,
+              title = "{title} {live}",
+              title_pos = "center",
+            },
+            { win = "list", border = "none" },
+            { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+          },
+        },
       },
       sources = {
         explorer = {
@@ -82,10 +103,14 @@ return {
           -- include = { ".env" },
           hidden = true,
           auto_close = false,
-          -- ignored = true,
+          ignored = true,
           -- layout = {
           --   auto_hide = { "input" },
           -- },
+          layout = {
+            auto_hide = { "input" },
+            preset = "sidebar",
+          },
           win = {
             input = {
               keys = {

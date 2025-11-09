@@ -122,6 +122,7 @@ return {
           --
           -- SnacksPickerInput = { bg = colors.mantle },
           SnacksPickerInputCursorLine = { bg = colors.base },
+          -- SnacksPickerToggleHidden = { bg = colors.base },
           -- SnacksPickerBoxTitle = { bg = "#1c99f2", fg = "#ffffff", bold = true },
           -- SnacksPickerInput = { bg = "#23273b", fg = "#C0CAF5" },
           -- SnacksPickerInputBorder = { bg = "#23273b", fg = "#23273b" },
