@@ -45,6 +45,10 @@ return {
     picker = {
       prompt = "   ",
       enabled = true,
+      matcher = {
+        fuzzy = false,
+        frecency = true,
+      },
       layouts = {
         telescope = {
           -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#telescope

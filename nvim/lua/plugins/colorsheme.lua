@@ -185,9 +185,9 @@ return {
           -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
           -- SnacksPickerResultsBorder = { bg = colors.mantle, fg = colors.mantle },
           -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
-          SnacksPickerFile = { fg = colors.subtext1 },
-          SnacksPickerDirectory = { fg = colors.subtext1 },
-          SnacksPickerDir = { fg = colors.subtext1 },
+          SnacksPickerFile = { fg = colors.text },
+          SnacksPickerDirectory = { fg = colors.text },
+          SnacksPickerDir = { fg = colors.text },
 
           -- Snacks Input Section
           --------------------------------------
