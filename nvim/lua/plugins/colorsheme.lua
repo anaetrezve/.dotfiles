@@ -164,6 +164,9 @@ return {
           -- SnacksPickerBoxFooter = {},
           -- SnacksPickerParent = { fg = colors.surface0, bg = "None" },
 
+          -- SnacksPickerPathIgnored
+          -- SnacksPickerPathHidden
+
           -- Snacks List Section
           --------------------------------------
           SnacksPickerList = { bg = "#191828" },
@@ -173,6 +176,8 @@ return {
           SnacksPickerMatching = { fg = colors.sapphire, style = { "bold" } },
           -- SnacksPickerLabel = { fg = colors.text },
           -- SnacksPickerSelection = { fg = colors.text, bg = colors.mantle, style = {} },
+          -- SnacksPickerMatch
+          -- SnacksPickerSelected
 
           -- Snacks Result Section
           --------------------------------------
@@ -180,6 +185,9 @@ return {
           -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
           -- SnacksPickerResultsBorder = { bg = colors.mantle, fg = colors.mantle },
           -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
+          SnacksPickerFile = { fg = colors.subtext1 },
+          SnacksPickerDirectory = { fg = colors.subtext1 },
+          SnacksPickerDir = { fg = colors.subtext1 },
 
           -- Snacks Input Section
           --------------------------------------
