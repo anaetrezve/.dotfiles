@@ -170,15 +170,16 @@ return {
           SnacksPickerListTitle = { bg = colors.mantle },
           SnacksPickerListBorder = { bg = "#191828", fg = "#191828" },
           SnacksPickerListCursorLine = { bg = "#252434" },
+          SnacksPickerMatching = { fg = colors.sapphire, style = { "bold" } },
           -- SnacksPickerLabel = { fg = colors.text },
           -- SnacksPickerSelection = { fg = colors.text, bg = colors.mantle, style = {} },
 
           -- Snacks Result Section
           --------------------------------------
-          -- SnacksPickerResults = { bg = colors.mantle },
+          -- SnacksPickerResults = { bg = colors.mantle},
           -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
           -- SnacksPickerResultsBorder = { bg = colors.mantle, fg = colors.mantle },
-          SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
+          -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
 
           -- Snacks Input Section
           --------------------------------------
