@@ -47,9 +47,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
-    if client and client:supports_method("textDocument/completion") then
-      vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
-    end
+    -- if client and client:supports_method("textDocument/completion") then
+    --   vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+    -- end
 
     keymap("n", "K", function()
       vim.lsp.buf.hover({ border = "single", max_height = 10, max_width = 90 })

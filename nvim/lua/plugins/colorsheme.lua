@@ -1,3 +1,53 @@
+-- NvChad colors
+-- white = "#D9E0EE",
+-- darker_black = "#191828",
+-- black = "#1E1D2D", --  nvim bg
+-- black2 = "#252434",
+-- one_bg = "#2d2c3c", -- real bg of onedark
+-- one_bg2 = "#363545",
+-- one_bg3 = "#3e3d4d",
+-- grey = "#474656",
+-- grey_fg = "#4e4d5d",
+-- grey_fg2 = "#555464",
+-- light_grey = "#605f6f",
+-- red = "#F38BA8",
+-- baby_pink = "#ffa5c3",
+-- pink = "#F5C2E7",
+-- line = "#383747", -- for lines like vertsplit
+-- green = "#ABE9B3",
+-- vibrant_green = "#b6f4be",
+-- nord_blue = "#8bc2f0",
+-- blue = "#89B4FA",
+-- yellow = "#FAE3B0",
+-- sun = "#ffe9b6",
+-- purple = "#d0a9e5",
+-- dark_purple = "#c7a0dc",
+-- teal = "#B5E8E0",
+-- orange = "#F8BD96",
+-- cyan = "#89DCEB",
+-- statusline_bg = "#232232",
+-- lightbg = "#2f2e3e",
+-- pmenu_bg = "#ABE9B3",
+-- folder_bg = "#89B4FA",
+-- lavender = "#c7d1ff",
+-- base00 = "#1E1D2D",
+-- base01 = "#282737",
+-- base02 = "#2f2e3e",
+-- base03 = "#383747",
+-- base04 = "#414050",
+-- base05 = "#bfc6d4",
+-- base06 = "#ccd3e1",
+-- base07 = "#D9E0EE",
+-- base08 = "#F38BA8",
+-- base09 = "#F8BD96",
+-- base0A = "#FAE3B0",
+-- base0B = "#ABE9B3",
+-- base0C = "#89DCEB",
+-- base0D = "#89B4FA",
+-- base0E = "#CBA6F7",
+-- base0F = "#F38BA8",
+-- pickerlist & preview background = "#191828"
+
 -- Catppuccin Mocha colors palettes
 -- rosewater = "#f5e0dc",
 -- flamingo = "#f2cdcd",
@@ -104,9 +154,6 @@ return {
           -- SnacksPickerPromptTitle = { fg = colors.crust, bg = colors.mauve, style = { "bold", "italic" } },
           -- SnacksPickerPrompt = { bg = colors.crust },
           -- SnacksPickerPromptBorder = { bg = colors.crust, fg = colors.crust },
-          -- SnacksPickerResults = { bg = colors.mantle },
-          -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
-          -- SnacksPickerResultsBorder = { bg = colors.mantle, fg = colors.mantle },
 
           -- SnacksPicker = { bg = colors.crust },
           -- SnacksPickerBackdrop = { bg = colors.base },
@@ -117,30 +164,45 @@ return {
           -- SnacksPickerBoxFooter = {},
           -- SnacksPickerParent = { fg = colors.surface0, bg = "None" },
 
-          -- SnacksPickerList = { bg = colors.mantle },
-          -- SnacksPickerListTitle = { bg = colors.mantle },
-          --
-          -- SnacksPickerInput = { bg = colors.mantle },
-          SnacksPickerInputCursorLine = { bg = colors.base },
+          -- Snacks List Section
+          --------------------------------------
+          SnacksPickerList = { bg = "#191828" },
+          SnacksPickerListTitle = { bg = colors.mantle },
+          SnacksPickerListBorder = { bg = "#191828", fg = "#191828" },
+          SnacksPickerListCursorLine = { bg = "#252434" },
+          -- SnacksPickerLabel = { fg = colors.text },
+          -- SnacksPickerSelection = { fg = colors.text, bg = colors.mantle, style = {} },
+
+          -- Snacks Result Section
+          --------------------------------------
+          -- SnacksPickerResults = { bg = colors.mantle },
+          -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
+          -- SnacksPickerResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+          SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
+
+          -- Snacks Input Section
+          --------------------------------------
+          SnacksPickerInput = { bg = "#252434" },
+          SnacksPickerInputCursorLine = { bg = "#252434" },
+          SnacksPickerInputTitle = { bg = colors.red, fg = colors.crust, style = { "bold" } },
+          SnacksPickerInputBorder = { bg = "#252434", fg = "#252434" },
+
+          -- Snacks Preview Section
+          --------------------------------------
+          SnacksPickerPreview = { bg = "#191828" },
+          SnacksPickerPreviewBorder = { bg = "#191828", fg = "#191828" },
+          SnacksPickerPreviewTitle = { fg = colors.crust, bg = colors.teal, style = { "bold" } },
+
+          -- SnacksPickerBoxTitle = { bg = colors.maroon, fg = colors.text },
           -- SnacksPickerToggleHidden = { bg = colors.base },
-          -- SnacksPickerBoxTitle = { bg = "#1c99f2", fg = "#ffffff", bold = true },
-          -- SnacksPickerInput = { bg = "#23273b", fg = "#C0CAF5" },
           -- SnacksPickerInputBorder = { bg = "#23273b", fg = "#23273b" },
-          -- SnacksPickerInputTitle = { bg = "#1c99f2", fg = "#ffffff", bold = true },
-          -- SnacksPickerList = { bg = "#262e46" },
-          -- SnacksPickerListBorder = { bg = "#262e46", fg = "#23273b" },
-          -- SnacksPickerListCursorLine = { bg = "#1a1d2f" },
           -- SnacksPickerPreviewBorder = { bg = "#16161E", fg = "#23273b" },
           -- SnacksPickerPrompt = { bg = "#23273b", fg = "#1c99f2" },
 
-          -- SnacksPickerInputBorder = { bg = colors.mantle, fg = colors.mantle },
           -- SnacksPickerBoxBorder = { bg = colors.mantle, fg = colors.mantle },
           -- SnacksPickerBoxCursorLine = { bg = colors.mantle },
           -- SnacksPickerBoxTitle = { fg = colors.crust, bg = colors.mauve, style = { "bold", "italic" } },
           --
-          -- SnacksPickerPreview = { bg = colors.mantle },
-          -- SnacksPickerPreviewBorder = { bg = colors.mantle, fg = colors.mantle },
-          -- SnacksPickerPreviewTitle = { fg = colors.crust, bg = colors.sapphire, style = { "bold", "italic" } },
 
           -- =============================================
           -- copied from github.com/adibhanna/nvim

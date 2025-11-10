@@ -13,12 +13,16 @@ cursor-text = #11111b
 adjust-cursor-height = 25%
 shell-integration-features = no-cursor
 
+# Make Option/Alt key send escape sequences for Neovim keybinds
+macos-option-as-alt = true
+
 fullscreen = true
 maximize = true
 
 window-padding-balance = true
 window-padding-x = 0
 window-padding-y = 0
+macos-option-as-alt = true
 
 config-file = ?local-config/config
 

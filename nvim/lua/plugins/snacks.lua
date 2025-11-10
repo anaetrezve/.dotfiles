@@ -201,9 +201,6 @@ return {
       },
       layout = {
         preset = "default",
-        layout = {
-          backdrop = false,
-        },
       },
     },
     notifier = { enabled = true },
