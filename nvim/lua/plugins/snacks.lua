@@ -204,7 +204,7 @@ return {
         },
       },
       layout = {
-        preset = "default",
+        preset = "telescope",
       },
     },
     notifier = { enabled = true },

@@ -156,6 +156,7 @@ return {
           -- SnacksPickerPromptBorder = { bg = colors.crust, fg = colors.crust },
 
           -- SnacksPicker = { bg = colors.crust },
+          -- SnacksPickerBorder = { fg = colors.blue },
           -- SnacksPickerBackdrop = { bg = colors.base },
           -- SnacksBackdrop = { bg = colors.base },
           -- SnacksBackdrop_000000 = { bg = colors.base },
@@ -181,9 +182,9 @@ return {
 
           -- Snacks Result Section
           --------------------------------------
-          -- SnacksPickerResults = { bg = colors.mantle},
+          SnacksPickerResults = { bg = colors.mantle },
           -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
-          -- SnacksPickerResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+          SnacksPickerResultsBorder = { bg = "#191828", fg = "#191828" },
           -- SnacksPickerResultsTitle = { fg = colors.crust, bg = colors.green, style = { "bold", "italic" } },
           SnacksPickerFile = { fg = colors.text },
           SnacksPickerDirectory = { fg = colors.text },
@@ -201,6 +202,16 @@ return {
           SnacksPickerPreview = { bg = "#191828" },
           SnacksPickerPreviewBorder = { bg = "#191828", fg = "#191828" },
           SnacksPickerPreviewTitle = { fg = colors.crust, bg = colors.teal, style = { "bold" } },
+
+          -- Snacks Default Layout Section
+          ---------------------------------------------
+          -- SnacksPickerPreviewNormalFloat = { bg = "#191828", fg = colors.text },
+          -- SnacksPickerInputNormalFloat = { bg = "#191828", fg = colors.text },
+          -- SnacksPickerListNormalFloat = { bg = "#191828", fg = colors.text },
+          -- SnacksPickerBox = { bg = colors.crust },
+          -- SnacksPicker = { bg = colors.crust },
+          -- SnacksPickerBorder = { bg = "#191828", fg = "#191828" },
+          -- SnacksPickerBoxTitle = { bg = colors.red, fg = colors.crust, style = { "bold" } },
 
           -- SnacksPickerBoxTitle = { bg = colors.maroon, fg = colors.text },
           -- SnacksPickerToggleHidden = { bg = colors.base },
