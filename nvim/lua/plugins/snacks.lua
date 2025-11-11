@@ -103,7 +103,7 @@ return {
       },
       sources = {
         explorer = {
-          -- exclude = { ".git" },
+          exclude = { ".git" },
           -- include = { ".env" },
           hidden = true,
           auto_close = false,
@@ -114,6 +114,7 @@ return {
           layout = {
             auto_hide = { "input" },
             preset = "sidebar",
+            cycle = false,
           },
           win = {
             input = {
@@ -173,14 +174,17 @@ return {
         files = {
           hidden = true,
           ignored = true,
+          exclude = { ".git", "node_modules", "dist", "build" },
           layout = {
             preset = "telescope",
+            cycle = false,
           },
         },
         recent = {
           hidden = true,
           ignored = true,
           layout = {
+            cycle = false,
             preset = "telescope",
           },
         },
@@ -205,6 +209,7 @@ return {
       },
       layout = {
         preset = "telescope",
+        cycle = false,
       },
     },
     notifier = { enabled = true },
