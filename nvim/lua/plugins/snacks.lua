@@ -174,6 +174,9 @@ return {
         files = {
           hidden = true,
           ignored = true,
+          filter = {
+            cwd = true,
+          },
           exclude = { ".git", "node_modules", "dist", "build" },
           layout = {
             preset = "telescope",
@@ -183,6 +186,9 @@ return {
         recent = {
           hidden = true,
           ignored = true,
+          filter = {
+            cwd = true,
+          },
           layout = {
             cycle = false,
             preset = "telescope",
