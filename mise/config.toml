@@ -8,9 +8,13 @@ ruby = "latest" # If build fails then run `brew install zlib readline libyaml li
 
 [settings]
 global_config_file = "~/.config/mise/config.toml"
-idiomatic_version_file_enable_tools = ["node", "python", "go", "rust", "ruby"]
+idiomatic_version_file_enable_tools = ["node", "python", "go", "rust", "ruby", "java"]
 experimental = true
 # status.show_tools = true
+
+# Automatically detect and switch versions based on idiomatic version files
+# (.node-version, .ruby-version, .python-version, .go-version, etc.)
+idiomatic_version_file = true
 
 [hooks]
 enter = "mise install"
