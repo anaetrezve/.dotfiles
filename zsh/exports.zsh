@@ -20,7 +20,8 @@ if [ -z "$HOMEBREW_PREFIX" ]; then
 fi
 
 # Multi-language managers (highest priority)
-add_to_path "$HOME/.local/share/mise/shims"   # mise
+# Note: When using 'mise activate', do NOT add shims to PATH (causes conflicts)
+# add_to_path "$HOME/.local/share/mise/shims"   # mise
 add_to_path "$HOME/.asdf/shims"               # asdf
 add_to_path "$HOME/.rtx/shims"                # rtx
 
