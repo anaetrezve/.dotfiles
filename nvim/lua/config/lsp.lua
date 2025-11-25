@@ -47,6 +47,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
+    local bufname = vim.api.nvim_buf_get_name(event.buf)
+    if string.match(bufname, "%.env") then
+      vim.diagnostic.enable(false, { bufnr = event.buf })
+    end
+
     -- if client and client:supports_method("textDocument/completion") then
     --   vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
     -- end
