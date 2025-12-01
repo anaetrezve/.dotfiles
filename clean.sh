@@ -50,6 +50,11 @@ function remove_opencode_configs() {
   rm -rf ~/.config/opencode
 }
 
+function remove_default_fallback_configs() {
+  echo "Removing Default Fallback configs"
+  rm -rf ~/.config/default-fallback-configs
+}
+
 function remove_all_configs() {
   remove_zsh_configs
   remove_tmux_configs
@@ -61,6 +66,7 @@ function remove_all_configs() {
   remove_kitty_configs
   remove_mise_configs
   remove_opencode_configs
+  remove_default_fallback_configs
 }
 
 function remove_all_apps() {
@@ -103,6 +109,7 @@ function show_help {
   echo "  -kco, --kitty-configs-only     Remove only Kitty configs"
   echo "  -mco, --mise-configs-only      Remove only Mise configs"
   echo "  -occo, --opencode-configs-only Remove only Opencode configs"
+  echo "  -dfco, --default-fallback-configs-only Remove only Default Fallback configs"
   echo "  -h, --help                     Show this help message and exit"
 }
 
@@ -159,6 +166,9 @@ while [[ $# -gt 0 ]]; do
     ;;
   -occo | --opencode-config-only)
     remove_opencode_configs
+    ;;
+  -dfco | --default-fallback-configs-only)
+    remove_default_fallback_configs
     ;;
   -h | --help)
     show_help

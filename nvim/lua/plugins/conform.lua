@@ -14,13 +14,57 @@ return {
     formatters = {
       prettier = {
         command = "prettier",
-        args = { "--stdin-filepath", "$FILENAME" },
+        args = function(self, ctx)
+          -- Check if project has a prettier config
+          local config_file = vim.fs.find({
+            ".prettierrc",
+            ".prettierrc.json",
+            ".prettierrc.yml",
+            ".prettierrc.yaml",
+            ".prettierrc.json5",
+            ".prettierrc.js",
+            ".prettierrc.cjs",
+            ".prettierrc.mjs",
+            "prettier.config.js",
+            "prettier.config.cjs",
+            "prettier.config.mjs",
+          }, { path = ctx.filename, upward = true })[1]
+
+          -- If no config found, use our default config
+          if not config_file then
+            local default_config = vim.fn.stdpath("config") .. "/../default-fallback-configs/prettier.config.js"
+            return { "--config", default_config, "--stdin-filepath", "$FILENAME" }
+          end
+
+          -- Otherwise, let prettier find the config automatically
+          return { "--stdin-filepath", "$FILENAME" }
+        end,
         stdin = true,
       },
       eslint_fix = {
         command = "eslint",
-        args = { "--fix", "$FILENAME" },
-        stdin = false,
+        args = function(self, ctx)
+          -- Check if project has an eslint config
+          local config_file = vim.fs.find({
+            "eslint.config.js",
+            "eslint.config.mjs",
+            "eslint.config.cjs",
+            ".eslintrc.js",
+            ".eslintrc.cjs",
+            ".eslintrc.json",
+            ".eslintrc",
+          }, { path = ctx.filename, upward = true })[1]
+
+          -- If no config found, use our default config
+          if not config_file then
+            local default_config = vim.fn.stdpath("config") .. "/../default-fallback-configs/eslint.config.js"
+            return { "--config", default_config, "--fix", "$FILENAME" }
+          end
+
+          -- Otherwise, let eslint find the config automatically
+          return { "--fix", "$FILENAME" }
+        end,
+        stdin = true,
         exit_codes = { 0, 1 },
       },
     },
@@ -53,7 +97,13 @@ return {
       local ft = vim.bo[bufnr].filetype
       if ft == "ruby" then
         return { timeout_ms = 3000, lsp_fallback = true, async = false }
-      elseif ft == "javascript" or ft == "typescript" or ft == "javascriptreact" or ft == "typescriptreact" or ft == "svelte" then
+      elseif
+        ft == "javascript"
+        or ft == "typescript"
+        or ft == "javascriptreact"
+        or ft == "typescriptreact"
+        or ft == "svelte"
+      then
         -- Longer timeout for ESLint fix + prettier
         return { timeout_ms = 2000, lsp_fallback = true, async = false }
       end
