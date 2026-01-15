@@ -49,6 +49,9 @@ vim.lsp.config("sorbet", {
 })
 vim.lsp.enable("sorbet")
 
+-- ESLint LSP for real-time diagnostics (like VS Code)
+vim.lsp.enable("eslint")
+
 vim.diagnostic.config({
   virtual_text = {
     source = true,
@@ -96,46 +99,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.diagnostic.enable(false, { bufnr = event.buf })
     end
 
-    -- ESLint auto-fix on save (disabled - causes slow saves in large monorepos)
-    -- Use <leader>ca to manually apply ESLint fixes when needed
-    -- if client and client.name == "eslint" then
-    --   vim.api.nvim_create_autocmd("BufWritePre", {
-    --     buffer = event.buf,
-    --     callback = function()
-    --       local bufnr = event.buf
-    --       local eslint_client = vim.lsp.get_clients({ name = "eslint", bufnr = bufnr })[1]
-    --       if not eslint_client then
-    --         return
-    --       end
-    --
-    --       -- Request code actions synchronously so fix completes before save
-    --       local range_params = vim.lsp.util.make_range_params(nil, eslint_client.offset_encoding)
-    --       local params = {
-    --         textDocument = range_params.textDocument,
-    --         range = range_params.range,
-    --         context = {
-    --           ---@diagnostic disable-next-line: assign-type-mismatch
-    --           only = { "source.fixAll.eslint" },
-    --           diagnostics = vim.diagnostic.get(bufnr),
-    --         },
-    --       }
-    --       local result = vim.lsp.buf_request_sync(bufnr, "textDocument/codeAction", params, 3000)
-    --       if result then
-    --         for _, res in pairs(result) do
-    --           if res.result then
-    --             for _, action in ipairs(res.result) do
-    --               if action.edit then
-    --                 vim.lsp.util.apply_workspace_edit(action.edit, eslint_client.offset_encoding)
-    --               elseif action.command then
-    --                 eslint_client:exec_cmd(action.command, { bufnr = bufnr })
-    --               end
-    --             end
-    --           end
-    --         end
-    --       end
-    --     end,
-    --   })
-    -- end
+    -- TypeScript/JavaScript: Add missing imports + organize imports
+    if client and client.name == "ts_ls" then
+      -- Keymap to manually organize imports
+      keymap("n", "<leader>oi", function()
+        vim.lsp.buf.code_action({
+          apply = true,
+          context = { only = { "source.organizeImports.ts" }, diagnostics = {} },
+        })
+      end, opts("Organize imports"))
+
+      -- Keymap to add missing imports
+      keymap("n", "<leader>ai", function()
+        vim.lsp.buf.code_action({
+          apply = true,
+          context = { only = { "source.addMissingImports.ts" }, diagnostics = {} },
+        })
+      end, opts("Add missing imports"))
+    end
 
     keymap("n", "K", function()
       vim.lsp.buf.hover({ border = "single", max_height = 10, max_width = 90 })

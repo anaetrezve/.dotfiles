@@ -4,14 +4,16 @@ return {
   config = function()
     local lint = require("lint")
 
-    -- Linters by filetype
-    -- Note: These tools natively search parent directories for configs
-    -- rubocop: searches for .rubocop.yml up to root
-    -- ruff: searches for ruff.toml/pyproject.toml up to root
-    -- golangci-lint: searches for .golangci.yml up to root
+    -- Linters mapped per filetype
+    -- Note: ESLint LSP handles JS/TS linting in real-time (like VS Code)
+    -- nvim-lint is for languages without good LSP linting support
     lint.linters_by_ft = {
+      -- JS/TS: handled by ESLint LSP (real-time, no need for nvim-lint)
+      -- Ruby
       ruby = { "rubocop" },
+      -- Go
       go = { "golangci_lint" },
+      -- Python
       python = { "ruff" },
     }
 

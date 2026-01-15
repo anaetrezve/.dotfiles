@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> **IMPORTANT**: See `AGENTS.md` for mandatory research requirements. You MUST search the internet for up-to-date information before answering questions or performing tasks. Always check official docs, source code, GitHub, Reddit, Stack Overflow, and other current sources rather than relying on training data.
+
 ## Repository Overview
 
 This is a comprehensive macOS dotfiles repository that manages development environment configurations through automated setup and cleanup scripts. The repository uses symlinks to connect configuration files to their standard locations, and supports XDG Base Directory specification.
