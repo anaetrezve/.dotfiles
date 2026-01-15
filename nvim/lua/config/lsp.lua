@@ -1,6 +1,53 @@
-vim.lsp.config("*", {
-  capabilities = require("blink.cmp").get_lsp_capabilities(),
+-- NOTE: Global capabilities are set in plugins/mason.lua before servers are enabled
+-- This ensures blink.cmp capabilities are applied to all LSP servers
+
+-- Configure ruby_lsp with enhanced settings for gem navigation
+-- Uses globally installed ruby-lsp from mise, not Mason
+vim.lsp.config("ruby_lsp", {
+  init_options = {
+    formatter = "auto",
+    linters = { "rubocop" },
+    -- Explicitly enable all features (important for Sorbet codebases)
+    enabledFeatures = {
+      codeActions = true,
+      codeLens = true,
+      completion = true,
+      definition = true,
+      diagnostics = true,
+      documentHighlights = true,
+      documentLink = true,
+      documentSymbols = true,
+      foldingRanges = true,
+      formatting = true,
+      hover = true,
+      inlayHint = true,
+      onTypeFormatting = true,
+      selectionRanges = true,
+      semanticHighlighting = true,
+      signatureHelp = true,
+      typeHierarchy = true,
+      workspaceSymbol = true,
+    },
+    indexing = {
+      -- Include all gems including development dependencies
+      includedGems = {},
+      excludedGems = {},
+    },
+    addonSettings = {
+      ["Ruby LSP Rails"] = {
+        enablePendingMigrationsPrompt = false,
+      },
+    },
+  },
 })
+vim.lsp.enable("ruby_lsp")
+
+-- Configure Sorbet LSP for typed Ruby files (provides better type info for typed: true/strict files)
+vim.lsp.config("sorbet", {
+  cmd = { "bundle", "exec", "srb", "tc", "--lsp", "--enable-all-experimental-lsp-features" },
+  root_markers = { "sorbet/config" },
+})
+vim.lsp.enable("sorbet")
 
 vim.diagnostic.config({
   virtual_text = {
@@ -43,17 +90,51 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return { buffer = event.buf, desc = "LSP " .. desc }
     end
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method("textDocument/inlayHint") then
-      vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-    end
 
     local bufname = vim.api.nvim_buf_get_name(event.buf)
     if string.match(bufname, "%.env") then
       vim.diagnostic.enable(false, { bufnr = event.buf })
     end
 
-    -- if client and client:supports_method("textDocument/completion") then
-    --   vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+    -- ESLint auto-fix on save (disabled - causes slow saves in large monorepos)
+    -- Use <leader>ca to manually apply ESLint fixes when needed
+    -- if client and client.name == "eslint" then
+    --   vim.api.nvim_create_autocmd("BufWritePre", {
+    --     buffer = event.buf,
+    --     callback = function()
+    --       local bufnr = event.buf
+    --       local eslint_client = vim.lsp.get_clients({ name = "eslint", bufnr = bufnr })[1]
+    --       if not eslint_client then
+    --         return
+    --       end
+    --
+    --       -- Request code actions synchronously so fix completes before save
+    --       local range_params = vim.lsp.util.make_range_params(nil, eslint_client.offset_encoding)
+    --       local params = {
+    --         textDocument = range_params.textDocument,
+    --         range = range_params.range,
+    --         context = {
+    --           ---@diagnostic disable-next-line: assign-type-mismatch
+    --           only = { "source.fixAll.eslint" },
+    --           diagnostics = vim.diagnostic.get(bufnr),
+    --         },
+    --       }
+    --       local result = vim.lsp.buf_request_sync(bufnr, "textDocument/codeAction", params, 3000)
+    --       if result then
+    --         for _, res in pairs(result) do
+    --           if res.result then
+    --             for _, action in ipairs(res.result) do
+    --               if action.edit then
+    --                 vim.lsp.util.apply_workspace_edit(action.edit, eslint_client.offset_encoding)
+    --               elseif action.command then
+    --                 eslint_client:exec_cmd(action.command, { bufnr = bufnr })
+    --               end
+    --             end
+    --           end
+    --         end
+    --       end
+    --     end,
+    --   })
     -- end
 
     keymap("n", "K", function()
@@ -74,6 +155,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>d", vim.diagnostic.open_float, opts("Open current diagnostic in float window"))
     keymap("n", "<leader>rs", function()
       vim.cmd(":LspRestart")
-    end, opts("Open current diagnostic in float window"))
+    end, opts("Restart LSP"))
   end,
 })

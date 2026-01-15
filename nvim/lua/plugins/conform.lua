@@ -8,119 +8,55 @@ return {
     },
 
     notify_on_error = true,
-    notify_no_formatters = true,
+    notify_no_formatters = false,
 
-    -- Explicit formatter configurations to ensure compatibility
     formatters = {
+      -- Prettier 4.x removed --stdin-filepath, use --write mode instead
       prettier = {
-        command = "prettier",
-        args = function(self, ctx)
-          -- Check if project has a prettier config
-          local config_file = vim.fs.find({
-            ".prettierrc",
-            ".prettierrc.json",
-            ".prettierrc.yml",
-            ".prettierrc.yaml",
-            ".prettierrc.json5",
-            ".prettierrc.js",
-            ".prettierrc.cjs",
-            ".prettierrc.mjs",
-            "prettier.config.js",
-            "prettier.config.cjs",
-            "prettier.config.mjs",
-          }, { path = ctx.filename, upward = true })[1]
-
-          -- If no config found, use our default config
-          if not config_file then
-            local default_config = vim.fn.stdpath("config") .. "/../default-fallback-configs/prettier.config.js"
-            return { "--config", default_config, "--stdin-filepath", "$FILENAME" }
-          end
-
-          -- Otherwise, let prettier find the config automatically
-          return { "--stdin-filepath", "$FILENAME" }
-        end,
-        stdin = true,
-      },
-      eslint_fix = {
-        command = "eslint",
-        args = function(self, ctx)
-          -- Check if project has an eslint config
-          local config_file = vim.fs.find({
-            "eslint.config.js",
-            "eslint.config.mjs",
-            "eslint.config.cjs",
-            ".eslintrc.js",
-            ".eslintrc.cjs",
-            ".eslintrc.json",
-            ".eslintrc",
-          }, { path = ctx.filename, upward = true })[1]
-
-          -- If no config found, use our default config
-          if not config_file then
-            local default_config = vim.fn.stdpath("config") .. "/../default-fallback-configs/eslint.config.js"
-            return { "--config", default_config, "--fix", "$FILENAME" }
-          end
-
-          -- Otherwise, let eslint find the config automatically
-          return { "--fix", "$FILENAME" }
-        end,
-        stdin = true,
-        exit_codes = { 0, 1 },
+        stdin = false,
+        args = { "--write", "$FILENAME" },
       },
     },
 
     formatters_by_ft = {
-      javascript = { "eslint_fix", "prettier" },
-      typescript = { "eslint_fix", "prettier" },
-      javascriptreact = { "eslint_fix", "prettier" },
-      typescriptreact = { "eslint_fix", "prettier" },
-      svelte = { "eslint_fix", "prettier" },
+      -- JS/TS: eslint_d (fast daemon) for fixes, then prettier for formatting
+      javascript = { "eslint_d", "prettier" },
+      typescript = { "eslint_d", "prettier" },
+      javascriptreact = { "eslint_d", "prettier" },
+      typescriptreact = { "eslint_d", "prettier" },
+      svelte = { "eslint_d", "prettier" },
       css = { "prettier" },
       html = { "prettier" },
       json = { "prettier" },
       yaml = { "prettier" },
       markdown = { "prettier" },
       graphql = { "prettier" },
-      lua = { "stylua", stop_after_first = true },
-      ruby = { "rubocop", stop_after_first = true },
-      python = { "isort", "black", stop_after_first = true },
+      lua = { "stylua" },
+      ruby = { "rubocop" },
+      python = { "isort", "black" },
       go = { "goimports", "gofumpt" },
       rust = { "rustfmt", lsp_format = "fallback" },
     },
 
-    -- format_on_save = {
-    --   async = false,
-    --   -- timeout_ms = 500,
-    --   lsp_format = "fallback",
-    -- },
     format_on_save = function(bufnr)
       local ft = vim.bo[bufnr].filetype
       if ft == "ruby" then
-        return { timeout_ms = 3000, lsp_fallback = true, async = false }
-      elseif
-        ft == "javascript"
-        or ft == "typescript"
-        or ft == "javascriptreact"
-        or ft == "typescriptreact"
-        or ft == "svelte"
-      then
-        -- Longer timeout for ESLint fix + prettier
-        return { timeout_ms = 2000, lsp_fallback = true, async = false }
+        return { timeout_ms = 3000, lsp_format = "fallback", async = false }
       end
-      return { timeout_ms = 1000, lsp_fallback = true, async = false }
+      -- 2000ms for large monorepos, eslint_d is still faster than LSP
+      return { timeout_ms = 2000, lsp_format = "fallback", async = false }
     end,
   },
 
   config = function(_, opts)
     local conform = require("conform")
-
     conform.setup(opts)
 
     vim.keymap.set({ "n", "v" }, "<leader>ft", function()
       conform.format({
-        lsp_fallback = true,
+        lsp_format = "fallback",
         async = false,
-        -- timeout_ms = 500,
+        timeout_ms = 2000,
       })
     end, { desc = "Format file or range (in visual mode)" })
   end,
