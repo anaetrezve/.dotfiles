@@ -216,8 +216,8 @@ disabled = false
 
 [git_status]
 style = "fg:green"
-format = '([$ahead_behind]($style) )([$all_status]($style) )'
-stashed = "*${count}"
+format = '([$ahead_behind]($style))($all_status)'
+stashed = "[*${count}](overlay0)"
 ahead = "[⇡($count)](green)"
 behind = "[⇣($count)](maroon)"
 up_to_date = ""
