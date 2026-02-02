@@ -42,12 +42,13 @@ vim.lsp.config("ruby_lsp", {
 })
 vim.lsp.enable("ruby_lsp")
 
--- Configure Sorbet LSP for typed Ruby files (provides better type info for typed: true/strict files)
-vim.lsp.config("sorbet", {
-  cmd = { "bundle", "exec", "srb", "tc", "--lsp", "--enable-all-experimental-lsp-features" },
-  root_markers = { "sorbet/config" },
-})
-vim.lsp.enable("sorbet")
+-- Sorbet LSP disabled - ruby_lsp has built-in Sorbet support via addons
+-- Uncomment if you need real-time Sorbet type checking:
+-- vim.lsp.config("sorbet", {
+--   cmd = { "bundle", "exec", "srb", "tc", "--lsp", "--enable-all-experimental-lsp-features", "--disable-watchman" },
+--   root_markers = { "sorbet/config" },
+-- })
+-- vim.lsp.enable("sorbet")
 
 -- ESLint LSP for real-time diagnostics (like VS Code)
 vim.lsp.enable("eslint")

@@ -89,6 +89,9 @@ export DOTFILES="$HOME/.dotfiles"
 
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml"
 
+# Solargraph global config
+export SOLARGRAPH_GLOBAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/solargraph/config.yml"
+
 # export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.nvm}"
 # [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && . "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # Homebrew nvm
 
