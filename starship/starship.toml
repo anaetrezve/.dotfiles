@@ -16,6 +16,10 @@ $git_commit\
 $git_state\
 $git_status\
 $git_metrics\
+$fill\
+$container\
+$docker_context\
+$kubernetes\
 $deno\
 $golang\
 $helm\
@@ -28,10 +32,6 @@ $ruby\
 $rust\
 $scala\
 $terraform\
-$container\
-$docker_context\
-$kubernetes\
-$fill\
 $status\
 $aws\
 $gcloud\
@@ -318,10 +318,7 @@ style = "fg:sapphire"
 format = '([$symbol( $context)]($style) )'
 
 [kubernetes]
-symbol = "󱃾"
-style = "fg:blue"
-format = '([($symbol( $cluster))]($style) )'
-disabled = false
+disabled = true
 
 # [shell]
 # disabled = false
