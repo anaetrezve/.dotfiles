@@ -8,7 +8,6 @@ add_newline = false
 
 format = """
 $os\
-$username\
 $hostname\
 $directory\
 $git_branch\
@@ -17,6 +16,7 @@ $git_state\
 $git_status\
 $git_metrics\
 $fill\
+$status\
 $container\
 $docker_context\
 $kubernetes\
@@ -32,7 +32,6 @@ $ruby\
 $rust\
 $scala\
 $terraform\
-$status\
 $aws\
 $gcloud\
 $azure\
@@ -169,11 +168,11 @@ color_vimcmd_visual = '#d79921'
 
 [os]
 disabled = false
-style = "fg:text"
-format = '[$symbol]($style)'
+style = "fg:text bold"
+format = '[$symbol ]($style)'
 
 [os.symbols]
-Macos = "󰀵"
+Macos = ""
 
 [username]
 show_always = true
