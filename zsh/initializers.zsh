@@ -8,11 +8,8 @@ if command -v "zoxide" &>/dev/null; then
 fi
 
 # =====================
-# STARSHIP PROMPT
+# STARSHIP PROMPT (initialized in loaders.zsh)
 # =====================
-if command -v starship &>/dev/null; then
-  eval "$(starship init zsh)"
-fi
 
 # Activate mise in Zsh only if installed
 if command -v mise &>/dev/null; then
