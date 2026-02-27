@@ -232,7 +232,7 @@ ignore_submodules = false
 disabled = false
 
 [git_metrics]
-format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:color_git) )'
+format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:green) )'
 added_style = "fg:yellow"
 deleted_style = "fg:red"
 only_nonzero_diffs = true
@@ -288,7 +288,7 @@ format = '([$symbol( $version)]($style) )'
 [lua]
 symbol = ""
 style = "fg:blue"
-format = 'via [$symbol( $version)]($style) '
+format = '[$symbol( $version)]($style) '
 
 [ruby]
 symbol = ""
