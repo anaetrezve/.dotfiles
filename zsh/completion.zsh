@@ -118,7 +118,11 @@ fi
 
 # gcloud
 if command -v gcloud &>/dev/null; then
-  source <(gcloud completion zsh)
+  _gcloud_sdk_dir="$(gcloud info --format='value(installation.sdk_root)' 2>/dev/null)"
+  if [[ -n "$_gcloud_sdk_dir" && -f "$_gcloud_sdk_dir/completion.zsh.inc" ]]; then
+    source "$_gcloud_sdk_dir/completion.zsh.inc"
+  fi
+  unset _gcloud_sdk_dir
 fi
 
 # az (Azure CLI)

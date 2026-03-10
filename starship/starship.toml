@@ -431,6 +431,11 @@ signal_symbol = '󱐋'
 style = 'bold fg:red'
 recognize_signal_code = true
 
+[gcloud]
+symbol = "󱇶"
+style = "fg:sapphire"
+format = '([$symbol( $project)]($style) )'
+
 [line_break]
 disabled = false
 
