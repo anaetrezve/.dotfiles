@@ -4,7 +4,7 @@ return {
     ensure_installed = {
       "lua_ls",
       "ruby_lsp",
-      "ts_ls",
+      "tsgo",
       "eslint", -- Real-time ESLint diagnostics (like VS Code)
       -- "gopls",
       "pylsp",
@@ -33,7 +33,7 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls",
-        "ts_ls",
+        "tsgo",
         "solargraph",
         "pylsp",
         "rust_analyzer",

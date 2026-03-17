@@ -41,6 +41,16 @@ return {
         stdin = false,
         -- inherit command detection from default (finds node_modules/.bin/prettier)
       },
+      stree = {
+        command = "bundle",
+        args = { "exec", "stree", "write", "$FILENAME" },
+        stdin = false,
+      },
+      rubocop = {
+        command = "bundle",
+        args = { "exec", "rubocop", "--autocorrect-all", "--stderr", "--stdin", "$FILENAME" },
+        stdin = true,
+      },
     },
 
     formatters_by_ft = {
@@ -87,7 +97,7 @@ return {
       markdown = { "prettier" },
       graphql = { "prettier" },
       lua = { "stylua" },
-      ruby = { "rubocop" },
+      ruby = { "stree", "rubocop" },
       python = { "isort", "black" }, -- isort for imports, then black for formatting
       go = { "goimports", "gofumpt" },
       rust = { "rustfmt", lsp_format = "fallback" },

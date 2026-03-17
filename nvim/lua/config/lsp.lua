@@ -50,6 +50,18 @@ vim.lsp.enable("ruby_lsp")
 -- })
 -- vim.lsp.enable("sorbet")
 
+-- Configure stree LSP
+vim.lsp.config("stree", {
+  cmd = { "bundle", "exec", "stree", "lsp" },
+})
+vim.lsp.enable("stree")
+
+-- Configure rubocop LSP
+vim.lsp.config("rubocop", {
+  cmd = { "bundle", "exec", "rubocop", "--lsp" },
+})
+vim.lsp.enable("rubocop")
+
 -- ESLint LSP for real-time diagnostics (like VS Code)
 vim.lsp.enable("eslint")
 
@@ -101,7 +113,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     -- TypeScript/JavaScript: Add missing imports + organize imports
-    if client and client.name == "ts_ls" then
+    if client and client.name == "tsgo" then
       -- Keymap to manually organize imports
       keymap("n", "<leader>oi", function()
         vim.lsp.buf.code_action({
