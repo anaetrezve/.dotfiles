@@ -230,6 +230,7 @@ staged = "[+($count) ](green)"
 untracked = "[?($count)](red)"
 ignore_submodules = false
 disabled = false
+use_git_executable = true
 
 [git_metrics]
 format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:green) )'
@@ -237,6 +238,7 @@ added_style = "fg:yellow"
 deleted_style = "fg:red"
 only_nonzero_diffs = true
 disabled = true
+use_git_executable = true
 
 [git_state]
 style = "fg:red"

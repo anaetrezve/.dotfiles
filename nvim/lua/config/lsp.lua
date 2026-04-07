@@ -52,7 +52,8 @@ vim.lsp.enable("ruby_lsp")
 
 -- Configure stree LSP
 vim.lsp.config("stree", {
-  cmd = { "bundle", "exec", "stree", "lsp" },
+  cmd = { "stree", "lsp" },
+  root_markers = { "Gemfile", ".streerc" },
 })
 vim.lsp.enable("stree")
 
@@ -141,6 +142,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     keymap("n", "grd", vim.lsp.buf.definition, opts("Go to definition"))
     keymap("n", "grD", vim.lsp.buf.declaration, opts("Go to declaration"))
+    keymap("n", "gca", vim.lsp.buf.code_action, opts("Code Actions"))
 
     keymap("n", "<leader>th", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
