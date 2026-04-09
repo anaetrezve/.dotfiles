@@ -17,18 +17,16 @@ vim.g.maplocalleader = " "
 
 -- Keymap for opening file explorer (Neo Tree or native)
 keymap("n", "<leader>e", function()
-  -- local has_neo_tree, _ = pcall(require, "neo-tree")
-  -- vim.cmd("Neotree toggle")
   local has_oil, _ = pcall(require, "oil")
-  -- local has_snacks, _ = pcall(require, "snacks")
+  local has_snacks, _ = pcall(require, "snacks")
   if has_oil then
     vim.cmd("Oil")
-  -- elseif has_snacks then
-  --   vim.cmd("lua Snacks.picker.explorer()")
+  elseif has_snacks then
+    vim.cmd("lua Snacks.picker.explorer()")
   else
     vim.cmd("Explore")
   end
-end, { desc = "Toggle File Explorer (Neo Tree/Native)" })
+end, { desc = "Open File Explorer (Oil/Snacks/Native)" })
 
 keymap("n", "<Esc>", function()
   -- Clear search highlights

@@ -1,6 +1,70 @@
-vim.lsp.config("*", {
-  capabilities = require("blink.cmp").get_lsp_capabilities(),
+-- NOTE: Global capabilities are set in plugins/mason.lua before servers are enabled
+-- This ensures blink.cmp capabilities are applied to all LSP servers
+
+-- Configure ruby_lsp with enhanced settings for gem navigation
+-- Uses globally installed ruby-lsp from mise, not Mason
+vim.lsp.config("ruby_lsp", {
+  init_options = {
+    formatter = "auto",
+    linters = { "rubocop" },
+    -- Explicitly enable all features (important for Sorbet codebases)
+    enabledFeatures = {
+      codeActions = true,
+      codeLens = true,
+      completion = true,
+      definition = true,
+      diagnostics = true,
+      documentHighlights = true,
+      documentLink = true,
+      documentSymbols = true,
+      foldingRanges = true,
+      formatting = true,
+      hover = true,
+      inlayHint = true,
+      onTypeFormatting = true,
+      selectionRanges = true,
+      semanticHighlighting = true,
+      signatureHelp = true,
+      typeHierarchy = true,
+      workspaceSymbol = true,
+    },
+    indexing = {
+      -- Include all gems including development dependencies
+      includedGems = {},
+      excludedGems = {},
+    },
+    addonSettings = {
+      ["Ruby LSP Rails"] = {
+        enablePendingMigrationsPrompt = false,
+      },
+    },
+  },
 })
+vim.lsp.enable("ruby_lsp")
+
+-- Sorbet LSP disabled - ruby_lsp has built-in Sorbet support via addons
+-- Uncomment if you need real-time Sorbet type checking:
+-- vim.lsp.config("sorbet", {
+--   cmd = { "bundle", "exec", "srb", "tc", "--lsp", "--enable-all-experimental-lsp-features", "--disable-watchman" },
+--   root_markers = { "sorbet/config" },
+-- })
+-- vim.lsp.enable("sorbet")
+
+-- Configure stree LSP
+vim.lsp.config("stree", {
+  cmd = { "stree", "lsp" },
+  root_markers = { "Gemfile", ".streerc" },
+})
+vim.lsp.enable("stree")
+
+-- Configure rubocop LSP
+vim.lsp.config("rubocop", {
+  cmd = { "bundle", "exec", "rubocop", "--lsp" },
+})
+vim.lsp.enable("rubocop")
+
+-- ESLint LSP for real-time diagnostics (like VS Code)
+vim.lsp.enable("eslint")
 
 vim.diagnostic.config({
   virtual_text = {
@@ -43,18 +107,30 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return { buffer = event.buf, desc = "LSP " .. desc }
     end
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method("textDocument/inlayHint") then
-      vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-    end
 
     local bufname = vim.api.nvim_buf_get_name(event.buf)
     if string.match(bufname, "%.env") then
       vim.diagnostic.enable(false, { bufnr = event.buf })
     end
 
-    -- if client and client:supports_method("textDocument/completion") then
-    --   vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
-    -- end
+    -- TypeScript/JavaScript: Add missing imports + organize imports
+    if client and client.name == "tsgo" then
+      -- Keymap to manually organize imports
+      keymap("n", "<leader>oi", function()
+        vim.lsp.buf.code_action({
+          apply = true,
+          context = { only = { "source.organizeImports.ts" }, diagnostics = {} },
+        })
+      end, opts("Organize imports"))
+
+      -- Keymap to add missing imports
+      keymap("n", "<leader>ai", function()
+        vim.lsp.buf.code_action({
+          apply = true,
+          context = { only = { "source.addMissingImports.ts" }, diagnostics = {} },
+        })
+      end, opts("Add missing imports"))
+    end
 
     keymap("n", "K", function()
       vim.lsp.buf.hover({ border = "single", max_height = 10, max_width = 90 })
@@ -66,6 +142,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     keymap("n", "grd", vim.lsp.buf.definition, opts("Go to definition"))
     keymap("n", "grD", vim.lsp.buf.declaration, opts("Go to declaration"))
+    keymap("n", "gca", vim.lsp.buf.code_action, opts("Code Actions"))
 
     keymap("n", "<leader>th", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -74,6 +151,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>d", vim.diagnostic.open_float, opts("Open current diagnostic in float window"))
     keymap("n", "<leader>rs", function()
       vim.cmd(":LspRestart")
-    end, opts("Open current diagnostic in float window"))
+    end, opts("Restart LSP"))
   end,
 })

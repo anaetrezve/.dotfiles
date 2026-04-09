@@ -17,6 +17,7 @@ return {
       changedelete = { text = "▎" },
     },
     auto_attach = true,
+    numhl = false,
     current_line_blame = true,
     on_attach = function(buffer)
       local gs = package.loaded.gitsigns

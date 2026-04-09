@@ -121,6 +121,7 @@ return {
         snacks = {
           enabled = true,
         },
+        oil = true,
         telescope = true,
         treesitter = true,
         treesitter_context = true,
@@ -164,6 +165,26 @@ return {
           -- SnacksPickerPreviewfooter = {},
           -- SnacksPickerBoxFooter = {},
           -- SnacksPickerParent = { fg = colors.surface0, bg = "None" },
+
+          -- Oil
+          OilDir = { fg = colors.blue, style = { "bold" } },
+          OilDirIcon = { fg = colors.blue },
+          OilFile = { fg = colors.text },
+          OilSocket = { fg = colors.peach },
+          OilLink = { fg = colors.teal },
+          OilLinkTarget = { fg = colors.overlay1, style = { "italic" } },
+          OilCreate = { fg = colors.green },
+          OilDelete = { fg = colors.red },
+          OilMove = { fg = colors.yellow },
+          OilCopy = { fg = colors.green },
+          OilChange = { fg = colors.peach },
+          OilRestore = { fg = colors.mauve },
+          OilPurge = { fg = colors.red, style = { "bold" } },
+          OilTrash = { fg = colors.red },
+          OilTrashSourcePath = { fg = colors.overlay1, style = { "italic" } },
+          OilFloat = { bg = "#191828" },
+          OilFloatBorder = { fg = colors.overlay0, bg = "#191828" },
+          OilFloatTitle = { fg = colors.crust, bg = colors.blue, style = { "bold" } },
 
           -- SnacksPickerPathIgnored
           -- SnacksPickerPathHidden

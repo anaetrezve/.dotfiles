@@ -1,14 +1,14 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# command_timeout = 2000
+scan_timeout = 100
+command_timeout = 5000
 
 # Inserts a blank line between shell prompts
 add_newline = false
 
 format = """
 $os\
-$username\
 $hostname\
 $directory\
 $git_branch\
@@ -16,6 +16,11 @@ $git_commit\
 $git_state\
 $git_status\
 $git_metrics\
+$fill\
+$status\
+$container\
+$docker_context\
+$kubernetes\
 $deno\
 $golang\
 $helm\
@@ -28,11 +33,6 @@ $ruby\
 $rust\
 $scala\
 $terraform\
-$container\
-$docker_context\
-$kubernetes\
-$fill\
-$status\
 $aws\
 $gcloud\
 $azure\
@@ -169,11 +169,11 @@ color_vimcmd_visual = '#d79921'
 
 [os]
 disabled = false
-style = "fg:text"
-format = '[$symbol]($style)'
+style = "fg:text bold"
+format = '[$symbol ]($style)'
 
 [os.symbols]
-Macos = "󰀵"
+Macos = ""
 
 [username]
 show_always = true
@@ -189,7 +189,7 @@ format = "[$path ]($style)"
 read_only = ""
 home_symbol = "~"
 truncation_symbol = "…/"
-truncation_length = 2
+truncation_length = 5
 truncate_to_repo = false
 fish_style_pwd_dir_length = 0
 use_logical_path = true
@@ -216,8 +216,8 @@ disabled = false
 
 [git_status]
 style = "fg:green"
-format = '([$ahead_behind]($style) )([$all_status]($style) )'
-stashed = "*${count}"
+format = '([$ahead_behind]($style))($all_status)'
+stashed = "[*${count}](overlay0)"
 ahead = "[⇡($count)](green)"
 behind = "[⇣($count)](maroon)"
 up_to_date = ""
@@ -230,13 +230,15 @@ staged = "[+($count) ](green)"
 untracked = "[?($count)](red)"
 ignore_submodules = false
 disabled = false
+use_git_executable = true
 
 [git_metrics]
-format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:color_git) )'
+format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:green) )'
 added_style = "fg:yellow"
 deleted_style = "fg:red"
 only_nonzero_diffs = true
 disabled = true
+use_git_executable = true
 
 [git_state]
 style = "fg:red"
@@ -288,7 +290,7 @@ format = '([$symbol( $version)]($style) )'
 [lua]
 symbol = ""
 style = "fg:blue"
-format = 'via [$symbol( $version)]($style) '
+format = '[$symbol( $version)]($style) '
 
 [ruby]
 symbol = ""
@@ -318,10 +320,7 @@ style = "fg:sapphire"
 format = '([$symbol( $context)]($style) )'
 
 [kubernetes]
-symbol = "󱃾"
-style = "fg:blue"
-format = '([($symbol( $cluster))]($style) )'
-disabled = false
+disabled = true
 
 # [shell]
 # disabled = false
@@ -433,6 +432,11 @@ sigint_symbol = '󰐊'
 signal_symbol = '󱐋'
 style = 'bold fg:red'
 recognize_signal_code = true
+
+[gcloud]
+symbol = "󱇶"
+style = "fg:sapphire"
+format = '([$symbol( $project)]($style) )'
 
 [line_break]
 disabled = false

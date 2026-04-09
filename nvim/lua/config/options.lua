@@ -64,7 +64,6 @@ opt.clipboard:prepend("unnamedplus") -- Use system clipboard as default yank/pas
 -- === File & Buffer Management ===
 opt.undofile = true -- Enable persistent undo
 opt.swapfile = false -- Disable swapfile creation
-opt.hidden = true -- Allow switching buffers without saving
 opt.bufhidden = "hide" -- Hide buffers instead of closing them
 opt.fileencoding = "utf-8" -- Set file encoding to UTF-8
 opt.encoding = "utf-8" -- Optional, default is utf-8 anyway
