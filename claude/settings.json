@@ -1,0 +1,52 @@
+{
+  "theme": "auto",
+  "permissions": {
+    "deny": [
+      "Read(//**/.env)",
+      "Read(//**/.env.*)",
+      "Read(//**/*.pem)",
+      "Read(//**/*.key)",
+      "Read(//**/*.p12)",
+      "Read(//**/*.pfx)",
+      "Read(//**/credentials*.json)",
+      "Read(//**/secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.npmrc)",
+      "Read(~/.netrc)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/.claude.json)",
+      "Edit(~/.ssh/**)",
+      "Edit(~/.aws/**)",
+      "Edit(~/.zshenv)",
+      "Edit(~/.zshrc)",
+      "Bash(printenv *)",
+      "Bash(env)",
+      "Bash(export)",
+      "Bash(set)",
+      "Bash(cat *.env*)",
+      "Bash(security find-generic-password *)",
+      "Bash(security find-internet-password *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~*)",
+      "Bash(sudo *)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(nc *)",
+      "Bash(scp *)",
+      "Bash(rsync *)",
+      "Bash(gh gist *)",
+      "Bash(npm publish *)",
+      "WebFetch"
+    ]
+  }
+}
