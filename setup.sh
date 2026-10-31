@@ -167,6 +167,17 @@ function setup_opencode_config() {
   ln -nsf "$HOME"/.dotfiles/opencode "$XDG_CONFIG_HOME"
 }
 
+# Claude Code does not support XDG, so link each item into ~/.claude
+function setup_claude_config() {
+  echo "Setting up claude config"
+  mkdir -p "$HOME/.claude"
+  local item
+  for item in "$HOME"/.dotfiles/claude/*; do
+    [ -e "$item" ] || continue
+    ln -nsf "$item" "$HOME/.claude/$(basename "$item")"
+  done
+}
+
 function setup_default_fallback_configs() {
   echo "Setting up default fallback configs"
   ln -nsf "$HOME"/.dotfiles/default-fallback-configs "$XDG_CONFIG_HOME"
@@ -186,6 +197,7 @@ function setup_all() {
   setup_mise_config
   setup_kitty_config
   setup_opencode_config
+  setup_claude_config
   setup_default_fallback_configs
 }
 
@@ -202,6 +214,7 @@ function setup_all_configs() {
   setup_mise_config
   setup_kitty_config
   setup_opencode_config
+  setup_claude_config
   setup_default_fallback_configs
 }
 
@@ -232,6 +245,7 @@ function show_help() {
   echo -e "  ${GREEN}-smkr, --setup-mac-keyrepeat${RESET}  ${YELLOW}Adjust macOS keyboard repeat and key press speed.${RESET}"
   echo -e "  ${GREEN}-sk, --setup-kitty${RESET}            ${YELLOW}Setup kitty config.${RESET}"
   echo -e "  ${GREEN}-soc, --setup-opencode${RESET}        ${YELLOW}Setup opencode config.${RESET}"
+  echo -e "  ${GREEN}-scl, --setup-claude${RESET}          ${YELLOW}Setup claude config.${RESET}"
   echo -e "  ${GREEN}-sdfc, --setup-default-fallback-configs${RESET}  ${YELLOW}Setup default fallback configs.${RESET}"
   echo -e "  ${GREEN}-ac, --all-configs${RESET}            ${YELLOW}Setup all configs.${RESET}"
   echo -e "  ${GREEN}-a, --all${RESET}                     ${YELLOW}Run all setup steps and install necessary components.${RESET}"
@@ -304,6 +318,9 @@ function initial_setup() {
       ;;
     -soc | --setup-opencode)
       setup_opencode_config
+      ;;
+    -scl | --setup-claude)
+      setup_claude_config
       ;;
     -sdfc | --setup-default-fallback-configs)
       setup_default_fallback_configs
